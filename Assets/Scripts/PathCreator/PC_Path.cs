@@ -85,14 +85,11 @@ namespace PathCreator
                 for (int i = 0; i < points.Count; i++)
                 {
                     var index = points[i];
-                    Gizmos.matrix = Matrix4x4.TRS(index.position, index.rotation, Vector3.one);
                     Gizmos.color = visual.cylinderColor;
-                    Gizmos.DrawFrustum(Vector3.zero, 90f, 0.25f, 0.01f, 1.78f);
-                    Gizmos.matrix = Matrix4x4.identity;
+                    Gizmos.DrawWireSphere(index.position, 0.5f);
                 }
             }
         }
 #endif
-
     }
 }

@@ -93,10 +93,14 @@ namespace PathCreator
         public override void OnInspectorGUI()
         {
             serializedObjectTarget.Update();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndHorizontal();
             Rect scale = GUILayoutUtility.GetLastRect();
             hasScrollBar = (Screen.width - scale.width <= 12);
+
             GUILayout.Space(5);
-            GUILayout.Box("", GUILayout.Width(Screen.width - 20), GUILayout.Height(3));
             DrawVisualDropdown();
             GUILayout.Box("", GUILayout.Width(Screen.width - 20), GUILayout.Height(3));
             DrawManipulationDropdown();
@@ -257,13 +261,14 @@ namespace PathCreator
             };
         }
 
-        void DrawVisualDropdown()
+        void DrawVisualDropdown() 
         {
             EditorGUI.BeginChangeCheck();
             GUILayout.BeginHorizontal();
             visualFoldout = EditorGUILayout.Foldout(visualFoldout, "Visual");
             alwaysShowProperty.boolValue = GUILayout.Toggle(alwaysShowProperty.boolValue, alwaysShowContent);
             GUILayout.EndHorizontal();
+
             if (visualFoldout)
             {
                 GUILayout.BeginVertical("Box");
@@ -278,6 +283,7 @@ namespace PathCreator
                 }
                 GUILayout.EndVertical();
             }
+
             if (EditorGUI.EndChangeCheck())
             {
                 SceneView.RepaintAll();
@@ -309,6 +315,7 @@ namespace PathCreator
         {
             GUILayout.Label("Replace all lerp types");
             GUILayout.BeginVertical("Box");
+
             GUILayout.BeginHorizontal();
             allCurveType = (PC_CurveType) EditorGUILayout.EnumPopup(allCurveType, GUILayout.Width(Screen.width / 3f));
             if (GUILayout.Button(replaceAllPositionContent))
@@ -322,6 +329,7 @@ namespace PathCreator
                 }
             }
             GUILayout.EndHorizontal();
+
             GUILayout.BeginHorizontal();
             GUI.enabled = allCurveType == PC_CurveType.Custom;
             allAnimationCurve = EditorGUILayout.CurveField(allAnimationCurve, GUILayout.Width(Screen.width / 3f));
@@ -338,13 +346,16 @@ namespace PathCreator
             }
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
+
             GUILayout.BeginHorizontal();
             GUILayout.Space(Screen.width / 2f - 20);
             GUILayout.Label("↓");
             GUILayout.EndHorizontal();
+
             serializedObject.Update();
             pointReorderableList.DoLayoutList();
             serializedObject.ApplyModifiedProperties();
+
             Rect r = GUILayoutUtility.GetRect(Screen.width - 16, 18);
             //r.height = 18;
             r.y -= 10;
@@ -402,7 +413,7 @@ namespace PathCreator
         void DrawHandles(int i)
         {
             DrawHandleLines(i);
-            Handles.color = p.visual.handleColor;
+            Handles.color = p.visual.handleColor;               /// Braucht man das? siehe Zeilen 416 und 421
             DrawNextHandle(i);
             DrawPrevHandle(i);
             DrawWaypointHandles(i);
@@ -411,17 +422,17 @@ namespace PathCreator
 
         void DrawHandleLines(int i)
         {
-            Handles.color = p.visual.handleColor;
-            if (i < p.points.Count - 1 || p.looped == true)
+            Handles.color = p.visual.handleColor;               ///
+            if (i < p.points.Count - 1)
                 Handles.DrawLine(p.points[i].position, p.points[i].position + p.points[i].handleNext);
-            if (i > 0 || p.looped == true)
+            if (i > 0)
                 Handles.DrawLine(p.points[i].position, p.points[i].position + p.points[i].handlePrev);
-            Handles.color = Color.white;
+            Handles.color = Color.white;                        ///
         }
 
         void DrawNextHandle(int i)
         {
-            if (i < p.points.Count - 1 || loopedProperty.boolValue)
+            if (i < p.points.Count - 1)
             {
                 EditorGUI.BeginChangeCheck();
                 Vector3 posNext = Vector3.zero;
@@ -431,7 +442,7 @@ namespace PathCreator
 #if UNITY_5_5_OR_NEWER
                     posNext = Handles.FreeMoveHandle(p.points[i].position + p.points[i].handleNext, Quaternion.identity, size, Vector3.zero, Handles.SphereHandleCap);
 #else
-                posNext = Handles.FreeMoveHandle(t.points[i].position + t.points[i].handleNext, Quaternion.identity, size, Vector3.zero, Handles.SphereCap);
+                    posNext = Handles.FreeMoveHandle(t.points[i].position + t.points[i].handleNext, Quaternion.identity, size, Vector3.zero, Handles.SphereCap);
 #endif
                 }
                 else
@@ -441,7 +452,7 @@ namespace PathCreator
 #if UNITY_5_5_OR_NEWER
                         Handles.SphereHandleCap(0, p.points[i].position + p.points[i].handleNext, Quaternion.identity, size, EventType.Repaint);
 #else
-                    Handles.SphereCap(0, t.points[i].position + t.points[i].handleNext, Quaternion.identity, size);
+                        Handles.SphereCap(0, t.points[i].position + t.points[i].handleNext, Quaternion.identity, size);
 #endif
                         posNext = Handles.PositionHandle(p.points[i].position + p.points[i].handleNext, Quaternion.identity);
                     }
@@ -453,10 +464,10 @@ namespace PathCreator
                             SelectIndex(i);
                         }
 #else
-                    if (Handles.Button(t.points[i].position + t.points[i].handleNext, Quaternion.identity, size, size, Handles.CubeCap))
-                    {
-                        SelectIndex(i);
-                    }
+                        if (Handles.Button(t.points[i].position + t.points[i].handleNext, Quaternion.identity, size, size, Handles.CubeCap))
+                        {
+                            SelectIndex(i);
+                        }
 #endif
                     }
                 }
@@ -473,7 +484,7 @@ namespace PathCreator
 
         void DrawPrevHandle(int i)
         {
-            if (i > 0 || loopedProperty.boolValue)
+            if (i > 0)
             {
                 EditorGUI.BeginChangeCheck();
                 Vector3 posPrev = Vector3.zero;
@@ -483,7 +494,7 @@ namespace PathCreator
 #if UNITY_5_5_OR_NEWER
                     posPrev = Handles.FreeMoveHandle(p.points[i].position + p.points[i].handlePrev, Quaternion.identity, 0.1f * HandleUtility.GetHandleSize(p.points[i].position + p.points[i].handlePrev), Vector3.zero, Handles.SphereHandleCap);
 #else
-                posPrev = Handles.FreeMoveHandle(t.points[i].position + t.points[i].handlePrev, Quaternion.identity, 0.1f * HandleUtility.GetHandleSize(t.points[i].position + t.points[i].handlePrev), Vector3.zero, Handles.SphereCap);
+                    posPrev = Handles.FreeMoveHandle(t.points[i].position + t.points[i].handlePrev, Quaternion.identity, 0.1f * HandleUtility.GetHandleSize(t.points[i].position + t.points[i].handlePrev), Vector3.zero, Handles.SphereCap);
 #endif
                 }
                 else
@@ -493,8 +504,7 @@ namespace PathCreator
 #if UNITY_5_5_OR_NEWER
                         Handles.SphereHandleCap(0, p.points[i].position + p.points[i].handlePrev, Quaternion.identity, 0.1f * HandleUtility.GetHandleSize(p.points[i].position + p.points[i].handleNext), EventType.Repaint);
 #else
-                    Handles.SphereCap(0, t.points[i].position + t.points[i].handlePrev, Quaternion.identity,
-                        0.1f * HandleUtility.GetHandleSize(t.points[i].position + t.points[i].handleNext));
+                        Handles.SphereCap(0, t.points[i].position + t.points[i].handlePrev, Quaternion.identity, 0.1f * HandleUtility.GetHandleSize(t.points[i].position + t.points[i].handleNext));
 #endif
                         posPrev = Handles.PositionHandle(p.points[i].position + p.points[i].handlePrev, Quaternion.identity);
                     }
@@ -506,11 +516,10 @@ namespace PathCreator
                             SelectIndex(i);
                         }
 #else
-                    if (Handles.Button(t.points[i].position + t.points[i].handlePrev, Quaternion.identity, size, size,
-                        Handles.CubeCap))
-                    {
-                        SelectIndex(i);
-                    }
+                        if (Handles.Button(t.points[i].position + t.points[i].handlePrev, Quaternion.identity, size, size, Handles.CubeCap))
+                        {
+                            SelectIndex(i);
+                        }
 #endif
                     }
                 }
@@ -540,7 +549,7 @@ namespace PathCreator
 #if UNITY_5_5_OR_NEWER
                     pos = Handles.FreeMoveHandle(p.points[i].position, (Tools.pivotRotation == PivotRotation.Local) ? p.points[i].rotation : Quaternion.identity, HandleUtility.GetHandleSize(p.points[i].position) * 0.2f, Vector3.zero, Handles.RectangleHandleCap);
 #else
-                pos = Handles.FreeMoveHandle(t.points[i].position, (Tools.pivotRotation == PivotRotation.Local) ? t.points[i].rotation : Quaternion.identity, HandleUtility.GetHandleSize(t.points[i].position) * 0.2f, Vector3.zero, Handles.RectangleCap);
+                    pos = Handles.FreeMoveHandle(t.points[i].position, (Tools.pivotRotation == PivotRotation.Local) ? t.points[i].rotation : Quaternion.identity, HandleUtility.GetHandleSize(t.points[i].position) * 0.2f, Vector3.zero, Handles.RectangleCap);
 #endif
                 }
                 if (EditorGUI.EndChangeCheck())
@@ -585,10 +594,10 @@ namespace PathCreator
                         SelectIndex(i);
                     }
 #else
-                if (Handles.Button(t.points[i].position, Quaternion.identity, size, size, Handles.CubeCap))
-                {
-                    SelectIndex(i);
-                }
+                    if (Handles.Button(t.points[i].position, Quaternion.identity, size, size, Handles.CubeCap))
+                    {
+                        SelectIndex(i);
+                    }
 #endif
                 }
             }
