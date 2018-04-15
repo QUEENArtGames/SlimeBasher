@@ -2513,6 +2513,234 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9029185a3d8d4a917877b8e851354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points:
+  - position: {x: 14, y: 8, z: -17}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    radius: 5.5
+    handlePrev: {x: 0, y: 0, z: -1}
+    handleNext: {x: 0, y: 0, z: 1}
+    chained: 1
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - position: {x: -6, y: 8, z: -17}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    radius: 5.5
+    handlePrev: {x: 3.053494, y: 0.9923668, z: -1.193716}
+    handleNext: {x: -3.053494, y: -0.9923668, z: 1.193716}
+    chained: 1
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - position: {x: -20, y: 4.8298683, z: -15.449875}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    radius: 5.5
+    handlePrev: {x: 1.4154587, y: 0.31825638, z: -1.8017731}
+    handleNext: {x: -1.4154587, y: -0.31825638, z: 1.8017731}
+    chained: 1
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - position: {x: -16.993156, y: 6.171179, z: 18.480417}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    radius: 5.5
+    handlePrev: {x: -4.229002, y: -0.3247528, z: -2.4327755}
+    handleNext: {x: 4.229002, y: 0.3247528, z: 2.4327755}
+    chained: 1
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - position: {x: 15.738478, y: 6.171179, z: 18.332815}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    radius: 5
+    handlePrev: {x: 0, y: 0, z: -1}
+    handleNext: {x: 0, y: 0, z: 1}
+    chained: 1
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  visual:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    cylinderColor: {r: 1, g: 0, b: 1, a: 1}
+    handleColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  alwaysShow: 1
+  showComplexPath: 0
 --- !u!4 &1948881385
 Transform:
   m_ObjectHideFlags: 0
@@ -2520,7 +2748,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1948881383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.97042, y: 2.1794498, z: 17.677849}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -47,6 +47,7 @@ namespace PathCreator
         private GUIContent deletePointContent = new GUIContent("X", "Deletes this waypoint");
         private GUIContent gotoPointContent = new GUIContent("Goto", "Teleports the scene camera to the specified waypoint");
         private GUIContent alwaysShowContent = new GUIContent("Always show", "When true, shows the curve even when the GameObject is not selected - \"Inactive path color\" will be used as path color instead");
+        private GUIContent showComplexPathContent = new GUIContent("Show complex path", "When true, shows multiple possible paths to prevent creating paths through walls");
         private GUIContent chainedContent = new GUIContent("o───o", "Toggles if the handles of the specified waypoint should be chained (mirrored) or not");
         private GUIContent unchainedContent = new GUIContent("o─x─o", "Toggles if the handles of the specified waypoint should be chained (mirrored) or not");
         private GUIContent replaceAllPositionContent = new GUIContent("Replace all position lerps", "Replaces curve types (and curves when set to \"Custom\") of all the waypoint position lerp types with the specified values");
@@ -60,6 +61,7 @@ namespace PathCreator
         private SerializedProperty visualCylinderProperty;
         private SerializedProperty visualHandleProperty;
         private SerializedProperty alwaysShowProperty;
+        private SerializedProperty showComplexPathProperty;
 
         private int selectedIndex = -1;
 
@@ -147,6 +149,7 @@ namespace PathCreator
             visualCylinderProperty = serializedObjectTarget.FindProperty("visual.cylinderColor");
             visualHandleProperty = serializedObjectTarget.FindProperty("visual.handleColor");
             alwaysShowProperty = serializedObjectTarget.FindProperty("alwaysShow");
+            showComplexPathProperty = serializedObjectTarget.FindProperty("showComplexPath");
         }
 
         void SetupReorderableList()
@@ -267,6 +270,7 @@ namespace PathCreator
             GUILayout.BeginHorizontal();
             visualFoldout = EditorGUILayout.Foldout(visualFoldout, "Visual");
             alwaysShowProperty.boolValue = GUILayout.Toggle(alwaysShowProperty.boolValue, alwaysShowContent);
+            showComplexPathProperty.boolValue = GUILayout.Toggle(showComplexPathProperty.boolValue, showComplexPathContent);
             GUILayout.EndHorizontal();
 
             if (visualFoldout)
@@ -618,6 +622,7 @@ namespace PathCreator
                     Quaternion rot = Quaternion.Euler(EditorGUILayout.Vector3Field("Waypoint Rotation", i.rotation.eulerAngles));
                     Vector3 posp = EditorGUILayout.Vector3Field("Previous Handle Offset", i.handlePrev);
                     Vector3 posn = EditorGUILayout.Vector3Field("Next Handle Offset", i.handleNext);
+                    float radius = EditorGUILayout.FloatField("Waypoint radius", i.radius);
                     GUILayout.EndVertical();
                     if (EditorGUI.EndChangeCheck())
                     {
@@ -626,6 +631,7 @@ namespace PathCreator
                         i.rotation = rot;
                         i.handlePrev = posp;
                         i.handleNext = posn;
+                        i.radius = radius;
                         SceneView.RepaintAll();
                     }
                 }

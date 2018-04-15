@@ -16,8 +16,8 @@ namespace PathCreator
         public Vector3 position;
         public Quaternion rotation;
 
-        public Vector3 handlePrev = Vector3.back;
-        public Vector3 handleNext = Vector3.forward;
+        public Vector3 handlePrev;
+        public Vector3 handleNext;
 
         public PC_CurveType curveTypePosition = PC_CurveType.Linear;
         public AnimationCurve positionCurve = AnimationCurve.Linear(0, 0, 1, 1);
@@ -26,10 +26,13 @@ namespace PathCreator
         public AnimationCurve rotationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
 
-        public PA_Waypoint(Vector3 pos, Quaternion rot)
+        public PA_Waypoint(PC_Waypoint point)
         {
-            position = pos;
-            rotation = rot;
+            position = point.GetRandomPosition();
+            rotation = point.rotation;
+
+            handlePrev = point.handlePrev;
+            handleNext = point.handleNext;
         }
     }
 
@@ -50,7 +53,7 @@ namespace PathCreator
 
         void Awake()
         {
-            path.GetIndividualWaypoints();
+            points = path.GetRandomWaypoints();
         }
 
         // Use this for initialization
