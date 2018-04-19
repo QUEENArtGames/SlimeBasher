@@ -1,4 +1,5 @@
-﻿using System;
+﻿// modified and extended version of: https://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,11 +69,18 @@ namespace PathCreator
         public List<PC_Waypoint> points = new List<PC_Waypoint>();
         public PC_Visual visual;
 
+        public PC_PathAgent prefab;
+
         public bool alwaysShow = true;
         public bool showComplexPath = true;
 
 
         void Start()
+        {
+
+        }
+
+        public void SpawnGasSlimes(int anzahl)
         {
 
         }
