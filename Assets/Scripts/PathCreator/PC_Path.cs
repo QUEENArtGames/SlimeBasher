@@ -47,7 +47,7 @@ namespace PathCreator
 
         internal Vector3 GetRandomPosition()
         {
-            return new Vector3(UnityEngine.Random.Range(position.x - radius, position.x + radius), 0, UnityEngine.Random.Range(position.z - radius, position.z + radius));
+            return new Vector3(UnityEngine.Random.Range(position.x - radius, position.x + radius), position.y, UnityEngine.Random.Range(position.z - radius, position.z + radius));
         }
 
         internal List<Vector3> GetSample()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PathCreator
 {
+    [System.Serializable]
     public class PA_Visual
     {
         public Color pathColor = Color.blue;
@@ -250,26 +251,29 @@ namespace PathCreator
 #if UNITY_EDITOR
         public void OnDrawGizmos()
         {
-            if (UnityEditor.Selection.activeGameObject == gameObject)
+            if (Application.isPlaying)
             {
-                if (points.Count >= 2)
+                if (UnityEditor.Selection.activeGameObject == gameObject)
                 {
-                    for (int i = 0; i < points.Count; i++)
+                    if (points.Count >= 2)
                     {
-                        if (i < points.Count - 1)
+                        for (int i = 0; i < points.Count; i++)
                         {
-                            var index = points[i];
-                            var indexNext = points[i + 1];
-                            UnityEditor.Handles.DrawBezier(index.position, indexNext.position, index.position + index.handleNext,
-                                indexNext.position + indexNext.handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 5);
+                            if (i < points.Count - 1)
+                            {
+                                var index = points[i];
+                                var indexNext = points[i + 1];
+                                UnityEditor.Handles.DrawBezier(index.position, indexNext.position, index.position + index.handleNext,
+                                    indexNext.position + indexNext.handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 5);
+                            }
                         }
                     }
-                }
 
-                for (int i = 0; i < points.Count; i++)
-                {
-                    Gizmos.color = visual.cubeColor;
-                    Gizmos.DrawCube(points[i].position, Vector3.one);
+                    for (int i = 0; i < points.Count; i++)
+                    {
+                        Gizmos.color = visual.cubeColor;
+                        Gizmos.DrawCube(points[i].position, Vector3.one);
+                    }
                 }
             }
         }
