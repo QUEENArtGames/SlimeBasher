@@ -12,6 +12,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
     //public bool[] CanDrop;
     public float RessourcePossibility = 1;
     public float suckSpeed = 1.0f;
+    public int ScrapThrowFactor = 10;
 
     private ArrayList _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
@@ -44,10 +45,17 @@ public class SlimeRessourceManagement : MonoBehaviour {
             scrap.GetComponent<Scrap>().ChangeCollectionState();
             scrap.GetComponent<Rigidbody>().isKinematic = false;
             scrap.GetComponent<Scrap>().ChangeAttachementState();
+            ThrowScrapAway(scrap);
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
 
+    }
+
+    private void ThrowScrapAway(GameObject scrap)
+    {
+        Vector3 forceVector = (scrap.transform.position - transform.position) * ScrapThrowFactor;
+        scrap.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)
