@@ -12,7 +12,8 @@ public class SlimeRessourceManagement : MonoBehaviour {
     //public bool[] CanDrop;
     public float RessourcePossibility = 1;
     public float suckSpeed = 1.0f;
-    public int ScrapThrowFactor = 10;
+    public int scrapThrowFactor = 10;
+    public int RotationValue = 1;
 
     private ArrayList _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
@@ -54,7 +55,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
 
     private void ThrowScrapAway(GameObject scrap)
     {
-        Vector3 forceVector = (scrap.transform.position - transform.position) * ScrapThrowFactor;
+        Vector3 forceVector = (scrap.transform.position - transform.position) * scrapThrowFactor;
         scrap.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
     }
 
@@ -101,6 +102,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
         }
     }
 
+    
     private void SuckScraps()
     {
         for (int i = 0; i < _attachedScraps.Count; i++)
@@ -109,12 +111,17 @@ public class SlimeRessourceManagement : MonoBehaviour {
             Vector3 to = ScrapSlots[i].position;
             float step = suckSpeed * Time.deltaTime;
             ((GameObject)_attachedScraps[i]).transform.position = Vector3.MoveTowards(from, to, step);
+            RotateScrap((GameObject)_attachedScraps[i]);
 
             if (((GameObject)_attachedScraps[i]).transform.position == ScrapSlots[i].position)
                 ((GameObject)_attachedScraps[i]).GetComponent<Scrap>().ChangeAttachementState();
         }
 
+    }
 
+    private void RotateScrap(GameObject scrap)
+    {
+        scrap.transform.Rotate(new Vector3(RotationValue, 0, RotationValue));
     }
 
 }
