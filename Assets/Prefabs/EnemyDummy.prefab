@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 135971155719571778}
   - component: {fileID: 135792481083956520}
   - component: {fileID: 23733591575028984}
-  - component: {fileID: 114996342372714046}
+  - component: {fileID: 114937488645705072}
   m_Layer: 10
   m_Name: EnemyDummy
   m_TagString: Enemy
@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1739397658495034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 5.22, z: 2.95}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4097742643685540}
@@ -330,7 +330,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513034964167942}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114996342372714046
+--- !u!114 &114937488645705072
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -345,11 +345,10 @@ MonoBehaviour:
   - {fileID: 4810612534267720}
   - {fileID: 4152644286976572}
   - {fileID: 4709313120410208}
-  PossibleScrabPrefabs:
-  - {fileID: 1561977471319464, guid: fc24cd0137ce84343b2f3856dc6be1cd, type: 2}
-  - {fileID: 1686373990833044, guid: 29fc1d168d3d43340b4050b1626aa9fa, type: 2}
-  - {fileID: 1878995851421722, guid: 7111e8fe7ad371646a90507cd9de6ddb, type: 2}
   RessourcePossibility: 1
+  SuckSpeed: 1
+  ScrapThrowFactor: 10
+  RotationValue: 1.5
 --- !u!135 &135792481083956520
 SphereCollider:
   m_ObjectHideFlags: 1

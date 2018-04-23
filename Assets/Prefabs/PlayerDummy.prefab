@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1605690931746756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,10 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droprate: 1
-  PossibleScrabPrefabs:
-  - {fileID: 1561977471319464, guid: fc24cd0137ce84343b2f3856dc6be1cd, type: 2}
-  - {fileID: 1686373990833044, guid: 29fc1d168d3d43340b4050b1626aa9fa, type: 2}
-  - {fileID: 1878995851421722, guid: 7111e8fe7ad371646a90507cd9de6ddb, type: 2}
 --- !u!114 &114369878144851268
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,9 +11,9 @@ public class SlimeRessourceManagement : MonoBehaviour {
     //public bool[] CanCollect;
     //public bool[] CanDrop;
     public float RessourcePossibility = 1;
-    public float suckSpeed = 1.0f;
-    public int scrapThrowFactor = 10;
-    public int RotationValue = 1;
+    public float SuckSpeed = 1.0f;
+    public int ScrapThrowFactor = 10;
+    public float RotationValue = 1.5f;
 
     private ArrayList _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
@@ -55,7 +55,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
 
     private void ThrowScrapAway(GameObject scrap)
     {
-        Vector3 forceVector = (scrap.transform.position - transform.position) * scrapThrowFactor;
+        Vector3 forceVector = (scrap.transform.position - transform.position) * ScrapThrowFactor;
         scrap.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
     }
 
@@ -95,26 +95,39 @@ public class SlimeRessourceManagement : MonoBehaviour {
                 ((GameObject)_attachedScraps[i]).transform.position = ScrapSlots[i].position;
 
             if (!((GameObject)_attachedScraps[i]).GetComponent<Scrap>().AttachedToSlot)
-                SuckScraps();
+                SuckScrap((GameObject)_attachedScraps[i], i);
             
 
 
         }
     }
 
-    
+    private void SuckScrap(GameObject gameObject, int slotIndex)
+    {
+        Vector3 from = ((GameObject)_attachedScraps[slotIndex]).transform.position;
+        Vector3 to = ScrapSlots[slotIndex].position;
+        float step = SuckSpeed * Time.deltaTime;
+        ((GameObject)_attachedScraps[slotIndex]).transform.position = Vector3.MoveTowards(from, to, step);
+
+        if (((GameObject)_attachedScraps[slotIndex]).transform.position == ScrapSlots[slotIndex].position)
+            ((GameObject)_attachedScraps[slotIndex]).GetComponent<Scrap>().ChangeAttachementState();
+
+        RotateScrap((GameObject)_attachedScraps[slotIndex]);
+    }
+
     private void SuckScraps()
     {
         for (int i = 0; i < _attachedScraps.Count; i++)
         {
             Vector3 from = ((GameObject)_attachedScraps[i]).transform.position;
             Vector3 to = ScrapSlots[i].position;
-            float step = suckSpeed * Time.deltaTime;
+            float step = SuckSpeed * Time.deltaTime;
             ((GameObject)_attachedScraps[i]).transform.position = Vector3.MoveTowards(from, to, step);
-            RotateScrap((GameObject)_attachedScraps[i]);
 
             if (((GameObject)_attachedScraps[i]).transform.position == ScrapSlots[i].position)
                 ((GameObject)_attachedScraps[i]).GetComponent<Scrap>().ChangeAttachementState();
+
+            RotateScrap((GameObject)_attachedScraps[i]);
         }
 
     }
