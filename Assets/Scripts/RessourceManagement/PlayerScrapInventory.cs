@@ -27,9 +27,19 @@ public class PlayerScrapInventory : MonoBehaviour {
         scrapInventory[(int)scrapType].Add(meshIndex);
     }
 
-    public void AddClassicScraps(ScrapType scrapType, int amountOfScraps)
+    public void RemoveScrap(int scrapType, int index)
+    {
+        scrapInventory[(int)scrapType].RemoveAt(index);
+    }
+
+    public void AddClassicScraps(int amountOfScraps)
     {
         classicScraps += amountOfScraps;
+    }
+
+    public void RemoveClassicScraps(int amountOfScrabs)
+    {
+        classicScraps -= amountOfScrabs;
     }
 
     public ArrayList[] ScrapInventory
@@ -40,8 +50,5 @@ public class PlayerScrapInventory : MonoBehaviour {
         }
     }
 
-    public void RemoveScrap(int scrapType, int index)
-    {
-        scrapInventory[(int)scrapType].RemoveAt(index);
-    }
+
 }
