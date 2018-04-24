@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameRoundTest : MonoBehaviour {
 
     private GameRound _gameRoundScript;
-    private int _enemyCounter = 0;
     public float _nextPhaseTimer = 10.0f;
     private Round _actualPhase;
     private bool _startTimer = false;
@@ -18,24 +17,28 @@ public class GameRoundTest : MonoBehaviour {
         _gameRoundScript = GetComponent<GameRound>();
         _actualPhase = _gameRoundScript.GamePhase;
         RunGame(_actualPhase);
-	}
+    }
 
     private void RunGame(Round gamePhase) {
         switch(gamePhase) {
             case Round.Building:
                 //Player kann sachen bauen
+                Debug.Log("BUILDING");
                 _readyButtonEnabled = true;
                 break;
             case Round.Prepare:
                 //Player bereitet sich auf die jetzt kommende Nächste Phase vor
+                Debug.Log("Prepare");
                 StartNextRoundCounter();
                 break;
             case Round.Fight:
                 //Player bekämpft Enemys
+                Debug.Log("FIGHT");
                 SpawnEnemys();
                 break;
             case Round.End:
                 //Rundenende, bereitmachen für Bauphase
+                Debug.Log("End");
                 ShowWaveEndGUI();
                 StartNextRoundCounter();
                 break;
@@ -56,15 +59,18 @@ public class GameRoundTest : MonoBehaviour {
 
     private void CheckGamePhase() {
         _actualPhase = _gameRoundScript.GamePhase;
+
+        if (_actualPhase == Round.Building)
+            Debug.Log("FAILT");
     }
 
     // Update is called once per frame
     void Update () {
 
-        CheckGamePhase();
-		
-        if(_startTimer) {
+
+        if (_startTimer) {
             _timer += Time.deltaTime;
+            Debug.Log(10-(int)_timer);
         }
 
         if(_timer>_nextPhaseTimer) {
@@ -78,14 +84,28 @@ public class GameRoundTest : MonoBehaviour {
             }
             _timer = 0.0f;
             _startTimer = false;
+            CheckGamePhase();
+            RunGame(_actualPhase);
         }
 
-        if(_readyButtonEnabled && Input.GetButtonDown("G")) {
+        if(_readyButtonEnabled && Input.GetKeyDown(KeyCode.G)) {
+            Debug.Log("Starting Countdown");
             _gameRoundScript.StartNextPhase();
+            _readyButtonEnabled = false;
+            CheckGamePhase();
+            RunGame(_actualPhase);
+            
         }
 
-        
-	}
+        if(_actualPhase == Round.Fight && Input.GetKeyDown(KeyCode.T)) {
+            _gameRoundScript.StartNextPhase();
+            CheckGamePhase();
+            RunGame(_actualPhase);
+        }
+
+
+
+    }
 
     
 }

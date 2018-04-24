@@ -27,16 +27,24 @@ public class GameRound : MonoBehaviour {
     private void UpdateGamePhase() {
         switch (GamePhase) {
             case Round.Building:
+                
                 GamePhase = Round.Prepare;
+                
+                if (GamePhase == Round.Building) {
+                    Debug.Log("FAIL");
+                }
                 break;
             case Round.Prepare:
                 GamePhase = Round.Fight;
+                Debug.Log("GamePhase aktualiesiert");
                 break;
             case Round.Fight:
                 GamePhase = Round.End;
+                Debug.Log("GamePhase aktualiesiert");
                 break;
             case Round.End:
                 GamePhase = Round.Building;
+                Debug.Log("GamePhase aktualiesiert");
                 break;               
         }
     }
