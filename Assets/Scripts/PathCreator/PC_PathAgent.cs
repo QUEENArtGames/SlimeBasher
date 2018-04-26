@@ -118,7 +118,18 @@ namespace PathCreator
         {
             float t = points[pointIndex].positionCurve.Evaluate(time);
             int nextIndex = GetNextIndex(pointIndex);
-            return Vector3.Lerp(Vector3.Lerp(points[pointIndex].position, points[pointIndex].position + points[pointIndex].handleNext, t), Vector3.Lerp(points[nextIndex].position + points[nextIndex].handlePrev, points[nextIndex].position, t), t);
+            return
+                Vector3.Lerp(
+                    Vector3.Lerp(
+                        Vector3.Lerp(points[pointIndex].position,
+                            points[pointIndex].position + points[pointIndex].handleNext, t),
+                        Vector3.Lerp(points[pointIndex].position + points[pointIndex].handleNext,
+                            points[nextIndex].position + points[nextIndex].handlePrev, t), t),
+                    Vector3.Lerp(
+                        Vector3.Lerp(points[pointIndex].position + points[pointIndex].handleNext,
+                            points[nextIndex].position + points[nextIndex].handlePrev, t),
+                        Vector3.Lerp(points[nextIndex].position + points[nextIndex].handlePrev,
+                            points[nextIndex].position, t), t), t);
         }
 
         private Quaternion GetLerpRotation(int pointIndex, float time)
