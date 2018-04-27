@@ -7,14 +7,24 @@ public class TowerRessourceManagement : MonoBehaviour {
     public Transform[] ScrapSlots;
     public float Droprate = 1.0f;
 
+    public int NeededMeeleScrabs;
+    public int NeededBottleScrabs;
+    public int NeededGrenadeScrabs;
+
     private ArrayList _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
+    private int[] NeededRessources;
 
     // Use this for initialization
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
         _attachedScraps = new ArrayList();
-	}
+
+        NeededRessources = new int[3];
+        NeededRessources[(int)ScrapType.MELEE] = NeededMeeleScrabs;
+        NeededRessources[(int)ScrapType.BOTTLE] = NeededBottleScrabs;
+        NeededRessources[(int)ScrapType.GRENADE] = NeededGrenadeScrabs;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -46,6 +56,18 @@ public class TowerRessourceManagement : MonoBehaviour {
         }
             
 
+    }
+
+    public void BuildTower()
+    {
+        PlayerScrapInventory playerInventory = FindObjectOfType<PlayerScrapInventory>();
+        for(int scrabType = 0; scrabType < NeededRessources.Length; scrabType++)
+        {
+            playerInventory.RemoveAnyScraps(scrabType, NeededRessources[scrabType]);
+        }
+        //für alle benötigten resourcen
+            //wenn vorhanden
+                //wegdamit
     }
 
     public void AddScrap(GameObject scrap)

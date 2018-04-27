@@ -32,6 +32,12 @@ public class PlayerScrapInventory : MonoBehaviour {
         scrapInventory[(int)scrapType].RemoveAt(index);
     }
 
+    public void RemoveAnyScraps(int scrapType, int amount)
+    {
+        for(int i = 0; i < amount; i++)
+            scrapInventory[(int)scrapType].RemoveAt(scrapInventory[(int) scrapType].Count);
+    }
+
     public void AddClassicScraps(int amountOfScraps)
     {
         classicScraps += amountOfScraps;
