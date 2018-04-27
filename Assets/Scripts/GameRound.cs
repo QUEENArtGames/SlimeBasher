@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Round {
+public enum Phase {
     Building, Prepare, Fight, End,
 }
 
 public class GameRound : MonoBehaviour {
 
-    private Round _gamePhase;
+    private Phase _gamePhase;
     private bool _nextPhase = false;
 
     void Start () {
-        GamePhase = Round.Building;
+        _gamePhase = Phase.Building;
 	}
 	
 	void Update () {
@@ -26,25 +26,17 @@ public class GameRound : MonoBehaviour {
 
     private void UpdateGamePhase() {
         switch (GamePhase) {
-            case Round.Building:
-                
-                GamePhase = Round.Prepare;
-                
-                if (GamePhase == Round.Building) {
-                    Debug.Log("FAIL");
-                }
+            case Phase.Building:
+                _gamePhase = Phase.Prepare;
                 break;
-            case Round.Prepare:
-                GamePhase = Round.Fight;
-                Debug.Log("GamePhase aktualiesiert");
+            case Phase.Prepare:
+                _gamePhase = Phase.Fight;
                 break;
-            case Round.Fight:
-                GamePhase = Round.End;
-                Debug.Log("GamePhase aktualiesiert");
+            case Phase.Fight:
+                _gamePhase = Phase.End;
                 break;
-            case Round.End:
-                GamePhase = Round.Building;
-                Debug.Log("GamePhase aktualiesiert");
+            case Phase.End:
+                _gamePhase = Phase.Building;
                 break;               
         }
     }
@@ -53,15 +45,9 @@ public class GameRound : MonoBehaviour {
         _nextPhase = true;
     }
 
-    public Round GamePhase {
+    public Phase GamePhase {
         get {
             return _gamePhase;
         }
-
-        set {
-            _gamePhase = value;
-        }
     }
-
-
 }
