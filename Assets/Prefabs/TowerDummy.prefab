@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 33312264481202392}
   - component: {fileID: 65383300764588612}
   - component: {fileID: 23588793668479180}
-  - component: {fileID: 114965401423527030}
+  - component: {fileID: 114154281745901986}
   m_Layer: 0
   m_Name: TowerDummy
   m_TagString: Untagged
@@ -341,7 +341,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114965401423527030
+--- !u!114 &114154281745901986
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -349,11 +349,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753047340879792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c280f819b4d4524f9adc2f4974e9c88, type: 3}
+  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrapSlots:
-  - {fileID: 4637929627675462}
-  - {fileID: 4893329980782786}
-  - {fileID: 4732933959556060}
-  Droprate: 1
