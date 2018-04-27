@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿// modified and extended version of: https://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PathCreator
 {
+    [System.Serializable]
     public class PA_Visual
     {
         public Color pathColor = Color.blue;
@@ -16,8 +19,8 @@ namespace PathCreator
         public Vector3 position;
         public Quaternion rotation;
 
-        public Vector3 handlePrev = Vector3.back;
-        public Vector3 handleNext = Vector3.forward;
+        public Vector3 handlePrev;
+        public Vector3 handleNext;
 
         public PC_CurveType curveTypePosition = PC_CurveType.Linear;
         public AnimationCurve positionCurve = AnimationCurve.Linear(0, 0, 1, 1);
@@ -26,10 +29,13 @@ namespace PathCreator
         public AnimationCurve rotationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
 
-        public PA_Waypoint(Vector3 pos, Quaternion rot)
+        public PA_Waypoint(PC_Waypoint point)
         {
-            position = pos;
-            rotation = rot;
+            position = point.GetRandomPosition();
+            rotation = point.rotation;
+
+            handlePrev = point.handlePrev;
+            handleNext = point.handleNext;
         }
     }
 
@@ -50,7 +56,7 @@ namespace PathCreator
 
         void Awake()
         {
-            path.GetIndividualWaypoints();
+            points = path.GetRandomWaypoints();
         }
 
         // Use this for initialization
@@ -112,18 +118,7 @@ namespace PathCreator
         {
             float t = points[pointIndex].positionCurve.Evaluate(time);
             int nextIndex = GetNextIndex(pointIndex);
-            return
-                Vector3.Lerp(
-                    Vector3.Lerp(
-                        Vector3.Lerp(points[pointIndex].position,
-                            points[pointIndex].position + points[pointIndex].handleNext, t),
-                        Vector3.Lerp(points[pointIndex].position + points[pointIndex].handleNext,
-                            points[nextIndex].position + points[nextIndex].handlePrev, t), t),
-                    Vector3.Lerp(
-                        Vector3.Lerp(points[pointIndex].position + points[pointIndex].handleNext,
-                            points[nextIndex].position + points[nextIndex].handlePrev, t),
-                        Vector3.Lerp(points[nextIndex].position + points[nextIndex].handlePrev,
-                            points[nextIndex].position, t), t), t);
+            return Vector3.Lerp(Vector3.Lerp(points[pointIndex].position, points[pointIndex].position + points[pointIndex].handleNext, t), Vector3.Lerp(points[nextIndex].position + points[nextIndex].handlePrev, points[nextIndex].position, t), t);
         }
 
         private Quaternion GetLerpRotation(int pointIndex, float time)
@@ -247,26 +242,29 @@ namespace PathCreator
 #if UNITY_EDITOR
         public void OnDrawGizmos()
         {
-            if (UnityEditor.Selection.activeGameObject == gameObject)
+            if (Application.isPlaying)
             {
-                if (points.Count >= 2)
+                if (UnityEditor.Selection.activeGameObject == gameObject)
                 {
-                    for (int i = 0; i < points.Count; i++)
+                    if (points.Count >= 2)
                     {
-                        if (i < points.Count - 1)
+                        for (int i = 0; i < points.Count; i++)
                         {
-                            var index = points[i];
-                            var indexNext = points[i + 1];
-                            UnityEditor.Handles.DrawBezier(index.position, indexNext.position, index.position + index.handleNext,
-                                indexNext.position + indexNext.handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 5);
+                            if (i < points.Count - 1)
+                            {
+                                var index = points[i];
+                                var indexNext = points[i + 1];
+                                UnityEditor.Handles.DrawBezier(index.position, indexNext.position, index.position + index.handleNext,
+                                    indexNext.position + indexNext.handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 5);
+                            }
                         }
                     }
-                }
 
-                for (int i = 0; i < points.Count; i++)
-                {
-                    Gizmos.color = visual.cubeColor;
-                    Gizmos.DrawCube(points[i].position, Vector3.one);
+                    for (int i = 0; i < points.Count; i++)
+                    {
+                        Gizmos.color = visual.cubeColor;
+                        Gizmos.DrawCube(points[i].position, Vector3.one);
+                    }
                 }
             }
         }
