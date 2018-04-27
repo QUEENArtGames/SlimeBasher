@@ -1,4 +1,5 @@
-﻿using System;
+﻿// modified and extended version of: https://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ namespace PathCreator
         public Vector3 position;
         public Quaternion rotation;
 
+        public float radius = 0.5f;
+
         public Vector3 handlePrev = Vector3.back;
         public Vector3 handleNext = Vector3.forward;
         public bool chained = true;
@@ -42,6 +45,22 @@ namespace PathCreator
             position = pos;
             rotation = rot;
         }
+
+        internal Vector3 GetRandomPosition()
+        {
+            return new Vector3(UnityEngine.Random.Range(position.x - radius, position.x + radius), position.y, UnityEngine.Random.Range(position.z - radius, position.z + radius));
+        }
+
+        internal List<Vector3> GetSample()
+        {
+            var l = new List<Vector3>();
+            l.Add(position);
+            l.Add(position + Vector3.right * radius);
+            l.Add(position + Vector3.left * radius);
+            l.Add(position + Vector3.forward * radius);
+            l.Add(position + Vector3.back * radius);
+            return l;
+        }
     }
 
 
@@ -50,7 +69,10 @@ namespace PathCreator
         public List<PC_Waypoint> points = new List<PC_Waypoint>();
         public PC_Visual visual;
 
+        public PC_PathAgent prefab;
+
         public bool alwaysShow = true;
+        public bool showComplexPath = true;
 
 
         void Start()
@@ -58,9 +80,19 @@ namespace PathCreator
 
         }
 
-        internal void GetIndividualWaypoints()
+        public void SpawnGasSlimes(int anzahl)
         {
-            throw new NotImplementedException();
+
+        }
+
+        internal List<PA_Waypoint> GetRandomWaypoints()
+        {
+            var p = new List<PA_Waypoint>();
+            foreach (var point in points)
+            {
+                p.Add(new PA_Waypoint(point));
+            }
+            return p;
         }
 
 #if UNITY_EDITOR
@@ -74,10 +106,28 @@ namespace PathCreator
                     {
                         if (i < points.Count - 1)
                         {
-                            var index = points[i];
-                            var indexNext = points[i + 1];
-                            UnityEditor.Handles.DrawBezier(index.position, indexNext.position, index.position + index.handleNext,
-                                indexNext.position + indexNext.handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 5);
+                            var handleNext = points[i].handleNext;
+                            var handlePrev = points[i + 1].handlePrev;
+
+                            if (showComplexPath)
+                            {
+                                var indexSample = points[i].GetSample();
+                                var indexNextSample = points[i + 1].GetSample();
+
+                                foreach (var pos in indexSample)
+                                {
+                                    foreach (var posNext in indexNextSample)
+                                    {
+                                        UnityEditor.Handles.DrawBezier(pos, posNext, pos + handleNext, posNext + handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 3);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                var pos = points[i].position;
+                                var posNext = points[i + 1].position;
+                                UnityEditor.Handles.DrawBezier(pos, posNext, pos + handleNext, posNext + handlePrev, ((UnityEditor.Selection.activeGameObject == gameObject) ? visual.pathColor : visual.inactivePathColor), null, 5);
+                            }
                         }
                     }
                 }
@@ -85,14 +135,11 @@ namespace PathCreator
                 for (int i = 0; i < points.Count; i++)
                 {
                     var index = points[i];
-                    Gizmos.matrix = Matrix4x4.TRS(index.position, index.rotation, Vector3.one);
                     Gizmos.color = visual.cylinderColor;
-                    Gizmos.DrawFrustum(Vector3.zero, 90f, 0.25f, 0.01f, 1.78f);
-                    Gizmos.matrix = Matrix4x4.identity;
+                    Gizmos.DrawWireSphere(index.position, index.radius);
                 }
             }
         }
 #endif
-
     }
 }
