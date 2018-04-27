@@ -57,6 +57,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
     {
         Vector3 forceVector = (scrap.transform.position - transform.position) * ScrapThrowFactor;
         scrap.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
+        scrap.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor)));
     }
 
     private void OnTriggerEnter(Collider other)
