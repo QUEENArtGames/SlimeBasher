@@ -22,8 +22,11 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject scrapObject = other.transform.parent.gameObject;
-        if (scrapObject.CompareTag("Scrap") && !scrapObject.GetComponent<Scrap>().IsCollected)
+        if (!other.transform.gameObject.CompareTag("Scrap"))
+            return;
+
+        GameObject scrapObject =  other.transform.parent.gameObject;
+        if (!scrapObject.GetComponent<Scrap>().IsCollected)
         {
             Scrap scrap = scrapObject.GetComponent<Scrap>();
             ScrapType scraptype = scrap.Type;

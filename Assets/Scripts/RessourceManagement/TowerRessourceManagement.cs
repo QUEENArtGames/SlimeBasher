@@ -11,19 +11,13 @@ public class TowerRessourceManagement : MonoBehaviour {
     public int NeededBottleScrabs;
     public int NeededGrenadeScrabs;
 
-    private ArrayList _attachedScraps;
+    private ArrayList _attachedScraps = new ArrayList();
     private GameObject[] _possibleScrapPrefabs;
-    private int[] NeededRessources;
+    //private int[] _neededRessources = new int[3];
 
     // Use this for initialization
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
-        _attachedScraps = new ArrayList();
-
-        NeededRessources = new int[3];
-        NeededRessources[(int)ScrapType.MELEE] = NeededMeeleScrabs;
-        NeededRessources[(int)ScrapType.BOTTLE] = NeededBottleScrabs;
-        NeededRessources[(int)ScrapType.GRENADE] = NeededGrenadeScrabs;
     }
 	
 	// Update is called once per frame
@@ -31,43 +25,6 @@ public class TowerRessourceManagement : MonoBehaviour {
         //Test Destroy Tower
         if (Input.GetKey("i"))
             DestroyTower();
-
-        //TestBuildTower();
-        if (Input.GetKey("u"))
-        {
-            PlayerScrapInventory inventory = FindObjectOfType<PlayerScrapInventory>();
-            ArrayList[] scrapInventory = inventory.ScrapInventory;
-           
-            for (int scrapTypeIndex = 0; scrapTypeIndex < scrapInventory.Length; scrapTypeIndex++)
-            {
-                for (int index = 0; index < scrapInventory[scrapTypeIndex].Count; index++)
-                {
-                    Vector3 instanstiatePosition = ScrapSlots[_attachedScraps.Count].position;
-                    GameObject scrap = Instantiate(_possibleScrapPrefabs[scrapTypeIndex], instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-                        scrap.GetComponent<Scrap>().SetMesh((int)scrapInventory[scrapTypeIndex][index]);
-                        scrap.GetComponent<Scrap>().Type = (ScrapType)scrapTypeIndex;
-                        scrap.GetComponent<Rigidbody>().isKinematic = true;
-                        inventory.RemoveScrap(scrapTypeIndex, index);
-                        _attachedScraps.Add(scrap);
-
-
-                }
-            }
-        }
-            
-
-    }
-
-    public void BuildTower()
-    {
-        PlayerScrapInventory playerInventory = FindObjectOfType<PlayerScrapInventory>();
-        for(int scrabType = 0; scrabType < NeededRessources.Length; scrabType++)
-        {
-            playerInventory.RemoveAnyScraps(scrabType, NeededRessources[scrabType]);
-        }
-        //für alle benötigten resourcen
-            //wenn vorhanden
-                //wegdamit
     }
 
     public void AddScrap(GameObject scrap)
@@ -79,6 +36,30 @@ public class TowerRessourceManagement : MonoBehaviour {
             _attachedScraps.Add(scrapInstant);
         }
         
+    }
+
+    public void AddAllNeededScraps(ArrayList[] scrapInventory)
+    {
+        for (int i = 0; i < NeededMeeleScrabs; i++)
+            AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int)ScrapType.MELEE][0]);
+
+        for (int i = 0; i < NeededBottleScrabs; i++)
+            AddParticularScrap(ScrapType.BOTTLE, (int) scrapInventory[(int)ScrapType.BOTTLE][0]);
+
+        for (int i = 0; i < NeededGrenadeScrabs; i++)
+            AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int)ScrapType.GRENADE][0]);
+
+
+    }
+
+    private void AddParticularScrap(ScrapType scraptype, int meshindex)
+    {
+        Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
+        GameObject scrap = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int)scraptype];
+        GameObject scrapInstant = Instantiate(scrap, spawnposition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+        scrapInstant.GetComponent<Scrap>().SetMesh(meshindex);
+        _attachedScraps.Add(scrapInstant);
+
     }
 
     public void DestroyTower()
@@ -99,4 +80,12 @@ public class TowerRessourceManagement : MonoBehaviour {
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
 
     }
+
+    /*public int[] NeededRessources
+    {
+        get
+        {
+            return _neededRessources;
+        }
+    }*/
 }

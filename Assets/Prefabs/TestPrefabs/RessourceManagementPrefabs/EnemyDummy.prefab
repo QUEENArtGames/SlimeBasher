@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4709313120410208}
   - component: {fileID: 33743437525970874}
   - component: {fileID: 23531281095457388}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: RessourceSlot 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4097742643685540}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: RessourceSlots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 135792481083956520}
   - component: {fileID: 23733591575028984}
   - component: {fileID: 114937488645705072}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: EnemyDummy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4810612534267720}
   - component: {fileID: 33084732400938084}
   - component: {fileID: 23289202096053104}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: RessourceSlot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4152644286976572}
   - component: {fileID: 33208737270865434}
   - component: {fileID: 23061863135416522}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: RessourceSlot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

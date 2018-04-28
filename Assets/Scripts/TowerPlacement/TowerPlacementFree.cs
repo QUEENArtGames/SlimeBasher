@@ -37,7 +37,6 @@ public class TowerPlacementFree : MonoBehaviour
         selectedTower = towers[0];
         towerPreview = Instantiate(selectedTower);
         towerPreview.GetComponent<Tower>().SetPreviewMode(true);
-        Debug.Log("Preview mode set");
     }
 
     // Update is called once per frame
@@ -84,7 +83,7 @@ public class TowerPlacementFree : MonoBehaviour
                     towerPreview.GetComponent<Tower>().SetPlaceable(false);
                 }
 
-                if (lmbPressed && !towersIntersect)
+                if (lmbPressed && !towersIntersect && BuildTower())
                 {
                     GameObject towerInstance = Instantiate(selectedTower, hit.point, towerPreview.transform.rotation);
                     towerBounds.Add(towerInstance.GetComponent<Collider>().bounds);
@@ -100,5 +99,10 @@ public class TowerPlacementFree : MonoBehaviour
         {
             towerPreview.SetActive(false);
         }
+    }
+
+    private bool BuildTower()
+    {
+        return FindObjectOfType<TowerBuilding>().BuildTower(selectedTower);
     }
 }

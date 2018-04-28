@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4080747074009476}
   - component: {fileID: 114040313096037740}
   - component: {fileID: 54715711128554810}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MeleeScrap
   m_TagString: Scrap
   m_Icon: {fileID: 0}
@@ -39,9 +39,9 @@ GameObject:
   - component: {fileID: 33598991006940268}
   - component: {fileID: 65438798315033280}
   - component: {fileID: 23786628583696926}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MeleeScrap
-  m_TagString: Untagged
+  m_TagString: Scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

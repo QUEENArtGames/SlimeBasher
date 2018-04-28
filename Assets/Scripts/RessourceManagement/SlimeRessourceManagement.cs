@@ -22,7 +22,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
         _attachedScraps = new ArrayList();
-        Physics.IgnoreLayerCollision(0, 10);
+       // Physics.IgnoreLayerCollision(0, 9);
         InstanstiateScrapsOnSelf();
 	}
 
@@ -62,7 +62,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.GetComponentInParent<Scrap>().IsCollected && other.transform.parent.CompareTag("Scrap") && ScrapSlots.Length > _attachedScraps.Count)
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponentInParent<Scrap>().IsCollected  && ScrapSlots.Length > _attachedScraps.Count)
                 CollectRessource(other.transform.parent.gameObject); 
     }
 
