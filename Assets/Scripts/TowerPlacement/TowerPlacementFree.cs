@@ -83,10 +83,11 @@ public class TowerPlacementFree : MonoBehaviour
                     towerPreview.GetComponent<Tower>().SetPlaceable(false);
                 }
 
-                if (lmbPressed && !towersIntersect && BuildTower())
-                {
+                if (lmbPressed && !towersIntersect && TowerBuildingAllowed())
+                {        
                     GameObject towerInstance = Instantiate(selectedTower, hit.point, towerPreview.transform.rotation);
                     towerBounds.Add(towerInstance.GetComponent<Collider>().bounds);
+                    BuildTower(towerInstance);
                     lmbPressed = false;
                 }
             }
@@ -101,8 +102,13 @@ public class TowerPlacementFree : MonoBehaviour
         }
     }
 
-    private bool BuildTower()
+    private bool TowerBuildingAllowed()
     {
-        return FindObjectOfType<TowerBuilding>().BuildTower(selectedTower);
+        return FindObjectOfType<TowerBuilding>().TowerBuildingAllowed(selectedTower);
+    }
+
+    private void BuildTower(GameObject towerInstance)
+    {
+        FindObjectOfType<TowerBuilding>().BuildTower(towerInstance);
     }
 }

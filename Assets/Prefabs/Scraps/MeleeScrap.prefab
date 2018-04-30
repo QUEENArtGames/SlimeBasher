@@ -155,3 +155,5 @@ MonoBehaviour:
   ScrapTypeAsInt: 0
   possibleMeshes:
   - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

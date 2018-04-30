@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerBuilding : MonoBehaviour {
 
-    public bool BuildTower(GameObject selectedTower)
+    public void BuildTower(GameObject selectedTower)
     {
+
         PlayerScrapInventory playerinventory = FindObjectOfType<PlayerScrapInventory>();
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        GameObject[] possibleScraps = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
         ArrayList[] scrapInventory = playerinventory.ScrapInventory;
+        //GameObject[] possibleScraps = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
 
-        if (CheckForRessources(scrapInventory, towermanagement))
-        {
-            towermanagement.AddAllNeededScraps(scrapInventory);
-            RemoveRessourcesFromInventory(playerinventory, towermanagement);
-            return true;
-        }
+        towermanagement.AddAllNeededScraps(scrapInventory);
+        RemoveRessourcesFromInventory(playerinventory, towermanagement);
 
-        return false;
         //Ressourcen prüfen
         //Ressourcen abziehen
         //Ressourcen dem Tower geben
@@ -42,4 +37,12 @@ public class TowerBuilding : MonoBehaviour {
                inventory[(int)ScrapType.GRENADE].Count >= towermanagement.NeededGrenadeScrabs;
     }
 
+    internal bool TowerBuildingAllowed(GameObject selectedTower)
+    {
+        PlayerScrapInventory playerinventory = FindObjectOfType<PlayerScrapInventory>();
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        ArrayList[] scrapInventory = playerinventory.ScrapInventory;
+        return CheckForRessources(scrapInventory, towermanagement);
+        
+    }
 }
