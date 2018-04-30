@@ -310,6 +310,7 @@ MonoBehaviour:
   ScrapSlots:
   - {fileID: 4005891818817024}
   Droprate: 1
+  ScrapThrowFactor: 5
   NeededMeeleScrabs: 1
   NeededBottleScrabs: 0
   NeededGrenadeScrabs: 0

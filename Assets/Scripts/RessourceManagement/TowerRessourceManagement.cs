@@ -6,7 +6,7 @@ public class TowerRessourceManagement : MonoBehaviour {
 
     public Transform[] ScrapSlots;
     public float Droprate = 1.0f;
-
+    public int ScrapThrowFactor;
     public int NeededMeeleScrabs;
     public int NeededBottleScrabs;
     public int NeededGrenadeScrabs;
@@ -70,6 +70,7 @@ public class TowerRessourceManagement : MonoBehaviour {
                 scrap.GetComponent<Rigidbody>().isKinematic = false;
                 scrap.GetComponent<Scrap>().ChangeAttachementState();
                 scrap.GetComponent<Scrap>().ChangeCollectionState();
+                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
             }
             else
             {
@@ -78,14 +79,5 @@ public class TowerRessourceManagement : MonoBehaviour {
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
-
     }
-
-    /*public int[] NeededRessources
-    {
-        get
-        {
-            return _neededRessources;
-        }
-    }*/
 }

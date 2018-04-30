@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeRessourceManagement : MonoBehaviour {
-    
-    //Collect und Drop Script trennen?
-
     public Transform[] ScrapSlots;
 
     //public bool[] CanCollect;
@@ -18,11 +15,10 @@ public class SlimeRessourceManagement : MonoBehaviour {
     private ArrayList _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
 
-    // Use this for initialization
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
         _attachedScraps = new ArrayList();
-       // Physics.IgnoreLayerCollision(0, 9);
+        //Physics.IgnoreLayerCollision(8, 9);
         InstanstiateScrapsOnSelf();
 	}
 
@@ -46,18 +42,11 @@ public class SlimeRessourceManagement : MonoBehaviour {
             scrap.GetComponent<Scrap>().ChangeCollectionState();
             scrap.GetComponent<Rigidbody>().isKinematic = false;
             scrap.GetComponent<Scrap>().ChangeAttachementState();
-            ThrowScrapAway(scrap);
+            FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
 
-    }
-
-    private void ThrowScrapAway(GameObject scrap)
-    {
-        Vector3 forceVector = (scrap.transform.position - transform.position) * ScrapThrowFactor;
-        scrap.GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.Impulse);
-        scrap.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor)));
     }
 
     private void OnTriggerEnter(Collider other)
