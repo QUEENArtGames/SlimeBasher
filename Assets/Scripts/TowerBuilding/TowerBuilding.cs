@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class TowerBuilding : MonoBehaviour {
 
+    private PlayerScrapInventory _playerInventory;
+    private ArrayList[] _playerScraps;
+
     public void BuildTower(GameObject selectedTower)
     {
-
-        PlayerScrapInventory playerinventory = FindObjectOfType<PlayerScrapInventory>();
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        ArrayList[] scrapInventory = playerinventory.ScrapInventory;
-        //GameObject[] possibleScraps = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
+        towermanagement.AddAllNeededScraps(_playerScraps);
+        RemoveRessourcesFromInventory(_playerInventory, towermanagement);
+    }
 
-        towermanagement.AddAllNeededScraps(scrapInventory);
-        RemoveRessourcesFromInventory(playerinventory, towermanagement);
+    internal bool TowerBuildingAllowed(GameObject selectedTower)
+    {
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        return CheckForRessources(_playerScraps, towermanagement);
+    }
 
-        //Ressourcen prüfen
-        //Ressourcen abziehen
-        //Ressourcen dem Tower geben
-        //Ressourcen beim Tower anzeigen lassen
-
-        
+    private void Awake()
+    {
+        _playerInventory = FindObjectOfType<PlayerScrapInventory>();
+        _playerScraps = _playerInventory.ScrapInventory;
     }
 
     private void RemoveRessourcesFromInventory(PlayerScrapInventory playerinventory, TowerRessourceManagement towermanagement)
@@ -37,12 +40,4 @@ public class TowerBuilding : MonoBehaviour {
                inventory[(int)ScrapType.GRENADE].Count >= towermanagement.NeededGrenadeScrabs;
     }
 
-    internal bool TowerBuildingAllowed(GameObject selectedTower)
-    {
-        PlayerScrapInventory playerinventory = FindObjectOfType<PlayerScrapInventory>();
-        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        ArrayList[] scrapInventory = playerinventory.ScrapInventory;
-        return CheckForRessources(scrapInventory, towermanagement);
-        
-    }
 }
