@@ -78,7 +78,7 @@ public class TowerPlacementFree : MonoBehaviour
             if (NavMesh.SamplePosition(hit.point, out hitNav, 0.2f, NavMesh.AllAreas))
             {
                 towerPreview.GetComponent<Tower>().SetPlaceable(true);
-                if (towersIntersect)
+                if (towersIntersect || !TowerBuildingAllowed())
                 {
                     towerPreview.GetComponent<Tower>().SetPlaceable(false);
                 }
