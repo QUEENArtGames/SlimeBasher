@@ -285,7 +285,7 @@ MonoBehaviour:
   playerCam: {fileID: 850154261}
   rotationSpeed: 100
   towers:
-  - {fileID: 1502976993664058, guid: 1ba0cefb91350ac4a94e8a320a48c8fd, type: 2}
+  - {fileID: 1514263483604872, guid: aab3457a27f56594d8cfb8876dc8b0e6, type: 2}
 --- !u!4 &350490600
 Transform:
   m_ObjectHideFlags: 0
