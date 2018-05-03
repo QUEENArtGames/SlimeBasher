@@ -15,12 +15,10 @@ public class TowerRessourceManagement : MonoBehaviour {
     private GameObject[] _possibleScrapPrefabs;
     //private int[] _neededRessources = new int[3];
 
-    // Use this for initialization
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
     }
 	
-	// Update is called once per frame
 	void Update () {
         //Test Destroy Tower
         if (Input.GetKey("i"))
@@ -48,8 +46,6 @@ public class TowerRessourceManagement : MonoBehaviour {
 
         for (int i = 0; i < NeededGrenadeScrabs; i++)
             AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int)ScrapType.GRENADE][0]);
-
-
     }
 
     private void AddParticularScrap(ScrapType scraptype, int meshindex)
