@@ -59,4 +59,9 @@ public class Tower : MonoBehaviour
             }
         }
     }
+
+    internal void Kill()
+    {
+        Destroy(gameObject);
+    }
 }
