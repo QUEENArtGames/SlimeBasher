@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class PlayerRessourceManagement : MonoBehaviour {
 
-    public float droprate = 1.0f;
+    public float Droprate = 1.0f;
 
     private GameObject[] _possibleScrapPrefabs;
     private PlayerScrapInventory _scrapInventory;
-	// Use this for initialization
-	void Awake () {
+	
+    void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (Input.GetKey("o"))
             DropScraps();
@@ -22,8 +21,15 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject scrapObject = other.transform.parent.gameObject;
-        if (scrapObject.CompareTag("Scrap") && !scrapObject.GetComponent<Scrap>().IsCollected)
+        if (!other.transform.gameObject.CompareTag("Scrap"))
+            return;
+
+        CollectScrap(other.transform.parent.gameObject);
+    }
+
+    private void CollectScrap(GameObject scrapObject)
+    {
+        if (!scrapObject.GetComponent<Scrap>().IsCollected)
         {
             Scrap scrap = scrapObject.GetComponent<Scrap>();
             ScrapType scraptype = scrap.Type;
@@ -40,7 +46,7 @@ public class PlayerRessourceManagement : MonoBehaviour {
         {
             for(int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
             {
-                if(Random.Range(0.0f, 1.0f) <= droprate)
+                if(Random.Range(0.0f, 1.0f) <= Droprate)
                 {
                     GameObject scrap = Instantiate(_possibleScrapPrefabs[scrapTypeIndex], instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
                     scrap.GetComponent<Scrap>().SetMesh((int) (_scrapInventory.ScrapInventory[scrapTypeIndex][index]));

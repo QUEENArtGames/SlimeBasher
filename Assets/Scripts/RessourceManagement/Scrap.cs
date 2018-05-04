@@ -6,14 +6,14 @@ public class Scrap : MonoBehaviour {
 
     private ScrapType _scrapType;
     private int _meshnumber;
-    private bool collected = true;
-    private bool inPosition = true;
+    private bool _collected = true;
+    private bool _inPosition = true;
 
     public int ScrapTypeAsInt;
-    public Mesh[] possibleMeshes;
+    public Mesh[] PossibleMeshes;
 
     void Awake() {
-        _meshnumber = ((int)Random.Range(0.0f, possibleMeshes.Length));
+        _meshnumber = ((int)Random.Range(0.0f, PossibleMeshes.Length));
         SetMesh(_meshnumber);
         _scrapType = (ScrapType) ScrapTypeAsInt;
     }
@@ -36,13 +36,13 @@ public class Scrap : MonoBehaviour {
     {
         get
         {
-            return collected;
+            return _collected;
         }
     }
 
     public void ChangeCollectionState()
     {
-        collected = !collected;
+        _collected = !_collected;
     }
 
     public int MeshIndex { 
@@ -55,19 +55,19 @@ public class Scrap : MonoBehaviour {
     {
         get
         {
-            return inPosition;
+            return _inPosition;
         }
     }
 
     public void ChangeAttachementState()
     {
-        inPosition = !AttachedToSlot;
+        _inPosition = !AttachedToSlot;
     }
 
     public void SetMesh(int meshnumber)
     {
         _meshnumber = meshnumber;
-        gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(possibleMeshes[_meshnumber]);
+        gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(PossibleMeshes[_meshnumber]);
     }
 
     
