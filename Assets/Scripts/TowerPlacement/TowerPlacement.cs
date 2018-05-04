@@ -188,11 +188,12 @@ public class TowerPlacement : MonoBehaviour
             }
         }
 
-        if (deconstructionToolActive)
+        if (lmbPressed)
         {
-            if (Physics.Raycast(playerCam.transform.position, fwd, out hit, maxDistance))
+            if (deconstructionToolActive)
             {
-                if (lmbPressed)
+                fwd = playerCam.transform.TransformDirection(Vector3.forward);
+                if (Physics.Raycast(playerCam.transform.position, fwd, out hit, maxDistance))
                 {
                     if (hit.transform.root.GetComponent<Tower>() != null)
                     {
