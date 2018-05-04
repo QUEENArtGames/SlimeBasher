@@ -62,6 +62,7 @@ public class Tower : MonoBehaviour
 
     internal void Kill()
     {
+        GetComponent<TowerRessourceManagement>().DestroyTower();
         Destroy(gameObject);
     }
 }
