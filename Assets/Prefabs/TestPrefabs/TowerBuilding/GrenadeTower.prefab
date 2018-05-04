@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4780506754245438}
   - component: {fileID: 65652581118054716}
-  - component: {fileID: 114060375968918818}
   - component: {fileID: 114570670594099754}
+  - component: {fileID: 114661756567726254}
   m_Layer: 0
   m_Name: GrenadeTower
   m_TagString: Untagged
@@ -285,17 +285,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &114060375968918818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1029764236645716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114570670594099754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,6 +303,17 @@ MonoBehaviour:
   NeededMeeleScrabs: 0
   NeededBottleScrabs: 0
   NeededGrenadeScrabs: 1
+--- !u!114 &114661756567726254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1029764236645716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135465876715377828
 SphereCollider:
   m_ObjectHideFlags: 1

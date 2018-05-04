@@ -38,8 +38,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4888302082431962}
   - component: {fileID: 65738662285913746}
-  - component: {fileID: 114481240920890208}
   - component: {fileID: 114321052419373202}
+  - component: {fileID: 114854575684619130}
   m_Layer: 0
   m_Name: BottleTower
   m_TagString: Untagged
@@ -303,7 +303,7 @@ MonoBehaviour:
   NeededMeeleScrabs: 0
   NeededBottleScrabs: 1
   NeededGrenadeScrabs: 0
---- !u!114 &114481240920890208
+--- !u!114 &114854575684619130
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
