@@ -13,7 +13,6 @@ public class TowerRessourceManagement : MonoBehaviour {
 
     private ArrayList _attachedScraps = new ArrayList();
     private GameObject[] _possibleScrapPrefabs;
-    //private int[] _neededRessources = new int[3];
 
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;

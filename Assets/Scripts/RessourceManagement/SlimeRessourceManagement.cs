@@ -11,6 +11,7 @@ public class SlimeRessourceManagement : MonoBehaviour {
     public float SuckSpeed = 1.0f;
     public int ScrapThrowFactor = 10;
     public float RotationValue = 1.5f;
+    public float MinSpawnedScraps = 0.0f;
 
     private ArrayList _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
@@ -57,7 +58,6 @@ public class SlimeRessourceManagement : MonoBehaviour {
 
     private void CollectRessource(GameObject scrap)
     {
-        Transform emptySlot = ScrapSlots[_attachedScraps.Count];
         scrap.GetComponent<Rigidbody>().isKinematic = true;
         scrap.GetComponent<Scrap>().ChangeCollectionState();
         _attachedScraps.Add(scrap);
@@ -65,14 +65,14 @@ public class SlimeRessourceManagement : MonoBehaviour {
 
     private void InstanstiateScrapsOnSelf()
     {
-        int numberOfRessourcesOnSelf = ScrapSlots.Length;
+        int numberOfRessourcesOnSelf = Random.Range((int) MinSpawnedScraps, ScrapSlots.Length);
         for (int i = 0; i < numberOfRessourcesOnSelf; i++)
         {
             if (Random.Range(0.0f, 1.0f) <= RessourcePossibility)
             {
                 int randomScrap = Random.Range((int)0.0f, _possibleScrapPrefabs.Length);
                 Vector3 ressourcePosition = ScrapSlots[i].position;
-                _attachedScraps.Add(Instantiate(_possibleScrapPrefabs[i], ressourcePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f)));
+                _attachedScraps.Add(Instantiate(_possibleScrapPrefabs[randomScrap], ressourcePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f)));
             }
         }
     }
