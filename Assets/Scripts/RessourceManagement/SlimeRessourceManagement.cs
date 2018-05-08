@@ -40,10 +40,13 @@ public class SlimeRessourceManagement : MonoBehaviour {
     {
         foreach(GameObject scrap in _attachedScraps)
         {
-            scrap.GetComponent<Scrap>().ChangeCollectionState();
-            scrap.GetComponent<Rigidbody>().isKinematic = false;
-            scrap.GetComponent<Scrap>().ChangeAttachementState();
-            FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
+            if (scrap != null)
+            {
+                scrap.GetComponent<Scrap>().ChangeCollectionState();
+                scrap.GetComponent<Rigidbody>().isKinematic = false;
+                scrap.GetComponent<Scrap>().ChangeAttachementState();
+                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
+            }
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
@@ -81,14 +84,14 @@ public class SlimeRessourceManagement : MonoBehaviour {
     {
         for (int i = 0; i < _attachedScraps.Count; i++)
         {
-            if (((GameObject)_attachedScraps[i]).GetComponent<Scrap>().AttachedToSlot)
-                ((GameObject)_attachedScraps[i]).transform.position = ScrapSlots[i].position;
+            if ((GameObject)_attachedScraps[i] != null)
+            {
+                if (((GameObject)_attachedScraps[i]).GetComponent<Scrap>().AttachedToSlot)
+                    ((GameObject)_attachedScraps[i]).transform.position = ScrapSlots[i].position;
 
-            if (!((GameObject)_attachedScraps[i]).GetComponent<Scrap>().AttachedToSlot)
-                SuckScrap((GameObject)_attachedScraps[i], i);
-            
-
-
+                if (!((GameObject)_attachedScraps[i]).GetComponent<Scrap>().AttachedToSlot)
+                    SuckScrap((GameObject)_attachedScraps[i], i);
+            }
         }
     }
 
