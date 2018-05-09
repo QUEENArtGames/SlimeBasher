@@ -288,6 +288,7 @@ MonoBehaviour:
   - {fileID: 1514263483604872, guid: aab3457a27f56594d8cfb8876dc8b0e6, type: 2}
   - {fileID: 1029764236645716, guid: 7b6addc5b7e4f2e459d9ba9a0b0a552a, type: 2}
   - {fileID: 1220170406583812, guid: 531f45ea83c053646835fd3e191a9256, type: 2}
+  maxDistance: 10
 --- !u!4 &350490600
 Transform:
   m_ObjectHideFlags: 0
@@ -671,6 +672,25 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1060897008}
+--- !u!1 &1129461272 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 149790, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
+  m_PrefabInternal: {fileID: 1176750716}
+--- !u!208 &1129461282
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129461272}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.9, y: 0.75, z: 0.9}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0.8, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1176750716
 Prefab:
   m_ObjectHideFlags: 0

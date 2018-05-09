@@ -26,7 +26,8 @@ public class TowerPlacement : MonoBehaviour
 
     // Raycast on layer 8
     private int layerMask = 1 << 8;
-    private float maxDistance = 100;
+    // Range of ray
+    public float maxDistance = 100;
 
     // Use this for initialization
     void Start()
