@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerRessourceManagement : MonoBehaviour {
 
+public class PlayerRessourceManagement : MonoBehaviour
+{
     public float Droprate = 1.0f;
 
     private GameObject[] _possibleScrapPrefabs;
@@ -11,13 +10,16 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
     //TESTVARIABLE
     private bool testvariable = true;
-	
-    void Awake () {
+
+
+    void Awake()
+    {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
-	}
-	
-	void Update () {
+    }
+
+    void Update()
+    {
         if (Input.GetKey("o"))
             DropScraps();
     }
@@ -30,7 +32,6 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
         if (other.transform.gameObject.CompareTag("Scrap"))
             CollectScrap(other.transform.parent.gameObject);
-
     }
 
     //TESTEREI
@@ -43,7 +44,6 @@ public class PlayerRessourceManagement : MonoBehaviour {
             //FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject);
             //testvariable = false;
         }
-            
     }
 
     //TESTEREI
@@ -55,7 +55,6 @@ public class PlayerRessourceManagement : MonoBehaviour {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
         }
-            
     }
 
     private void CollectScrap(GameObject scrapObject)
@@ -73,11 +72,11 @@ public class PlayerRessourceManagement : MonoBehaviour {
     public void DropScraps()
     {
         Vector3 instanstiatePosition = transform.position;
-        for(int scrapTypeIndex = 0; scrapTypeIndex < _scrapInventory.ScrapInventory.Length; scrapTypeIndex++)
+        for (int scrapTypeIndex = 0; scrapTypeIndex < _scrapInventory.ScrapInventory.Length; scrapTypeIndex++)
         {
-            for(int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
+            for (int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
             {
-                if(Random.Range(0.0f, 1.0f) <= Droprate)
+                if (Random.Range(0.0f, 1.0f) <= Droprate)
                 {
                     GameObject scrap = Instantiate(_possibleScrapPrefabs[scrapTypeIndex], instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
                     scrap.GetComponent<Scrap>().SetMesh((int) (_scrapInventory.ScrapInventory[scrapTypeIndex][index]));
@@ -87,7 +86,6 @@ public class PlayerRessourceManagement : MonoBehaviour {
                     scrap.GetComponent<Rigidbody>().isKinematic = false;
                     _scrapInventory.RemoveScrap(scrapTypeIndex, index);
                 }
-               
             }
         }
     }
