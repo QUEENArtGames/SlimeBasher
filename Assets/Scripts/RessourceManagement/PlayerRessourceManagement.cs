@@ -8,6 +8,9 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
     private GameObject[] _possibleScrapPrefabs;
     private PlayerScrapInventory _scrapInventory;
+
+    //TESTVARIABLE
+    private bool testvariable = true;
 	
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
@@ -21,10 +24,23 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.transform.gameObject.CompareTag("Scrap"))
-            return;
+        if (other.transform.gameObject.CompareTag("Tower"))
+            FindObjectOfType<TowerBuilding>().OpenTowerUpgradeMenu();
 
-        CollectScrap(other.transform.parent.gameObject);
+        if (other.transform.gameObject.CompareTag("Scrap"))
+            CollectScrap(other.transform.parent.gameObject);
+
+    }
+
+    //TESTEREI
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("u") && testvariable)
+        {
+            FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject);
+            testvariable = false;
+        }
+            
     }
 
     private void CollectScrap(GameObject scrapObject)

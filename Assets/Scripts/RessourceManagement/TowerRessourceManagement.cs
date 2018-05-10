@@ -24,7 +24,12 @@ public class TowerRessourceManagement : MonoBehaviour {
             DestroyTower();
     }
 
-    public void AddScrap(GameObject scrap)
+    internal bool UpgradePossible()
+    {
+        return _attachedScraps.Count < ScrapSlots.Length;
+    }
+
+    /*public void AddScrap(GameObject scrap)
     {
         if(_attachedScraps.Count < ScrapSlots.Length)
         {
@@ -33,7 +38,7 @@ public class TowerRessourceManagement : MonoBehaviour {
             _attachedScraps.Add(scrapInstant);
         }
         
-    }
+    }*/
 
     public void AddAllNeededScraps(ArrayList[] scrapInventory)
     {
@@ -45,6 +50,16 @@ public class TowerRessourceManagement : MonoBehaviour {
 
         for (int i = 0; i < NeededGrenadeScrabs; i++)
             AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int)ScrapType.GRENADE][0]);
+    }
+
+    public void AddNeededScrap(ArrayList[] scrapInventory)
+    {
+        if(NeededMeeleScrabs > 0)
+            AddParticularScrap(ScrapType.MELEE, (int)scrapInventory[(int)ScrapType.MELEE][0]);
+        if (NeededBottleScrabs > 0)
+            AddParticularScrap(ScrapType.BOTTLE, (int)scrapInventory[(int)ScrapType.BOTTLE][0]);
+        if (NeededGrenadeScrabs > 0)
+            AddParticularScrap(ScrapType.GRENADE, (int)scrapInventory[(int)ScrapType.GRENADE][0]);
     }
 
     private void AddParticularScrap(ScrapType scraptype, int meshindex)

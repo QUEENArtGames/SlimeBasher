@@ -12,6 +12,20 @@ public class TowerBuilding : MonoBehaviour {
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
         towermanagement.AddAllNeededScraps(_playerScraps);
         RemoveRessourcesFromInventory(_playerInventory, towermanagement);
+        selectedTower.tag = "Tower";
+    }
+
+    public void UpgradeWithAnyScrap(GameObject selectedTower)
+    {
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        if(towermanagement.UpgradePossible())
+            towermanagement.AddNeededScrap(_playerScraps);
+            RemoveAnyScrapFromInventory(_playerInventory, towermanagement);
+    }
+
+    internal void OpenTowerUpgradeMenu()
+    {
+        Debug.Log("Upgrade Menu geöffnet");
     }
 
     internal bool TowerBuildingAllowed(GameObject selectedTower)
@@ -31,6 +45,16 @@ public class TowerBuilding : MonoBehaviour {
         playerinventory.RemoveAnyScraps((int)ScrapType.MELEE, towermanagement.NeededMeeleScrabs);
         playerinventory.RemoveAnyScraps((int)ScrapType.BOTTLE, towermanagement.NeededBottleScrabs);
         playerinventory.RemoveAnyScraps((int)ScrapType.GRENADE, towermanagement.NeededGrenadeScrabs);
+    }
+
+    private void RemoveAnyScrapFromInventory(PlayerScrapInventory playerinventory, TowerRessourceManagement towermanagement)
+    {
+        if (towermanagement.NeededMeeleScrabs > 0)
+            playerinventory.RemoveAnyScraps((int)ScrapType.MELEE, 1);
+        if (towermanagement.NeededBottleScrabs > 0)
+            playerinventory.RemoveAnyScraps((int)ScrapType.BOTTLE, 1);
+        if (towermanagement.NeededGrenadeScrabs > 0)
+            playerinventory.RemoveAnyScraps((int)ScrapType.GRENADE, 1);
     }
 
     private bool CheckForRessources(ArrayList[] inventory, TowerRessourceManagement towermanagement)
