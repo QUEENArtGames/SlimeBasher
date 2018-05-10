@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ScrapButton : MonoBehaviour {
 
+public class ScrapButton : MonoBehaviour
+{
     private int meshindex;
     private ScrapType scrapType;
+
 
     public int Meshindex
     {

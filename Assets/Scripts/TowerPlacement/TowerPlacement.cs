@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class TowerPlacement : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class TowerPlacement : MonoBehaviour
     private int layerMask = 1 << 8;
     // Range of ray
     public float maxDistance = 100;
+
 
     // Use this for initialization
     void Start()
