@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RessourceManagement : MonoBehaviour {
 
+public class RessourceManagement : MonoBehaviour
+{
     public GameObject[] PossibleScrabPrefabs;
+
 
     public void ThrowScrapAway(Transform trans, GameObject scrap, int ScrapThrowFactor)
     {
