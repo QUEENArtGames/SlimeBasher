@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class PlayerScrapInventory : MonoBehaviour
 {
-    private List<int>[] _scrapInventory = new List<int>[3];
+    private List<int>[] _scrapInventory = new List<int>[Enum.GetNames(typeof(ScrapType)).Length];
     private int _classicScraps = 0;
 
 
     void Awake()
     {
-        _scrapInventory[0] = new List<int>();
-        _scrapInventory[1] = new List<int>();
-        _scrapInventory[2] = new List<int>();
+        for (int i = 0; i < Enum.GetNames(typeof(ScrapType)).Length; i++)
+        {
+            _scrapInventory[i] = new List<int>();
+        }
     }
 
     public int GetAmountOfScraps(ScrapType scrapType)
