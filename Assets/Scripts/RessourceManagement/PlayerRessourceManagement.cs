@@ -51,7 +51,11 @@ public class PlayerRessourceManagement : MonoBehaviour {
     {
         //Spielerskript
         if (other.transform.gameObject.CompareTag("Tower"))
+        {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
+            FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
+        }
+            
     }
 
     private void CollectScrap(GameObject scrapObject)

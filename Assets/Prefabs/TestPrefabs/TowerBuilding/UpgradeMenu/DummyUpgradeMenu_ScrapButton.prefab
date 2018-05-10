@@ -130,13 +130,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1829290840292870, guid: f34d0eced31222542a63717b975f83fd,
-          type: 2}
-        m_MethodName: 
+      - m_Target: {fileID: 114333016407261862}
+        m_MethodName: ButtonListener
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -191,7 +190,7 @@ RectTransform:
   m_GameObject: {fileID: 1252618393546424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 2, z: 1}
   m_Children:
   - {fileID: 224657384227244672}
   m_Father: {fileID: 0}

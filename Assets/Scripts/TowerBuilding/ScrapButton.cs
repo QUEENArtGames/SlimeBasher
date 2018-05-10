@@ -32,4 +32,9 @@ public class ScrapButton : MonoBehaviour {
             scrapType = value;
         }
     }
+
+    public void ButtonListener()
+    {
+        FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
+    }
 }
