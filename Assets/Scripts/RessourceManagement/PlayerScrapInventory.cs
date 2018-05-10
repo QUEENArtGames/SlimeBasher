@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class PlayerScrapInventory : MonoBehaviour {
 
-    private ArrayList[] _scrapInventory = new ArrayList[3];
+    private List<int>[] _scrapInventory = new List<int>[3];
     private int _classicScraps = 0;
 
     private void Awake()
     {
-        _scrapInventory[0] = new ArrayList();
-        _scrapInventory[1] = new ArrayList();
-        _scrapInventory[2] = new ArrayList();
+        _scrapInventory[0] = new List<int>();
+        _scrapInventory[1] = new List<int>();
+        _scrapInventory[2] = new List<int>();
     }
 
     public int GetAmountOfScraps(ScrapType scrapType)
-    {
-        if (scrapType == ScrapType.CLASSIC)
-            return _classicScraps;
-
+    { 
         return _scrapInventory[(int)scrapType].Count;
+    }
+
+    public int GetAmountOfScraps()
+    {
+        return _classicScraps;
     }
 
     public void AddScrap(ScrapType scrapType, int meshIndex)
@@ -49,7 +51,7 @@ public class PlayerScrapInventory : MonoBehaviour {
         _classicScraps -= amountOfScrabs;
     }
 
-    public ArrayList[] ScrapInventory
+    public List<int>[] ScrapInventory
     {
         get
         {

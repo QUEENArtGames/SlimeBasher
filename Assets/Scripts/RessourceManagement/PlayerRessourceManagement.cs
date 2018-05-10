@@ -24,8 +24,9 @@ public class PlayerRessourceManagement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        //Spielerskript
         if (other.transform.gameObject.CompareTag("Tower"))
-            FindObjectOfType<TowerBuilding>().OpenTowerUpgradeMenu();
+            FindObjectOfType<TowerBuildingUI>().ShowTowerUpgraeNotification();
 
         if (other.transform.gameObject.CompareTag("Scrap"))
             CollectScrap(other.transform.parent.gameObject);
@@ -35,12 +36,22 @@ public class PlayerRessourceManagement : MonoBehaviour {
     //TESTEREI
     private void OnTriggerStay(Collider other)
     {
+        //Spielerskript
         if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("u") && testvariable)
         {
-            FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject);
-            testvariable = false;
+            FindObjectOfType<TowerBuildingUI>().OpenTowerBuildingMenu(other.gameObject);
+            //FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject);
+            //testvariable = false;
         }
             
+    }
+
+    //TESTEREI
+    private void OnTriggerExit(Collider other)
+    {
+        //Spielerskript
+        if (other.transform.gameObject.CompareTag("Tower"))
+            FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
     }
 
     private void CollectScrap(GameObject scrapObject)

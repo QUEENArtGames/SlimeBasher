@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class Scrap : MonoBehaviour {
 
-    private ScrapType _scrapType;
     private int _meshnumber;
     private bool _collected = true;
     private bool _inPosition = true;
 
-    public int ScrapTypeAsInt;
+    public ScrapType ScrapType;
     public Mesh[] PossibleMeshes;
 
     void Awake() {
         _meshnumber = ((int)Random.Range(0.0f, PossibleMeshes.Length));
         SetMesh(_meshnumber);
-        _scrapType = (ScrapType) ScrapTypeAsInt;
     }
 
     public ScrapType Type
     {
         get
         {
-            return _scrapType;
+            return ScrapType;
         }
 
         set
         {
-            _scrapType = value;
+            ScrapType = value;
         }
 
     }

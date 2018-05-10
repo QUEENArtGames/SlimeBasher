@@ -11,7 +11,7 @@ public class TowerRessourceManagement : MonoBehaviour {
     public int NeededBottleScrabs;
     public int NeededGrenadeScrabs;
 
-    private ArrayList _attachedScraps = new ArrayList();
+    private List<GameObject> _attachedScraps = new List<GameObject>();
     private GameObject[] _possibleScrapPrefabs;
 
     void Awake () {
@@ -40,7 +40,7 @@ public class TowerRessourceManagement : MonoBehaviour {
         
     }*/
 
-    public void AddAllNeededScraps(ArrayList[] scrapInventory)
+    public void AddAllNeededScraps(List<int>[] scrapInventory)
     {
         for (int i = 0; i < NeededMeeleScrabs; i++)
             AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int)ScrapType.MELEE][0]);
@@ -52,7 +52,7 @@ public class TowerRessourceManagement : MonoBehaviour {
             AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int)ScrapType.GRENADE][0]);
     }
 
-    public void AddNeededScrap(ArrayList[] scrapInventory)
+    public void AddNeededScrap(List<int>[] scrapInventory)
     {
         if(NeededMeeleScrabs > 0)
             AddParticularScrap(ScrapType.MELEE, (int)scrapInventory[(int)ScrapType.MELEE][0]);

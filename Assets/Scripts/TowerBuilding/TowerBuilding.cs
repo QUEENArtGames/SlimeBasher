@@ -5,7 +5,9 @@ using UnityEngine;
 public class TowerBuilding : MonoBehaviour {
 
     private PlayerScrapInventory _playerInventory;
-    private ArrayList[] _playerScraps;
+    private List<int>[] _playerScraps;
+
+    
 
     public void BuildTower(GameObject selectedTower)
     {
@@ -18,15 +20,15 @@ public class TowerBuilding : MonoBehaviour {
     public void UpgradeWithAnyScrap(GameObject selectedTower)
     {
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if(towermanagement.UpgradePossible())
+        if (towermanagement.UpgradePossible())
+        {
             towermanagement.AddNeededScrap(_playerScraps);
             RemoveAnyScrapFromInventory(_playerInventory, towermanagement);
+        }
+            
     }
 
-    internal void OpenTowerUpgradeMenu()
-    {
-        Debug.Log("Upgrade Menu geöffnet");
-    }
+
 
     internal bool TowerBuildingAllowed(GameObject selectedTower)
     {
@@ -57,7 +59,7 @@ public class TowerBuilding : MonoBehaviour {
             playerinventory.RemoveAnyScraps((int)ScrapType.GRENADE, 1);
     }
 
-    private bool CheckForRessources(ArrayList[] inventory, TowerRessourceManagement towermanagement)
+    private bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
     {
         return inventory[(int)ScrapType.MELEE].Count >= towermanagement.NeededMeeleScrabs &&
                inventory[(int)ScrapType.BOTTLE].Count >= towermanagement.NeededBottleScrabs &&

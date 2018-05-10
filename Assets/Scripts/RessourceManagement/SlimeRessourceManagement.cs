@@ -13,12 +13,12 @@ public class SlimeRessourceManagement : MonoBehaviour {
     public float RotationValue = 1.5f;
     public float MinSpawnedScraps = 0.0f;
 
-    private ArrayList _attachedScraps;
+    private List<GameObject> _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
 
     void Awake () {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
-        _attachedScraps = new ArrayList();
+        _attachedScraps = new List<GameObject>();
         //Physics.IgnoreLayerCollision(8, 9);
         InstanstiateScrapsOnSelf();
 	}
