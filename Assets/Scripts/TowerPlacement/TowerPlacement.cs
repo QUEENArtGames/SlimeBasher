@@ -12,8 +12,6 @@ namespace Assets.Scripts
 
         private bool lmbPressed = false;
         private bool buttonRotateLeft = false, buttonRotateRight = false;
-        private List<Bounds> towerBounds = new List<Bounds>();
-        private bool towersIntersect = false;
         private RaycastHit hit;
         private NavMeshHit hitNav;
         private Vector3 fwd;
@@ -41,6 +39,11 @@ namespace Assets.Scripts
                 {
                     tower.AddComponent<Tower>();
                 }
+                if(tower.GetComponent<NavMeshObstacle>() == null)
+                {
+                    tower.AddComponent<NavMeshObstacle>();
+                }
+                tower.GetComponent<NavMeshObstacle>().carving = true;
             }
             selectedTower = towers[0];
             towerPreview = Instantiate(selectedTower);
@@ -161,16 +164,6 @@ namespace Assets.Scripts
                 {
                     fwd = playerCam.transform.TransformDirection(Vector3.forward);
 
-                    towersIntersect = false;
-
-                    foreach (var towerBound in towerBounds)
-                    {
-                        if (towerBound.Intersects(towerPreview.GetComponent<Collider>().bounds))
-                        {
-                            towersIntersect = true;
-                        }
-                    }
-
                     if (Physics.Raycast(playerCam.transform.position, fwd, out hit, maxDistance, layerMask))
                     {
                         towerPreview.SetActive(true);
@@ -187,16 +180,15 @@ namespace Assets.Scripts
 
                         if (NavMesh.SamplePosition(hit.point, out hitNav, 0.2f, NavMesh.AllAreas))
                         {
-                            towerPreview.GetComponent<Tower>().SetPlaceable(true);
-                            if (towersIntersect || !TowerBuildingAllowed())
+                            towerPreview.GetComponent<Tower>().SetPlaceable(false);
+                            if (TowerBuildingAllowed())
                             {
-                                towerPreview.GetComponent<Tower>().SetPlaceable(false);
+                                towerPreview.GetComponent<Tower>().SetPlaceable(true);
                             }
 
-                            if (lmbPressed && !towersIntersect && TowerBuildingAllowed())
+                            if (lmbPressed && TowerBuildingAllowed())
                             {
                                 GameObject towerInstance = Instantiate(selectedTower, hit.point, towerPreview.transform.rotation);
-                                towerBounds.Add(towerInstance.GetComponent<Collider>().bounds);
                                 BuildTower(towerInstance);
                                 lmbPressed = false;
                             }

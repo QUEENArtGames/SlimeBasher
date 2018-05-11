@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 [RequireComponent(typeof(Collider))]
@@ -9,7 +10,7 @@ public class Tower : MonoBehaviour
     private List<Renderer> _renderers = new List<Renderer>();
     private Color _colorPlaceable = new Color(0, 1, 0, 0.5f);
     private Color _colorNotPlaceable = new Color(1, 0, 0, 0.5f);
-
+    private NavMeshObstacle obstacle;
 
     // Use this for initialization
     void Awake()
@@ -23,6 +24,9 @@ public class Tower : MonoBehaviour
         {
             _renderers.Add(r);
         }
+
+        obstacle = GetComponent<NavMeshObstacle>();
+        obstacle.size = new Vector3(1.5f, 2, 1.5f);
     }
 
     internal void SetPreviewMode(bool state)
@@ -33,6 +37,7 @@ public class Tower : MonoBehaviour
             {
                 c.isTrigger = true;
             }
+            obstacle.enabled = false;
         }
         else
         {
@@ -40,6 +45,7 @@ public class Tower : MonoBehaviour
             {
                 c.isTrigger = false;
             }
+            obstacle.enabled = true;
         }
     }
 
