@@ -8,7 +8,7 @@ namespace Assets.Scripts {
     class Game : MonoBehaviour {
         private GamePhase _gamePhase;
         public float _nextPhaseTimer = 5.0f;
-        private Phase _actualPhase;
+        private Phase _currentPhase;
         private bool _startTimer = false;
         private bool _readyButtonEnabled = false;
         private float _countdown;
@@ -16,8 +16,8 @@ namespace Assets.Scripts {
         // Use this for initialization
         void Start() {
             _gamePhase = new GamePhase();
-            _actualPhase = _gamePhase.getGamePhase;
-            RunPhase(_actualPhase);
+            _currentPhase = _gamePhase.Current;
+            RunPhase(_currentPhase);
         }
 
         private void RunPhase(Phase gamePhase) {
@@ -60,9 +60,9 @@ namespace Assets.Scripts {
 
         private void CheckGamePhase() {
 
-            if (_actualPhase != _gamePhase.getGamePhase) {
-                _actualPhase = _gamePhase.getGamePhase;
-                RunPhase(_actualPhase);
+            if (_currentPhase != _gamePhase.Current) {
+                _currentPhase = _gamePhase.Current;
+                RunPhase(_currentPhase);
             }
 
         }
@@ -79,27 +79,20 @@ namespace Assets.Scripts {
             }
 
             if (_countdown > _nextPhaseTimer) {
-                switch (_actualPhase) {
-                    case Phase.Prepare:
-                        _gamePhase.UpdateGamePhase();
-                        break;
-                    case Phase.End:
-                        _gamePhase.UpdateGamePhase();
-                        break;
-                }
+                _gamePhase.MoveToNextGamePhase();
                 _countdown = 0.0f;
                 _startTimer = false;
             }
 
             if (_readyButtonEnabled && Input.GetKeyDown(KeyCode.G)) {
                 Debug.Log("Starting Countdown");
-                _gamePhase.UpdateGamePhase();
+                _gamePhase.MoveToNextGamePhase();
                 _readyButtonEnabled = false;
 
             }
 
-            if (_actualPhase == Phase.Fight && Input.GetKeyDown(KeyCode.T)) {
-                _gamePhase.UpdateGamePhase();
+            if (_currentPhase == Phase.Fight && Input.GetKeyDown(KeyCode.T)) {
+                _gamePhase.MoveToNextGamePhase();
             }
 
         }

@@ -17,9 +17,9 @@ namespace Assets.Scripts {
             _gamePhase = Phase.Building;
         }
 
-        public void UpdateGamePhase() {
+        public void MoveToNextGamePhase() {
 
-            switch (getGamePhase) {
+            switch (Current) {
                 case Phase.Building:
                     _gamePhase = Phase.Prepare;
                     break;
@@ -35,7 +35,7 @@ namespace Assets.Scripts {
             }
         }
 
-        public Phase getGamePhase {
+        public Phase Current {
             get {
                 return _gamePhase;
             }
