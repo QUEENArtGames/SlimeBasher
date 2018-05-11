@@ -75,18 +75,19 @@ public class TowerRessourceManagement : MonoBehaviour
 
     public void DestroyTower()
     {
-        foreach (GameObject scrap in _attachedScraps)
+        foreach (GameObject scrapObject in _attachedScraps)
         {
             if (Random.Range(0.0f, 1.0f) <= Droprate)
             {
-                scrap.GetComponent<Rigidbody>().isKinematic = false;
-                scrap.GetComponent<Scrap>().ChangeAttachementState();
+                Scrap scrap = scrapObject.GetComponent<Scrap>();
+                scrapObject.GetComponent<Rigidbody>().isKinematic = false;
+                scrap.ChangeAttachementState();
                 scrap.GetComponent<Scrap>().ChangeCollectionState();
-                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
+                scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
             }
             else
             {
-                Destroy(scrap);
+                Destroy(scrapObject);
             }
         }
 

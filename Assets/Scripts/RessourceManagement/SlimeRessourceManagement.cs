@@ -39,14 +39,15 @@ public class SlimeRessourceManagement : MonoBehaviour
 
     public void DropRessources()
     {
-        foreach (GameObject scrap in _attachedScraps)
+        foreach (GameObject scrapObject in _attachedScraps)
         {
-            if (scrap != null)
+            if (scrapObject != null)
             {
-                scrap.GetComponent<Scrap>().ChangeCollectionState();
-                scrap.GetComponent<Rigidbody>().isKinematic = false;
-                scrap.GetComponent<Scrap>().ChangeAttachementState();
-                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
+                Scrap scrap = scrapObject.GetComponent<Scrap>();
+                scrap.ChangeCollectionState();
+                scrapObject.GetComponent<Rigidbody>().isKinematic = false;
+                scrap.ChangeAttachementState();
+                scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
             }
         }
 

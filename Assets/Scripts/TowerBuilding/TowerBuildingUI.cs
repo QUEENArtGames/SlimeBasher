@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class TowerBuildingUI : MonoBehaviour
 {
-    public GameObject upgradeText;
-    public GameObject upgradeButtonPrefab;
-    public GameObject buttonPanel;
-    public GameObject upgradeMenu;
+    public GameObject UpgradeText;
+    public GameObject UpgradeButtonPrefab;
+    public GameObject ButtonPanel;
+    public GameObject UpgradeMenu;
 
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
@@ -26,14 +26,14 @@ public class TowerBuildingUI : MonoBehaviour
     ///
     public void ShowTowerUpgraeNotification()
     {
-        upgradeText.SetActive(true);
+        UpgradeText.SetActive(true);
         Debug.Log("Upgrade Menu geöffnet");
     }
 
     ///
     public void CloseTowerUpgradeNotification()
     {
-        upgradeText.SetActive(false);
+        UpgradeText.SetActive(false);
         Debug.Log("Upgrade Menu geschlossen");
     }
 
@@ -43,7 +43,7 @@ public class TowerBuildingUI : MonoBehaviour
             Destroy(button);
 
         Time.timeScale = 1.0f;
-        buttonPanel.SetActive(false);
+        ButtonPanel.SetActive(false);
     }
 
     public void OpenTowerBuildingMenu(GameObject selectedTower)
@@ -66,16 +66,18 @@ public class TowerBuildingUI : MonoBehaviour
     private void InstantiateButtonForEachMesh(ScrapType scraptype)
     {
         Time.timeScale = 0.0f;
-        buttonPanel.SetActive(true);
+        ButtonPanel.SetActive(true);
         GameObject scrapObject = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int)scraptype];
         Scrap scrap = scrapObject.GetComponent<Scrap>();
+        Vector3 panelPosition = ButtonPanel.transform.position;
 
         for (int meshindex = 0; meshindex < scrap.PossibleMeshes.Length; meshindex++)
         {
-            GameObject button = Instantiate(upgradeButtonPrefab, buttonPanel.transform);
+            GameObject button = Instantiate(UpgradeButtonPrefab, UpgradeMenu.transform);
             button.GetComponentInChildren<Text>().text = scraptype + " " + meshindex;
             button.GetComponent<ScrapButton>().ScrapType = scraptype;
             button.GetComponent<ScrapButton>().Meshindex = meshindex;
+            button.transform.SetParent(UpgradeMenu.transform);
             _uibuttons.Add(button);
         }
        
