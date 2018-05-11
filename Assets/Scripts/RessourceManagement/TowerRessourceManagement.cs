@@ -1,54 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerRessourceManagement : MonoBehaviour {
 
+public class TowerRessourceManagement : MonoBehaviour
+{
     public Transform[] ScrapSlots;
     public float Droprate = 1.0f;
+    public int ScrapThrowFactor;
+    public int NeededMeeleScrabs;
+    public int NeededBottleScrabs;
+    public int NeededGrenadeScrabs;
 
-    private ArrayList _attachedScraps;
+    private List<GameObject> _attachedScraps = new List<GameObject>();
     private GameObject[] _possibleScrapPrefabs;
 
-    // Use this for initialization
-    void Awake () {
+
+    void Awake()
+    {
         _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
-        _attachedScraps = new ArrayList();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    void Update()
+    {
         //Test Destroy Tower
         if (Input.GetKey("i"))
             DestroyTower();
-
-        //TestBuildTower();
-        if (Input.GetKey("u"))
-        {
-            PlayerScrapInventory inventory = FindObjectOfType<PlayerScrapInventory>();
-            ArrayList[] scrapInventory = inventory.ScrapInventory;
-           
-            for (int scrapTypeIndex = 0; scrapTypeIndex < scrapInventory.Length; scrapTypeIndex++)
-            {
-                for (int index = 0; index < scrapInventory[scrapTypeIndex].Count; index++)
-                {
-                    Vector3 instanstiatePosition = ScrapSlots[_attachedScraps.Count].position;
-                    GameObject scrap = Instantiate(_possibleScrapPrefabs[scrapTypeIndex], instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-                        scrap.GetComponent<Scrap>().SetMesh((int)scrapInventory[scrapTypeIndex][index]);
-                        scrap.GetComponent<Scrap>().Type = (ScrapType)scrapTypeIndex;
-                        scrap.GetComponent<Rigidbody>().isKinematic = true;
-                        inventory.RemoveScrap(scrapTypeIndex, index);
-                        _attachedScraps.Add(scrap);
-
-
-                }
-            }
-        }
-            
-
     }
 
-    public void AddScrap(GameObject scrap)
+    internal bool UpgradePossible()
+    {
+        return _attachedScraps.Count < ScrapSlots.Length;
+    }
+
+    /*public void AddScrap(GameObject scrap)
     {
         if(_attachedScraps.Count < ScrapSlots.Length)
         {
@@ -56,17 +40,49 @@ public class TowerRessourceManagement : MonoBehaviour {
             GameObject scrapInstant = Instantiate(scrap, spawnposition , new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
             _attachedScraps.Add(scrapInstant);
         }
-        
+    }*/
+
+    public void AddAllNeededScraps(List<int>[] scrapInventory)
+    {
+        for (int i = 0; i < NeededMeeleScrabs; i++)
+            AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int) ScrapType.MELEE][0]);
+
+        for (int i = 0; i < NeededBottleScrabs; i++)
+            AddParticularScrap(ScrapType.BOTTLE, (int) scrapInventory[(int) ScrapType.BOTTLE][0]);
+
+        for (int i = 0; i < NeededGrenadeScrabs; i++)
+            AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
+    }
+
+    public void AddNeededScrap(List<int>[] scrapInventory)
+    {
+        if (NeededMeeleScrabs > 0)
+            AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int) ScrapType.MELEE][0]);
+        if (NeededBottleScrabs > 0)
+            AddParticularScrap(ScrapType.BOTTLE, (int) scrapInventory[(int) ScrapType.BOTTLE][0]);
+        if (NeededGrenadeScrabs > 0)
+            AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
+    }
+
+    private void AddParticularScrap(ScrapType scraptype, int meshindex)
+    {
+        Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
+        GameObject scrap = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int) scraptype];
+        GameObject scrapInstant = Instantiate(scrap, spawnposition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+        scrapInstant.GetComponent<Scrap>().SetMesh(meshindex);
+        _attachedScraps.Add(scrapInstant);
     }
 
     public void DestroyTower()
     {
         foreach (GameObject scrap in _attachedScraps)
         {
-            if (Random.Range(0.0f, 1.0f) <= Droprate) { 
+            if (Random.Range(0.0f, 1.0f) <= Droprate)
+            {
                 scrap.GetComponent<Rigidbody>().isKinematic = false;
                 scrap.GetComponent<Scrap>().ChangeAttachementState();
                 scrap.GetComponent<Scrap>().ChangeCollectionState();
+                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
             }
             else
             {
@@ -75,6 +91,5 @@ public class TowerRessourceManagement : MonoBehaviour {
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
-
     }
 }

@@ -1,52 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Scrap : MonoBehaviour {
 
-    private ScrapType _scrapType;
+public class Scrap : MonoBehaviour
+{
+    public ScrapType ScrapType;
+    public Mesh[] PossibleMeshes;
+
     private int _meshnumber;
-    private bool collected = true;
-    private bool inPosition = true;
+    private bool _collected = true;
+    private bool _inPosition = true;
 
-    public int ScrapTypeAsInt;
-    public Mesh[] possibleMeshes;
 
-    void Awake() {
-        _meshnumber = ((int)Random.Range(0.0f, possibleMeshes.Length));
+    void Awake()
+    {
+        _meshnumber = ((int) Random.Range(0.0f, PossibleMeshes.Length));
         SetMesh(_meshnumber);
-        _scrapType = (ScrapType) ScrapTypeAsInt;
     }
 
     public ScrapType Type
     {
         get
         {
-            return _scrapType;
+            return ScrapType;
         }
 
         set
         {
-            _scrapType = value;
+            ScrapType = value;
         }
-
     }
-    
+
     public bool IsCollected
     {
         get
         {
-            return collected;
+            return _collected;
         }
     }
 
     public void ChangeCollectionState()
     {
-        collected = !collected;
+        _collected = !_collected;
     }
 
-    public int MeshIndex { 
-        get{
+    public int MeshIndex
+    {
+        get
+        {
             return _meshnumber;
         }
     }
@@ -55,20 +55,18 @@ public class Scrap : MonoBehaviour {
     {
         get
         {
-            return inPosition;
+            return _inPosition;
         }
     }
 
     public void ChangeAttachementState()
     {
-        inPosition = !AttachedToSlot;
+        _inPosition = !AttachedToSlot;
     }
 
     public void SetMesh(int meshnumber)
     {
         _meshnumber = meshnumber;
-        gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(possibleMeshes[_meshnumber]);
+        gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(PossibleMeshes[_meshnumber]);
     }
-
-    
 }
