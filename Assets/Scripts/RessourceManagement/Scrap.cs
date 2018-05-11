@@ -4,9 +4,8 @@
 public class Scrap : MonoBehaviour
 {
     public ScrapType ScrapType;
-    public Mesh[] PossibleMeshes;
+    public int SubCategoryIndex;
 
-    private int _meshnumber;
     private bool _collected = true;
     private bool _inPosition = true;
     private Rigidbody _rigidbody;
@@ -14,9 +13,7 @@ public class Scrap : MonoBehaviour
 
     void Awake()
     {
-        _meshnumber = ((int) Random.Range(0.0f, PossibleMeshes.Length));
         _rigidbody = GetComponent<Rigidbody>();
-        SetMesh(_meshnumber);
     }
 
     public ScrapType Type
@@ -45,14 +42,6 @@ public class Scrap : MonoBehaviour
         _collected = !_collected;
     }
 
-    public int MeshIndex
-    {
-        get
-        {
-            return _meshnumber;
-        }
-    }
-
     public bool AttachedToSlot
     {
         get
@@ -64,12 +53,6 @@ public class Scrap : MonoBehaviour
     public void ChangeAttachementState()
     {
         _inPosition = !AttachedToSlot;
-    }
-
-    public void SetMesh(int meshnumber)
-    {
-        _meshnumber = meshnumber;
-        gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(PossibleMeshes[_meshnumber]);
     }
 
     public void ThrowScrapAway(Vector3 position, Vector3 scrapPosition, int ScrapThrowFactor)

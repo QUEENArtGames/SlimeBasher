@@ -60,4 +60,14 @@ public class PlayerScrapInventory : MonoBehaviour
             return _scrapInventory;
         }
     }
+
+    internal bool SubTypeIsInInventory(int scrapTypeIndex, int subTypeIndex)
+    {
+        foreach(int i in _scrapInventory[scrapTypeIndex])
+        {
+            if (subTypeIndex == i)
+                return true;
+        }
+        return false;
+    }
 }

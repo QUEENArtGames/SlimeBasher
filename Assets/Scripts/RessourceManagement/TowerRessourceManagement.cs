@@ -17,30 +17,13 @@ public class TowerRessourceManagement : MonoBehaviour
 
     void Awake()
     {
-        _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
-    }
-
-    void Update()
-    {
-        //Test Destroy Tower
-        if (Input.GetKey("i"))
-            DestroyTower();
+        _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().MeelePrefabs;
     }
 
     internal bool UpgradePossible()
     {
         return _attachedScraps.Count < ScrapSlots.Length;
     }
-
-    /*public void AddScrap(GameObject scrap)
-    {
-        if(_attachedScraps.Count < ScrapSlots.Length)
-        {
-            Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
-            GameObject scrapInstant = Instantiate(scrap, spawnposition , new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-            _attachedScraps.Add(scrapInstant);
-        }
-    }*/
 
     public void AddAllNeededScraps(List<int>[] scrapInventory)
     {
@@ -64,12 +47,11 @@ public class TowerRessourceManagement : MonoBehaviour
             AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
     }
 
-    private void AddParticularScrap(ScrapType scraptype, int meshindex)
+    private void AddParticularScrap(ScrapType scraptype, int subTypeIndex)
     {
         Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
-        GameObject scrap = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int) scraptype];
+        GameObject scrap = FindObjectOfType<RessourceManagement>().GetRightScrapPrefab((int) scraptype, subTypeIndex);
         GameObject scrapInstant = Instantiate(scrap, spawnposition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        scrapInstant.GetComponent<Scrap>().SetMesh(meshindex);
         _attachedScraps.Add(scrapInstant);
     }
 

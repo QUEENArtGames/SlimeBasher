@@ -7,7 +7,8 @@ public class TowerBuildingUI : MonoBehaviour
     public GameObject UpgradeText;
     public GameObject UpgradeButtonPrefab;
     public GameObject ButtonPanel;
-    public GameObject UpgradeMenu;
+    public Transform[] ButtonTransforms;
+    //public GameObject UpgradeMenu;
 
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
@@ -51,11 +52,11 @@ public class TowerBuildingUI : MonoBehaviour
         _selectedTower = selectedTower;
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
         if (towermanagement.NeededBottleScrabs > 0 && towermanagement.UpgradePossible())
-            InstantiateButtonForEachMesh(ScrapType.BOTTLE);
+            InstantiateButtonForEachSubPrefab(ScrapType.BOTTLE);
         if (towermanagement.NeededGrenadeScrabs > 0)
-            InstantiateButtonForEachMesh(ScrapType.GRENADE);
+            InstantiateButtonForEachSubPrefab(ScrapType.GRENADE);
         if (towermanagement.NeededMeeleScrabs > 0)
-            InstantiateButtonForEachMesh(ScrapType.MELEE);
+            InstantiateButtonForEachSubPrefab(ScrapType.MELEE);
     }
 
     public void CloseTowerBuildingMenu()
@@ -63,22 +64,24 @@ public class TowerBuildingUI : MonoBehaviour
         DestoryAllMenuElements();
     }
 
-    private void InstantiateButtonForEachMesh(ScrapType scraptype)
+    private void InstantiateButtonForEachSubPrefab(ScrapType scraptype)
     {
         Time.timeScale = 0.0f;
         ButtonPanel.SetActive(true);
-        GameObject scrapObject = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int)scraptype];
-        Scrap scrap = scrapObject.GetComponent<Scrap>();
-        Vector3 panelPosition = ButtonPanel.transform.position;
+        GameObject[] possiblePrefabsOfScrapType = FindObjectOfType<RessourceManagement>().PossiblePrefabs[(int)scraptype];
 
-        for (int meshindex = 0; meshindex < scrap.PossibleMeshes.Length; meshindex++)
+        for (int subTypeIndex = 0; subTypeIndex < possiblePrefabsOfScrapType.Length; subTypeIndex++)
         {
-            GameObject button = Instantiate(UpgradeButtonPrefab, UpgradeMenu.transform);
-            button.GetComponentInChildren<Text>().text = scraptype + " " + meshindex;
+            
+            GameObject button = Instantiate(UpgradeButtonPrefab, ButtonTransforms[subTypeIndex]);
+            button.GetComponentInChildren<Text>().text = scraptype + " " + subTypeIndex;
             button.GetComponent<ScrapButton>().ScrapType = scraptype;
-            button.GetComponent<ScrapButton>().Meshindex = meshindex;
-            button.transform.SetParent(UpgradeMenu.transform);
+            button.GetComponent<ScrapButton>().Meshindex = subTypeIndex;
             _uibuttons.Add(button);
+
+            if (!FindObjectOfType<PlayerScrapInventory>().SubTypeIsInInventory((int) scraptype, subTypeIndex))
+                button.GetComponent<Button>().interactable = false;
+
         }
        
     }

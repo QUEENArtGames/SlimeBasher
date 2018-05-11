@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 89ec19bd56ea3904fa9d9d226b053fdb, type: 2}
+--- !u!224 &10008311 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224322616482486828, guid: ba519b25ee92b3a46925efe2a7d40232,
+    type: 2}
+  m_PrefabInternal: {fileID: 1687397975}
 --- !u!1001 &60365789
 Prefab:
   m_ObjectHideFlags: 0
@@ -253,6 +258,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &284518214 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224853690706464634, guid: ba519b25ee92b3a46925efe2a7d40232,
+    type: 2}
+  m_PrefabInternal: {fileID: 1687397975}
 --- !u!1 &350490598
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,10 +325,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a583e7bc6020254f9d869db45308f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PossibleScrabPrefabs:
-  - {fileID: 1561977471319464, guid: fc24cd0137ce84343b2f3856dc6be1cd, type: 2}
-  - {fileID: 1686373990833044, guid: 29fc1d168d3d43340b4050b1626aa9fa, type: 2}
-  - {fileID: 1878995851421722, guid: 7111e8fe7ad371646a90507cd9de6ddb, type: 2}
+  MeelePrefabs:
+  - {fileID: 1452509037155608, guid: 595b29aa2876e00489280c60f7709e73, type: 2}
+  - {fileID: 1771094818862342, guid: 2be9c6e99e0d81940900a36dd0865a19, type: 2}
+  - {fileID: 1238256961391992, guid: 7f26ac2454adaa9409e301560250cf7a, type: 2}
+  GrenadePrefabs:
+  - {fileID: 1403633355510592, guid: b6c8fd8353978544e8ad8f7873b1172c, type: 2}
+  - {fileID: 1209874340110478, guid: 7969b600b34e53a4da62eb3ead667418, type: 2}
+  BottlePrefabs:
+  - {fileID: 1103263228983924, guid: 615a4921cce9ff9498dc77b642dfc707, type: 2}
+  MeeleScrapAmountInPool: 10
+  BottleScrapAmountInPool: 10
+  GrenadeScrapAmountInPool: 10
+  RessourceProbabilityInPercent: 100
 --- !u!114 &350490602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +364,10 @@ MonoBehaviour:
   UpgradeButtonPrefab: {fileID: 1252618393546424, guid: 62e2e0311eb94ca468b958871e04b527,
     type: 2}
   ButtonPanel: {fileID: 1510928651}
-  UpgradeMenu: {fileID: 1055535970}
+  ButtonTransforms:
+  - {fileID: 284518214}
+  - {fileID: 2053331752}
+  - {fileID: 10008311}
 --- !u!1001 &435355426
 Prefab:
   m_ObjectHideFlags: 0
@@ -621,11 +643,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1005862405}
---- !u!1 &1055535970 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1108803146672768, guid: ba519b25ee92b3a46925efe2a7d40232,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687397975}
 --- !u!1 &1060897008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,9 +1100,27 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 350490603}
+    - target: {fileID: 1510287881919706, guid: ba519b25ee92b3a46925efe2a7d40232, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114431684925678760, guid: ba519b25ee92b3a46925efe2a7d40232,
+        type: 2}
+      propertyPath: m_Text
+      value: "[q] Quick Upgrade\t[u] Upgrade Menu\t[k] Destroy Tower"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695411298346352, guid: ba519b25ee92b3a46925efe2a7d40232, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba519b25ee92b3a46925efe2a7d40232, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &2053331752 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224387027921555956, guid: ba519b25ee92b3a46925efe2a7d40232,
+    type: 2}
+  m_PrefabInternal: {fileID: 1687397975}
 --- !u!224 &2100755012 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224911579407239580, guid: ba519b25ee92b3a46925efe2a7d40232,
