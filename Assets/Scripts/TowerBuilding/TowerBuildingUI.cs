@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class TowerBuildingUI : MonoBehaviour
 {
     public GameObject upgradeText;
@@ -13,17 +12,26 @@ public class TowerBuildingUI : MonoBehaviour
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
     private List<int>[] _playerScraps;
+    private GameObject _selectedTower;
+
+    public GameObject SelectedTower
+    {
+        get
+        {
+            return _selectedTower;
+        }
+    }
 
 
     ///
-    internal void ShowTowerUpgraeNotification()
+    public void ShowTowerUpgraeNotification()
     {
         upgradeText.SetActive(true);
         Debug.Log("Upgrade Menu geöffnet");
     }
 
     ///
-    internal void CloseTowerUpgradeNotification()
+    public void CloseTowerUpgradeNotification()
     {
         upgradeText.SetActive(false);
         Debug.Log("Upgrade Menu geschlossen");
@@ -38,36 +46,39 @@ public class TowerBuildingUI : MonoBehaviour
         buttonPanel.SetActive(false);
     }
 
-    internal void OpenTowerBuildingMenu(GameObject selectedTower)
+    public void OpenTowerBuildingMenu(GameObject selectedTower)
     {
+        _selectedTower = selectedTower;
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
         if (towermanagement.NeededBottleScrabs > 0 && towermanagement.UpgradePossible())
-            InstantiateButtonsForAllScraps(ScrapType.BOTTLE, selectedTower);
+            InstantiateButtonForEachMesh(ScrapType.BOTTLE);
         if (towermanagement.NeededGrenadeScrabs > 0)
-            InstantiateButtonsForAllScraps(ScrapType.GRENADE, selectedTower);
+            InstantiateButtonForEachMesh(ScrapType.GRENADE);
         if (towermanagement.NeededMeeleScrabs > 0)
-            InstantiateButtonsForAllScraps(ScrapType.MELEE, selectedTower);
+            InstantiateButtonForEachMesh(ScrapType.MELEE);
     }
 
-    internal void CloseTowerBuildingMenu()
+    public void CloseTowerBuildingMenu()
     {
         DestoryAllMenuElements();
     }
 
-    private void InstantiateButtonsForAllScraps(ScrapType scraptype, GameObject selectedTower)
+    private void InstantiateButtonForEachMesh(ScrapType scraptype)
     {
         Time.timeScale = 0.0f;
         buttonPanel.SetActive(true);
-        int buttonheight = 10;
-        int menuheight = 20;
-        for (int meshindex = 0; meshindex < _playerScraps[(int) scraptype].Count; meshindex++)
+        GameObject scrapObject = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int)scraptype];
+        Scrap scrap = scrapObject.GetComponent<Scrap>();
+
+        for (int meshindex = 0; meshindex < scrap.PossibleMeshes.Length; meshindex++)
         {
             GameObject button = Instantiate(upgradeButtonPrefab, buttonPanel.transform);
-            button.GetComponentInChildren<Text>().text = scraptype + " " + _playerScraps[(int) scraptype][meshindex];
+            button.GetComponentInChildren<Text>().text = scraptype + " " + meshindex;
             button.GetComponent<ScrapButton>().ScrapType = scraptype;
-            button.GetComponent<ScrapButton>().Meshindex = (int) _playerScraps[(int) scraptype][meshindex];
+            button.GetComponent<ScrapButton>().Meshindex = meshindex;
             _uibuttons.Add(button);
         }
+       
     }
 
     private void Awake()

@@ -518,8 +518,8 @@ MonoBehaviour:
   ScrapSlots:
   - {fileID: 4193063229266950}
   - {fileID: 4089088241665638}
-  - {fileID: 4193063229266950}
-  - {fileID: 4193063229266950}
+  - {fileID: 4800554121195190}
+  - {fileID: 4823773777601156}
   Droprate: 1
   ScrapThrowFactor: 5
   NeededMeeleScrabs: 1

@@ -38,11 +38,16 @@ public class PlayerRessourceManagement : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("u") && testvariable)
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("u"))
         {
             FindObjectOfType<TowerBuildingUI>().OpenTowerBuildingMenu(other.gameObject);
-            //FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject);
-            //testvariable = false;
+        }
+
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("k"))
+        {
+            FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
+            FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
+            other.gameObject.GetComponent<Tower>().Kill();
         }
     }
 

@@ -31,6 +31,17 @@ public class TowerBuilding : MonoBehaviour
         }
     }
 
+    //noch nicht implementiert
+    public void UpgradeWithScrap(GameObject selectedTower, int meshindex)
+    {
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        if (towermanagement.UpgradePossible())
+        {
+            //bestimmte Scrap zum Tower hinzufügen
+            //Bestimmte Scrap entfernen
+        }
+    }
+
     internal bool TowerBuildingAllowed(GameObject selectedTower)
     {
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();

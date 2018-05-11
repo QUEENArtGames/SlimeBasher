@@ -35,6 +35,8 @@ public class ScrapButton : MonoBehaviour
 
     public void ButtonListener()
     {
+        GameObject selectedTower = FindObjectOfType<TowerBuildingUI>().SelectedTower;
+        FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(selectedTower);
         FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
     }
 }

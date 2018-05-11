@@ -30,7 +30,6 @@ public class PlayerScrapInventory : MonoBehaviour
     public void AddScrap(ScrapType scrapType, int meshIndex)
     {
         _scrapInventory[(int) scrapType].Add(meshIndex);
-        Debug.Log("Index: " + scrapType + _scrapInventory[(int) scrapType].Count);
     }
 
     public void RemoveScrap(int scrapType, int index)

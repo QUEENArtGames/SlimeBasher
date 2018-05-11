@@ -189,7 +189,7 @@ public class TowerPlacement : MonoBehaviour
             }
         }
 
-        if (lmbPressed)
+        /*if (lmbPressed)
         {
             if (deconstructionToolActive)
             {
@@ -202,7 +202,7 @@ public class TowerPlacement : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
     }
 
     private bool TowerBuildingAllowed()
