@@ -24,6 +24,9 @@ public class TowerBuilding : MonoBehaviour
     public void UpgradeWithAnyScrap(GameObject selectedTower)
     {
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        if (!CheckForRessources(_playerScraps, towermanagement))
+            return;
+
         if (towermanagement.UpgradePossible())
         {
             towermanagement.AddNeededScrap(_playerScraps);
