@@ -1,37 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Scrap : MonoBehaviour {
 
-    private ScrapType _scrapType;
+public class Scrap : MonoBehaviour
+{
+    public ScrapType ScrapType;
+    public Mesh[] PossibleMeshes;
+
     private int _meshnumber;
     private bool _collected = true;
     private bool _inPosition = true;
 
-    public int ScrapTypeAsInt;
-    public Mesh[] PossibleMeshes;
 
-    void Awake() {
-        _meshnumber = ((int)Random.Range(0.0f, PossibleMeshes.Length));
+    void Awake()
+    {
+        _meshnumber = ((int) Random.Range(0.0f, PossibleMeshes.Length));
         SetMesh(_meshnumber);
-        _scrapType = (ScrapType) ScrapTypeAsInt;
     }
 
     public ScrapType Type
     {
         get
         {
-            return _scrapType;
+            return ScrapType;
         }
 
         set
         {
-            _scrapType = value;
+            ScrapType = value;
         }
-
     }
-    
+
     public bool IsCollected
     {
         get
@@ -45,8 +43,10 @@ public class Scrap : MonoBehaviour {
         _collected = !_collected;
     }
 
-    public int MeshIndex { 
-        get{
+    public int MeshIndex
+    {
+        get
+        {
             return _meshnumber;
         }
     }
@@ -69,6 +69,4 @@ public class Scrap : MonoBehaviour {
         _meshnumber = meshnumber;
         gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(PossibleMeshes[_meshnumber]);
     }
-
-    
 }

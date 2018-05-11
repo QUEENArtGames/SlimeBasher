@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c0a7857f1b5d41bfb2a506f7f2a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrapTypeAsInt: 2
+  ScrapType: 2
   PossibleMeshes:
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
