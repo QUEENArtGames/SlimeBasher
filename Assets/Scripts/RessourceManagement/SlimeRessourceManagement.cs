@@ -7,7 +7,6 @@ public class SlimeRessourceManagement : MonoBehaviour
     public Transform[] ScrapSlots;
 
     public bool SpawnsWithScraps = true;
-    public float RessourceProbability = 1;
     public float SuckSpeed = 1.0f;
     public int ScrapThrowFactor = 10;
     public float RotationValue = 1.5f;
