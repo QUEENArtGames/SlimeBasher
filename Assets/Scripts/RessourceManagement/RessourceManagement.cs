@@ -11,8 +11,8 @@ public class RessourceManagement : MonoBehaviour
     private GameObject[][] _possiblePrefabs = new GameObject[Enum.GetNames(typeof(ScrapType)).Length][];
 
     //Nicht GameObject Klasse? Struct?
-    private List<GameObject> _possiblePrefabPool;
-    private List<GameObject> _possiblePrefabCardDeck;
+    private List<PoolScrap> _possiblePrefabPool;
+    private List<PoolScrap> _possiblePrefabCardDeck;
 
     public int MeeleScrapAmountInPool = 10;
     public int BottleScrapAmountInPool = 10;
@@ -30,11 +30,11 @@ public class RessourceManagement : MonoBehaviour
 
     private void Awake()
     {
-        _possiblePrefabPool = new List<GameObject>();
+        _possiblePrefabPool = new List<PoolScrap>();
 
-        FillPossiblePrefabs(MeeleScrapAmountInPool, MeelePrefabs);
-        FillPossiblePrefabs(BottleScrapAmountInPool, BottlePrefabs);
-        FillPossiblePrefabs(GrenadeScrapAmountInPool, GrenadePrefabs);
+        FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);
+        FillPossiblePrefabs(ScrapType.BOTTLE, BottleScrapAmountInPool, BottlePrefabs);
+        FillPossiblePrefabs(ScrapType.GRENADE, GrenadeScrapAmountInPool, GrenadePrefabs);
 
         _possiblePrefabCardDeck = _possiblePrefabPool;
 
@@ -43,12 +43,12 @@ public class RessourceManagement : MonoBehaviour
         PossiblePrefabs[(int)ScrapType.GRENADE] = GrenadePrefabs;
     }
 
-    private void FillPossiblePrefabs(int amountOfScrapsInPool, GameObject[] possiblePrefabs)
+    private void FillPossiblePrefabs(ScrapType scrapType, int amountOfScrapsInPool, GameObject[] possiblePrefabs)
     {
         for(int i = 0; i < amountOfScrapsInPool; i++)
         {
             int randomScrapIndex = (int)UnityEngine.Random.Range(0.0f, possiblePrefabs.Length);
-            _possiblePrefabPool.Add(possiblePrefabs[randomScrapIndex]);
+            _possiblePrefabPool.Add(new PoolScrap(scrapType, possiblePrefabs[randomScrapIndex].GetComponent<Scrap>().SubCategoryIndex) );
         }
     }
 
@@ -63,8 +63,8 @@ public class RessourceManagement : MonoBehaviour
             _possiblePrefabCardDeck = _possiblePrefabPool;
 
         int randomScrapObjectIndex = (int) UnityEngine.Random.Range(0.0f, _possiblePrefabCardDeck.Count);
-        GameObject scrapObject = _possiblePrefabCardDeck[randomScrapObjectIndex];
-        _possiblePrefabCardDeck.Remove(scrapObject);
-        return scrapObject;
+        PoolScrap poolscrap = _possiblePrefabCardDeck[randomScrapObjectIndex];
+        _possiblePrefabCardDeck.Remove(poolscrap);
+        return PossiblePrefabs[(int)poolscrap.ScrapType][poolscrap.SubType]; 
     }
 }
