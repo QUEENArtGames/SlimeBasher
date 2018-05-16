@@ -708,6 +708,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4880405486975132}
+  - component: {fileID: 95038740644982920}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -2892,3 +2893,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088715759156594}
   m_Mesh: {fileID: 4300030, guid: 93f4da09317af2742af6b8506fd7e678, type: 3}
+--- !u!95 &95038740644982920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1977869027778084}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6342c92d507ea94db522d096e04a440, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
