@@ -73,7 +73,6 @@ namespace Assets.Scripts {
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-
             _pausemenu.SetActive(true);
 
         }
