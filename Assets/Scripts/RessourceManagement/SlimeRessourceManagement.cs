@@ -79,7 +79,7 @@ public class SlimeRessourceManagement : MonoBehaviour
 
         for (int i = 0; i < ScrapSlots.Length; i++)
         {
-            if (Random.Range(0.0f, 100.0f) <= FindObjectOfType<RessourceManagement>().RessourceProbabilityInPercent)
+            if (Random.Range(0.0f, 100.0f) <= FindObjectOfType<RessourceManagement>().ScrapSpawnProbabilityOnSlimesInPercent)
             {
                 Vector3 ressourcePosition = ScrapSlots[i].position;
                 _attachedScraps.Add(Instantiate(_ressourceManagement.GetRandomScrapFromPool(), ressourcePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f)));

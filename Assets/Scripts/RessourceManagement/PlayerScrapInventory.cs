@@ -37,6 +37,19 @@ public class PlayerScrapInventory : MonoBehaviour
         _scrapInventory[scrapType].RemoveAt(index);
     }
 
+    public void RemoveScrapBySubTypeIndex(int scrapType, int subtypeIndex)
+    {
+        foreach (int scrap in _scrapInventory[scrapType])
+        {
+            if (subtypeIndex == scrap)
+            {
+                _scrapInventory[scrapType].Remove(subtypeIndex);
+                return;
+            }
+        }
+
+    }
+
     public void RemoveAnyScraps(int scrapType, int amount)
     {
         for (int i = 0; i < amount; i++)

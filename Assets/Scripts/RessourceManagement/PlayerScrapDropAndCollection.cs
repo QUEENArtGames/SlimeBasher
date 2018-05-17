@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 
 
-public class PlayerRessourceManagement : MonoBehaviour
+public class PlayerScrapDropAndCollection : MonoBehaviour
 {
-    public float Droprate = 1.0f;
-
     private PlayerScrapInventory _scrapInventory;
     private RessourceManagement _ressourceManagement;
-
-    //TESTVARIABLE
-    private bool testvariable = true;
-
+    private float _droprate;
 
     void Awake()
     {
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
+        _droprate = _ressourceManagement.PlayerScrapDropProbabilityInPercent;
     }
 
     void Update()
@@ -87,9 +83,9 @@ public class PlayerRessourceManagement : MonoBehaviour
         {
             for (int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
             {
-                if (Random.Range(0.0f, 1.0f) <= Droprate)
+                if (Random.Range(0.0f, 100.0f) < _droprate)
                 {
-                    GameObject scrapObject = Instantiate(_ressourceManagement.GetRightScrapPrefab(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+                    GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
                     Scrap scrap = scrapObject.GetComponent<Scrap>();
                     scrap.ChangeCollectionState();
                     scrap.ChangeAttachementState();

@@ -10,7 +10,6 @@ public class RessourceManagement : MonoBehaviour
 
     private GameObject[][] _possiblePrefabs = new GameObject[Enum.GetNames(typeof(ScrapType)).Length][];
 
-    //Nicht GameObject Klasse? Struct?
     private List<PoolScrap> _possiblePrefabPool;
     private List<PoolScrap> _possiblePrefabCardDeck;
 
@@ -18,7 +17,10 @@ public class RessourceManagement : MonoBehaviour
     public int BottleScrapAmountInPool = 10;
     public int GrenadeScrapAmountInPool = 10;
 
-    public float RessourceProbabilityInPercent = 100.0f;
+    public float ScrapSpawnProbabilityOnSlimesInPercent = 100.0f;
+
+    public float PlayerScrapDropProbabilityInPercent = 100.0f;
+    public float TowerScrapDropProbabilityInPercent = 100.0f;
 
     public GameObject[][] PossiblePrefabs
     {
@@ -52,7 +54,7 @@ public class RessourceManagement : MonoBehaviour
         }
     }
 
-    internal GameObject GetRightScrapPrefab(int scrapTypeIndex, int subTypeIndex)
+    internal GameObject GetScrapPrefabBySubTypeIndex(int scrapTypeIndex, int subTypeIndex)
     {
         return PossiblePrefabs[scrapTypeIndex][subTypeIndex];
     }

@@ -23,15 +23,12 @@ public class TowerBuildingUI : MonoBehaviour
         }
     }
 
-
-    ///
     public void ShowTowerUpgraeNotification()
     {
         UpgradeText.SetActive(true);
         Debug.Log("Upgrade Menu geöffnet");
     }
 
-    ///
     public void CloseTowerUpgradeNotification()
     {
         UpgradeText.SetActive(false);
@@ -51,7 +48,7 @@ public class TowerBuildingUI : MonoBehaviour
     {
         _selectedTower = selectedTower;
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.NeededBottleScrabs > 0 && towermanagement.UpgradePossible())
+        if (towermanagement.NeededBottleScrabs > 0 && towermanagement.ScrapSlotsOnTowerAreFree())
             InstantiateButtonForEachSubPrefab(ScrapType.BOTTLE);
         if (towermanagement.NeededGrenadeScrabs > 0)
             InstantiateButtonForEachSubPrefab(ScrapType.GRENADE);
