@@ -12,6 +12,7 @@ namespace Assets.Scripts {
         private bool _startTimer = false;
         private bool _readyButtonEnabled = false;
         private float _countdown;
+        public GameObject _pausemenu;
 
         // Use this for initialization
         void Start() {
@@ -67,6 +68,22 @@ namespace Assets.Scripts {
 
         }
 
+
+        private void PauseGame() {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+
+            _pausemenu.SetActive(true);
+
+        }
+
+        public void ResumeGame() {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+        }
+
+
         // Update is called once per frame
         void Update() {
 
@@ -84,19 +101,23 @@ namespace Assets.Scripts {
                 _startTimer = false;
             }
 
-            if (_readyButtonEnabled && Input.GetKeyDown(KeyCode.G)) {
+            if (_readyButtonEnabled && Input.GetKeyDown(KeyCode.G) && Time.timeScale != 0) {
                 Debug.Log("Starting Countdown");
                 _gamePhase.MoveToNextGamePhase();
                 _readyButtonEnabled = false;
 
             }
 
-            if (_currentPhase == Phase.Fight && Input.GetKeyDown(KeyCode.T)) {
+            if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 0)
+                PauseGame();
+
+            if (_currentPhase == Phase.Fight && Input.GetKeyDown(KeyCode.T) && Time.timeScale != 0) {
                 _gamePhase.MoveToNextGamePhase();
             }
 
-        }
+            
 
+        }
 
     }
 }
