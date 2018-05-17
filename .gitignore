@@ -43,3 +43,14 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
+
+# ========================= #
+# Visual Paradigm generated #
+# ========================= #
+.vpprefdata/
+*.vpp~*
+*.vpp.bak_*
+*.vpp.working
+*.vpp.working-journal
+*.lock
+tmp/*

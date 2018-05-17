@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
 
 [RequireComponent(typeof(Collider))]
 public class Tower : MonoBehaviour
@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     private List<Renderer> _renderers = new List<Renderer>();
     private Color _colorPlaceable = new Color(0, 1, 0, 0.5f);
     private Color _colorNotPlaceable = new Color(1, 0, 0, 0.5f);
+
 
     // Use this for initialization
     void Awake()

@@ -1,31 +1,36 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScrapInventory : MonoBehaviour {
 
-    private ArrayList[] _scrapInventory = new ArrayList[3];
+public class PlayerScrapInventory : MonoBehaviour
+{
+    private List<int>[] _scrapInventory = new List<int>[Enum.GetNames(typeof(ScrapType)).Length];
     private int _classicScraps = 0;
 
-    private void Awake()
+
+    void Awake()
     {
-        _scrapInventory[0] = new ArrayList();
-        _scrapInventory[1] = new ArrayList();
-        _scrapInventory[2] = new ArrayList();
+        for (int i = 0; i < Enum.GetNames(typeof(ScrapType)).Length; i++)
+        {
+            _scrapInventory[i] = new List<int>();
+        }
     }
 
     public int GetAmountOfScraps(ScrapType scrapType)
     {
-        if (scrapType == ScrapType.CLASSIC)
-            return _classicScraps;
+        return _scrapInventory[(int) scrapType].Count;
+    }
 
-        return _scrapInventory[(int)scrapType].Count;
+    public int GetAmountOfScraps()
+    {
+        return _classicScraps;
     }
 
     public void AddScrap(ScrapType scrapType, int meshIndex)
     {
-        _scrapInventory[(int)scrapType].Add(meshIndex);
-        Debug.Log("Index: " + scrapType + _scrapInventory[(int)scrapType].Count);
+        _scrapInventory[(int) scrapType].Add(meshIndex);
+        Debug.Log("Index: " + scrapType + _scrapInventory[(int) scrapType].Count);
     }
 
     public void RemoveScrap(int scrapType, int index)
@@ -35,7 +40,7 @@ public class PlayerScrapInventory : MonoBehaviour {
 
     public void RemoveAnyScraps(int scrapType, int amount)
     {
-        for(int i = 0; i < amount; i++)
+        for (int i = 0; i < amount; i++)
             _scrapInventory[scrapType].RemoveAt(0);
     }
 
@@ -49,13 +54,11 @@ public class PlayerScrapInventory : MonoBehaviour {
         _classicScraps -= amountOfScrabs;
     }
 
-    public ArrayList[] ScrapInventory
+    public List<int>[] ScrapInventory
     {
         get
         {
             return _scrapInventory;
         }
     }
-
-
 }
