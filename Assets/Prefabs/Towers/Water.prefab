@@ -654,7 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4235043764720652}
   - component: {fileID: 95251872239703120}
-  - component: {fileID: 208095915693787706}
+  - component: {fileID: 208693657613706032}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -2969,7 +2969,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!208 &208095915693787706
+--- !u!208 &208693657613706032
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
