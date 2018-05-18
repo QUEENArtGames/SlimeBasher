@@ -8,7 +8,7 @@ namespace Assets.Scripts {
     class Game : MonoBehaviour {
         private GamePhase _gamePhase;
         public float _nextPhaseTimer = 5.0f;
-        private Phase _currentPhase;
+        internal Phase _currentPhase;
         private bool _startTimer = false;
         private bool _readyButtonEnabled = false;
         private float _countdown;
