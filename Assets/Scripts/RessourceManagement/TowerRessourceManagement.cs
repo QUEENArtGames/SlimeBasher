@@ -11,13 +11,11 @@ public class TowerRessourceManagement : MonoBehaviour
     public int NeededGrenadeScrabs;
 
     private List<GameObject> _attachedScraps = new List<GameObject>();
-    private GameObject[] _possibleScrapPrefabs;
     private float _droprate;
 
 
     void Awake()
     {
-        _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().MeelePrefabs;
         _droprate = FindObjectOfType<RessourceManagement>().TowerScrapDropProbabilityInPercent;
     }
 
