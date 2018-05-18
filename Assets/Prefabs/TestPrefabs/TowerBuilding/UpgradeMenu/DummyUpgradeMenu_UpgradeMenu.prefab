@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1652399931917378
 GameObject:
   m_ObjectHideFlags: 1
@@ -264,7 +264,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "[u] Upgrade Menu\t[k] Destroy Tower"
+  m_Text: "[q] Quick Upgrade\t[u] Upgrade Menu\t[k] Destroy Tower"
 --- !u!114 &114477161188114774
 MonoBehaviour:
   m_ObjectHideFlags: 1
