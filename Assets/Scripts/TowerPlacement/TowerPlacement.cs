@@ -188,6 +188,7 @@ namespace Assets.Scripts
                             {
                                 GameObject towerInstance = Instantiate(selectedTower, hit.point, towerPreview.transform.rotation);
                                 BuildTower(towerInstance);
+                                towerInstance.GetComponentInChildren<Animator>().SetTrigger("Build");
                                 lmbPressed = false;
                             }
                         }

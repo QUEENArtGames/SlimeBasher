@@ -468,7 +468,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   rotationSpeed: 100
   towers:
-  - {fileID: 1514263483604872, guid: aab3457a27f56594d8cfb8876dc8b0e6, type: 2}
+  - {fileID: 1351905547860728, guid: aab3457a27f56594d8cfb8876dc8b0e6, type: 2}
   - {fileID: 1029764236645716, guid: 7b6addc5b7e4f2e459d9ba9a0b0a552a, type: 2}
   - {fileID: 1220170406583812, guid: 531f45ea83c053646835fd3e191a9256, type: 2}
   maxDistance: 10
