@@ -56,14 +56,20 @@ namespace Assets.Scripts
             {
                 foreach (Renderer r in _renderers)
                 {
-                    r.material.SetColor("_Color", _colorPlaceable);
+                    foreach (Material m in r.materials)
+                    {
+                        m.SetColor("_Color", _colorPlaceable);
+                    }
                 }
             }
             else
             {
                 foreach (Renderer r in _renderers)
                 {
-                    r.material.SetColor("_Color", _colorNotPlaceable);
+                    foreach (Material m in r.materials)
+                    {
+                        m.SetColor("_Color", _colorNotPlaceable);
+                    }
                 }
             }
         }
