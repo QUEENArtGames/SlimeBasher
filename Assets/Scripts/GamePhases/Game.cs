@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace Assets.Scripts {
     class Game : MonoBehaviour {
+        public Vector3[] _possilbeSpawnpoints = new Vector3[6];
+        public Wave2[] Waves;
         private GamePhase _gamePhase;
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
@@ -13,6 +15,8 @@ namespace Assets.Scripts {
         private bool _readyButtonEnabled = false;
         private float _countdown;
         public GameObject _pausemenu;
+        int _waveRoundNumber = 1;
+        private Wave _actualWave;
 
         // Use this for initialization
         void Start() {
@@ -25,6 +29,7 @@ namespace Assets.Scripts {
             switch (gamePhase) {
                 case Phase.Building:
                     //Player kann sachen bauen
+                    Debug.Log("Runde: " + _waveRoundNumber);
                     Debug.Log("BUILDING");
                     _readyButtonEnabled = true;
                     break;
@@ -32,28 +37,96 @@ namespace Assets.Scripts {
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
                     Debug.Log("Prepare");
                     StartNextRoundCounter();
+                    Wave2 wave = GetNextWave();
+                    StartWave(wave);
+                    CalculateWave();
                     break;
                 case Phase.Fight:
                     //Player bekämpft Enemys
                     Debug.Log("FIGHT");
-                    SpawnEnemys();
+                    SpawnEnemys(_actualWave);
                     break;
                 case Phase.End:
                     //Rundenende, bereitmachen für Bauphase
                     Debug.Log("End");
                     ShowWaveEndGUI();
                     StartNextRoundCounter();
+                    _waveRoundNumber++;
                     break;
             }
+        }
+
+        private Wave2 GetNextWave() {
+            if(_waveRoundNumber >= Waves.Length) {
+                return CreateProceduralWave();
+            }
+            return Waves[_waveRoundNumber];
+        }
+
+        private Wave2 CreateProceduralWave() {
+            Wave2 newWave = new Wave2();
+            newWave.Events = new WaveEvent[2];
+            newWave.Events[0] = CreateRandomWaveEvent();
+            newWave.Events[1] = CreateRandomWaveEvent();
+            return newWave;
+        }
+
+        private WaveEvent CreateRandomWaveEvent() {
+            WaveEvent newWaveEvent = new WaveEvent();
+            newWaveEvent.normalSlimes = _waveRoundNumber / 5;
+            newWaveEvent.gasSlimes = _waveRoundNumber / 5;
+            return newWaveEvent;
+        }
+
+        private Vector3[] CalculateSpawnPoints() {
+
+            Vector3[] spawnpoints = new Vector3[3];
+            int[] points = new int[3];
+            bool isNotIn = true;
+
+            for (int i = 0; i < points.Length; i++) {
+                int number;
+                while (isNotIn) {
+                    number = UnityEngine.Random.Range(0, 5);
+                    if (!points.Contains(number)) {
+                        isNotIn = false;
+                        points[i] = number;
+                    }
+
+                }
+                isNotIn = true;
+            }
+
+            for(int i= 0; i< points.Length; i++) {
+                spawnpoints[i] = _possilbeSpawnpoints[points[i]];
+            }
+
+
+            return spawnpoints;
+        }
+
+        private void CalculateWave() {
+
+            _actualWave = new Wave(_waveRoundNumber, CalculateSpawnPoints());
+
+        }
+
+        private void SpawnEnemys(Wave wave) {
+            Debug.Log("Spawning Enemys");
+            Debug.Log("Spawnen an Positionen: ");
+            for(int i = 0; i<3; i++) {
+                Debug.Log(_actualWave.SpawnPoints[i].x + " " +  _actualWave.SpawnPoints[i].y + " " + _actualWave.SpawnPoints[i].z);
+            }
+            Debug.Log("Spawne " + _actualWave.getNormalSlimes + " normale Schleime");
+            Debug.Log("Spawne " + _actualWave.getHardSlimes + " feste Schleime");
+            Debug.Log("Spawne " + _actualWave.getGasSlimes + " Gas-Schleime");
         }
 
         private void ShowWaveEndGUI() {
             Debug.Log("Round Complete");
         }
 
-        private void SpawnEnemys() {
-            Debug.Log("Spawning Enemys");
-        }
+        
 
         void StartNextRoundCounter() {
             _startTimer = true;
