@@ -12,7 +12,6 @@ public class TowerBuildingUI : MonoBehaviour
 
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
-    private List<int>[] _playerScraps;
     private GameObject _selectedTower;
 
     public GameObject SelectedTower
@@ -86,7 +85,6 @@ public class TowerBuildingUI : MonoBehaviour
     private void Awake()
     {
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
-        _playerScraps = _playerInventory.ScrapInventory;
         _uibuttons = new List<GameObject>();
     }
 }

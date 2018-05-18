@@ -29,12 +29,12 @@ public class SlimeRessourceManagement : MonoBehaviour
     // TESTUPDATE
     void Update()
     {
-        if(Input.GetKey("i"))
+        if(Input.GetKeyDown("i"))
         {
             InstanstiateScrapsOnSelf();
         }
            
-        if (Input.GetKey("p"))
+        if (Input.GetKeyDown("p"))
             DropRessources();
         
         //ChildObjekt angucken für bessere Lösung?

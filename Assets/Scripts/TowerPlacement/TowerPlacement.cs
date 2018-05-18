@@ -21,7 +21,6 @@ public class TowerPlacement : MonoBehaviour
     private int slotNumber = -1;
     private Vector3 previousPosition;
     private Quaternion previousRotation;
-    private bool deconstructionToolActive;
 
     // Raycast on layer 8
     private int layerMask = 1 << 8;
@@ -75,56 +74,53 @@ public class TowerPlacement : MonoBehaviour
         if (Input.GetButtonDown("Tower Slot 1"))
         {
             slotNumber = 0;
-            deconstructionToolActive = false;
         }
         else if (Input.GetButtonDown("Tower Slot 2"))
         {
             slotNumber = 1;
-            deconstructionToolActive = false;
+         
         }
         else if (Input.GetButtonDown("Tower Slot 3"))
         {
             slotNumber = 2;
-            deconstructionToolActive = false;
+           
         }
         else if (Input.GetButtonDown("Tower Slot 4"))
         {
             slotNumber = 3;
-            deconstructionToolActive = false;
+            
         }
         else if (Input.GetButtonDown("Tower Slot 5"))
         {
             slotNumber = 4;
-            deconstructionToolActive = false;
+            
         }
         else if (Input.GetButtonDown("Tower Slot 6"))
         {
             slotNumber = 5;
-            deconstructionToolActive = false;
+            
         }
         else if (Input.GetButtonDown("Tower Slot 7"))
         {
             slotNumber = 6;
-            deconstructionToolActive = false;
         }
         else if (Input.GetButtonDown("Tower Slot 8"))
         {
             slotNumber = 7;
-            deconstructionToolActive = false;
         }
         else if (Input.GetButtonDown("Tower Slot 9"))
         {
             slotNumber = 8;
-            deconstructionToolActive = false;
+            
         }
         else if (Input.GetButtonDown("Tower Slot 0"))
         {
             slotNumber = 9;
-            deconstructionToolActive = false;
+            
         }
         else if (Input.GetButtonDown("Deconstruct Tower"))
         {
-            deconstructionToolActive = true;
+            
             slotNumber = 999;
         }
 

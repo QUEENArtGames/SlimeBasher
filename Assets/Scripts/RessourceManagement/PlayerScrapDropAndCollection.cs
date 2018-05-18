@@ -16,7 +16,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("o"))
+        if (Input.GetKeyDown("o"))
             DropScraps();
     }
 
@@ -34,19 +34,19 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("u"))
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("u"))
         {
             FindObjectOfType<TowerBuildingUI>().OpenTowerBuildingMenu(other.gameObject);
         }
 
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("k"))
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("k"))
         {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
             other.gameObject.GetComponent<Tower>().Kill();
         }
 
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKey("q"))
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("q"))
         {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
