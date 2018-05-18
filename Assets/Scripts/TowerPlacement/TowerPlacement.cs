@@ -20,7 +20,6 @@ namespace Assets.Scripts
         private int slotNumber = -1;
         private Vector3 previousPosition;
         private Quaternion previousRotation;
-        private bool deconstructionToolActive;
         private Phase currentPhase;
         private bool phaseSwitch = true, buildingPhaseActive = true;
 
@@ -39,7 +38,7 @@ namespace Assets.Scripts
                 {
                     tower.AddComponent<Tower>();
                 }
-                if(tower.GetComponent<NavMeshObstacle>() == null)
+                if (tower.GetComponent<NavMeshObstacle>() == null)
                 {
                     tower.AddComponent<NavMeshObstacle>();
                 }
@@ -94,63 +93,62 @@ namespace Assets.Scripts
                 if (Input.GetButtonDown("Tower Slot 1"))
                 {
                     slotNumber = 0;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 2"))
                 {
                     slotNumber = 1;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 3"))
                 {
                     slotNumber = 2;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 4"))
                 {
                     slotNumber = 3;
-                    deconstructionToolActive = false;
-                }
+                                    }
                 else if (Input.GetButtonDown("Tower Slot 5"))
                 {
                     slotNumber = 4;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 6"))
                 {
                     slotNumber = 5;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 7"))
                 {
                     slotNumber = 6;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 8"))
                 {
                     slotNumber = 7;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Tower Slot 9"))
                 {
                     slotNumber = 8;
-                    deconstructionToolActive = false;
+                   
                 }
                 else if (Input.GetButtonDown("Tower Slot 0"))
                 {
                     slotNumber = 9;
-                    deconstructionToolActive = false;
+                    
                 }
                 else if (Input.GetButtonDown("Deconstruct Tower"))
                 {
-                    deconstructionToolActive = true;
+                    
                     slotNumber = 999;
                 }
 
                 if (!buildingPhaseActive)
                 {
                     slotNumber = 999;
-                    deconstructionToolActive = false;
+                    
                     phaseSwitch = false;
                 }
 
@@ -201,21 +199,6 @@ namespace Assets.Scripts
                     else
                     {
                         towerPreview.SetActive(false);
-                    }
-                }
-
-                if (lmbPressed)
-                {
-                    if (deconstructionToolActive)
-                    {
-                        fwd = playerCam.transform.TransformDirection(Vector3.forward);
-                        if (Physics.Raycast(playerCam.transform.position, fwd, out hit, maxDistance))
-                        {
-                            if (hit.transform.root.GetComponent<Tower>() != null)
-                            {
-                                hit.transform.root.GetComponent<Tower>().Kill();
-                            }
-                        }
                     }
                 }
             }

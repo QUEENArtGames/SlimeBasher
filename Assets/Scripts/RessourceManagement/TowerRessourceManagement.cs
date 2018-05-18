@@ -5,42 +5,24 @@ using UnityEngine;
 public class TowerRessourceManagement : MonoBehaviour
 {
     public Transform[] ScrapSlots;
-    public float Droprate = 1.0f;
     public int ScrapThrowFactor;
     public int NeededMeeleScrabs;
     public int NeededBottleScrabs;
     public int NeededGrenadeScrabs;
 
     private List<GameObject> _attachedScraps = new List<GameObject>();
-    private GameObject[] _possibleScrapPrefabs;
+    private float _droprate;
 
 
     void Awake()
     {
-        _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
+        _droprate = FindObjectOfType<RessourceManagement>().TowerScrapDropProbabilityInPercent;
     }
 
-    void Update()
-    {
-        //Test Destroy Tower
-        if (Input.GetKey("i"))
-            DestroyTower();
-    }
-
-    internal bool UpgradePossible()
+    internal bool ScrapSlotsOnTowerAreFree()
     {
         return _attachedScraps.Count < ScrapSlots.Length;
     }
-
-    /*public void AddScrap(GameObject scrap)
-    {
-        if(_attachedScraps.Count < ScrapSlots.Length)
-        {
-            Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
-            GameObject scrapInstant = Instantiate(scrap, spawnposition , new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-            _attachedScraps.Add(scrapInstant);
-        }
-    }*/
 
     public void AddAllNeededScraps(List<int>[] scrapInventory)
     {
@@ -64,29 +46,41 @@ public class TowerRessourceManagement : MonoBehaviour
             AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
     }
 
-    private void AddParticularScrap(ScrapType scraptype, int meshindex)
+    public void AddNeededScrapOfCertainSubTypeIndex(List<int>[] scrapInventory, int subTypeIndex)
+    {
+        if (NeededMeeleScrabs > 0)
+            AddParticularScrap(ScrapType.MELEE, subTypeIndex);
+        if (NeededBottleScrabs > 0)
+            AddParticularScrap(ScrapType.BOTTLE, subTypeIndex);
+        if (NeededGrenadeScrabs > 0)
+            AddParticularScrap(ScrapType.GRENADE, subTypeIndex);
+
+    }
+
+    private void AddParticularScrap(ScrapType scraptype, int subTypeIndex)
     {
         Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
-        GameObject scrap = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs[(int) scraptype];
+        GameObject scrap = FindObjectOfType<RessourceManagement>().GetScrapPrefabBySubTypeIndex((int) scraptype, subTypeIndex);
         GameObject scrapInstant = Instantiate(scrap, spawnposition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        scrapInstant.GetComponent<Scrap>().SetMesh(meshindex);
         _attachedScraps.Add(scrapInstant);
     }
 
+
     public void DestroyTower()
     {
-        foreach (GameObject scrap in _attachedScraps)
+        foreach (GameObject scrapObject in _attachedScraps)
         {
-            if (Random.Range(0.0f, 1.0f) <= Droprate)
+            if (Random.Range(0.0f, 100.0f) < _droprate)
             {
-                scrap.GetComponent<Rigidbody>().isKinematic = false;
-                scrap.GetComponent<Scrap>().ChangeAttachementState();
+                Scrap scrap = scrapObject.GetComponent<Scrap>();
+                scrapObject.GetComponent<Rigidbody>().isKinematic = false;
+                scrap.ChangeAttachementState();
                 scrap.GetComponent<Scrap>().ChangeCollectionState();
-                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
+                scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
             }
             else
             {
-                Destroy(scrap);
+                Destroy(scrapObject);
             }
         }
 

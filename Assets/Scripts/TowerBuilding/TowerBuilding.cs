@@ -24,10 +24,27 @@ public class TowerBuilding : MonoBehaviour
     public void UpgradeWithAnyScrap(GameObject selectedTower)
     {
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.UpgradePossible())
+        if (!CheckForRessources(_playerScraps, towermanagement))
+            return;
+
+        if (towermanagement.ScrapSlotsOnTowerAreFree())
         {
             towermanagement.AddNeededScrap(_playerScraps);
             RemoveAnyScrapFromInventory(_playerInventory, towermanagement);
+        }
+    }
+
+    //noch nicht implementiert
+    public void UpgradeWithScrap(GameObject selectedTower, int scrapType, int subtypeIndex)
+    {
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        if (towermanagement.ScrapSlotsOnTowerAreFree() && _playerInventory.SubTypeIsInInventory((int)scrapType, subtypeIndex))
+        {
+            towermanagement.AddNeededScrapOfCertainSubTypeIndex(_playerScraps, subtypeIndex);
+            _playerInventory.RemoveScrapBySubTypeIndex(scrapType, subtypeIndex);
+            //  
+            //bestimmte Scrap zum Tower hinzufügen
+            //Bestimmte Scrap entfernen
         }
     }
 
