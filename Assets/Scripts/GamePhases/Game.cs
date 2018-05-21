@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace Assets.Scripts {
     class Game : MonoBehaviour {
-        public Vector3[] _possilbeSpawnpoints = new Vector3[6];
-        public Wave2[] Waves;
+        
+        public Wave[] Waves;
         private GamePhase _gamePhase;
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
@@ -37,7 +37,7 @@ namespace Assets.Scripts {
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
                     Debug.Log("Prepare");
                     StartNextRoundCounter();
-                    Wave2 wave = GetNextWave();
+                    Wave wave = GetNextWave();
                     StartWave(wave);
                     CalculateWave();
                     break;
@@ -56,15 +56,19 @@ namespace Assets.Scripts {
             }
         }
 
-        private Wave2 GetNextWave() {
+        private void StartWave(Wave wave) {
+            SpawnEnemys(wave);
+        }
+
+        private Wave GetNextWave() {
             if(_waveRoundNumber >= Waves.Length) {
                 return CreateProceduralWave();
             }
             return Waves[_waveRoundNumber];
         }
 
-        private Wave2 CreateProceduralWave() {
-            Wave2 newWave = new Wave2();
+        private Wave CreateProceduralWave() {
+            Wave newWave = new Wave(_waveRoundNumber);
             newWave.Events = new WaveEvent[2];
             newWave.Events[0] = CreateRandomWaveEvent();
             newWave.Events[1] = CreateRandomWaveEvent();
@@ -72,54 +76,18 @@ namespace Assets.Scripts {
         }
 
         private WaveEvent CreateRandomWaveEvent() {
-            WaveEvent newWaveEvent = new WaveEvent();
-            newWaveEvent.normalSlimes = _waveRoundNumber / 5;
-            newWaveEvent.gasSlimes = _waveRoundNumber / 5;
+            WaveEvent newWaveEvent = new WaveEvent(_waveRoundNumber);
             return newWaveEvent;
-        }
-
-        private Vector3[] CalculateSpawnPoints() {
-
-            Vector3[] spawnpoints = new Vector3[3];
-            int[] points = new int[3];
-            bool isNotIn = true;
-
-            for (int i = 0; i < points.Length; i++) {
-                int number;
-                while (isNotIn) {
-                    number = UnityEngine.Random.Range(0, 5);
-                    if (!points.Contains(number)) {
-                        isNotIn = false;
-                        points[i] = number;
-                    }
-
-                }
-                isNotIn = true;
-            }
-
-            for(int i= 0; i< points.Length; i++) {
-                spawnpoints[i] = _possilbeSpawnpoints[points[i]];
-            }
-
-
-            return spawnpoints;
         }
 
         private void CalculateWave() {
 
-            _actualWave = new Wave(_waveRoundNumber, CalculateSpawnPoints());
+            _actualWave = new Wave(_waveRoundNumber);
 
         }
 
         private void SpawnEnemys(Wave wave) {
             Debug.Log("Spawning Enemys");
-            Debug.Log("Spawnen an Positionen: ");
-            for(int i = 0; i<3; i++) {
-                Debug.Log(_actualWave.SpawnPoints[i].x + " " +  _actualWave.SpawnPoints[i].y + " " + _actualWave.SpawnPoints[i].z);
-            }
-            Debug.Log("Spawne " + _actualWave.getNormalSlimes + " normale Schleime");
-            Debug.Log("Spawne " + _actualWave.getHardSlimes + " feste Schleime");
-            Debug.Log("Spawne " + _actualWave.getGasSlimes + " Gas-Schleime");
         }
 
         private void ShowWaveEndGUI() {
