@@ -7,7 +7,6 @@ namespace Assets.Scripts {
     public class EnemyDummy : MonoBehaviour {
 
         public int Hitpoints = 100;
-        public float Speed = 10.0f;
 
         private Transform finalDestination;
 
