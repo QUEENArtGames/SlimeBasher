@@ -142,6 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrapType: 2
   SubCategoryIndex: 0
+  _collected: 1
+  _inPosition: 1
 --- !u!135 &135723935178866602
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -152,5 +154,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}

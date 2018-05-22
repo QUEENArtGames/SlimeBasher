@@ -8,13 +8,15 @@ namespace Assets.Scripts {
 
         public int Hitpoints = 100;
 
-        private Transform finalDestination;
+        private Transform _finalDestination;
+        private NavMeshAgent _agent;
 
         // Use this for initialization
         void Start() {
-            finalDestination = FindObjectOfType<Game>().FinalDestination;
-            NavMeshAgent agent = GetComponent<NavMeshAgent>();
-            agent.destination = finalDestination.position;
+            _finalDestination = FindObjectOfType<Game>().FinalDestination;
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.SetDestination(_finalDestination.position);
+            
         }
 
         // Update is called once per frame
@@ -33,6 +35,43 @@ namespace Assets.Scripts {
             Destroy(this.gameObject);
             GetComponent<SlimeRessourceManagement>().DropRessources();
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.transform.gameObject.CompareTag("Tower"))
+            {
+                _agent.SetDestination(other.transform.position);
+            }
+               
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.transform.gameObject.CompareTag("Tower"))
+            {
+                _agent.SetDestination(other.transform.position);
+            }
+
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.transform.gameObject.CompareTag("Tower"))
+            {
+                _agent.SetDestination(other.transform.position);
+            }
+
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.transform.gameObject.CompareTag("Tower"))
+            {
+                other.gameObject.GetComponent<Tower>().Hitpoints = 0;
+            }
+        }
+
+
     }
 
 

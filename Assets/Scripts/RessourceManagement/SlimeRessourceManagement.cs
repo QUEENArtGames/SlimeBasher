@@ -43,6 +43,13 @@ public class SlimeRessourceManagement : MonoBehaviour
             MakeScrapsFollowParent();
     }
 
+    //TESTEREI
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
+    }
+
     public void DropRessources()
     {
         foreach (GameObject scrapObject in _attachedScraps)
@@ -58,12 +65,6 @@ public class SlimeRessourceManagement : MonoBehaviour
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
-            CollectRessource(other.transform.gameObject);
     }
 
     private void CollectRessource(GameObject scrap)

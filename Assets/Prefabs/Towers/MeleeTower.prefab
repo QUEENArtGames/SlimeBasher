@@ -90,7 +90,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4823773777601156}
   - component: {fileID: 33053270509024682}
-  - component: {fileID: 135952237645398584}
   - component: {fileID: 23617187670943746}
   m_Layer: 0
   m_Name: RessourceSlot (3)
@@ -125,7 +124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4193063229266950}
   - component: {fileID: 33911864543990474}
-  - component: {fileID: 135808085494478078}
   - component: {fileID: 23188168076511380}
   m_Layer: 0
   m_Name: RessourceSlot
@@ -226,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4800554121195190}
   - component: {fileID: 33170364357664658}
-  - component: {fileID: 135605404762811988}
   - component: {fileID: 23280885461155322}
   m_Layer: 0
   m_Name: RessourceSlot (2)
@@ -278,7 +275,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4089088241665638}
   - component: {fileID: 33848243216189184}
-  - component: {fileID: 135644323466652668}
   - component: {fileID: 23317755797523168}
   m_Layer: 0
   m_Name: RessourceSlot (1)
@@ -1130,54 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135605404762811988
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1864247608923926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135644323466652668
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1978692764199192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135808085494478078
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1497146794990436}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135952237645398584
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1337318167211640}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  Hitpoints: 100
 --- !u!208 &208434134681174846
 NavMeshObstacle:
   m_ObjectHideFlags: 1

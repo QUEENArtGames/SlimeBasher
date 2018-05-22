@@ -42,9 +42,6 @@ public class TowerBuilding : MonoBehaviour
         {
             towermanagement.AddNeededScrapOfCertainSubTypeIndex(_playerScraps, subtypeIndex);
             _playerInventory.RemoveScrapBySubTypeIndex(scrapType, subtypeIndex);
-            //  
-            //bestimmte Scrap zum Tower hinzufügen
-            //Bestimmte Scrap entfernen
         }
     }
 

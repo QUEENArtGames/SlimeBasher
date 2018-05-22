@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 114527403117710284}
   - component: {fileID: 195308371445467390}
   - component: {fileID: 136476983348193770}
+  - component: {fileID: 135907407390636802}
   m_Layer: 9
   m_Name: EnemyDummy
   m_TagString: Enemy
@@ -421,6 +422,18 @@ MonoBehaviour:
   ScrapThrowFactor: 10
   RotationValue: 1.5
   MinSpawnedScraps: 0
+--- !u!135 &135907407390636802
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1739397658495034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136476983348193770
 CapsuleCollider:
   m_ObjectHideFlags: 1
