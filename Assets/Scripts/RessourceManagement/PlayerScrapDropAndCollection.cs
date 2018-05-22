@@ -28,7 +28,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
             FindObjectOfType<TowerBuildingUI>().ShowTowerUpgraeNotification();
 
         if (other.transform.gameObject.CompareTag("Scrap"))
-            CollectScrap(other.transform.parent.gameObject);
+            CollectScrap(other.transform.gameObject);
     }
 
     //TESTEREI

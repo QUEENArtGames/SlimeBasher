@@ -6,8 +6,8 @@ public class Scrap : MonoBehaviour
     public ScrapType ScrapType;
     public int SubCategoryIndex;
 
-    private bool _collected = true;
-    private bool _inPosition = true;
+    public bool _collected = true;
+    public bool _inPosition = true;
     private Rigidbody _rigidbody;
 
 

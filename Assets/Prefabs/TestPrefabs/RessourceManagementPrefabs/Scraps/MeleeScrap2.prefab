@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4504578395153492}
   - component: {fileID: 33225066222722758}
-  - component: {fileID: 65572069693276612}
   - component: {fileID: 23268397327258558}
   m_Layer: 9
   m_Name: MeleeScrap
@@ -39,6 +38,7 @@ GameObject:
   - component: {fileID: 4327490479843980}
   - component: {fileID: 114358667491882764}
   - component: {fileID: 54342364992397696}
+  - component: {fileID: 65221567017332400}
   m_Layer: 9
   m_Name: MeleeScrap2
   m_TagString: Scrap
@@ -129,12 +129,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65572069693276612
+--- !u!65 &65221567017332400
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1037736958784894}
+  m_GameObject: {fileID: 1771094818862342}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

@@ -20,12 +20,20 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update() {
             if (Hitpoints <= 0)
-                Destroy(this.gameObject);
+                Kill();
         }
 
         public void TakeDamage(int damage)
         {
             Hitpoints -= damage;
         }
+
+        private void Kill()
+        {
+            Destroy(this.gameObject);
+            GetComponent<SlimeRessourceManagement>().DropRessources();
+        }
     }
+
+
 }

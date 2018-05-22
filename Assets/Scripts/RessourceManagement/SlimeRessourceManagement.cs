@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -35,7 +36,7 @@ public class SlimeRessourceManagement : MonoBehaviour
         }
            
         if (Input.GetKeyDown("p"))
-            DropRessources();
+            GetComponent<EnemyDummy>().Hitpoints = 0;
         
         //ChildObjekt angucken für bessere Lösung?
         if (_attachedScraps.Count > 0)
@@ -59,10 +60,10 @@ public class SlimeRessourceManagement : MonoBehaviour
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponentInParent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
-            CollectRessource(other.transform.parent.gameObject);
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
     }
 
     private void CollectRessource(GameObject scrap)
