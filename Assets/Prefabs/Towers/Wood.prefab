@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4001383080000490}
+  - component: {fileID: 54980203999808416}
   m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
@@ -618,3 +619,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747817588112110}
   m_Mesh: {fileID: 4300002, guid: f5f580732a13b314288c84d769659d6b, type: 3}
+--- !u!54 &54980203999808416
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321405962436324}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
