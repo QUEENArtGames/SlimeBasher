@@ -12,6 +12,7 @@ namespace Assets.Scripts {
         private bool _startTimer = false;
         private bool _readyButtonEnabled = false;
         private float _countdown;
+        public Transform FinalDestination;
 
         // Use this for initialization
         void Start() {

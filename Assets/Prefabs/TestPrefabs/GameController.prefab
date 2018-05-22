@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextPhaseTimer: 5
+  FinalDestination: {fileID: 0}
 --- !u!114 &114393331160031412
 MonoBehaviour:
   m_ObjectHideFlags: 1
