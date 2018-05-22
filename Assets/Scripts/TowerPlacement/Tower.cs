@@ -1,69 +1,83 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-
-[RequireComponent(typeof(Collider))]
-public class Tower : MonoBehaviour
+namespace Assets.Scripts
 {
-    private List<Collider> _colliders = new List<Collider>();
-    private List<Renderer> _renderers = new List<Renderer>();
-    private Color _colorPlaceable = new Color(0, 1, 0, 0.5f);
-    private Color _colorNotPlaceable = new Color(1, 0, 0, 0.5f);
-
-
-    // Use this for initialization
-    void Awake()
+    [RequireComponent(typeof(Collider))]
+    public class Tower : MonoBehaviour
     {
-        foreach (Collider c in GetComponentsInChildren<Collider>())
-        {
-            _colliders.Add(c);
-        }
+        private List<Collider> _colliders = new List<Collider>();
+        private List<Renderer> _renderers = new List<Renderer>();
+        private Color _colorPlaceable = new Color(0, 1, 0, 0.5f);
+        private Color _colorNotPlaceable = new Color(1, 0, 0, 0.5f);
+        private NavMeshObstacle obstacle;
 
-        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        // Use this for initialization
+        void Awake()
         {
-            _renderers.Add(r);
-        }
-    }
-
-    internal void SetPreviewMode(bool state)
-    {
-        if (state)
-        {
-            foreach (Collider c in _colliders)
+            foreach (Collider c in GetComponentsInChildren<Collider>())
             {
-                c.isTrigger = true;
+                _colliders.Add(c);
+            }
+
+            foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            {
+                _renderers.Add(r);
+            }
+
+            obstacle = GetComponent<NavMeshObstacle>();
+            obstacle.size = new Vector3(1.5f, 2, 1.5f);
+        }
+
+        internal void SetPreviewMode(bool state)
+        {
+            if (state)
+            {
+                foreach (Collider c in _colliders)
+                {
+                    c.isTrigger = true;
+                }
+                obstacle.enabled = false;
+            }
+            else
+            {
+                foreach (Collider c in _colliders)
+                {
+                    c.isTrigger = false;
+                }
+                obstacle.enabled = true;
             }
         }
-        else
-        {
-            foreach (Collider c in _colliders)
-            {
-                c.isTrigger = false;
-            }
-        }
-    }
 
-    internal void SetPlaceable(bool state)
-    {
-        if (state)
+        internal void SetPlaceable(bool state)
         {
-            foreach (Renderer r in _renderers)
+            if (state)
             {
-                r.material.SetColor("_Color", _colorPlaceable);
+                foreach (Renderer r in _renderers)
+                {
+                    foreach (Material m in r.materials)
+                    {
+                        m.SetColor("_Color", _colorPlaceable);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Renderer r in _renderers)
+                {
+                    foreach (Material m in r.materials)
+                    {
+                        m.SetColor("_Color", _colorNotPlaceable);
+                    }
+                }
             }
         }
-        else
-        {
-            foreach (Renderer r in _renderers)
-            {
-                r.material.SetColor("_Color", _colorNotPlaceable);
-            }
-        }
-    }
 
-    internal void Kill()
-    {
-        GetComponent<TowerRessourceManagement>().DestroyTower();
-        Destroy(gameObject);
+        internal void Kill()
+        {
+            GetComponent<TowerRessourceManagement>().DestroyTower();
+            Destroy(gameObject);
+        }
     }
 }

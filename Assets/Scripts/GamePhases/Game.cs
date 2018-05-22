@@ -17,6 +17,7 @@ namespace Assets.Scripts {
         public GameObject _pausemenu;
         int _waveRoundNumber = 1;
         private Wave _actualWave;
+        public Transform FinalDestination;
 
         // Use this for initialization
         void Start() {
