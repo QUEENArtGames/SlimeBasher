@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 350490602}
   - component: {fileID: 350490603}
   - component: {fileID: 350490604}
+  - component: {fileID: 350490605}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -492,26 +493,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327b7669da29bb6468d2feeedd22cea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nextPhaseTimer: 5
+  _pausemenu: {fileID: 1192100893}
+  FinalDestination: {fileID: 1741820678}
+--- !u!114 &350490605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350490598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527d6ee0b83684540a1ed4a9eb214243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   Waves:
   - Events:
     - SpawnPoint: {fileID: 339651175}
       _normalSlimes: 10
-      _hardSlimes: 1
+      _hardSlimes: 0
+      _gasSlimes: 0
+    delay: 2
+  - Events:
+    - SpawnPoint: {fileID: 339651175}
+      _normalSlimes: 15
+      _hardSlimes: 2
       _gasSlimes: 0
     - SpawnPoint: {fileID: 1667595020}
-      _normalSlimes: 10
-      _hardSlimes: 1
+      _normalSlimes: 15
+      _hardSlimes: 2
       _gasSlimes: 0
     delay: 3
   - Events:
-    - SpawnPoint: {fileID: 339651175}
-      _normalSlimes: 30
-      _hardSlimes: 0
+    - SpawnPoint: {fileID: 1667595020}
+      _normalSlimes: 5
+      _hardSlimes: 5
       _gasSlimes: 2
-    delay: 1.5
-  _nextPhaseTimer: 5
-  _pausemenu: {fileID: 1192100893}
-  FinalDestination: {fileID: 1741820678}
+    delay: 2
 --- !u!1 &431008067
 GameObject:
   m_ObjectHideFlags: 0

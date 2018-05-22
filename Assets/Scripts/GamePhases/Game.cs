@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts {
     class Game : MonoBehaviour {
         
-        public Wave[] Waves;
+        
         private GamePhase _gamePhase;
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
@@ -38,9 +38,9 @@ namespace Assets.Scripts {
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
                     Debug.Log("Prepare");
                     StartNextRoundCounter();
-                    Wave wave = GetNextWave();
+                    WaveProvider waveProvider = new WaveProvider(_waveRoundNumber);
+                    Wave wave = waveProvider.GetNextWave();
                     StartWave(wave);
-                    CalculateWave();
                     break;
                 case Phase.Fight:
                     //Player bekämpft Enemys
@@ -61,31 +61,7 @@ namespace Assets.Scripts {
             SpawnEnemys(wave);
         }
 
-        private Wave GetNextWave() {
-            if(_waveRoundNumber >= Waves.Length) {
-                return CreateProceduralWave();
-            }
-            return Waves[_waveRoundNumber];
-        }
-
-        private Wave CreateProceduralWave() {
-            Wave newWave = new Wave(_waveRoundNumber);
-            newWave.Events = new WaveEvent[2];
-            newWave.Events[0] = CreateRandomWaveEvent();
-            newWave.Events[1] = CreateRandomWaveEvent();
-            return newWave;
-        }
-
-        private WaveEvent CreateRandomWaveEvent() {
-            WaveEvent newWaveEvent = new WaveEvent(_waveRoundNumber);
-            return newWaveEvent;
-        }
-
-        private void CalculateWave() {
-
-            _actualWave = new Wave(_waveRoundNumber);
-
-        }
+        
 
         private void SpawnEnemys(Wave wave) {
             Debug.Log("Spawning Enemys");
