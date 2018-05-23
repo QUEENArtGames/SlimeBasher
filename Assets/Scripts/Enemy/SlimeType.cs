@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
-namespace Assets.Scripts.Enemy {
-    class EnemyManager : MonoBehaviour {
+namespace Assets.Scripts {
+    public enum SlimeType {
+        Normal, Hard, Gas
     }
 }

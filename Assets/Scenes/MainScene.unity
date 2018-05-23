@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 350490603}
   - component: {fileID: 350490604}
   - component: {fileID: 350490605}
+  - component: {fileID: 350490606}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -496,6 +497,8 @@ MonoBehaviour:
   _nextPhaseTimer: 5
   _pausemenu: {fileID: 1192100893}
   FinalDestination: {fileID: 1741820678}
+  enemyManagement: {fileID: 350490606}
+  fightPhaseEnd: 0
 --- !u!114 &350490605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +533,17 @@ MonoBehaviour:
       _hardSlimes: 5
       _gasSlimes: 2
     delay: 2
+--- !u!114 &350490606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350490598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d5ad762e496274abe4ceeeae187222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &431008067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1156,7 +1170,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2019,7 +2033,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1136711708}
-  - component: {fileID: 1136711709}
   m_Layer: 0
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -2044,17 +2057,6 @@ Transform:
   m_Father: {fileID: 604944311}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1136711709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1136711707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a6aa936140a1b9498ff8b5b3d7aaa45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1176750716
 Prefab:
   m_ObjectHideFlags: 0

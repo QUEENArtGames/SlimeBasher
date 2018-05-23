@@ -18,6 +18,8 @@ namespace Assets.Scripts {
         int _waveRoundNumber = 1;
         private Wave _actualWave;
         public Transform FinalDestination;
+        public EnemyManagement enemyManagement;
+        public bool fightPhaseEnd = false;
 
         // Use this for initialization
         void Start() {
@@ -39,13 +41,12 @@ namespace Assets.Scripts {
                     Debug.Log("Prepare");
                     StartNextRoundCounter();
                     WaveProvider waveProvider = new WaveProvider(_waveRoundNumber);
-                    Wave wave = waveProvider.GetNextWave();
-                    StartWave(wave);
+                    _actualWave = waveProvider.GetNextWave();
                     break;
                 case Phase.Fight:
                     //Player bekämpft Enemys
                     Debug.Log("FIGHT");
-                    SpawnEnemys(_actualWave);
+                    StartWave();
                     break;
                 case Phase.End:
                     //Rundenende, bereitmachen für Bauphase
@@ -57,14 +58,10 @@ namespace Assets.Scripts {
             }
         }
 
-        private void StartWave(Wave wave) {
-            SpawnEnemys(wave);
-        }
-
-        
-
-        private void SpawnEnemys(Wave wave) {
+        private void StartWave() {
             Debug.Log("Spawning Enemys");
+            enemyManagement.EnableManager(this, _actualWave);
+            
         }
 
         private void ShowWaveEndGUI() {
@@ -131,6 +128,13 @@ namespace Assets.Scripts {
             if (_currentPhase == Phase.Fight && Input.GetKeyDown(KeyCode.T) && Time.timeScale != 0) {
                 _gamePhase.MoveToNextGamePhase();
             }
+
+            if(fightPhaseEnd) {
+                fightPhaseEnd = false;
+                _gamePhase.MoveToNextGamePhase();
+            }
+
+
 
             
 
