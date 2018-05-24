@@ -13,6 +13,7 @@ public class TowerBuildingUI : MonoBehaviour
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
     private GameObject _selectedTower;
+    private TowerBuilding _towerBuilding;
 
     public GameObject SelectedTower
     {
@@ -22,16 +23,16 @@ public class TowerBuildingUI : MonoBehaviour
         }
     }
 
-    public void ShowTowerUpgraeNotification()
+    public void ShowTowerUpgraeNotification(GameObject selectedTower)
     {
-        UpgradeText.SetActive(true);
-        Debug.Log("Upgrade Menu geöffnet");
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        if (_towerBuilding.CheckForRessources(_playerInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
+            UpgradeText.SetActive(true);
     }
 
     public void CloseTowerUpgradeNotification()
     {
         UpgradeText.SetActive(false);
-        Debug.Log("Upgrade Menu geschlossen");
     }
 
     private void DestoryAllMenuElements()
@@ -72,7 +73,7 @@ public class TowerBuildingUI : MonoBehaviour
             GameObject button = Instantiate(UpgradeButtonPrefab, ButtonTransforms[subTypeIndex]);
             button.GetComponentInChildren<Text>().text = scraptype + " " + subTypeIndex;
             button.GetComponent<ScrapButton>().ScrapType = scraptype;
-            button.GetComponent<ScrapButton>().Meshindex = subTypeIndex;
+            button.GetComponent<ScrapButton>().SubTypeIndex = subTypeIndex;
             _uibuttons.Add(button);
 
             if (!FindObjectOfType<PlayerScrapInventory>().SubTypeIsInInventory((int) scraptype, subTypeIndex))
@@ -86,5 +87,6 @@ public class TowerBuildingUI : MonoBehaviour
     {
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
         _uibuttons = new List<GameObject>();
+        _towerBuilding = FindObjectOfType<TowerBuilding>();
     }
 }

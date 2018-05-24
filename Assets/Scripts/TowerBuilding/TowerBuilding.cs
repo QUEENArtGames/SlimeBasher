@@ -65,7 +65,7 @@ public class TowerBuilding : MonoBehaviour
             _playerInventory.RemoveAnyScraps((int) ScrapType.GRENADE, 1);
     }
 
-    private bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
+    internal bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
     {
         return inventory[(int) ScrapType.MELEE].Count >= towermanagement.NeededMeeleScrabs &&
                inventory[(int) ScrapType.BOTTLE].Count >= towermanagement.NeededBottleScrabs &&
