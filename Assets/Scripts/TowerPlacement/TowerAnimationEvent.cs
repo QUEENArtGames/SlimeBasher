@@ -16,7 +16,7 @@ public class TowerAnimationEvent : MonoBehaviour {
     {
         Debug.Log("SCRAP ANIMATION EVENT");
         TowerRessourceManagement towermanagement = GetComponentInParent<TowerRessourceManagement>();
-        towermanagement.AddAllNeededScraps(_playerScraps);
+        towermanagement.AddNeededScrap(_playerScraps);
         FindObjectOfType<TowerBuilding>().RemoveRessourcesFromInventory(towermanagement);
     }
 

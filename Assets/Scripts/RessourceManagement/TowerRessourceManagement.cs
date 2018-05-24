@@ -24,7 +24,7 @@ public class TowerRessourceManagement : MonoBehaviour
         return _attachedScraps.Count < ScrapSlots.Length;
     }
 
-    public void AddAllNeededScraps(List<int>[] scrapInventory)
+    /*public void AddAllNeededScraps(List<int>[] scrapInventory)
     {
         for (int i = 0; i < NeededMeeleScrabs; i++)
             AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int) ScrapType.MELEE][0]);
@@ -34,7 +34,7 @@ public class TowerRessourceManagement : MonoBehaviour
 
         for (int i = 0; i < NeededGrenadeScrabs; i++)
             AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
-    }
+    }*/
 
     public void AddNeededScrap(List<int>[] scrapInventory)
     {

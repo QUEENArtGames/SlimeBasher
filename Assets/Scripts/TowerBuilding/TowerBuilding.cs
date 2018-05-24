@@ -32,7 +32,6 @@ public class TowerBuilding : MonoBehaviour
         }
     }
 
-    //noch nicht implementiert
     public void UpgradeWithScrap(GameObject selectedTower, int scrapType, int subtypeIndex)
     {
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
