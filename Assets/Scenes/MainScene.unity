@@ -1039,6 +1039,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1244715612468778, guid: b86318e887c75874ca0b12ce5f49d960,
         type: 2}
+    - target: {fileID: 114924867017390638, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: towers.Array.data[2]
+      value: 
+      objectReference: {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
   m_IsPrefabParent: 0
