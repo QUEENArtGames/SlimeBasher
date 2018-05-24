@@ -11,7 +11,6 @@ public class RessourceManagement : MonoBehaviour
     private GameObject[][] _possiblePrefabs = new GameObject[Enum.GetNames(typeof(ScrapType)).Length][];
 
     private List<PoolScrap> _possiblePrefabPool;
-    private List<PoolScrap> _possiblePrefabCardDeck;
 
     public int MeeleScrapAmountInPool = 10;
     public int BottleScrapAmountInPool = 10;
@@ -33,16 +32,17 @@ public class RessourceManagement : MonoBehaviour
     private void Awake()
     {
         _possiblePrefabPool = new List<PoolScrap>();
-
-        FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);
-        FillPossiblePrefabs(ScrapType.BOTTLE, BottleScrapAmountInPool, BottlePrefabs);
-        FillPossiblePrefabs(ScrapType.GRENADE, GrenadeScrapAmountInPool, GrenadePrefabs);
-
-        _possiblePrefabCardDeck = _possiblePrefabPool;
-
         PossiblePrefabs[(int)ScrapType.MELEE] = MeelePrefabs;
         PossiblePrefabs[(int)ScrapType.BOTTLE] = BottlePrefabs;
         PossiblePrefabs[(int)ScrapType.GRENADE] = GrenadePrefabs;
+        PrepareScrapPools();
+    }
+
+    private void PrepareScrapPools()
+    {
+        FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);
+        FillPossiblePrefabs(ScrapType.BOTTLE, BottleScrapAmountInPool, BottlePrefabs);
+        FillPossiblePrefabs(ScrapType.GRENADE, GrenadeScrapAmountInPool, GrenadePrefabs);
     }
 
     private void FillPossiblePrefabs(ScrapType scrapType, int amountOfScrapsInPool, GameObject[] possiblePrefabs)
@@ -61,12 +61,13 @@ public class RessourceManagement : MonoBehaviour
 
     internal GameObject GetRandomScrapFromPool()
     {
-        if (_possiblePrefabCardDeck.Count < 1)
-            _possiblePrefabCardDeck = _possiblePrefabPool;
+        if (_possiblePrefabPool.Count < 1)
+            PrepareScrapPools();
+            
 
-        int randomScrapObjectIndex = (int) UnityEngine.Random.Range(0.0f, _possiblePrefabCardDeck.Count);
-        PoolScrap poolscrap = _possiblePrefabCardDeck[randomScrapObjectIndex];
-        _possiblePrefabCardDeck.Remove(poolscrap);
+        int randomScrapObjectIndex = (int) UnityEngine.Random.Range(0.0f, _possiblePrefabPool.Count);
+        PoolScrap poolscrap = _possiblePrefabPool[randomScrapObjectIndex];
+        _possiblePrefabPool.Remove(poolscrap);
         return PossiblePrefabs[(int)poolscrap.ScrapType][poolscrap.SubType]; 
     }
 }
