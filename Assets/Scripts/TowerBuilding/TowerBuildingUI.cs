@@ -13,7 +13,6 @@ public class TowerBuildingUI : MonoBehaviour
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
     private GameObject _selectedTower;
-    private TowerBuilding _towerBuilding;
 
     public GameObject SelectedTower
     {
@@ -23,10 +22,9 @@ public class TowerBuildingUI : MonoBehaviour
         }
     }
 
-    public void ShowTowerUpgraeNotification(GameObject selectedTower)
+    public void ShowTowerUpgraeNotification()
     {
-        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (_towerBuilding.CheckForRessources(_playerInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
+
             UpgradeText.SetActive(true);
     }
 
@@ -87,6 +85,5 @@ public class TowerBuildingUI : MonoBehaviour
     {
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
         _uibuttons = new List<GameObject>();
-        _towerBuilding = FindObjectOfType<TowerBuilding>();
     }
 }

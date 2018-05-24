@@ -6,6 +6,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
 {
     private PlayerScrapInventory _scrapInventory;
     private RessourceManagement _ressourceManagement;
+    private TowerBuilding _towerBuilding;
     private float _droprate;
 
     void Awake()
@@ -13,6 +14,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _droprate = _ressourceManagement.PlayerScrapDropProbabilityInPercent;
+        _towerBuilding = FindObjectOfType<TowerBuilding>();
     }
 
     void Update()
@@ -25,7 +27,12 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
     {
         //Spielerskript
         if (other.transform.gameObject.CompareTag("Tower"))
-            FindObjectOfType<TowerBuildingUI>().ShowTowerUpgraeNotification(other.transform.gameObject);
+        {
+            TowerRessourceManagement towermanagement = other.transform.gameObject.GetComponent<TowerRessourceManagement>();
+            if (_towerBuilding.CheckForRessources(_scrapInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
+                FindObjectOfType<TowerBuildingUI>().ShowTowerUpgraeNotification();
+        }
+            
 
         if (other.transform.gameObject.CompareTag("Scrap"))
             CollectScrap(other.transform.gameObject);
