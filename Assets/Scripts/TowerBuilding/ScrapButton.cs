@@ -6,7 +6,7 @@ public class ScrapButton : MonoBehaviour
     private int subTypeIndex;
     private ScrapType scrapType;
 
-    public int Meshindex
+    public int SubTypeIndex
     {
         get
         {

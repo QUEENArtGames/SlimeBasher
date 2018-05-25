@@ -59,6 +59,15 @@ namespace Assets.Scripts {
             }
                
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.transform.gameObject.CompareTag("Tower"))
+            {
+                _target = null;
+                _agent.SetDestination(_finalDestination.position);
+            }
+        }
     }
 
 
