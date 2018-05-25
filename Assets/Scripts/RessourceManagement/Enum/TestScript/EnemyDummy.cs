@@ -61,6 +61,11 @@ namespace Assets.Scripts {
             }
                
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            _agent.SetDestination(_finalDestination.position);
+        }
     }
 
 
