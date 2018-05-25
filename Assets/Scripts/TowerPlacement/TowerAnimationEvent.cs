@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class TowerAnimationEvent : MonoBehaviour {
 
-    List<int>[] _playerScraps;
+    private GameObject newScrap;
 
-    private void Awake()
+    public GameObject NewScrap
     {
-        PlayerScrapInventory playerInventory = FindObjectOfType<PlayerScrapInventory>();
-        _playerScraps = playerInventory.ScrapInventory;
+        get
+        {
+            return newScrap;
+        }
+
+        set
+        {
+            newScrap = value;
+        }
     }
 
     public void AddScrapAfterAnimation()
     {
-        Debug.Log("SCRAP ANIMATION EVENT");
-        TowerRessourceManagement towermanagement = GetComponentInParent<TowerRessourceManagement>();
-        towermanagement.AddNeededScrap(_playerScraps);
-        FindObjectOfType<TowerBuilding>().RemoveRessourcesFromInventory(towermanagement);
+        NewScrap.SetActive(true);
     }
 
 

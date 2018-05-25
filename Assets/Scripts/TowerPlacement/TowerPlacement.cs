@@ -212,7 +212,7 @@ namespace Assets.Scripts
 
         private void BuildTower(GameObject towerInstance)
         {
-            FindObjectOfType<TowerBuilding>().SetTowerTag(towerInstance);
+            FindObjectOfType<TowerBuilding>().BuildTower(towerInstance);
         }
     }
 }

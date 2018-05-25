@@ -14,9 +14,15 @@ public class TowerBuilding : MonoBehaviour
         _playerScraps = _playerInventory.ScrapInventory;
     }
 
-    public void SetTowerTag(GameObject selectedTower)
+    public void BuildTower(GameObject selectedTower)
     {
         selectedTower.tag = "Tower";
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        GameObject scrapObject = towermanagement.AddNeededScrap(_playerScraps);
+        scrapObject.SetActive(false);
+        selectedTower.GetComponentInChildren<TowerAnimationEvent>().NewScrap = scrapObject;
+        FindObjectOfType<TowerBuilding>().RemoveRessourcesFromInventory(towermanagement);
+       
     }
 
     public void UpgradeWithAnyScrap(GameObject selectedTower)
