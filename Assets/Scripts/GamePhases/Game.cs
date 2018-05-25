@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace Assets.Scripts {
     class Game : MonoBehaviour {
-        
-        
+
+        private static Game instance;
         private GamePhase _gamePhase;
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
@@ -21,8 +21,20 @@ namespace Assets.Scripts {
         public EnemyManagement enemyManagement;
         public bool fightPhaseEnd = false;
 
+        internal static Game Instance {
+            get {
+                return instance;
+            }
+        }
+
         // Use this for initialization
         void Start() {
+            if(instance==null) {
+                instance = this;
+            } else {
+                Destroy(this.gameObject);
+                return;
+            }
             _gamePhase = new GamePhase();
             _currentPhase = _gamePhase.Current;
             RunPhase(_currentPhase);
@@ -60,7 +72,7 @@ namespace Assets.Scripts {
 
         private void StartWave() {
             Debug.Log("Spawning Enemys");
-            enemyManagement.EnableManager(this, _actualWave);
+            enemyManagement.EnableManager(_actualWave);
             
         }
 

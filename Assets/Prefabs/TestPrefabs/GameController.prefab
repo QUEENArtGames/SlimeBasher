@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 114797267383346880}
   - component: {fileID: 114288206192884810}
   - component: {fileID: 114328511540532336}
+  - component: {fileID: 114923424035624480}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -253,7 +254,7 @@ MonoBehaviour:
   _nextPhaseTimer: 5
   _pausemenu: {fileID: 0}
   FinalDestination: {fileID: 0}
-  enemyManagement: {fileID: 0}
+  enemyManagement: {fileID: 114923424035624480}
   fightPhaseEnd: 0
 --- !u!114 &114393331160031412
 MonoBehaviour:
@@ -456,6 +457,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88d8dcd005be0ba43882e1c1c11f381d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114923424035624480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d5ad762e496274abe4ceeeae187222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114924867017390638

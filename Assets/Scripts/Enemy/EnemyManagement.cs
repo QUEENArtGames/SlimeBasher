@@ -7,22 +7,23 @@ using UnityEngine;
 namespace Assets.Scripts {
     class EnemyManagement : MonoBehaviour {
 
-        private List<GameObject> _normalSlimes;
-        private List<GameObject> _hardSlimes;
-        private List<GameObject> _gasSlimes;
+        private List<GameObject> _Slimes; //SLIMEKLASSE
         private Wave _wave;
         private Game _game;
 
-        public void EnableManager(Game game, Wave wave) {
+        public void EnableManager(Wave wave) {
             _wave = wave;
-            _game = game;
+            _game = Game.Instance;
             HandleWave();
             
         }
 
+        //Funktion für Gegner  Abstände;
+
         private void HandleWave() {
-            //Für jedes Event in WaveEvents
-                //Spawnen der Gegner nacheinander (mit Delay) vom Spawnpoint
+            //Für jedes Event in WaveEvents 
+                //Event hat Delay nach wann das Event abgehandelt wird (Counter im Update)
+                //Spawnen der Gegner nacheinander vom Spawnpoint
                 //Füge den jeweiligen Gegner der Liste hinzu
             
         }
@@ -33,13 +34,15 @@ namespace Assets.Scripts {
             //wenn alle leer, dann Welle vorbei -> Game.fightPhaseEnd boolean auf true setzen
             //wenn nicht, dann nichts machen
 
+            //Liste der Slimes durchgehen und Lebenspunkte kontrollieren
+            //wenn 0 dann deleteEnemy
+
         }
 
-        public void deleteEnemy(SlimeType type, int instanceID) {
+        public void deleteEnemy(GameObject slime ) { //SlimeKlasse
             
-            //SwitchCase für den richtigen Slimetypen
-                //Die richtige Liste durch gehen und wenn die instance ID übereinstimmt, den Slime aus der Liste entfernen
-                //Das Gameobject muss dabei noch leben und danach kann es erst gelöscht werden.
+            //Liste durchgehen und dem Slime sagen das er sterben soll
+            //Slime aus der Liste entfernen
         }
 
         
