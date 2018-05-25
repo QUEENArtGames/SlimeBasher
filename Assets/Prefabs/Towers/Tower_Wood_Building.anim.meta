@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/PauseObject.prefab.meta
+guid: 71f86b394f1960342a156001a8b3986f
+timeCreated: 1527236332
+=======
+guid: e3b45aa273841084d80d83d679c7062e
+timeCreated: 1527187056
+>>>>>>> TowerBuilding:Assets/Prefabs/Towers/Tower_Wood_Building.anim.meta
+licenseType: Free
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

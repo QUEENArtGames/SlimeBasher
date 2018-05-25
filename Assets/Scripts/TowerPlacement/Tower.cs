@@ -7,6 +7,9 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Collider))]
     public class Tower : MonoBehaviour
     {
+        public int Hitpoints = 100;
+
+
         private List<Collider> _colliders = new List<Collider>();
         private List<Renderer> _renderers = new List<Renderer>();
         private Color _colorPlaceable = new Color(0, 1, 0, 0.5f);
@@ -28,6 +31,12 @@ namespace Assets.Scripts
 
             obstacle = GetComponent<NavMeshObstacle>();
             obstacle.size = new Vector3(1.5f, 2, 1.5f);
+        }
+
+        private void Update()
+        {
+            if (Hitpoints <= 0)
+                this.Kill();
         }
 
         internal void SetPreviewMode(bool state)
