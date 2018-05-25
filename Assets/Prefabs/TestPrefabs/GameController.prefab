@@ -251,7 +251,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextPhaseTimer: 5
+  _pausemenu: {fileID: 0}
   FinalDestination: {fileID: 0}
+  enemyManagement: {fileID: 0}
+  fightPhaseEnd: 0
 --- !u!114 &114393331160031412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -469,9 +472,9 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   rotationSpeed: 100
   towers:
-  - {fileID: 1351905547860728, guid: aab3457a27f56594d8cfb8876dc8b0e6, type: 2}
+  - {fileID: 1244715612468778, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
   - {fileID: 1029764236645716, guid: 7b6addc5b7e4f2e459d9ba9a0b0a552a, type: 2}
-  - {fileID: 1220170406583812, guid: 531f45ea83c053646835fd3e191a9256, type: 2}
+  - {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c, type: 2}
   maxDistance: 10
 --- !u!222 &222066234570442516
 CanvasRenderer:
