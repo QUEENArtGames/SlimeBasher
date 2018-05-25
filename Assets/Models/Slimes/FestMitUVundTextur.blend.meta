@@ -1,30 +1,29 @@
 fileFormatVersion: 2
-guid: 5d48181de3890634a997e9e5a01021f9
-timeCreated: 1525555872
+guid: 5927f8ed11339e84c8acbdcf29f3799c
+timeCreated: 1527244705
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Eyes
-    100002: //RootNode
-    100004: Mouth
-    100006: Slime
-    400000: Eyes
-    400002: //RootNode
-    400004: Mouth
-    400006: Slime
-    2100000: Mouth__Mouth_001
-    2100002: Eyes__Mouth_001
-    2100004: Slime__Slime
-    2300000: Eyes
-    2300002: Mouth
-    2300004: Slime
-    3300000: Eyes
-    3300002: Mouth
-    3300004: Slime
-    4300000: Mouth
-    4300002: Eyes
-    4300004: Slime
+    100000: //RootNode
+    100002: Sphere
+    100004: Sphere_001
+    100006: Sphere_014
+    400000: //RootNode
+    400002: Sphere
+    400004: Sphere_001
+    400006: Sphere_014
+    2100000: Steine_001
+    2100002: Lava
+    2300000: Sphere
+    2300002: Sphere_001
+    2300004: Sphere_014
+    3300000: Sphere
+    3300002: Sphere_001
+    3300004: Sphere_014
+    4300000: Sphere_014
+    4300002: Sphere_001
+    4300004: Sphere
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
