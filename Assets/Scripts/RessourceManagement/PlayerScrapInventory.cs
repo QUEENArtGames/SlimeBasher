@@ -30,12 +30,24 @@ public class PlayerScrapInventory : MonoBehaviour
     public void AddScrap(ScrapType scrapType, int meshIndex)
     {
         _scrapInventory[(int) scrapType].Add(meshIndex);
-        Debug.Log("Index: " + scrapType + _scrapInventory[(int) scrapType].Count);
     }
 
     public void RemoveScrap(int scrapType, int index)
     {
         _scrapInventory[scrapType].RemoveAt(index);
+    }
+
+    public void RemoveScrapBySubTypeIndex(int scrapType, int subtypeIndex)
+    {
+        foreach (int scrap in _scrapInventory[scrapType])
+        {
+            if (subtypeIndex == scrap)
+            {
+                _scrapInventory[scrapType].Remove(subtypeIndex);
+                return;
+            }
+        }
+
     }
 
     public void RemoveAnyScraps(int scrapType, int amount)
@@ -60,5 +72,15 @@ public class PlayerScrapInventory : MonoBehaviour
         {
             return _scrapInventory;
         }
+    }
+
+    internal bool SubTypeIsInInventory(int scrapTypeIndex, int subTypeIndex)
+    {
+        foreach(int i in _scrapInventory[scrapTypeIndex])
+        {
+            if (subTypeIndex == i)
+                return true;
+        }
+        return false;
     }
 }
