@@ -22,7 +22,7 @@ public class BlubTowerScript : MonoBehaviour {
 
 	IEnumerator BlubProjectile(){
 		
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(4.0f);
 
 		StartCoroutine(BlubProjectile());
 		GameObject bullet = Instantiate(projec) as GameObject;

@@ -10,6 +10,12 @@ public class blubProjektScript : MonoBehaviour {
 
 	public float range= 5;
 
+	public float maxScale=2;
+
+	public float bounce =1;
+
+	public bool isbounce =false;
+
 	private Vector3 startPosition;
 
 
@@ -27,7 +33,13 @@ public class blubProjektScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.Translate(Vector3.forward * Time.deltaTime);
+		if(transform.localScale.x <=maxScale){
+			transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+		}else
+		{
+			transform.Translate(Vector3.forward * Time.deltaTime);
+		}
+		
 		float dist = Vector3.Distance(startPosition, transform.position);
 		//print("Distance to other: " + dist);
 		if(dist >range){
@@ -36,7 +48,9 @@ public class blubProjektScript : MonoBehaviour {
 		}
 		
 		  //Debug.Log(startPosition.x-transform);
-
+		
+		
+	
 
 	}
 }
