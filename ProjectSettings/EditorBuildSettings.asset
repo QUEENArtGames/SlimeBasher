@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScenes/PathCreator-NiklasMap.unity
     guid: 43b084e0cef456245939681f9d7c9789
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/TowerBuildingScene.unity
+    guid: 292714581b79cb94dabf7e85d7d18225
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: f919ae43813620d4682099d227660b4c
