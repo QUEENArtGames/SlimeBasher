@@ -9,6 +9,7 @@ public class TowerRessourceManagement : MonoBehaviour
     public int NeededMeeleScrabs;
     public int NeededBottleScrabs;
     public int NeededGrenadeScrabs;
+    public int NeededClassicScrabs;
 
     private List<GameObject> _attachedScraps = new List<GameObject>();
     private float _droprate;
