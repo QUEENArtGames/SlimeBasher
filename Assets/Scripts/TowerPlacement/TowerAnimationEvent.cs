@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class TowerAnimationEvent : MonoBehaviour {
 
-    private GameObject newScrap;
+    private GameObject _newScrap;
 
     public GameObject NewScrap
     {
         get
         {
-            return newScrap;
+            return _newScrap;
         }
 
         set
         {
-            newScrap = value;
+            _newScrap = value;
         }
     }
 
-    public void AddScrapAfterAnimation()
+    public void ActivateScrapAfterAnimation()
     {
         NewScrap.SetActive(true);
     }
-
-
-	
 }

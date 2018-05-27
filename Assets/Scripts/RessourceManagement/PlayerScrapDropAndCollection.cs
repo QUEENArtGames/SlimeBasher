@@ -17,6 +17,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         _towerBuilding = FindObjectOfType<TowerBuilding>();
     }
 
+    //---------------------------- Testfunktionen Beginn
     void Update()
     {
         if (Input.GetKeyDown("o"))
@@ -58,7 +59,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
-            FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject);
+            FindObjectOfType<TowerBuilding>().UpgradeWithAnyScrap(other.gameObject.GetComponent<TowerRessourceManagement>());
         }
     }
 
@@ -73,6 +74,8 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         }
     }
 
+    //---------------------------- Testfunktionen Ende
+
     private void CollectScrap(GameObject scrapObject)
     {
         Scrap scrap = scrapObject.GetComponent<Scrap>(); 
@@ -86,14 +89,13 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
 
     public void DropScraps()
     {
-        Vector3 instanstiatePosition = transform.position;
         for (int scrapTypeIndex = 0; scrapTypeIndex < _scrapInventory.ScrapInventory.Length; scrapTypeIndex++)
         {
             for (int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
             {
                 if (Random.Range(0.0f, 100.0f) < _droprate)
                 {
-                    GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+                    GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), transform.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
                     Scrap scrap = scrapObject.GetComponent<Scrap>();
                     scrap.ChangeCollectionState();
                     scrap.ChangeAttachementState();

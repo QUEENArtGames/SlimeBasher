@@ -55,9 +55,9 @@ public class Scrap : MonoBehaviour
         _inPosition = !AttachedToSlot;
     }
 
-    public void ThrowScrapAway(Vector3 position, Vector3 scrapPosition, int ScrapThrowFactor)
+    public void ThrowScrapAway(Vector3 centerOfObject, Vector3 scrapSlotPosition, int ScrapThrowFactor)
     {
-        Vector3 forceVector = (scrapPosition - position) * ScrapThrowFactor;
+        Vector3 forceVector = (scrapSlotPosition - centerOfObject) * ScrapThrowFactor;
         _rigidbody.AddForce(forceVector, ForceMode.Impulse);
         _rigidbody.AddTorque(new Vector3(Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor)));
     }

@@ -1055,9 +1055,10 @@ MonoBehaviour:
   - {fileID: 4724574892613124}
   - {fileID: 4782882399145038}
   ScrapThrowFactor: 5
-  NeededMeeleScrabs: 1
-  NeededBottleScrabs: 0
-  NeededGrenadeScrabs: 0
+  NeededMeeleScraps: 1
+  NeededBottleScraps: 0
+  NeededGrenadeScraps: 0
+  NeededClassicScraps: 0
 --- !u!208 &208454273957119036
 NavMeshObstacle:
   m_ObjectHideFlags: 1

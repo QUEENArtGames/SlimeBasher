@@ -6,13 +6,14 @@ public class TowerRessourceManagement : MonoBehaviour
 {
     public Transform[] ScrapSlots;
     public int ScrapThrowFactor;
-    public int NeededMeeleScrabs;
-    public int NeededBottleScrabs;
-    public int NeededGrenadeScrabs;
-    public int NeededClassicScrabs;
+    public int NeededMeeleScraps;
+    public int NeededBottleScraps;
+    public int NeededGrenadeScraps;
+    public int NeededClassicScraps;
 
     private List<GameObject> _attachedScraps = new List<GameObject>();
     private float _droprate;
+    private RessourceManagement _ressourceManagement;
 
     public List<GameObject> AttachedScraps
     {
@@ -29,7 +30,8 @@ public class TowerRessourceManagement : MonoBehaviour
 
     void Awake()
     {
-        _droprate = FindObjectOfType<RessourceManagement>().TowerScrapDropProbabilityInPercent;
+        _ressourceManagement = FindObjectOfType<RessourceManagement>();
+        _droprate = _ressourceManagement.TowerScrapDropProbabilityInPercent;
     }
 
     internal bool ScrapSlotsOnTowerAreFree()
@@ -37,25 +39,13 @@ public class TowerRessourceManagement : MonoBehaviour
         return AttachedScraps.Count < ScrapSlots.Length;
     }
 
-    /*public void AddAllNeededScraps(List<int>[] scrapInventory)
-    {
-        for (int i = 0; i < NeededMeeleScrabs; i++)
-            AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int) ScrapType.MELEE][0]);
-
-        for (int i = 0; i < NeededBottleScrabs; i++)
-            AddParticularScrap(ScrapType.BOTTLE, (int) scrapInventory[(int) ScrapType.BOTTLE][0]);
-
-        for (int i = 0; i < NeededGrenadeScrabs; i++)
-            AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
-    }*/
-
     public GameObject AddNeededScrap(List<int>[] scrapInventory)
     {
-        if (NeededMeeleScrabs > 0)
+        if (NeededMeeleScraps > 0)
             return AddParticularScrap(ScrapType.MELEE, (int) scrapInventory[(int) ScrapType.MELEE][0]);
-        if (NeededBottleScrabs > 0)
+        if (NeededBottleScraps > 0)
             return AddParticularScrap(ScrapType.BOTTLE, (int) scrapInventory[(int) ScrapType.BOTTLE][0]);
-        if (NeededGrenadeScrabs > 0)
+        if (NeededGrenadeScraps > 0)
             return AddParticularScrap(ScrapType.GRENADE, (int) scrapInventory[(int) ScrapType.GRENADE][0]);
 
         return null;
@@ -63,11 +53,11 @@ public class TowerRessourceManagement : MonoBehaviour
 
     public void AddNeededScrapOfCertainSubTypeIndex(List<int>[] scrapInventory, int subTypeIndex)
     {
-        if (NeededMeeleScrabs > 0)
+        if (NeededMeeleScraps > 0)
             AddParticularScrap(ScrapType.MELEE, subTypeIndex);
-        if (NeededBottleScrabs > 0)
+        if (NeededBottleScraps > 0)
             AddParticularScrap(ScrapType.BOTTLE, subTypeIndex);
-        if (NeededGrenadeScrabs > 0)
+        if (NeededGrenadeScraps > 0)
             AddParticularScrap(ScrapType.GRENADE, subTypeIndex);
 
     }
@@ -75,7 +65,7 @@ public class TowerRessourceManagement : MonoBehaviour
     private GameObject AddParticularScrap(ScrapType scraptype, int subTypeIndex)
     {
         Vector3 spawnposition = ScrapSlots[AttachedScraps.Count].position;
-        GameObject scrap = FindObjectOfType<RessourceManagement>().GetScrapPrefabBySubTypeIndex((int) scraptype, subTypeIndex);
+        GameObject scrap = _ressourceManagement.GetScrapPrefabBySubTypeIndex((int) scraptype, subTypeIndex);
         GameObject scrapInstant = Instantiate(scrap, spawnposition, ScrapSlots[AttachedScraps.Count].rotation);
         AttachedScraps.Add(scrapInstant);
         return scrapInstant;
@@ -91,7 +81,7 @@ public class TowerRessourceManagement : MonoBehaviour
                 Scrap scrap = scrapObject.GetComponent<Scrap>();
                 scrapObject.GetComponent<Rigidbody>().isKinematic = false;
                 scrap.ChangeAttachementState();
-                scrap.GetComponent<Scrap>().ChangeCollectionState();
+                scrap.ChangeCollectionState();
                 scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
             }
             else
