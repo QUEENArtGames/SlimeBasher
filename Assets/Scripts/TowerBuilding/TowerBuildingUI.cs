@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class TowerBuildingUI : MonoBehaviour
 {
     public GameObject UpgradeText;
+    public GameObject KillText;
     public GameObject UpgradeButtonPrefab;
     public GameObject ButtonPanel;
     public Transform[] ButtonTransforms;
@@ -30,6 +31,17 @@ public class TowerBuildingUI : MonoBehaviour
     public void CloseTowerUpgradeNotification()
     {
         UpgradeText.SetActive(false);
+    }
+
+
+    public void ShowTowerKillNotification()
+    {
+        KillText.SetActive(true);
+    }
+
+    public void CloseTowerKillNotification()
+    {
+        KillText.SetActive(false);
     }
 
 

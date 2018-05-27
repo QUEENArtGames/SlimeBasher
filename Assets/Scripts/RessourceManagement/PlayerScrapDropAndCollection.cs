@@ -26,13 +26,16 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //TowerBuildingUI nur einmal global
         //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower"))
+        if (other.transform.gameObject.CompareTag("Tower") /*&& DefaultMode*/)
         {
+            FindObjectOfType<TowerBuildingUI>().ShowTowerKillNotification();
             TowerRessourceManagement towermanagement = other.transform.gameObject.GetComponent<TowerRessourceManagement>();
             if (_towerBuilding.CheckForRessources(_scrapInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
                 FindObjectOfType<TowerBuildingUI>().ShowTowerUpgraeNotification();
         }
+        ////
             
 
         if (other.transform.gameObject.CompareTag("Scrap"))
@@ -43,19 +46,19 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("u"))
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("u") /*&& DefaultMode*/)
         {
             FindObjectOfType<TowerBuildingUI>().OpenTowerBuildingMenu(other.gameObject);
         }
 
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("k"))
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("k") /*&& DefaultMode*/)
         {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
             other.gameObject.GetComponent<Tower>().Kill();
         }
 
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("q"))
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("q") /*&& DefaultMode*/)
         {
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
@@ -67,8 +70,9 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower"))
+        if (other.transform.gameObject.CompareTag("Tower") /*&& DefaultMode*/)
         {
+            FindObjectOfType<TowerBuildingUI>().CloseTowerKillNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerUpgradeNotification();
             FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
         }
