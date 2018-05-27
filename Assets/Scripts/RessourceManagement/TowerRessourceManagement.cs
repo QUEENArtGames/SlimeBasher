@@ -64,9 +64,11 @@ public class TowerRessourceManagement : MonoBehaviour
 
     private GameObject AddParticularScrap(ScrapType scraptype, int subTypeIndex)
     {
-        Vector3 spawnposition = ScrapSlots[AttachedScraps.Count].position;
+        Vector3 slotPosition = ScrapSlots[AttachedScraps.Count].position;
         GameObject scrap = _ressourceManagement.GetScrapPrefabBySubTypeIndex((int) scraptype, subTypeIndex);
-        GameObject scrapInstant = Instantiate(scrap, spawnposition, ScrapSlots[AttachedScraps.Count].rotation);
+        GameObject scrapInstant = Instantiate(scrap, slotPosition, ScrapSlots[AttachedScraps.Count].rotation);
+        Vector3 pivotPosition = ScrapSlots[AttachedScraps.Count].rotation * scrap.GetComponent<Scrap>().TowerAttachementPivot.position;
+        scrapInstant.transform.position += pivotPosition;
         AttachedScraps.Add(scrapInstant);
         return scrapInstant;
     }

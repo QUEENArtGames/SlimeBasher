@@ -142,8 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrapType: 1
   SubCategoryIndex: 0
-  _collected: 1
-  _inPosition: 1
+  TowerAttachementPivot: {fileID: 4520550622371358}
 --- !u!136 &136403919627386160
 CapsuleCollider:
   m_ObjectHideFlags: 1

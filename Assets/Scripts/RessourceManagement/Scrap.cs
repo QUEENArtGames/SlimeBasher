@@ -5,6 +5,7 @@ public class Scrap : MonoBehaviour
 {
     public ScrapType ScrapType;
     public int SubCategoryIndex;
+    public Transform TowerAttachementPivot;
 
     private bool _collected = true;
     private bool _inPosition = true;
