@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1060200432543180}
+  m_RootGameObject: {fileID: 1759652871990442}
   m_IsPrefabParent: 1
---- !u!1 &1060200432543180
+--- !u!1 &1759652871990442
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4512027959178890}
-  - component: {fileID: 33734590106272488}
-  - component: {fileID: 23741190466905838}
+  - component: {fileID: 4085845609020998}
+  - component: {fileID: 33927783548652504}
+  - component: {fileID: 23544659080395106}
   m_Layer: 0
   m_Name: Toilettbrush
   m_TagString: Untagged
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4512027959178890
+--- !u!4 &4085845609020998
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060200432543180}
-  m_LocalRotation: {x: 0.69636434, y: 0.12278778, z: -0.122787766, w: 0.6963642}
-  m_LocalPosition: {x: 1.940846, y: -3.025085, z: 1.1252165}
-  m_LocalScale: {x: 2.3721037, y: 2.3605056, z: 2.0574658}
+  m_GameObject: {fileID: 1759652871990442}
+  m_LocalRotation: {x: -0.122787714, y: 0.6963643, z: 0.6963643, w: 0.12278778}
+  m_LocalPosition: {x: 0.1116209, y: 0.2482791, z: -0.42415333}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23741190466905838
+--- !u!23 &23544659080395106
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060200432543180}
+  m_GameObject: {fileID: 1759652871990442}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -74,10 +74,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33734590106272488
+--- !u!33 &33927783548652504
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060200432543180}
-  m_Mesh: {fileID: 4300000, guid: 5f36a237e466e2a4a8b631b68877acdb, type: 3}
+  m_GameObject: {fileID: 1759652871990442}
+  m_Mesh: {fileID: 4300000, guid: a445e9ba20bd41b43b51db64b42bd120, type: 3}
