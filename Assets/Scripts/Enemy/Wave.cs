@@ -32,9 +32,17 @@ namespace Assets.Scripts {
     [Serializable]
     public class Wave {
 
-        private WaveEvent[] events;
+        public WaveEvent[] events = new WaveEvent[] {};
         public float delay;
         private int _waveNumber;
+
+        
+        public Wave(int waveNumber) {
+
+            _waveNumber = waveNumber;
+
+
+        }
 
         public WaveEvent[] Events {
             get {
@@ -46,13 +54,6 @@ namespace Assets.Scripts {
             }
         }
 
-        public Wave(int waveNumber) {
 
-            _waveNumber = waveNumber;
-
-
-        }
-
-        
     }
 }

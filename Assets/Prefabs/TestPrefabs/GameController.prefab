@@ -256,6 +256,34 @@ MonoBehaviour:
   FinalDestination: {fileID: 0}
   enemyManagement: {fileID: 114923424035624480}
   fightPhaseEnd: 0
+  waveProvider:
+    Waves:
+    - events:
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 10
+        _hardSlimes: 0
+        _gasSlimes: 0
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 15
+        _hardSlimes: 2
+        _gasSlimes: 0
+      delay: 10
+    - events:
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 15
+        _hardSlimes: 0
+        _gasSlimes: 0
+      delay: 3
+    - events:
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 11
+        _hardSlimes: 0
+        _gasSlimes: 2
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 4
+        _hardSlimes: 4
+        _gasSlimes: 4
+      delay: 4
 --- !u!114 &114393331160031412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,6 +498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d5ad762e496274abe4ceeeae187222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _normalSlime: {fileID: 1739397658495034, guid: 21c708c1b0934a74ab10d6bd49cecfec,
+    type: 2}
 --- !u!114 &114924867017390638
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,8 +5,10 @@ using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts {
-    class WaveProvider : MonoBehaviour {
-        public Wave[] Waves;
+
+    [Serializable]
+    class WaveProvider {
+        public Wave[] Waves = new Wave[] { };
         private int _waveRoundNumber;
 
         public WaveProvider(int waveRoundNumber) {
@@ -14,6 +16,7 @@ namespace Assets.Scripts {
         }
 
         public Wave GetNextWave() {
+            Debug.Log(Waves.Length);
             if (_waveRoundNumber >= Waves.Length) {
                 return CreateProceduralWave();
             }

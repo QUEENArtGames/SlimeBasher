@@ -20,12 +20,15 @@ namespace Assets.Scripts {
         public Transform FinalDestination;
         public EnemyManagement enemyManagement;
         public bool fightPhaseEnd = false;
+        public WaveProvider waveProvider;
 
         internal static Game Instance {
             get {
                 return instance;
             }
         }
+
+        
 
         // Use this for initialization
         void Start() {
@@ -35,6 +38,7 @@ namespace Assets.Scripts {
                 Destroy(this.gameObject);
                 return;
             }
+            enemyManagement.enabled = false;
             _gamePhase = new GamePhase();
             _currentPhase = _gamePhase.Current;
             RunPhase(_currentPhase);
@@ -47,12 +51,13 @@ namespace Assets.Scripts {
                     Debug.Log("Runde: " + _waveRoundNumber);
                     Debug.Log("BUILDING");
                     _readyButtonEnabled = true;
+
                     break;
                 case Phase.Prepare:
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
                     Debug.Log("Prepare");
                     StartNextRoundCounter();
-                    WaveProvider waveProvider = new WaveProvider(_waveRoundNumber);
+                    waveProvider = new WaveProvider(_waveRoundNumber);
                     _actualWave = waveProvider.GetNextWave();
                     break;
                 case Phase.Fight:
@@ -72,12 +77,14 @@ namespace Assets.Scripts {
 
         private void StartWave() {
             Debug.Log("Spawning Enemys");
+            enemyManagement.enabled = true;
             enemyManagement.EnableManager(_actualWave);
             
         }
 
         private void ShowWaveEndGUI() {
             Debug.Log("Round Complete");
+            enemyManagement.enabled = false;
         }
 
         
@@ -146,10 +153,12 @@ namespace Assets.Scripts {
                 _gamePhase.MoveToNextGamePhase();
             }
 
+        }
 
-
-            
-
+        public GamePhase GamePhase {
+            get {
+                return _gamePhase;
+            }
         }
 
     }
