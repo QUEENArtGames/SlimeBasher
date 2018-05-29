@@ -3,11 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TESTFUNKTIONEN
 public class PlayerDummy : MonoBehaviour {
-    PlayerScrapDropAndCollection _playerScrapDropAndCollection;
-    TowerBuilding _towerBuilding;
-    PlayerScrapInventory _scrapInventory;
-    TowerBuildingUI _towerBuildingUI;
+    private PlayerScrapDropAndCollection _playerScrapDropAndCollection;
+    private TowerBuilding _towerBuilding;
+    private PlayerScrapInventory _scrapInventory;
+    private TowerBuildingUI _towerBuildingUI;
+
+    private bool _isInDefaultMode = true;
+
+    public bool IsInDefaultMode
+    {
+        get
+        {
+            return _isInDefaultMode;
+        }
+
+        set
+        {
+            _isInDefaultMode = value;
+        }
+    }
 
     void Awake()
     {
@@ -18,7 +34,6 @@ public class PlayerDummy : MonoBehaviour {
 
     }
 
-    //---------------------------- Testfunktionen Beginn
     void Update()
     {
         if (Input.GetKeyDown("o"))
@@ -27,39 +42,34 @@ public class PlayerDummy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        //TowerBuildingUI nur einmal global
-        //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower") /*&& DefaultMode*/)
+        if (other.transform.gameObject.CompareTag("Tower") && IsInDefaultMode)
         {
             _towerBuildingUI.ShowTowerKillNotification();
             TowerRessourceManagement towermanagement = other.transform.gameObject.GetComponent<TowerRessourceManagement>();
             if (_towerBuilding.CheckForRessources(_scrapInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
                 _towerBuildingUI.ShowTowerUpgraeNotification();
         }
-        ////
 
 
         if (other.transform.gameObject.CompareTag("Scrap"))
             _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
     }
 
-    //TESTEREI
     private void OnTriggerStay(Collider other)
     {
-        //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("u") /*&& DefaultMode*/)
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetButtonDown("Upgrade Tower") && IsInDefaultMode)
         {
             _towerBuildingUI.OpenTowerBuildingMenu(other.gameObject);
         }
 
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("k") /*&& DefaultMode*/)
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetButtonDown("Deconstruct Tower") && IsInDefaultMode)
         {
             _towerBuildingUI.CloseTowerUpgradeNotification();
             _towerBuildingUI.CloseTowerBuildingMenu();
             other.gameObject.GetComponent<Tower>().Kill();
         }
 
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetKeyDown("q") /*&& DefaultMode*/)
+        if (other.transform.gameObject.CompareTag("Tower") && Input.GetButtonDown("QuickUpgrade Tower") && IsInDefaultMode)
         {
             _towerBuildingUI.CloseTowerUpgradeNotification();
             _towerBuildingUI.CloseTowerBuildingMenu();
@@ -67,17 +77,13 @@ public class PlayerDummy : MonoBehaviour {
         }
     }
 
-    //TESTEREI
     private void OnTriggerExit(Collider other)
     {
-        //Spielerskript
-        if (other.transform.gameObject.CompareTag("Tower") /*&& DefaultMode*/)
+        if (other.transform.gameObject.CompareTag("Tower") && IsInDefaultMode)
         {
             _towerBuildingUI.CloseTowerKillNotification();
             _towerBuildingUI.CloseTowerUpgradeNotification();
             _towerBuildingUI.CloseTowerBuildingMenu();
         }
     }
-
-    //---------------------------- Testfunktionen Ende
 }
