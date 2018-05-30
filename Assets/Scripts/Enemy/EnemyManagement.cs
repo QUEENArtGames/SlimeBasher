@@ -14,7 +14,9 @@ namespace Assets.Scripts {
         private float _timer = 0;
         private bool _timerAllowed = false;
         private bool _eventAllowed = false;
+        private bool _allEnemysSpawned = false;
         private int _eventCounter = 0;
+        private int _spawnCounter = 0;
         public GameObject _normalSlime;
         private WaveEvent actualEvent;
         //public GameObject _hardSlime;
@@ -51,8 +53,9 @@ namespace Assets.Scripts {
 
                 yield return new WaitForSeconds(2.5f);
                 _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
-                
+                _spawnCounter++;
             }
+
 
             /*
             for(int i=0; i< actualEvent._hardSlimes; i++) {
@@ -69,10 +72,16 @@ namespace Assets.Scripts {
                 
             } */
 
+            
             _timerAllowed = true;
         }
 
         private void Update() {
+
+            if(_spawnCounter == _wave.getAllEnemysOfTheWave()) {
+                _allEnemysSpawned = true;
+                _spawnCounter = 0;
+            }
 
             if (_eventAllowed) {
                 _eventAllowed = false;
@@ -88,9 +97,13 @@ namespace Assets.Scripts {
                 }
             }
 
-            if(CheckIfSlimesAlive() && _eventCounter > _wave.events.Length) {
+            //Einmal Spawnen EventCounter = 1 und Event Länge = 1 -> true
+            //Einmal Spawnen EventCounter = 1 und Event Länge = 2 -> false
+            //Zweimal Spawnen EventCounter = 2 und Event Länge = 2 -> true
+            if(CheckIfSlimesAlive() && _eventCounter >= _wave.events.Length && _allEnemysSpawned) {
                 _game.GamePhase.MoveToNextGamePhase();
                 _eventCounter = 0;
+                _allEnemysSpawned = false;
             }
 
             //Kontrolliere die Länge der Gegnerlisten

@@ -27,6 +27,10 @@ namespace Assets.Scripts {
 
 
         }
+
+        public int getSlimeCounter() {
+            return _normalSlimes + _hardSlimes + _gasSlimes;
+        }
     }
 
     [Serializable]
@@ -42,6 +46,15 @@ namespace Assets.Scripts {
             _waveNumber = waveNumber;
 
 
+        }
+
+        public int getAllEnemysOfTheWave() {
+            int enemys = 0;
+
+            foreach (WaveEvent ev in events)
+                enemys += ev.getSlimeCounter();
+
+            return enemys;
         }
 
         public WaveEvent[] Events {
