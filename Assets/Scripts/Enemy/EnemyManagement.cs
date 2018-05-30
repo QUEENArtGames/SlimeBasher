@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,40 +38,35 @@ namespace Assets.Scripts {
             
                 if(_eventCounter < _wave.Events.Length) {
                     actualEvent = _wave.Events.ElementAt(_eventCounter);
-                    HandleEvent();
+                    //HandleEvent();
+                    StartCoroutine("HandleEvent");
                     _eventCounter++;
                 }
             
             
         }
 
-        private void SpawnNormalSlimes() {
-            _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
-        }
-        /*
-        private void SpawnGasSlimes() {
-            _Slimes.Add(Instantiate(_gasSlimes, waveEvent.SpawnPoint.transform.position, waveEvent.SpawnPoint.rotation));
-        }
-
-        private void SpawnHardSlimes() {
-            _Slimes.Add(Instantiate(_hardSlimes, waveEvent.SpawnPoint.transform.position, waveEvent.SpawnPoint.rotation));
-        } */
-
-        private void HandleEvent() {
+        IEnumerator HandleEvent() {
             for(int i=0; i< actualEvent._normalSlimes; i++) {
+
+                yield return new WaitForSeconds(2.5f);
+                _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
                 
-                Invoke("SpawnNormalSlimes", 1.5f);
             }
 
             /*
-            for (int i = 0; i < waveEvent._gasSlimes; i++) {
+            for(int i=0; i< actualEvent._hardSlimes; i++) {
+
+                yield return new WaitForSeconds(3.5f);
+                _Slimes.Add(Instantiate(_hardSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
                 
-                Invoke("SpawnGasSlimes", 2.0f);
             }
 
-            for (int i = 0; i < waveEvent._hardSlimes; i++) {
+            for(int i=0; i< actualEvent._gasSlimes; i++) {
+
+                yield return new WaitForSeconds(4.5f);
+                _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
                 
-                Invoke("SpawnHardSlimes", 2.5f);
             } */
 
             _timerAllowed = true;

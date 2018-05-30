@@ -46,7 +46,7 @@ namespace Assets.Scripts {
 
         public void Kill()
         {
-            Destroy(this.gameObject, 2f);
+            Destroy(this.gameObject);
             GetComponent<SlimeRessourceManagement>().DropRessources();
         }
 
