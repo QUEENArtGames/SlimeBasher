@@ -16,10 +16,10 @@ namespace Assets.Scripts {
 
         public WaveEvent(int waveNumber) {
             _waveNumber = waveNumber;
-            createWave();
+            CreateWave();
         }
 
-        private void createWave() {
+        private void CreateWave() {
 
             _normalSlimes = 5 * _waveNumber;
             _hardSlimes = 2 * (_waveNumber / 2);
@@ -28,7 +28,7 @@ namespace Assets.Scripts {
 
         }
 
-        public int getSlimeCounter() {
+        public int GetSlimeCounter() {
             return _normalSlimes + _hardSlimes + _gasSlimes;
         }
     }
@@ -36,6 +36,7 @@ namespace Assets.Scripts {
     [Serializable]
     public class Wave {
 
+        
         public WaveEvent[] events = new WaveEvent[] {};
         public float delay;
         private int _waveNumber;
@@ -52,7 +53,7 @@ namespace Assets.Scripts {
             int enemys = 0;
 
             foreach (WaveEvent ev in events)
-                enemys += ev.getSlimeCounter();
+                enemys += ev.GetSlimeCounter();
 
             return enemys;
         }

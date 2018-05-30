@@ -54,6 +54,7 @@ namespace Assets.Scripts {
                 yield return new WaitForSeconds(2.5f);
                 _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
                 _spawnCounter++;
+                _timerAllowed = true;
             }
 
 
@@ -73,7 +74,7 @@ namespace Assets.Scripts {
             } */
 
             
-            _timerAllowed = true;
+            
         }
 
         private void Update() {

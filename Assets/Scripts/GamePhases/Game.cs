@@ -9,6 +9,7 @@ namespace Assets.Scripts {
 
         private static Game instance;
         private GamePhase _gamePhase;
+        public Transform[] spawnPoints;
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
         private bool _startTimer = false;
@@ -28,9 +29,6 @@ namespace Assets.Scripts {
             }
         }
 
-        
-
-        // Use this for initialization
         void Start() {
             if(instance==null) {
                 instance = this;
@@ -143,10 +141,6 @@ namespace Assets.Scripts {
 
             if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 0)
                 PauseGame();
-
-            if (_currentPhase == Phase.Fight && Input.GetKeyDown(KeyCode.T) && Time.timeScale != 0) {
-                _gamePhase.MoveToNextGamePhase();
-            }
 
             if(fightPhaseEnd) {
                 fightPhaseEnd = false;

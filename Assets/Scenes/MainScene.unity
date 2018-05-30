@@ -960,6 +960,21 @@ Prefab:
       objectReference: {fileID: 850154261}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
+      propertyPath: spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2036663037}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1949623656}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1998732969}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
       propertyPath: _pausemenu
       value: 
       objectReference: {fileID: 1108818373}
