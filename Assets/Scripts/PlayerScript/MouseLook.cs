@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
+
+namespace Character.ThirdPerson
 {
     [Serializable]
     public class MouseLook
@@ -15,12 +16,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public float smoothTime = 5f;
         public bool lockCursor = true;
 
-
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
 
-        public void Init(Transform character, Transform camera)
+
+        public MouseLook(Transform character, Transform camera)
         {
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;

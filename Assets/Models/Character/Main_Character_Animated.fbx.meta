@@ -204,7 +204,12 @@ ModelImporter:
     13700000: Character
     13700002: EyeLeft
     13700004: EyeRight
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Character Cycles
+    second: {fileID: 2100000, guid: e5058812199db4159ae6d57c0384dbe7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
