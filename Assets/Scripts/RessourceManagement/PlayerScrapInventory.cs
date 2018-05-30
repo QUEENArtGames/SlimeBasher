@@ -49,9 +49,8 @@ public class PlayerScrapInventory : MonoBehaviour
 
     }
 
-    public void RemoveAnyScraps(int scrapType, int amount)
+    public void RemoveAnyScrap(int scrapType)
     {
-        for (int i = 0; i < amount; i++)
             _scrapInventory[scrapType].RemoveAt(0);
     }
 

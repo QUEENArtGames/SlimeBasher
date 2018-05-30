@@ -49,11 +49,11 @@ public class TowerBuildingUI : MonoBehaviour
     {
         _selectedTower = selectedTower;
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.NeededBottleScraps > 0)
+        if (towermanagement.NeedsBottleScraps)
             InstantiateButtonForEachSubPrefab(ScrapType.BOTTLE);
-        if (towermanagement.NeededGrenadeScraps > 0)
+        if (towermanagement.NeedsGrenadeScraps)
             InstantiateButtonForEachSubPrefab(ScrapType.GRENADE);
-        if (towermanagement.NeededMeeleScraps > 0)
+        if (towermanagement.NeedsMeeleScraps)
             InstantiateButtonForEachSubPrefab(ScrapType.MELEE);
 
         Time.timeScale = 0.0f;
