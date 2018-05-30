@@ -44,7 +44,13 @@ public class SlimeRessourceManagement : MonoBehaviour
     }
 
     //TESTEREI
-    private void OnCollisionEnter(Collision other)
+    /*private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
+    }*/
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
             CollectRessource(other.transform.gameObject);
