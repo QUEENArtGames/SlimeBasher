@@ -8,7 +8,7 @@ namespace Assets.Scripts {
 
     [Serializable]
     class WaveProvider {
-        public Wave[] Waves = new Wave[] { };
+        public Wave[] Waves;
         private int _waveRoundNumber;
 
         public WaveProvider(int waveRoundNumber) {
@@ -17,10 +17,10 @@ namespace Assets.Scripts {
 
         public Wave GetNextWave() {
             Debug.Log(Waves.Length);
-            if (_waveRoundNumber >= Waves.Length) {
+            if (_waveRoundNumber > Waves.Length) {
                 return CreateProceduralWave();
             }
-            return Waves[_waveRoundNumber];
+            return Waves[_waveRoundNumber-1];
         }
 
         private Wave CreateProceduralWave() {
@@ -37,5 +37,8 @@ namespace Assets.Scripts {
             return newWaveEvent;
         }
 
+        public void setWaveNumber(int waveRoundNumber) {
+            _waveRoundNumber = waveRoundNumber;
+        }
     }
 }

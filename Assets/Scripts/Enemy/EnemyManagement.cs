@@ -13,7 +13,7 @@ namespace Assets.Scripts {
         private float _timer = 0;
         private bool _timerAllowed = false;
         private bool _eventAllowed = false;
-        private int _eventCounter = 1;
+        private int _eventCounter = 0;
         public GameObject _normalSlime;
         private WaveEvent actualEvent;
         //public GameObject _hardSlime;
@@ -73,7 +73,7 @@ namespace Assets.Scripts {
                 Invoke("SpawnHardSlimes", 2.5f);
             } */
 
-
+            _timerAllowed = true;
         }
 
         private void Update() {
@@ -110,6 +110,7 @@ namespace Assets.Scripts {
             foreach(GameObject slime in _Slimes) {
                 if(slime.GetComponent<EnemyDummy>().Hitpoints <= 0) {
                     deleteEnemy(slime);
+                    break;
                 }
             }
 

@@ -57,7 +57,7 @@ namespace Assets.Scripts {
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
                     Debug.Log("Prepare");
                     StartNextRoundCounter();
-                    waveProvider = new WaveProvider(_waveRoundNumber);
+                    waveProvider.setWaveNumber(_waveRoundNumber);
                     _actualWave = waveProvider.GetNextWave();
                     break;
                 case Phase.Fight:
