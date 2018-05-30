@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //TESTFUNKTIONEN
 public class PlayerDummy : MonoBehaviour {
@@ -11,6 +12,8 @@ public class PlayerDummy : MonoBehaviour {
     private TowerBuildingUI _towerBuildingUI;
 
     private bool _isInDefaultMode = true;
+
+    public int MaxDistanceToTower = 2;
 
     public bool IsInDefaultMode
     {
@@ -38,52 +41,59 @@ public class PlayerDummy : MonoBehaviour {
     {
         if (Input.GetKeyDown("o"))
             _playerScrapDropAndCollection.DropScraps();
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+
+            if (hit.transform.gameObject.CompareTag("Tower") && DistanceToTower(hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
+            {
+                _towerBuildingUI.ShowTowerKillNotification();
+                TowerRessourceManagement towermanagement = hit.transform.gameObject.GetComponent<TowerRessourceManagement>();
+                if (_towerBuilding.CheckForRessources(_scrapInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
+                    _towerBuildingUI.ShowTowerUpgraeNotification();
+
+                if (Input.GetButtonDown("Upgrade Tower") && IsInDefaultMode)
+                {
+                    _towerBuildingUI.OpenTowerBuildingMenu(hit.transform.gameObject);
+                }
+
+                if (Input.GetButtonDown("Deconstruct Tower") && IsInDefaultMode)
+                {
+                    _towerBuildingUI.CloseTowerUpgradeNotification();
+                    _towerBuildingUI.CloseTowerBuildingMenu();
+                    hit.transform.gameObject.GetComponent<Tower>().Kill();
+                }
+
+                if (Input.GetButtonDown("QuickUpgrade Tower") && IsInDefaultMode)
+                {
+                    _towerBuildingUI.CloseTowerUpgradeNotification();
+                    _towerBuildingUI.CloseTowerBuildingMenu();
+                    _towerBuilding.UpgradeWithAnyScrap(hit.transform.gameObject.GetComponent<TowerRessourceManagement>());
+                }
+            }
+            else
+            {
+                _towerBuildingUI.CloseTowerKillNotification();
+                _towerBuildingUI.CloseTowerUpgradeNotification();
+            }
+
+        }
+        
+    }
+
+    private float DistanceToTower(Vector3 towerposition)
+    {
+        return Mathf.Sqrt((towerposition.x - transform.position.x) * (towerposition.x - transform.position.x) +
+                          (towerposition.y - transform.position.y) * (towerposition.y - transform.position.y) +
+                          (towerposition.z - transform.position.z) * (towerposition.z - transform.position.z));
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.gameObject.CompareTag("Tower") && IsInDefaultMode)
-        {
-            _towerBuildingUI.ShowTowerKillNotification();
-            TowerRessourceManagement towermanagement = other.transform.gameObject.GetComponent<TowerRessourceManagement>();
-            if (_towerBuilding.CheckForRessources(_scrapInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
-                _towerBuildingUI.ShowTowerUpgraeNotification();
-        }
-
-
+    { 
         if (other.transform.gameObject.CompareTag("Scrap"))
             _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetButtonDown("Upgrade Tower") && IsInDefaultMode)
-        {
-            _towerBuildingUI.OpenTowerBuildingMenu(other.gameObject);
-        }
-
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetButtonDown("Deconstruct Tower") && IsInDefaultMode)
-        {
-            _towerBuildingUI.CloseTowerUpgradeNotification();
-            _towerBuildingUI.CloseTowerBuildingMenu();
-            other.gameObject.GetComponent<Tower>().Kill();
-        }
-
-        if (other.transform.gameObject.CompareTag("Tower") && Input.GetButtonDown("QuickUpgrade Tower") && IsInDefaultMode)
-        {
-            _towerBuildingUI.CloseTowerUpgradeNotification();
-            _towerBuildingUI.CloseTowerBuildingMenu();
-            _towerBuilding.UpgradeWithAnyScrap(other.gameObject.GetComponent<TowerRessourceManagement>());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.gameObject.CompareTag("Tower") && IsInDefaultMode)
-        {
-            _towerBuildingUI.CloseTowerKillNotification();
-            _towerBuildingUI.CloseTowerUpgradeNotification();
-            _towerBuildingUI.CloseTowerBuildingMenu();
-        }
     }
 }

@@ -36,11 +36,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4669812222199028}
-  - component: {fileID: 65658114029455770}
   - component: {fileID: 114785931222528548}
   - component: {fileID: 114284016527388568}
   - component: {fileID: 208454273957119036}
   - component: {fileID: 54580779201805378}
+  - component: {fileID: 136319355395974310}
   m_Layer: 0
   m_Name: MeleeTower
   m_TagString: Untagged
@@ -814,18 +814,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &65658114029455770
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1050941866442964}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95490510000313880
 Animator:
   serializedVersion: 3
@@ -887,6 +875,19 @@ MonoBehaviour:
   NeedsBottleScraps: 0
   NeedsGrenadeScraps: 0
   NeededClassicScraps: 0
+--- !u!136 &136319355395974310
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050941866442964}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.6, z: 0}
 --- !u!208 &208454273957119036
 NavMeshObstacle:
   m_ObjectHideFlags: 1
