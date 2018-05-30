@@ -267,22 +267,18 @@ MonoBehaviour:
         _normalSlimes: 3
         _hardSlimes: 2
         _gasSlimes: 0
-      delay: 10
+      delay: 2
     - events:
       - SpawnPoint: {fileID: 0}
-        _normalSlimes: 15
+        _normalSlimes: 2
         _hardSlimes: 0
         _gasSlimes: 0
       delay: 3
     - events:
       - SpawnPoint: {fileID: 0}
-        _normalSlimes: 11
+        _normalSlimes: 2
         _hardSlimes: 0
         _gasSlimes: 2
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 4
-        _hardSlimes: 4
-        _gasSlimes: 4
       delay: 4
 --- !u!114 &114393331160031412
 MonoBehaviour:

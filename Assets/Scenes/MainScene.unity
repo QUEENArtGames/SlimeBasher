@@ -988,11 +988,6 @@ Prefab:
       propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[0].SpawnPoint
       value: 
       objectReference: {fileID: 2036663037}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[1].SpawnPoint
-      value: 
-      objectReference: {fileID: 1949623656}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
   m_IsPrefabParent: 0

@@ -88,8 +88,9 @@ namespace Assets.Scripts {
                 }
             }
 
-            if(CheckIfSlimesAlive() && _eventCounter >= _wave.events.Length) {
+            if(CheckIfSlimesAlive() && _eventCounter > _wave.events.Length) {
                 _game.GamePhase.MoveToNextGamePhase();
+                _eventCounter = 0;
             }
 
             //Kontrolliere die Länge der Gegnerlisten
