@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts {
+namespace Assets.Scripts
+{
     class WaveProvider : MonoBehaviour {
         public Wave[] Waves;
         private int _waveRoundNumber;

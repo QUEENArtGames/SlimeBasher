@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts {
+namespace Assets.Scripts
+{
     class EnemyManagement : MonoBehaviour {
 
         private List<GameObject> _normalSlimes;

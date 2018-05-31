@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Assets.Scripts {
+namespace Assets.Scripts
+{
     public class EnemyDummy : MonoBehaviour {
 
         public int Hitpoints = 100;

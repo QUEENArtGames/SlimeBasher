@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Assets.Scripts {
+﻿namespace Assets.Scripts
+{
     public enum SlimeType {
         Normal, Hard, Gas
     }
