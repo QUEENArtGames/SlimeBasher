@@ -63,7 +63,7 @@ namespace SlimeBasher.Characters.ThirdPerson
 
 #if !MOBILE_INPUT
             // walk speed multiplier
-            if (!Input.GetButtonDown("Sprint"))
+            if (!Input.GetButton("Sprint"))
                 movementVector *= 0.5f;
 #endif
 
