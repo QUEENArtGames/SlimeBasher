@@ -35,7 +35,6 @@ namespace Assets.Scripts
                 }
             }
 
-                
         }
 
         public void TakeDamage(int damage)
@@ -51,22 +50,17 @@ namespace Assets.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.gameObject.CompareTag("Tower"))
+            if (_target == null)
             {
-                _agent.SetDestination(other.transform.position);
-                _target = other.transform.gameObject;
+                if (other.transform.gameObject.CompareTag("Tower"))
+                {
+                    _agent.SetDestination(other.transform.position);
+                    _target = other.transform.gameObject;
+                }
             }
                
         }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.transform.gameObject.CompareTag("Tower"))
-            {
-                _target = null;
-                _agent.SetDestination(_finalDestination.position);
-            }
-        }
+      
     }
 
 
