@@ -1,34 +1,46 @@
 fileFormatVersion: 2
-guid: 86696d80806fa41409a24cd227b14dd3
-timeCreated: 1527245468
+guid: 4e2be50c1f96636409116a505974492f
+timeCreated: 1527843582
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Camera
-    100002: //RootNode
-    100004: Lamp
-    100006: Sphere
-    100008: Sphere.001
-    100010: Sphere.014
+    100002: Eyes
+    100004: //RootNode
+    100006: Lamp
+    100008: Mouth
+    100010: Sphere
+    100012: Sphere.001
+    100014: Sphere.014
     400000: Camera
-    400002: //RootNode
-    400004: Lamp
-    400006: Sphere
-    400008: Sphere.001
-    400010: Sphere.014
+    400002: Eyes
+    400004: //RootNode
+    400006: Lamp
+    400008: Mouth
+    400010: Sphere
+    400012: Sphere.001
+    400014: Sphere.014
     2000000: Camera
     2100000: Steine.001
     2100002: Lava
-    2300000: Sphere
-    2300002: Sphere.001
-    2300004: Sphere.014
-    3300000: Sphere
-    3300002: Sphere.001
-    3300004: Sphere.014
+    2100004: Eyes
+    2100006: Mouth
+    2300000: Eyes
+    2300002: Mouth
+    2300004: Sphere
+    2300006: Sphere.001
+    2300008: Sphere.014
+    3300000: Eyes
+    3300002: Mouth
+    3300004: Sphere
+    3300006: Sphere.001
+    3300008: Sphere.014
     4300000: Sphere.014
     4300002: Sphere.001
     4300004: Sphere
+    4300006: Eyes
+    4300008: Mouth
     10800000: Lamp
   externalObjects: {}
   materials:
