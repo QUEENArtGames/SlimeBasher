@@ -34,6 +34,11 @@ public class SlimeScript : MonoBehaviour {
 		}
 	}
 
+	public void hit(float damage){
+		_hp -=damage;
+		isDeath();
+	}
+
 	public void setTargetLocation(){
 		Vector3 destination = _targetLocation.transform.position;
 		_navMeshAgent.SetDestination (destination);

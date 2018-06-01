@@ -46,11 +46,10 @@ public class ThrowSimulation : MonoBehaviour {
     {
 
         Target=FindClosestEnemy();
-        yield return new WaitForSeconds(2.0f);
+
         if(Target != null){
             // Short delay added before Projectile is thrown
         
-            StartCoroutine(SimulateProjectile());
             GameObject bullet = Instantiate(projec) as GameObject;
 
             bullet.GetComponent<ThrowProjektScript>().Target = Target;
@@ -63,7 +62,12 @@ public class ThrowSimulation : MonoBehaviour {
             // Move projectile to the position of throwing object + add some offset if needed.
             bullet.transform.position = myTransform.position + new Vector3(1f, 0.0f, 0);
         
+            yield return new WaitForSeconds(4.0f);
+            StartCoroutine(SimulateProjectile());
+
         }
+
+
         
 
 

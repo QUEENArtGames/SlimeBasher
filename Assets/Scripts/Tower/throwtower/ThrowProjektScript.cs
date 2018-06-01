@@ -58,6 +58,7 @@ public class ThrowProjektScript : MonoBehaviour {
 	}
 
 
+	
     void OnCollisionEnter(Collision other)
 	{
 		
@@ -69,6 +70,8 @@ public class ThrowProjektScript : MonoBehaviour {
 		
 		
 	}
+	
+	
 	   
 
 
