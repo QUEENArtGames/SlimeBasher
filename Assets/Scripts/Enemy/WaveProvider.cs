@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
 
-namespace Assets.Scripts
-{
-    class WaveProvider : MonoBehaviour {
+namespace Assets.Scripts {
+
+    [Serializable]
+    class WaveProvider {
         public Wave[] Waves;
         private int _waveRoundNumber;
 
@@ -11,10 +16,10 @@ namespace Assets.Scripts
         }
 
         public Wave GetNextWave() {
-            if (_waveRoundNumber >= Waves.Length) {
+            if (_waveRoundNumber > Waves.Length) {
                 return CreateProceduralWave();
             }
-            return Waves[_waveRoundNumber];
+            return Waves[_waveRoundNumber-1];
         }
 
         private Wave CreateProceduralWave() {
@@ -23,13 +28,21 @@ namespace Assets.Scripts
             for (int i = 0; i < newWave.Events.Length; i++) {
                 newWave.Events[i] = CreateRandomWaveEvent();
             }
+            newWave.delay = UnityEngine.Random.Range(0, 5);
+            Debug.Log("Delay: " + newWave.delay);
             return newWave;
         }
 
         private WaveEvent CreateRandomWaveEvent() {
-            WaveEvent newWaveEvent = new WaveEvent(_waveRoundNumber);
+            WaveEvent newWaveEvent = new WaveEvent(_waveRoundNumber);       
+            int counter = UnityEngine.Random.Range(0, Game.Instance.spawnPoints.Length);
+            Debug.Log("SpawnPoint an der Stelle: " + counter);
+            newWaveEvent.SpawnPoint = Game.Instance.spawnPoints[counter];
             return newWaveEvent;
         }
 
+        public void setWaveNumber(int waveRoundNumber) {
+            _waveRoundNumber = waveRoundNumber;
+        }
     }
 }
