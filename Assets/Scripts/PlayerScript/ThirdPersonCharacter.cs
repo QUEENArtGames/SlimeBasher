@@ -28,6 +28,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
+        public int health = 100;
+        public int damage = 5;
 
 
 		void Start()
@@ -221,5 +223,22 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 			}
 		}
+
+        bool playerKO()
+        {
+            if (health < 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        void getHit(int damage)
+        {
+            health -= damage;
+        }
 	}
 }
