@@ -245,9 +245,9 @@ MonoBehaviour:
     type: 2}
   ButtonPanel: {fileID: 1652069143357086}
   ButtonTransforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 224204130792145148}
+  - {fileID: 224170843168811846}
+  - {fileID: 224511890236411498}
 --- !u!114 &114328511540532336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +325,6 @@ MonoBehaviour:
   - {fileID: 1238256961391992, guid: 7f26ac2454adaa9409e301560250cf7a, type: 2}
   GrenadePrefabs:
   - {fileID: 1403633355510592, guid: b6c8fd8353978544e8ad8f7873b1172c, type: 2}
-  - {fileID: 1209874340110478, guid: 7969b600b34e53a4da62eb3ead667418, type: 2}
   BottlePrefabs:
   - {fileID: 1103263228983924, guid: 615a4921cce9ff9498dc77b642dfc707, type: 2}
   MeeleScrapAmountInPool: 10
