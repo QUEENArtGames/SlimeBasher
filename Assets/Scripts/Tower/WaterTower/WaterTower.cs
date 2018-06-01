@@ -31,7 +31,7 @@ public class WaterTower : MonoBehaviour {
 
 	public float range=10;
 
-
+	 List<Vector3> paths = new List<Vector3>();
 
 
 	// Use this for initialization
@@ -45,11 +45,14 @@ public class WaterTower : MonoBehaviour {
 		// Set the number of vertex fo the Line Renderer
 		//line.SetVertexCount(2);
 		//line.positionCount= lengthOfLineRenderer;
-
+		line.positionCount=0;
+		paths.Add(new Vector3(0,  0     ,  0  ));
 		//shot();
 	}
 
 	void Update(){
+
+		
 
 		if(Enemy ==null && !build){
 			Enemy=FindClosestEnemy();
@@ -69,8 +72,19 @@ public class WaterTower : MonoBehaviour {
 			StartCoroutine(DestroyWaterBeam());
 			//Debug.Log("Destroy");
 		}
-
 		
+	}
+
+	void Beam(){
+		Debug.Log(paths.Count-1);
+		Debug.Log(line.positionCount);
+		for (int i = 0; i < paths.Count-1; i++){
+
+				//paths[i]=new Vector3(x,  y     ,  z  );
+				line.SetPosition(i,paths[i]);
+				//yield return new WaitForSeconds(delay);
+
+		}
 	}
 
 	void BuildWaterBeam(){
@@ -81,10 +95,6 @@ public class WaterTower : MonoBehaviour {
 				return;
 			}
 			HitEnemy();
-
-
-
- 
 			// Calculate the velocity needed to throw the object to the target at specified angle.
 			float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
 
@@ -115,8 +125,7 @@ public class WaterTower : MonoBehaviour {
 
 			float ydiff = Target.position.y-transform.position.y;		
 
-
-			for (int i = 0; i < line.positionCount; i++)
+			for (int i = 0; i < paths.Count-1; i++)
 			{
 				float elapseDelta = (flightDuration/lengthOfLineRenderer);
 				float elapse =  elapseDelta*i;
@@ -127,8 +136,9 @@ public class WaterTower : MonoBehaviour {
 				float y = transform.position.y + (  v0 * Mathf.Sin(a)*elapse+ (0.5f*(-gravity)*elapse*elapse))+  ydiff/(lengthOfLineRenderer-1)*i;
 				float z = transform.position.z +elapse * v0 * Mathf.Cos(a)*Mathf.Sin(b) ;
 
-
-				line.SetPosition(i, new Vector3(x,  y     ,  z  ));
+				paths[i]=new Vector3(x,  y     ,  z  );
+				Beam();
+				//line.SetPosition(i,paths[i]);
 				//yield return new WaitForSeconds(delay);
 
 			}
@@ -137,8 +147,13 @@ public class WaterTower : MonoBehaviour {
 	IEnumerator AddPoints(){
 		for(int i = 0; i < lengthOfLineRenderer; i++)
 		{
-			line.SetVertexCount(i);
+
+			line.positionCount+=1;
+			paths.Add(new Vector3(0,  0     ,  0  ));
 			BuildWaterBeam();
+			//Beam();
+			//line.SetVertexCount(i);
+
 
 			yield return new WaitForSeconds(delay);
 		}
@@ -146,9 +161,12 @@ public class WaterTower : MonoBehaviour {
 	}
 
 	IEnumerator DestroyWaterBeam(){
-		for(int i = lengthOfLineRenderer - 1; i > 0; i--)
+		for(int i = lengthOfLineRenderer - 1; i >= 0; i--)
         {
-            line.SetVertexCount(i);
+			Beam();
+			paths.RemoveAt(0);
+			line.positionCount-=1;
+			
 
             yield return new WaitForSeconds(delay);
         }
