@@ -48,7 +48,7 @@ public class PlayerDummy : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))
         {
 
-            if (hit.transform.gameObject.CompareTag("Tower") && DistanceToTower(hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
+            if (hit.transform.gameObject.CompareTag("Tower") && Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
             {
                 _towerBuildingUI.ShowTowerKillNotification();
                 TowerRessourceManagement towermanagement = hit.transform.gameObject.GetComponent<TowerRessourceManagement>();
@@ -82,13 +82,6 @@ public class PlayerDummy : MonoBehaviour {
 
         }
         
-    }
-
-    private float DistanceToTower(Vector3 towerposition)
-    {
-        return Mathf.Sqrt((towerposition.x - transform.position.x) * (towerposition.x - transform.position.x) +
-                          (towerposition.y - transform.position.y) * (towerposition.y - transform.position.y) +
-                          (towerposition.z - transform.position.z) * (towerposition.z - transform.position.z));
     }
 
     private void OnTriggerEnter(Collider other)
