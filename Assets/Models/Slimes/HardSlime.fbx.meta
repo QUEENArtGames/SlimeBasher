@@ -42,7 +42,27 @@ ModelImporter:
     4300006: Eyes
     4300008: Mouth
     10800000: Lamp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: 6a60b38680844ba489fbf5afc2b2c8f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lava
+    second: {fileID: 2100000, guid: 311b8d32d40c41c4392a38d80aa36cfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mouth
+    second: {fileID: 2100000, guid: b5cc6ca3c3a35c54882cf2c6c70cc126, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Steine.001
+    second: {fileID: 2100000, guid: eed904f80d6578047863dc33896a8f79, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

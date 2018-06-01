@@ -34,7 +34,22 @@ ModelImporter:
     4300004: Slime
     10800000: Hemi
     10800002: Lamp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: 6a60b38680844ba489fbf5afc2b2c8f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mouth
+    second: {fileID: 2100000, guid: b5cc6ca3c3a35c54882cf2c6c70cc126, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Slime
+    second: {fileID: 2100000, guid: dad63bb56e1b6564280c8856245dea2c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -69,8 +84,8 @@ ModelImporter:
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
