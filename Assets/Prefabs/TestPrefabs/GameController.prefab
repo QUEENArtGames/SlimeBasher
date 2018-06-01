@@ -264,7 +264,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _nextPhaseTimer: 5
-  _pausemenu: {fileID: 1600988656558446, guid: 71f86b394f1960342a156001a8b3986f, type: 2}
+  _pausemenu: {fileID: 0}
   enemyManagement: {fileID: 114923424035624480}
   fightPhaseEnd: 0
   waveProvider:
