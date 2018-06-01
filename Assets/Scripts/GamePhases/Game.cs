@@ -15,10 +15,10 @@ namespace Assets.Scripts
         public GameObject _pausemenu;
         int _waveRoundNumber = 1;
         private Wave _actualWave;
-        public Transform FinalDestination;
         public EnemyManagement enemyManagement;
         public bool fightPhaseEnd = false;
         public WaveProvider waveProvider;
+        public Transform FinalDestination;
 
         internal static Game Instance {
             get {
@@ -37,6 +37,8 @@ namespace Assets.Scripts
             _gamePhase = new GamePhase();
             _currentPhase = _gamePhase.Current;
             RunPhase(_currentPhase);
+
+            FinalDestination = this.gameObject.transform;
         }
 
         private void RunPhase(Phase gamePhase) {
@@ -129,14 +131,14 @@ namespace Assets.Scripts
                 _startTimer = false;
             }
 
-            if (_readyButtonEnabled && Input.GetKeyDown(KeyCode.G) && Time.timeScale != 0) {
+            if (_readyButtonEnabled && Input.GetButtonDown("ready") && !Mathf.Approximately(Time.timeScale, 0)) {
                 Debug.Log("Starting Countdown");
                 _gamePhase.MoveToNextGamePhase();
                 _readyButtonEnabled = false;
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 0)
+            if (Input.GetButtonDown("Cancel") && !Mathf.Approximately(Time.timeScale,0))
                 PauseGame();
 
             if(fightPhaseEnd) {
