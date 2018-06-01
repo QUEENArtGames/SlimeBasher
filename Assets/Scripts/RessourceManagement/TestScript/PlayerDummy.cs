@@ -84,7 +84,7 @@ public class PlayerDummy : MonoBehaviour {
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     { 
         if (other.transform.gameObject.CompareTag("Scrap"))
             _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
