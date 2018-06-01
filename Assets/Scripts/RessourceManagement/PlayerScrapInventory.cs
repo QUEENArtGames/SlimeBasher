@@ -8,7 +8,6 @@ public class PlayerScrapInventory : MonoBehaviour
     private List<int>[] _scrapInventory = new List<int>[Enum.GetNames(typeof(ScrapType)).Length];
     private int _classicScraps = 0;
 
-
     void Awake()
     {
         for (int i = 0; i < Enum.GetNames(typeof(ScrapType)).Length; i++)
@@ -24,7 +23,7 @@ public class PlayerScrapInventory : MonoBehaviour
 
     public int GetAmountOfScraps()
     {
-        return _classicScraps;
+        return ClassicScraps;
     }
 
     public void AddScrap(ScrapType scrapType, int meshIndex)
@@ -50,20 +49,19 @@ public class PlayerScrapInventory : MonoBehaviour
 
     }
 
-    public void RemoveAnyScraps(int scrapType, int amount)
+    public void RemoveAnyScrap(int scrapType)
     {
-        for (int i = 0; i < amount; i++)
             _scrapInventory[scrapType].RemoveAt(0);
     }
 
     public void AddClassicScraps(int amountOfScraps)
     {
-        _classicScraps += amountOfScraps;
+        ClassicScraps += amountOfScraps;
     }
 
     public void RemoveClassicScraps(int amountOfScrabs)
     {
-        _classicScraps -= amountOfScrabs;
+        ClassicScraps -= amountOfScrabs;
     }
 
     public List<int>[] ScrapInventory
@@ -71,6 +69,19 @@ public class PlayerScrapInventory : MonoBehaviour
         get
         {
             return _scrapInventory;
+        }
+    }
+
+    public int ClassicScraps
+    {
+        get
+        {
+            return _classicScraps;
+        }
+
+        set
+        {
+            _classicScraps = value;
         }
     }
 

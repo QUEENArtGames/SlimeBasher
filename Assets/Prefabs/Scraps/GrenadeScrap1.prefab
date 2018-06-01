@@ -9,76 +9,76 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1771094818862342}
+  m_RootGameObject: {fileID: 1403633355510592}
   m_IsPrefabParent: 1
---- !u!1 &1037736958784894
+--- !u!1 &1403633355510592
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4504578395153492}
-  - component: {fileID: 33225066222722758}
-  - component: {fileID: 23268397327258558}
+  - component: {fileID: 4273178180072700}
+  - component: {fileID: 114804636359593808}
+  - component: {fileID: 54160887440487878}
+  - component: {fileID: 135723935178866602}
   m_Layer: 9
-  m_Name: MeleeScrap
+  m_Name: GrenadeScrap1
   m_TagString: Scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1771094818862342
+--- !u!1 &1926022584437598
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4327490479843980}
-  - component: {fileID: 114358667491882764}
-  - component: {fileID: 54342364992397696}
-  - component: {fileID: 136319600770762186}
-  m_Layer: 9
-  m_Name: MeleeScrap2
-  m_TagString: Scrap
+  - component: {fileID: 4970182352920964}
+  - component: {fileID: 33006930286240286}
+  - component: {fileID: 23759152561226942}
+  m_Layer: 0
+  m_Name: TidePod
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4327490479843980
+--- !u!4 &4273178180072700
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1771094818862342}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 0.2}
-  m_Children:
-  - {fileID: 4504578395153492}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4504578395153492
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1037736958784894}
+  m_GameObject: {fileID: 1403633355510592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4327490479843980}
+  m_Children:
+  - {fileID: 4970182352920964}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23268397327258558
+--- !u!4 &4970182352920964
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1926022584437598}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children: []
+  m_Father: {fileID: 4273178180072700}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!23 &23759152561226942
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1037736958784894}
+  m_GameObject: {fileID: 1926022584437598}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,7 +87,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bd3f7c4db3a9b974b9eb772e48a79b2c, type: 2}
+  - {fileID: 2100000, guid: ffb8a2642dfd9d444a3c4764f0dd09be, type: 2}
+  - {fileID: 2100000, guid: f37381c69c133a34fbaa6434bb0f2922, type: 2}
+  - {fileID: 2100000, guid: 1a693a1012796ac4baf9176ed5763873, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +97,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -107,19 +109,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33225066222722758
+--- !u!33 &33006930286240286
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1037736958784894}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54342364992397696
+  m_GameObject: {fileID: 1926022584437598}
+  m_Mesh: {fileID: 4300000, guid: f579692e971c935408d472c30f1eb82c, type: 3}
+--- !u!54 &54160887440487878
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1771094818862342}
+  m_GameObject: {fileID: 1403633355510592}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -129,31 +131,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114358667491882764
+--- !u!114 &114804636359593808
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1771094818862342}
+  m_GameObject: {fileID: 1403633355510592}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b3c0a7857f1b5d41bfb2a506f7f2a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrapType: 0
-  SubCategoryIndex: 1
-  _collected: 1
-  _inPosition: 1
---- !u!136 &136319600770762186
-CapsuleCollider:
+  ScrapType: 2
+  SubCategoryIndex: 0
+  TowerAttachementPivot: {fileID: 4273178180072700}
+--- !u!135 &135723935178866602
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1771094818862342}
+  m_GameObject: {fileID: 1403633355510592}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 0.07
   m_Center: {x: 0, y: 0, z: 0}

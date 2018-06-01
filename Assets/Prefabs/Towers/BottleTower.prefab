@@ -3273,9 +3273,10 @@ MonoBehaviour:
   - {fileID: 4951925034473584}
   - {fileID: 4269272116309652}
   ScrapThrowFactor: 5
-  NeededMeeleScrabs: 0
-  NeededBottleScrabs: 1
-  NeededGrenadeScrabs: 0
+  NeedsMeeleScraps: 0
+  NeedsBottleScraps: 1
+  NeedsGrenadeScraps: 0
+  NeededClassicScraps: 0
 --- !u!136 &136173954162872132
 CapsuleCollider:
   m_ObjectHideFlags: 1

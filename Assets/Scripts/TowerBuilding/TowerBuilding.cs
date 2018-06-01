@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -21,27 +22,25 @@ public class TowerBuilding : MonoBehaviour
         GameObject scrapObject = towermanagement.AddNeededScrap(_playerScraps);
         scrapObject.SetActive(false);
         selectedTower.GetComponentInChildren<TowerAnimationEvent>().NewScrap = scrapObject;
-        FindObjectOfType<TowerBuilding>().RemoveRessourcesFromInventory(towermanagement);
+        RemoveAnyNeededScrapFromInventory(towermanagement);
        
     }
 
-    public void UpgradeWithAnyScrap(GameObject selectedTower)
+    public void UpgradeWithAnyScrap(TowerRessourceManagement towermanagement)
     {
-        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
         if (!CheckForRessources(_playerScraps, towermanagement))
             return;
 
         if (towermanagement.ScrapSlotsOnTowerAreFree())
         {
             towermanagement.AddNeededScrap(_playerScraps);
-            RemoveAnyScrapFromInventory(towermanagement);
+            RemoveAnyNeededScrapFromInventory(towermanagement);
         }
     }
 
-    public void UpgradeWithScrap(GameObject selectedTower, int scrapType, int subtypeIndex)
+    public void UpgradeWithScrap(TowerRessourceManagement towermanagement, int scrapType, int subtypeIndex)
     {
-        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.ScrapSlotsOnTowerAreFree() && _playerInventory.SubTypeIsInInventory((int)scrapType, subtypeIndex))
+        if (towermanagement.ScrapSlotsOnTowerAreFree() && _playerInventory.SubTypeIsInInventory(scrapType, subtypeIndex))
         {
             towermanagement.AddNeededScrapOfCertainSubTypeIndex(_playerScraps, subtypeIndex);
             _playerInventory.RemoveScrapBySubTypeIndex(scrapType, subtypeIndex);
@@ -54,27 +53,26 @@ public class TowerBuilding : MonoBehaviour
         return CheckForRessources(_playerScraps, towermanagement);
     }
 
-    public void RemoveRessourcesFromInventory(TowerRessourceManagement towermanagement)
+    private void RemoveAnyNeededScrapFromInventory(TowerRessourceManagement towermanagement)
     {
-        _playerInventory.RemoveAnyScraps((int) ScrapType.MELEE, towermanagement.NeededMeeleScrabs);
-        _playerInventory.RemoveAnyScraps((int) ScrapType.BOTTLE, towermanagement.NeededBottleScrabs);
-        _playerInventory.RemoveAnyScraps((int) ScrapType.GRENADE, towermanagement.NeededGrenadeScrabs);
-    }
-
-    private void RemoveAnyScrapFromInventory(TowerRessourceManagement towermanagement)
-    {
-        if (towermanagement.NeededMeeleScrabs > 0)
-            _playerInventory.RemoveAnyScraps((int) ScrapType.MELEE, 1);
-        if (towermanagement.NeededBottleScrabs > 0)
-            _playerInventory.RemoveAnyScraps((int) ScrapType.BOTTLE, 1);
-        if (towermanagement.NeededGrenadeScrabs > 0)
-            _playerInventory.RemoveAnyScraps((int) ScrapType.GRENADE, 1);
+        for (int scrapTypeIndex = 0; scrapTypeIndex < towermanagement.NeededScraps.Length; scrapTypeIndex++)
+        {
+            if (towermanagement.NeededScraps[scrapTypeIndex])
+                _playerInventory.RemoveAnyScrap(scrapTypeIndex);
+            }
     }
 
     internal bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
     {
-        return inventory[(int) ScrapType.MELEE].Count >= towermanagement.NeededMeeleScrabs &&
-               inventory[(int) ScrapType.BOTTLE].Count >= towermanagement.NeededBottleScrabs &&
-               inventory[(int) ScrapType.GRENADE].Count >= towermanagement.NeededGrenadeScrabs;
+        return HasEnoughSpecialScraps(inventory, towermanagement) &&
+               _playerInventory.ClassicScraps >= towermanagement.NeededClassicScraps;
+    }
+
+    private bool HasEnoughSpecialScraps(List<int>[] inventory, TowerRessourceManagement towermanagement)
+    {
+        return (inventory[(int)ScrapType.MELEE].Count >= 1 && towermanagement.NeedsMeeleScraps) ||
+               (inventory[(int)ScrapType.BOTTLE].Count >= 1 && towermanagement.NeedsBottleScraps) ||
+               (inventory[(int)ScrapType.GRENADE].Count >= 1 && towermanagement.NeedsGrenadeScraps);
+     
     }
 }

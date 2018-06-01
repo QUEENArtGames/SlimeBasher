@@ -44,7 +44,13 @@ public class SlimeRessourceManagement : MonoBehaviour
     }
 
     //TESTEREI
-    private void OnCollisionEnter(Collision other)
+    /*private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
+    }*/
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
             CollectRessource(other.transform.gameObject);
@@ -84,7 +90,7 @@ public class SlimeRessourceManagement : MonoBehaviour
             if (Random.Range(0.0f, 100.0f) <= FindObjectOfType<RessourceManagement>().ScrapSpawnProbabilityOnSlimesInPercent)
             {
                 Vector3 ressourcePosition = ScrapSlots[i].position;
-                _attachedScraps.Add(Instantiate(_ressourceManagement.GetRandomScrapFromPool(), ressourcePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f)));
+                _attachedScraps.Add(Instantiate(_ressourceManagement.GetRandomScrapFromPool(), ressourcePosition, new Quaternion(Random.Range(0.0f, 180f), 0.0f, Random.Range(0.0f, 180.0f), Random.Range(0.0f, 180.0f))));
             }
         }
     }

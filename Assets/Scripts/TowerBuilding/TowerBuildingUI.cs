@@ -5,14 +5,15 @@ using UnityEngine.UI;
 public class TowerBuildingUI : MonoBehaviour
 {
     public GameObject UpgradeText;
+    public GameObject KillText;
     public GameObject UpgradeButtonPrefab;
     public GameObject ButtonPanel;
     public Transform[] ButtonTransforms;
-    //public GameObject UpgradeMenu;
 
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
     private GameObject _selectedTower;
+    private RessourceManagement _ressourceManagement;
 
     public GameObject SelectedTower
     {
@@ -24,13 +25,43 @@ public class TowerBuildingUI : MonoBehaviour
 
     public void ShowTowerUpgraeNotification()
     {
-
-            UpgradeText.SetActive(true);
+        UpgradeText.SetActive(true);
     }
 
     public void CloseTowerUpgradeNotification()
     {
         UpgradeText.SetActive(false);
+    }
+
+
+    public void ShowTowerKillNotification()
+    {
+        KillText.SetActive(true);
+    }
+
+    public void CloseTowerKillNotification()
+    {
+        KillText.SetActive(false);
+    }
+
+
+    public void OpenTowerBuildingMenu(GameObject selectedTower)
+    {
+        _selectedTower = selectedTower;
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        if (towermanagement.NeedsBottleScraps)
+            InstantiateButtonForEachSubPrefab(ScrapType.BOTTLE);
+        if (towermanagement.NeedsGrenadeScraps)
+            InstantiateButtonForEachSubPrefab(ScrapType.GRENADE);
+        if (towermanagement.NeedsMeeleScraps)
+            InstantiateButtonForEachSubPrefab(ScrapType.MELEE);
+
+        Time.timeScale = 0.0f;
+    }
+
+    public void CloseTowerBuildingMenu()
+    {
+        DestoryAllMenuElements();
     }
 
     private void DestoryAllMenuElements()
@@ -42,47 +73,27 @@ public class TowerBuildingUI : MonoBehaviour
         ButtonPanel.SetActive(false);
     }
 
-    public void OpenTowerBuildingMenu(GameObject selectedTower)
-    {
-        _selectedTower = selectedTower;
-        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.NeededBottleScrabs > 0 && towermanagement.ScrapSlotsOnTowerAreFree())
-            InstantiateButtonForEachSubPrefab(ScrapType.BOTTLE);
-        if (towermanagement.NeededGrenadeScrabs > 0)
-            InstantiateButtonForEachSubPrefab(ScrapType.GRENADE);
-        if (towermanagement.NeededMeeleScrabs > 0)
-            InstantiateButtonForEachSubPrefab(ScrapType.MELEE);
-    }
-
-    public void CloseTowerBuildingMenu()
-    {
-        DestoryAllMenuElements();
-    }
-
     private void InstantiateButtonForEachSubPrefab(ScrapType scraptype)
     {
-        Time.timeScale = 0.0f;
         ButtonPanel.SetActive(true);
-        GameObject[] possiblePrefabsOfScrapType = FindObjectOfType<RessourceManagement>().PossiblePrefabs[(int)scraptype];
 
-        for (int subTypeIndex = 0; subTypeIndex < possiblePrefabsOfScrapType.Length; subTypeIndex++)
+        for (int subTypeIndex = 0; subTypeIndex < _ressourceManagement.PossiblePrefabs[(int)scraptype].Length; subTypeIndex++)
         {
-            
             GameObject button = Instantiate(UpgradeButtonPrefab, ButtonTransforms[subTypeIndex]);
+            ScrapButton scrapButton = button.GetComponent<ScrapButton>();
             button.GetComponentInChildren<Text>().text = scraptype + " " + subTypeIndex;
-            button.GetComponent<ScrapButton>().ScrapType = scraptype;
-            button.GetComponent<ScrapButton>().SubTypeIndex = subTypeIndex;
+            scrapButton.ScrapType = scraptype;
+            scrapButton.SubTypeIndex = subTypeIndex;
             _uibuttons.Add(button);
 
-            if (!FindObjectOfType<PlayerScrapInventory>().SubTypeIsInInventory((int) scraptype, subTypeIndex))
+            if (!_playerInventory.SubTypeIsInInventory((int) scraptype, subTypeIndex))
                 button.GetComponent<Button>().interactable = false;
-
-        }
-       
+        } 
     }
 
     private void Awake()
     {
+        _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
         _uibuttons = new List<GameObject>();
     }
