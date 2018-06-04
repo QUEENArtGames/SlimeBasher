@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 136173954162872132}
   - component: {fileID: 54151073246602590}
   m_Layer: 0
-  m_Name: BottleTower
+  m_Name: WaterTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3246,6 +3246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hitpoints: 100
+  destructiveForceMin: 2
+  destructiveForceMax: 4
+  _parts: []
 --- !u!114 &114435576323450784
 MonoBehaviour:
   m_ObjectHideFlags: 1

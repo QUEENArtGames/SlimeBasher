@@ -10,6 +10,7 @@ public class TowerRessourceManagement : MonoBehaviour
     public bool NeedsMeeleScraps;
     public bool NeedsBottleScraps;
     public bool NeedsGrenadeScraps;
+    public bool NeedsPustefixScraps;
     public int NeededClassicScraps;
 
     private List<GameObject> _attachedScraps = new List<GameObject>();
@@ -45,7 +46,8 @@ public class TowerRessourceManagement : MonoBehaviour
         _neededScraps[(int)ScrapType.MELEE] = NeedsMeeleScraps;
         _neededScraps[(int)ScrapType.BOTTLE] = NeedsBottleScraps;
         _neededScraps[(int)ScrapType.GRENADE] = NeedsGrenadeScraps;
-        Debug.Log(NeededScraps.Length);
+        _neededScraps[(int)ScrapType.PUSTEFIX] = NeedsPustefixScraps;
+       
     }
 
     internal bool ScrapSlotsOnTowerAreFree()

@@ -327,9 +327,12 @@ MonoBehaviour:
   - {fileID: 1403633355510592, guid: b6c8fd8353978544e8ad8f7873b1172c, type: 2}
   BottlePrefabs:
   - {fileID: 1103263228983924, guid: 615a4921cce9ff9498dc77b642dfc707, type: 2}
+  PustefixPrefabs:
+  - {fileID: 1403633355510592, guid: ba88feb660763b04c88b3bd29959348a, type: 2}
   MeeleScrapAmountInPool: 10
   BottleScrapAmountInPool: 10
   GrenadeScrapAmountInPool: 10
+  PustefixScrapAmountInPool: 10
   ScrapSpawnProbabilityOnSlimesInPercent: 100
   PlayerScrapDropProbabilityInPercent: 100
   TowerScrapDropProbabilityInPercent: 100
@@ -492,7 +495,7 @@ MonoBehaviour:
   rotationSpeed: 100
   towers:
   - {fileID: 1244715612468778, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
-  - {fileID: 1029764236645716, guid: 7b6addc5b7e4f2e459d9ba9a0b0a552a, type: 2}
+  - {fileID: 1014481566120508, guid: 74eb5949a3a06ea4d8d3ea0ad65590f1, type: 2}
   - {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c, type: 2}
   maxDistance: 20
 --- !u!114 &114955259445765000
