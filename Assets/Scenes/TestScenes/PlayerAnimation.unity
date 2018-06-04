@@ -444,11 +444,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114924867017390638, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 1094416622}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
       propertyPath: spawnPoints.Array.data[0]
@@ -484,10 +479,11 @@ Prefab:
       propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[0].SpawnPoint
       value: 
       objectReference: {fileID: 593127353}
-    - target: {fileID: 1652069143357086, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114924867017390638, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1094416622}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
   m_IsPrefabParent: 0
