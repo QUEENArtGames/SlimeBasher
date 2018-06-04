@@ -56,12 +56,11 @@ public class TowerBuildingUI : MonoBehaviour
         EnableCursor();
         _selectedTower = selectedTower;
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.NeedsBottleScraps)
-            InstantiateButtonForEachSubPrefab(ScrapType.BOTTLE);
-        if (towermanagement.NeedsGrenadeScraps)
-            InstantiateButtonForEachSubPrefab(ScrapType.GRENADE);
-        if (towermanagement.NeedsMeeleScraps)
-            InstantiateButtonForEachSubPrefab(ScrapType.MELEE);
+        for(int scrapTypeIndex = 0; scrapTypeIndex < towermanagement.NeededScraps.Length; scrapTypeIndex++)
+        {
+            if (towermanagement.NeededScraps[scrapTypeIndex])
+                InstantiateButtonForEachSubPrefab((ScrapType)scrapTypeIndex);
+        }
 
         Time.timeScale = 0.0f;
     }
