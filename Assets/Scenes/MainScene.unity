@@ -605,6 +605,11 @@ Prefab:
       objectReference: {fileID: 272338291}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
+      propertyPath: phaseGUI
+      value: 
+      objectReference: {fileID: 718813322}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
       propertyPath: _phaseGUICountdown
       value: 
       objectReference: {fileID: 1497622203}
@@ -1286,16 +1291,6 @@ Prefab:
     - target: {fileID: 4992187995315736, guid: 56dd3cf29a5e58440b045aafd717ccca, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355765468476332, guid: 56dd3cf29a5e58440b045aafd717ccca,
-        type: 2}
-      propertyPath: jumpPower
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114355765468476332, guid: 56dd3cf29a5e58440b045aafd717ccca,
-        type: 2}
-      propertyPath: gravityMultiplier
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56dd3cf29a5e58440b045aafd717ccca, type: 2}
