@@ -40,7 +40,8 @@ namespace Assets.Scripts {
             
                 if(_eventCounter < _wave.Events.Length) {
                     actualEvent = _wave.Events.ElementAt(_eventCounter);
-                    //HandleEvent();
+                Debug.Log("NormalSlimes: "+ actualEvent._normalSlimes);
+                Debug.Log("HardSlimes: " + actualEvent._hardSlimes);
                     StartCoroutine("HandleEvent");
                     _eventCounter++;
                 }
@@ -52,9 +53,9 @@ namespace Assets.Scripts {
             for(int i=0; i< actualEvent._normalSlimes; i++) {
 
                 yield return new WaitForSeconds(2.5f);
-                _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
+                _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
                 _spawnCounter++;
-                _timerAllowed = true;
+                
             }
 
 
@@ -62,19 +63,21 @@ namespace Assets.Scripts {
             for(int i=0; i< actualEvent._hardSlimes; i++) {
 
                 yield return new WaitForSeconds(3.5f);
-                _Slimes.Add(Instantiate(_hardSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
-                
-            } /*
+                _Slimes.Add(Instantiate(_hardSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
+                _spawnCounter++;
+            }
+
+            /*
 
             for(int i=0; i< actualEvent._gasSlimes; i++) {
 
                 yield return new WaitForSeconds(4.5f);
-                _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, actualEvent.SpawnPoint.rotation));
+                _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
                 
             } */
 
-            
-            
+            _timerAllowed = true;
+
         }
 
         private void Update() {
@@ -102,9 +105,10 @@ namespace Assets.Scripts {
             //Einmal Spawnen EventCounter = 1 und Event Länge = 2 -> false
             //Zweimal Spawnen EventCounter = 2 und Event Länge = 2 -> true
             if(CheckIfSlimesAlive() && _eventCounter >= _wave.events.Length && _allEnemysSpawned) {
-                _game.GamePhase.MoveToNextGamePhase();
                 _eventCounter = 0;
                 _allEnemysSpawned = false;
+                _game.GamePhase.MoveToNextGamePhase();
+                
             }
 
             //Kontrolliere die Länge der Gegnerlisten
