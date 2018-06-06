@@ -89,11 +89,11 @@ MonoBehaviour:
     - events:
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 2
-        _hardSlimes: 0
+        _hardSlimes: 2
         _gasSlimes: 0
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 3
-        _hardSlimes: 0
+        _hardSlimes: 2
         _gasSlimes: 0
       delay: 2
     - events:
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _normalSlime: {fileID: 1739397658495034, guid: 21c708c1b0934a74ab10d6bd49cecfec,
     type: 2}
+  _hardSlime: {fileID: 1739397658495034, guid: 1c3c6e675a608f9469406e4698733b30, type: 2}
 --- !u!114 &114924867017390638
 MonoBehaviour:
   m_ObjectHideFlags: 1
