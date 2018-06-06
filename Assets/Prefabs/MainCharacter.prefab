@@ -508,6 +508,7 @@ GameObject:
   - component: {fileID: 114640837440421770}
   - component: {fileID: 114702210991139632}
   - component: {fileID: 114423961643282666}
+  - component: {fileID: 208265716266918588}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -2637,7 +2638,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383729843586146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -21.73}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4688765080648850}
@@ -2705,8 +2706,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
-  jumpPower: 3
-  gravityMultiplier: 2
+  jumpPower: 4
+  gravityMultiplier: 1
   runCycleLegOffset: 0.2
   moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1
@@ -3105,3 +3106,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.010867182, y: -0.5582973, z: 0.016516976}
     m_Extent: {x: 0.013376705, y: 0.01303339, z: 0.012316227}
   m_DirtyAABB: 0
+--- !u!208 &208265716266918588
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383729843586146}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

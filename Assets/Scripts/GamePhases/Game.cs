@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -19,6 +20,8 @@ namespace Assets.Scripts
         public bool fightPhaseEnd = false;
         public WaveProvider waveProvider;
         public Transform FinalDestination;
+        public GameObject phaseGUI;
+        public GameObject _phaseGUICountdown;
 
         internal static Game Instance {
             get {
@@ -48,7 +51,7 @@ namespace Assets.Scripts
                     Debug.Log("Runde: " + _waveRoundNumber);
                     Debug.Log("BUILDING");
                     _readyButtonEnabled = true;
-
+                    phaseGUI.SetActive(false);
                     break;
                 case Phase.Prepare:
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
@@ -80,10 +83,9 @@ namespace Assets.Scripts
         }
 
         private void ShowWaveEndGUI() {
-            Debug.Log("Round Complete");
+            phaseGUI.SetActive(true);
             enemyManagement.enabled = false;
         }
-
         
 
         void StartNextRoundCounter() {
@@ -122,7 +124,7 @@ namespace Assets.Scripts
 
             if (_startTimer) {
                 _countdown += Time.deltaTime;
-                Debug.Log(_nextPhaseTimer - (int)_countdown);
+                _phaseGUICountdown.GetComponent<Text>().text = _nextPhaseTimer - (int)_countdown + "";
             }
 
             if (_countdown > _nextPhaseTimer) {
