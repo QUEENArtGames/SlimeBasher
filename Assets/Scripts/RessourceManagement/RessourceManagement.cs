@@ -7,10 +7,12 @@ public class RessourceManagement : MonoBehaviour
     public GameObject[] MeelePrefabs;
     public GameObject[] GrenadePrefabs;
     public GameObject[] BottlePrefabs;
+    public GameObject[] PustefixPrefabs;
 
     public int MeeleScrapAmountInPool = 10;
     public int BottleScrapAmountInPool = 10;
     public int GrenadeScrapAmountInPool = 10;
+    public int PustefixScrapAmountInPool = 10;
     public float ScrapSpawnProbabilityOnSlimesInPercent = 100.0f;
     public float PlayerScrapDropProbabilityInPercent = 100.0f;
     public float TowerScrapDropProbabilityInPercent = 100.0f;
@@ -49,6 +51,7 @@ public class RessourceManagement : MonoBehaviour
         PossiblePrefabs[(int)ScrapType.MELEE] = MeelePrefabs;
         PossiblePrefabs[(int)ScrapType.BOTTLE] = BottlePrefabs;
         PossiblePrefabs[(int)ScrapType.GRENADE] = GrenadePrefabs;
+        PossiblePrefabs[(int)ScrapType.PUSTEFIX] = PustefixPrefabs;
         PrepareScrapPools();
     }
 
@@ -57,6 +60,7 @@ public class RessourceManagement : MonoBehaviour
         FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);
         FillPossiblePrefabs(ScrapType.BOTTLE, BottleScrapAmountInPool, BottlePrefabs);
         FillPossiblePrefabs(ScrapType.GRENADE, GrenadeScrapAmountInPool, GrenadePrefabs);
+        FillPossiblePrefabs(ScrapType.PUSTEFIX, PustefixScrapAmountInPool, PustefixPrefabs);
     }
 
     private void FillPossiblePrefabs(ScrapType scrapType, int amountOfScrapsInPool, GameObject[] possiblePrefabs)
