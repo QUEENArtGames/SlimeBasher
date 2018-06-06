@@ -72,7 +72,8 @@ public class TowerBuilding : MonoBehaviour
     {
         return (inventory[(int)ScrapType.MELEE].Count >= 1 && towermanagement.NeedsMeeleScraps) ||
                (inventory[(int)ScrapType.BOTTLE].Count >= 1 && towermanagement.NeedsBottleScraps) ||
-               (inventory[(int)ScrapType.GRENADE].Count >= 1 && towermanagement.NeedsGrenadeScraps);
+               (inventory[(int)ScrapType.GRENADE].Count >= 1 && towermanagement.NeedsGrenadeScraps) ||
+               (inventory[(int)ScrapType.PUSTEFIX].Count >= 1 && towermanagement.NeedsPustefixScraps);
      
     }
 }

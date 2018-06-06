@@ -23,6 +23,7 @@ public class SlimeRessourceManagement : MonoBehaviour
     {
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _attachedScraps = new List<GameObject>();
+        InstanstiateScrapsOnSelf();
         //Physics.IgnoreLayerCollision(8, 9);
         
     }
