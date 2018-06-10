@@ -22,6 +22,7 @@ namespace Assets.Scripts
         public Transform FinalDestination;
         public GameObject phaseGUI;
         public GameObject _phaseGUICountdown;
+        public GameObject _waveRoundText;
 
         internal static Game Instance {
             get {
@@ -49,6 +50,7 @@ namespace Assets.Scripts
                 case Phase.Building:
                     //Player kann sachen bauen
                     Debug.Log("Runde: " + _waveRoundNumber);
+                    _waveRoundText.GetComponent<Text>().text = "Round: " + _waveRoundNumber;
                     Debug.Log("BUILDING");
                     _readyButtonEnabled = true;
                     phaseGUI.SetActive(false);
