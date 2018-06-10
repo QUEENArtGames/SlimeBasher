@@ -11,6 +11,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
     {
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
+        
     }
 
     public void CollectScrap(GameObject scrapObject)
@@ -21,6 +22,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
             ScrapType scraptype = scrap.Type;
             Destroy(scrapObject);
             _scrapInventory.AddScrap(scraptype, scrap.SubCategoryIndex);
+            
         }
     }
 

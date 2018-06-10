@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 222741792983037582}
   - component: {fileID: 114897445349021072}
   m_Layer: 0
-  m_Name: AirScrapImage
+  m_Name: ClassicScrapsImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,6 +66,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224910543858391652}
+  - component: {fileID: 114362580267580782}
   m_Layer: 0
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -84,7 +85,7 @@ GameObject:
   - component: {fileID: 222312224714710002}
   - component: {fileID: 114571538723067154}
   m_Layer: 0
-  m_Name: AirScrapImage
+  m_Name: BassScrapsImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +102,7 @@ GameObject:
   - component: {fileID: 222461895129294642}
   - component: {fileID: 114309272859625778}
   m_Layer: 0
-  m_Name: AirScrapsText
+  m_Name: BassScrapsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +134,7 @@ GameObject:
   - component: {fileID: 222024202179897854}
   - component: {fileID: 114066598659660542}
   m_Layer: 0
-  m_Name: AirScrapsText
+  m_Name: WoodScrapsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +183,7 @@ GameObject:
   - component: {fileID: 222287855832519590}
   - component: {fileID: 114113770113368474}
   m_Layer: 0
-  m_Name: AirScrapImage
+  m_Name: WoodScrapsImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +200,7 @@ GameObject:
   - component: {fileID: 222387175277207004}
   - component: {fileID: 114894135789049258}
   m_Layer: 0
-  m_Name: AirScrapsText
+  m_Name: ClassicScrapsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +217,7 @@ GameObject:
   - component: {fileID: 222938191120908212}
   - component: {fileID: 114254232933133390}
   m_Layer: 0
-  m_Name: AirScrapsText
+  m_Name: WaterScrapsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +234,7 @@ GameObject:
   - component: {fileID: 222722943217210416}
   - component: {fileID: 114789003798313108}
   m_Layer: 0
-  m_Name: AirScrapImage
+  m_Name: WaterScrapsImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,7 +341,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 14e7a61831f74584b84b4f67978b7593, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b4340e0b22b1b4468914fbbd557fe78, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -478,6 +479,22 @@ MonoBehaviour:
   m_Text: '0
 
 '
+--- !u!114 &114362580267580782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317962793157094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85be7d2553780f4448fd098dd4930b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeeleScrapText: {fileID: 114066598659660542}
+  WaterScrapText: {fileID: 114254232933133390}
+  GrenadeScrapText: {fileID: 114309272859625778}
+  AirScrapText: {fileID: 114306418308495902}
+  ClassicScrapText: {fileID: 114894135789049258}
 --- !u!114 &114571538723067154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -497,7 +514,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 14e7a61831f74584b84b4f67978b7593, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f37eaf1ae5b4b54b920751c2c63e229, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -524,8 +541,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 14e7a61831f74584b84b4f67978b7593, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: ea5873cfd9158664f89459f0c9e1d853, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -613,8 +630,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 14e7a61831f74584b84b4f67978b7593, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: ea5873cfd9158664f89459f0c9e1d853, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

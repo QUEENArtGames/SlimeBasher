@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class PlayerScrapInventory : MonoBehaviour
 {
+    private InventoryUI _inventoryUI;
     private List<int>[] _scrapInventory = new List<int>[Enum.GetNames(typeof(ScrapType)).Length];
     private int _classicScraps = 0;
 
     void Awake()
     {
+        _inventoryUI = FindObjectOfType<InventoryUI>();
         for (int i = 0; i < Enum.GetNames(typeof(ScrapType)).Length; i++)
         {
             _scrapInventory[i] = new List<int>();
@@ -29,11 +31,13 @@ public class PlayerScrapInventory : MonoBehaviour
     public void AddScrap(ScrapType scrapType, int meshIndex)
     {
         _scrapInventory[(int) scrapType].Add(meshIndex);
+        _inventoryUI.InventoryWasRecentlyChanged();
     }
 
     public void RemoveScrap(int scrapType, int index)
     {
         _scrapInventory[scrapType].RemoveAt(index);
+        _inventoryUI.InventoryWasRecentlyChanged();
     }
 
     public void RemoveScrapBySubTypeIndex(int scrapType, int subtypeIndex)
@@ -43,6 +47,7 @@ public class PlayerScrapInventory : MonoBehaviour
             if (subtypeIndex == scrap)
             {
                 _scrapInventory[scrapType].Remove(subtypeIndex);
+                _inventoryUI.InventoryWasRecentlyChanged();
                 return;
             }
         }
@@ -51,7 +56,8 @@ public class PlayerScrapInventory : MonoBehaviour
 
     public void RemoveAnyScrap(int scrapType)
     {
-            _scrapInventory[scrapType].RemoveAt(0);
+        _scrapInventory[scrapType].RemoveAt(0);
+        _inventoryUI.InventoryWasRecentlyChanged();
     }
 
     public void AddClassicScraps(int amountOfScraps)
