@@ -342,7 +342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 17.01
+      value: 10.27
       objectReference: {fileID: 0}
     - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -653,6 +653,153 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &559576551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 559576554}
+  - component: {fileID: 559576553}
+  - component: {fileID: 559576552}
+  m_Layer: 0
+  m_Name: TowerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &559576552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559576551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be74a71d43d67476ca64b56a9f4e26b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towers:
+  - {fileID: 841890858}
+--- !u!114 &559576553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559576551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321c3075cee554881a4fbfed4ff812f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towers: []
+--- !u!4 &559576554
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559576551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.641149, y: 2.86, z: 9.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &768513395
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 9.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731533211697084, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745180285221364, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 208320373069372592, guid: bacd7c5e48aac48a488948d2e926c3e5,
+        type: 2}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 208320373069372592, guid: bacd7c5e48aac48a488948d2e926c3e5,
+        type: 2}
+      propertyPath: m_Extents.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 208320373069372592, guid: bacd7c5e48aac48a488948d2e926c3e5,
+        type: 2}
+      propertyPath: m_Extents.z
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745180285221364, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_Name
+      value: TestTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745180285221364, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 208320373069372592, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+    - {fileID: 114536900983706080, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: bacd7c5e48aac48a488948d2e926c3e5, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &841890858 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1745180285221364, guid: bacd7c5e48aac48a488948d2e926c3e5,
+    type: 2}
+  m_PrefabInternal: {fileID: 768513395}
+--- !u!114 &841890859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 841890858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: 100
 --- !u!1 &1394955824 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1623671868717280, guid: 7d00d706460574d0c95c580ad378bf63,
@@ -670,8 +817,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 100
-  _damage: 1
+  _damage: 10
+  _attackSpeed: 1
   _targetLocation: {fileID: 3955987}
+  _aggroRange: 4
+  towerManagerTestScript: {fileID: 559576552}
 --- !u!195 &1394955826
 NavMeshAgent:
   m_ObjectHideFlags: 0
