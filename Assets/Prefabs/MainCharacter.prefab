@@ -2737,6 +2737,8 @@ MonoBehaviour:
   _playerHealth: 100
   _healtSlider: {fileID: 0}
   _endUI: {fileID: 0}
+  _moveCharacterTimer: 15
+  _playerSpawnPoint: {fileID: 0}
   MaxDistanceToTower: 2
 --- !u!114 &114702210991139632
 MonoBehaviour:

@@ -14,6 +14,9 @@ public class PlayerDummy : MonoBehaviour {
     public int _playerHealth = 100;
     public GameObject _healtSlider;
     public GameObject _endUI;
+    public float _moveCharacterTimer = 15f;
+    private float _timer;
+    public Transform _playerSpawnPoint;
 
     private bool _isInDefaultMode = true;
 
@@ -52,9 +55,17 @@ public class PlayerDummy : MonoBehaviour {
         _healtSlider.GetComponent<Slider>().value = PlayerHealth;
 
         if (PlayerHealth <= 0) {
-            Destroy(this.gameObject);
-            Time.timeScale = 0;
             _endUI.SetActive(true);
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            _timer += Time.deltaTime;
+        }
+
+        if(_timer >= _moveCharacterTimer) {
+            gameObject.transform.position = _playerSpawnPoint.position;
+            _endUI.SetActive(false);
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            _playerHealth = 100;
+            _timer = 0f;
         }
             
 
