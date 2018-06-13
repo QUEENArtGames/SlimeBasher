@@ -2,31 +2,72 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class TowerBuildingUI : MonoBehaviour
 {
-    public GameObject upgradeText;
-    public GameObject upgradeButtonPrefab;
-    public GameObject buttonPanel;
-    public GameObject upgradeMenu;
+    public GameObject UpgradeText;
+    public GameObject KillText;
+    public GameObject UpgradeButtonPrefab;
+    public GameObject ButtonPanel;
+    public Transform[] ButtonTransforms;
 
     private List<GameObject> _uibuttons;
     private PlayerScrapInventory _playerInventory;
-    private List<int>[] _playerScraps;
+    private GameObject _selectedTower;
+    private RessourceManagement _ressourceManagement;
 
-
-    ///
-    internal void ShowTowerUpgraeNotification()
+    public GameObject SelectedTower
     {
-        upgradeText.SetActive(true);
-        Debug.Log("Upgrade Menu geöffnet");
+        get
+        {
+            return _selectedTower;
+        }
     }
 
-    ///
-    internal void CloseTowerUpgradeNotification()
+    public void ShowTowerUpgraeNotification()
     {
-        upgradeText.SetActive(false);
-        Debug.Log("Upgrade Menu geschlossen");
+        UpgradeText.SetActive(true);
+    }
+
+    public void CloseTowerUpgradeNotification()
+    {
+        UpgradeText.SetActive(false);
+    }
+
+
+    public void ShowTowerKillNotification()
+    {
+        KillText.SetActive(true);
+    }
+
+    public void CloseTowerKillNotification()
+    {
+        KillText.SetActive(false);
+    }
+
+    private void EnableCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+
+    public void OpenTowerBuildingMenu(GameObject selectedTower)
+    {
+        EnableCursor();
+        _selectedTower = selectedTower;
+        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
+        for(int scrapTypeIndex = 0; scrapTypeIndex < towermanagement.NeededScraps.Length; scrapTypeIndex++)
+        {
+            if (towermanagement.NeededScraps[scrapTypeIndex])
+                InstantiateButtonForEachSubPrefab((ScrapType)scrapTypeIndex);
+        }
+
+        Time.timeScale = 0.0f;
+    }
+
+    public void CloseTowerBuildingMenu()
+    {
+        DestoryAllMenuElements();
     }
 
     private void DestoryAllMenuElements()
@@ -35,45 +76,31 @@ public class TowerBuildingUI : MonoBehaviour
             Destroy(button);
 
         Time.timeScale = 1.0f;
-        buttonPanel.SetActive(false);
+        ButtonPanel.SetActive(false);
     }
 
-    internal void OpenTowerBuildingMenu(GameObject selectedTower)
+    private void InstantiateButtonForEachSubPrefab(ScrapType scraptype)
     {
-        TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        if (towermanagement.NeededBottleScrabs > 0 && towermanagement.UpgradePossible())
-            InstantiateButtonsForAllScraps(ScrapType.BOTTLE, selectedTower);
-        if (towermanagement.NeededGrenadeScrabs > 0)
-            InstantiateButtonsForAllScraps(ScrapType.GRENADE, selectedTower);
-        if (towermanagement.NeededMeeleScrabs > 0)
-            InstantiateButtonsForAllScraps(ScrapType.MELEE, selectedTower);
-    }
+        ButtonPanel.SetActive(true);
 
-    internal void CloseTowerBuildingMenu()
-    {
-        DestoryAllMenuElements();
-    }
-
-    private void InstantiateButtonsForAllScraps(ScrapType scraptype, GameObject selectedTower)
-    {
-        Time.timeScale = 0.0f;
-        buttonPanel.SetActive(true);
-        int buttonheight = 10;
-        int menuheight = 20;
-        for (int meshindex = 0; meshindex < _playerScraps[(int) scraptype].Count; meshindex++)
+        for (int subTypeIndex = 0; subTypeIndex < _ressourceManagement.PossiblePrefabs[(int)scraptype].Length; subTypeIndex++)
         {
-            GameObject button = Instantiate(upgradeButtonPrefab, buttonPanel.transform);
-            button.GetComponentInChildren<Text>().text = scraptype + " " + _playerScraps[(int) scraptype][meshindex];
-            button.GetComponent<ScrapButton>().ScrapType = scraptype;
-            button.GetComponent<ScrapButton>().Meshindex = (int) _playerScraps[(int) scraptype][meshindex];
+            GameObject button = Instantiate(UpgradeButtonPrefab, ButtonTransforms[subTypeIndex]);
+            ScrapButton scrapButton = button.GetComponent<ScrapButton>();
+            button.GetComponentInChildren<Text>().text = scraptype + " " + subTypeIndex;
+            scrapButton.ScrapType = scraptype;
+            scrapButton.SubTypeIndex = subTypeIndex;
             _uibuttons.Add(button);
-        }
+
+            if (!_playerInventory.SubTypeIsInInventory((int) scraptype, subTypeIndex))
+                button.GetComponent<Button>().interactable = false;
+        } 
     }
 
     private void Awake()
     {
+        _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
-        _playerScraps = _playerInventory.ScrapInventory;
         _uibuttons = new List<GameObject>();
     }
 }

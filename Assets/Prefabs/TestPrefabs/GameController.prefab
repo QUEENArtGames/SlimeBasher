@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1987074410379128}
+  m_IsPrefabParent: 1
+--- !u!1 &1987074410379128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4655535515548208}
+  - component: {fileID: 114924867017390638}
+  - component: {fileID: 114525371782920988}
+  - component: {fileID: 114797267383346880}
+  - component: {fileID: 114288206192884810}
+  - component: {fileID: 114328511540532336}
+  - component: {fileID: 114923424035624480}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4655535515548208
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114288206192884810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0c2626e439ef24a9ccf1accca7b5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeText: {fileID: 0}
+  KillText: {fileID: 0}
+  UpgradeButtonPrefab: {fileID: 1252618393546424, guid: 62e2e0311eb94ca468b958871e04b527,
+    type: 2}
+  ButtonPanel: {fileID: 0}
+  ButtonTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114328511540532336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327b7669da29bb6468d2feeedd22cea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _nextPhaseTimer: 5
+  _pausemenu: {fileID: 0}
+  enemyManagement: {fileID: 114923424035624480}
+  fightPhaseEnd: 0
+  waveProvider:
+    Waves:
+    - events:
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 2
+        _gasSlimes: 0
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 3
+        _hardSlimes: 2
+        _gasSlimes: 0
+      delay: 2
+    - events:
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 0
+        _gasSlimes: 0
+      delay: 3
+    - events:
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 0
+        _gasSlimes: 0
+      delay: 4
+  FinalDestination: {fileID: 0}
+  phaseGUI: {fileID: 0}
+  _phaseGUICountdown: {fileID: 0}
+  _waveRoundText: {fileID: 0}
+--- !u!114 &114525371782920988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a583e7bc6020254f9d869db45308f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeelePrefabs:
+  - {fileID: 1452509037155608, guid: 595b29aa2876e00489280c60f7709e73, type: 2}
+  - {fileID: 1771094818862342, guid: 2be9c6e99e0d81940900a36dd0865a19, type: 2}
+  - {fileID: 1238256961391992, guid: 7f26ac2454adaa9409e301560250cf7a, type: 2}
+  GrenadePrefabs:
+  - {fileID: 1403633355510592, guid: b6c8fd8353978544e8ad8f7873b1172c, type: 2}
+  BottlePrefabs:
+  - {fileID: 1103263228983924, guid: 615a4921cce9ff9498dc77b642dfc707, type: 2}
+  PustefixPrefabs:
+  - {fileID: 1403633355510592, guid: ba88feb660763b04c88b3bd29959348a, type: 2}
+  MeeleScrapAmountInPool: 10
+  BottleScrapAmountInPool: 10
+  GrenadeScrapAmountInPool: 10
+  PustefixScrapAmountInPool: 10
+  ScrapSpawnProbabilityOnSlimesInPercent: 100
+  PlayerScrapDropProbabilityInPercent: 100
+  TowerScrapDropProbabilityInPercent: 100
+--- !u!114 &114797267383346880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d8dcd005be0ba43882e1c1c11f381d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114923424035624480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d5ad762e496274abe4ceeeae187222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalSlime: {fileID: 1739397658495034, guid: 21c708c1b0934a74ab10d6bd49cecfec,
+    type: 2}
+  _hardSlime: {fileID: 1739397658495034, guid: 1c3c6e675a608f9469406e4698733b30, type: 2}
+--- !u!114 &114924867017390638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987074410379128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b9e35a8103b4b469ec8ba7231c7add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
+  rotationSpeed: 100
+  towers:
+  - {fileID: 1244715612468778, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+  - {fileID: 1014481566120508, guid: 74eb5949a3a06ea4d8d3ea0ad65590f1, type: 2}
+  - {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c, type: 2}
+  maxDistance: 20
