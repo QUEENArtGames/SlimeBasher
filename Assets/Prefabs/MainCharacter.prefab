@@ -2734,6 +2734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6e341d270333740b4b1a63d77bc6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerHealth: 100
+  _healtSlider: {fileID: 0}
   MaxDistanceToTower: 2
 --- !u!114 &114702210991139632
 MonoBehaviour:
