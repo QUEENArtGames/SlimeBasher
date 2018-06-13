@@ -13,6 +13,7 @@ public class PlayerDummy : MonoBehaviour {
     private TowerBuildingUI _towerBuildingUI;
     public int _playerHealth = 100;
     public GameObject _healtSlider;
+    public GameObject _endUI;
 
     private bool _isInDefaultMode = true;
 
@@ -50,8 +51,12 @@ public class PlayerDummy : MonoBehaviour {
 
         _healtSlider.GetComponent<Slider>().value = PlayerHealth;
 
-        if (PlayerHealth <= 0)
+        if (PlayerHealth <= 0) {
             Destroy(this.gameObject);
+            Time.timeScale = 0;
+            _endUI.SetActive(true);
+        }
+            
 
         if (Input.GetKeyDown("o"))
             _playerScrapDropAndCollection.DropScraps();
