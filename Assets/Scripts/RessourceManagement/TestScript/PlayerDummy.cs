@@ -58,6 +58,7 @@ public class PlayerDummy : MonoBehaviour {
             _endUI.SetActive(true);
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             _timer += Time.deltaTime;
+            _playerScrapDropAndCollection.DropScraps();
         }
 
         if(_timer >= _moveCharacterTimer) {
@@ -108,7 +109,7 @@ public class PlayerDummy : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision other) {
-        if (other.transform.gameObject.CompareTag("Scrap"))
+        if (other.transform.gameObject.CompareTag("Scrap") && _playerHealth > 0)
             _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
     }
     
