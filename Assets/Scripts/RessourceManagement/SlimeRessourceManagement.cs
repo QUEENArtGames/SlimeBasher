@@ -37,7 +37,7 @@ public class SlimeRessourceManagement : MonoBehaviour
         }
            
         if (Input.GetKeyDown("p"))
-            GetComponent<EnemyDummy>().Hitpoints = 0;
+			GetComponent<SlimeScript>()._hitpoints = 0;
         
         //ChildObjekt angucken für bessere Lösung?
         if (_attachedScraps.Count > 0)

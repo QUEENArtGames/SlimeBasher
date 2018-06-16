@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 208404654028550966}
   - component: {fileID: 136173954162872132}
   - component: {fileID: 54151073246602590}
+  - component: {fileID: 114437824058764684}
   m_Layer: 0
   m_Name: WaterTower
   m_TagString: Untagged
@@ -841,7 +842,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155226033767606}
-  m_LocalRotation: {x: 0.43902922, y: -0.5848497, z: -0.42122233, w: 0.5364474}
+  m_LocalRotation: {x: 0.43902925, y: -0.5848498, z: -0.42122236, w: 0.53644747}
   m_LocalPosition: {x: -0.09052878, y: 0.8996582, z: 1.1652379}
   m_LocalScale: {x: 24.5212, y: 4.1897707, z: 28.108307}
   m_Children: []
@@ -1166,7 +1167,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1325690005824874}
-  m_LocalRotation: {x: -0.5834013, y: 0.75989807, z: -0.17267792, w: 0.2288669}
+  m_LocalRotation: {x: -0.5834014, y: 0.7598981, z: -0.17267793, w: 0.22886692}
   m_LocalPosition: {x: -0.9398151, y: 1.0825084, z: -0.45763874}
   m_LocalScale: {x: 24.278603, y: 3.8458984, z: 24.574612}
   m_Children: []
@@ -1218,7 +1219,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1173713948620334}
-  m_LocalRotation: {x: -0.40511277, y: 0.32099226, z: -0.28016418, w: 0.80892247}
+  m_LocalRotation: {x: -0.4051128, y: 0.3209923, z: -0.2801642, w: 0.8089225}
   m_LocalPosition: {x: 0.7433257, y: 1.4650663, z: 0.79782325}
   m_LocalScale: {x: 100.00002, y: 100.000015, z: 100.000015}
   m_Children: []
@@ -1244,7 +1245,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712121998138018}
-  m_LocalRotation: {x: -0.40511277, y: 0.32099226, z: -0.28016418, w: 0.80892247}
+  m_LocalRotation: {x: -0.4051128, y: 0.3209923, z: -0.2801642, w: 0.8089225}
   m_LocalPosition: {x: 0.9208198, y: 1.2703109, z: 0.7156845}
   m_LocalScale: {x: 100.00002, y: 100.000015, z: 100.000015}
   m_Children: []
@@ -3245,10 +3246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hitpoints: 100
-  destructiveForceMin: 2
-  destructiveForceMax: 4
-  _parts: []
+  _hp: 0
 --- !u!114 &114435576323450784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3260,6 +3258,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3843ba8efde79d542a0d8749b46ec5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114437824058764684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1244715612468778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bcc5c78108c4775b23409f43a52f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitpoints: 100
+  destructiveForceMin: 2
+  destructiveForceMax: 4
+  _parts: []
 --- !u!114 &114793999843362112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3279,6 +3292,7 @@ MonoBehaviour:
   NeedsMeeleScraps: 0
   NeedsBottleScraps: 1
   NeedsGrenadeScraps: 0
+  NeedsPustefixScraps: 0
   NeededClassicScraps: 0
 --- !u!136 &136173954162872132
 CapsuleCollider:

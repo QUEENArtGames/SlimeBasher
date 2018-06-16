@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+namespace Assets.Scripts{
+	
+
 public class SlimeScript : MonoBehaviour {
 
 
-	public float _hp;
+	public float _hitpoints;
 	public float _damage;
 	public float _attackSpeed;
-	public Transform _targetLocation;
+	private Transform _finalDestination;
 	public float _aggroRange;
+	private TowerPlacement _towerplacement;
 
-	public TowerManagerTestScript towerManagerTestScript;
+
 
 	private NavMeshAgent _navMeshAgent;
 	private GameObject _tmpTarget;
@@ -21,75 +25,76 @@ public class SlimeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+			_towerplacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
+			_finalDestination = FindObjectOfType<Game>().FinalDestination;
 
-		_navMeshAgent = GetComponent<NavMeshAgent> ();
-		_navMeshAgent.stoppingDistance = 2;
-		setTargetLocation ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		checkAggro ();
 
-		if (_tmpTarget != null) {
-			attackTower ();
+			_navMeshAgent = GetComponent<NavMeshAgent> ();
+			_navMeshAgent.stoppingDistance = 2;
+			SetTargetLocation ();
 		}
-	}
 		
+		// Update is called once per frame
+		void Update () {
 
-	public void checkAggro(){
-
-		float shortestDistance = _aggroRange+1;
-		bool newTarget = false;
-		foreach (GameObject tower in towerManagerTestScript.towers) {
-			float distance = Vector3.Distance (transform.position, tower.transform.position);
-			if (distance < _aggroRange) {
-
-				if(newTarget == false || distance < shortestDistance){
-					newTarget = true;
-					shortestDistance = distance;
-					_tmpTarget = tower;
-				}
+			checkAggro ();
+			if (_tmpTarget != null) {
+				AttackTower ();
 			}
 		}
+			
 
-		if (newTarget) {
-			_navMeshAgent.SetDestination (_tmpTarget.transform.position);
+		public void checkAggro(){
 
-		} else if(_tmpTarget != null){
-			_tmpTarget = null;
-			setTargetLocation ();
+			float shortestDistance = _aggroRange+1;
+			bool newTarget = false;
+			foreach (GameObject tower in _towerplacement._placedTowers) {
+				float distance = Vector3.Distance (transform.position, tower.transform.position);
+				if (distance < _aggroRange) {
+
+					if(newTarget == false || distance < shortestDistance){
+						newTarget = true;
+						shortestDistance = distance;
+						_tmpTarget = tower;
+					}
+				}
+			}
+
+			if (newTarget) {
+				_navMeshAgent.SetDestination (_tmpTarget.transform.position);
+
+			} else if(_tmpTarget != null){
+				_tmpTarget = null;
+				SetTargetLocation ();
+			}
+
 		}
 
-	}
+		public void AttackTower(){
+			if (Time.time > _nextAttack) {
+				Tower tower = _tmpTarget.transform.GetComponent<Tower>();
+				tower.TakeDamage(_damage);
 
-	public void attackTower(){
-		if (Time.time > _nextAttack) {
-			Tower tower = _tmpTarget.transform.GetComponent<Tower>();
-			tower.attacked(_damage);
-
-			_nextAttack = Time.time + _attackSpeed;
+				_nextAttack = Time.time + _attackSpeed;
+			}
 		}
-	}
-
-	void OnCollisionEnter (Collision col)
-	{
-		//TODO: Synchronize with Tuan projectiles
-		if(col.gameObject.tag == "Projectile")
+			
+		public void TakeDamage(int damage)
 		{
-			_hp -= col.gameObject.GetComponent<Projectile> ()._damage;
-			isDeath ();
+			_hitpoints -= damage;
 		}
-	}
 
-	public void setTargetLocation(){
-		Vector3 destination = _targetLocation.transform.position;
-		_navMeshAgent.SetDestination (destination);
-	}
-
-	public void isDeath(){
-		if(_hp <= 0){
-			Destroy (this.gameObject);
+		public void SetTargetLocation(){
+			Vector3 destination = _finalDestination.position;
+			_navMeshAgent.SetDestination (destination);
 		}
+			
+
+		public void Kill()
+		{
+			Destroy(this.gameObject);
+			GetComponent<SlimeRessourceManagement>().DropRessources();
+		}
+
 	}
 }

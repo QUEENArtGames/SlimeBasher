@@ -123,7 +123,7 @@ namespace Assets.Scripts {
         private bool CheckIfSlimesAlive() {
 
             foreach(GameObject slime in _Slimes) {
-                if(slime.GetComponent<EnemyDummy>().Hitpoints <= 0) {
+				if(slime.GetComponent<SlimeScript>()._hitpoints <= 0) {
                     deleteEnemy(slime);
                     break;
                 }
@@ -138,7 +138,7 @@ namespace Assets.Scripts {
         public void deleteEnemy(GameObject slime ) { //SlimeKlasse
 
             _Slimes.Remove(slime);
-            slime.GetComponent<EnemyDummy>().Kill();
+			slime.GetComponent<SlimeScript>().Kill();
             //Liste durchgehen und dem Slime sagen das er sterben soll
             //Slime aus der Liste entfernen
         }

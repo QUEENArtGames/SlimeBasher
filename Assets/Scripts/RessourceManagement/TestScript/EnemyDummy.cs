@@ -14,6 +14,7 @@ namespace Assets.Scripts
 
         // Use this for initialization
         void Start() {
+			
             _finalDestination = FindObjectOfType<Game>().FinalDestination;
             _agent = GetComponent<NavMeshAgent>();
             _agent.SetDestination(_finalDestination.position);
