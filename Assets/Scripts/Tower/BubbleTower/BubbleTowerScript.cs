@@ -21,8 +21,8 @@ public class BubbleTowerScript : MonoBehaviour {
 	}
 
 	IEnumerator BubbleProjectile(){
-		
-		yield return new WaitForSeconds(spawnDelay);
+
+        yield return new WaitForSeconds(spawnDelay);
 
 		//StartCoroutine(BubbleProjectile());
 		GameObject bubbleProjectile = Instantiate(projectile) as GameObject;

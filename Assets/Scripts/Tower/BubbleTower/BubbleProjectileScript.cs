@@ -56,7 +56,7 @@ public class BubbleProjectileScript : MonoBehaviour {
         }
         else
         {
-            transform.localPosition += transform.forward * speed;
+            transform.localPosition += transform.forward * speed * Time.deltaTime;
         }
     }
 
