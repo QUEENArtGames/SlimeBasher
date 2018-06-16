@@ -16,6 +16,7 @@ public class BubbleProjectileScript : MonoBehaviour {
 
     public float speed = 1f;
 	public float range = 5;
+    public float dmg = 10;
 
 	private Vector3 startPosition;
 
@@ -34,10 +35,8 @@ public class BubbleProjectileScript : MonoBehaviour {
 		float dist = Vector3.Distance(startPosition, transform.position);
 		//print("Distance to other: " + dist);
 		if(dist >range){
-			Debug.Log(dist);
-            var splash = Instantiate(splashEffect, transform.position, transform.rotation);
-            Destroy(splash.gameObject, 1);
-            Destroy(gameObject);
+			//Debug.Log(dist);
+            Die();
         }
         //Debug.Log(startPosition.x-transform);
 
@@ -60,4 +59,19 @@ public class BubbleProjectileScript : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Enemy")
+        {
+            collision.transform.GetComponent<SlimeScript>().hit(dmg);
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        var splash = Instantiate(splashEffect, transform.position, transform.rotation);
+        Destroy(splash.gameObject, 1);
+        Destroy(gameObject);
+    }
 }
