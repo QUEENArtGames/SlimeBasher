@@ -3,20 +3,25 @@
 
 public class ScrapButton : MonoBehaviour
 {
-    private int meshindex;
-    private ScrapType scrapType;
+    private int _subTypeIndex;
+    private ScrapType _scrapType;
+    private TowerBuildingUI _towerBuildingUI;
 
+    private void Awake()
+    {
+        _towerBuildingUI = FindObjectOfType<TowerBuildingUI>();
+    }
 
-    public int Meshindex
+    public int SubTypeIndex
     {
         get
         {
-            return meshindex;
+            return _subTypeIndex;
         }
 
         set
         {
-            meshindex = value;
+            _subTypeIndex = value;
         }
     }
 
@@ -24,17 +29,19 @@ public class ScrapButton : MonoBehaviour
     {
         get
         {
-            return scrapType;
+            return _scrapType;
         }
 
         set
         {
-            scrapType = value;
+            _scrapType = value;
         }
     }
 
     public void ButtonListener()
     {
-        FindObjectOfType<TowerBuildingUI>().CloseTowerBuildingMenu();
+        GameObject selectedTower = _towerBuildingUI.SelectedTower;
+        FindObjectOfType<TowerBuilding>().UpgradeWithScrap(selectedTower.GetComponent<TowerRessourceManagement>(), (int) _scrapType, _subTypeIndex);
+        _towerBuildingUI.CloseTowerBuildingMenu();
     }
 }
