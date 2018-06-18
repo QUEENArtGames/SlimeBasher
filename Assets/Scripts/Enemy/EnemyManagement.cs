@@ -20,7 +20,7 @@ namespace Assets.Scripts {
         public GameObject _normalSlime;
         private WaveEvent actualEvent;
         public GameObject _hardSlime;
-        //public GameObject _gasSlime;
+        public GameObject _gasSlime;
 
         public void EnableManager(Wave wave) {
             _wave = wave;
@@ -67,14 +67,14 @@ namespace Assets.Scripts {
                 _spawnCounter++;
             }
 
-            /*
+            
 
             for(int i=0; i< actualEvent._gasSlimes; i++) {
 
                 yield return new WaitForSeconds(4.5f);
                 _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
                 
-            } */
+            } 
 
             _timerAllowed = true;
 
