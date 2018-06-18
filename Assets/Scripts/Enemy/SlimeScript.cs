@@ -12,11 +12,11 @@ public class SlimeScript : MonoBehaviour {
 	public float _hitpoints;
 	public float _damage;
 	public float _attackSpeed;
-	private Transform _finalDestination;
 	public float _aggroRange;
+	public bool _hasAggro;
+
+	private Transform _finalDestination;
 	private TowerPlacement _towerplacement;
-
-
 
 	private NavMeshAgent _navMeshAgent;
 	private GameObject _tmpTarget;
@@ -25,8 +25,8 @@ public class SlimeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-			_towerplacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
-			_finalDestination = FindObjectOfType<Game>().FinalDestination;
+			//_towerplacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
+			//_finalDestination = FindObjectOfType<Game>().FinalDestination;
 
 
 			_navMeshAgent = GetComponent<NavMeshAgent> ();
@@ -36,10 +36,11 @@ public class SlimeScript : MonoBehaviour {
 		
 		// Update is called once per frame
 		void Update () {
-
-			checkAggro ();
-			if (_tmpTarget != null) {
-				AttackTower ();
+			if (_hasAggro) {
+				checkAggro ();
+				if (_tmpTarget != null) {
+					AttackTower ();
+				}
 			}
 		}
 			

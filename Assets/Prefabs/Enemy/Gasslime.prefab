@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114287984210509804}
   - component: {fileID: 114642849397098888}
   - component: {fileID: 135718393003908310}
+  - component: {fileID: 114682157908779788}
   m_Layer: 0
   m_Name: Gasslime
   m_TagString: Untagged
@@ -87,10 +88,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece31cff1d4214206994b55563b82c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  movementSpeed: 0
-  finalDamage: 1
-  bubbleProjectDamage: 10
+  _hitpoints: 100
+--- !u!114 &114682157908779788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518707566792496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f108215ee4d5f74984aeedaf75668b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrapSlots: []
+  SpawnsWithScraps: 1
+  SuckSpeed: 1
+  ScrapThrowFactor: 10
+  RotationValue: 1.5
+  MinSpawnedScraps: 0
 --- !u!114 &114878696840874556
 MonoBehaviour:
   m_ObjectHideFlags: 1
