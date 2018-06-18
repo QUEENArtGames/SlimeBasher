@@ -98,9 +98,10 @@ MonoBehaviour:
   spawnpoint: {fileID: 0}
   splashEffect: {fileID: 1795911947262034, guid: f7c6140c89e928a4d88699bc2bf6ad85,
     type: 2}
-  maxScale: 2
+  maxScale: 3
   speed: 1
   range: 10
+  dmg: 10
 --- !u!135 &135887267124201142
 SphereCollider:
   m_ObjectHideFlags: 1
