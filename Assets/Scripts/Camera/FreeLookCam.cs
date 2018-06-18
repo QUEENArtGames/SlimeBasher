@@ -42,6 +42,7 @@ namespace SlimeBasher.Cameras
 
         protected void Update()
         {
+
             if(Time.timeScale != 0) {
                 HandleRotationMovement();
                 if (m_LockCursor && Input.GetMouseButtonUp(0)) {

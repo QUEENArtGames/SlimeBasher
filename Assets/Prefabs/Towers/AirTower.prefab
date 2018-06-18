@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65128941507616980}
   - component: {fileID: 208946706201228244}
   - component: {fileID: 54266374981785622}
+  - component: {fileID: 114475749792814094}
   m_Layer: 0
   m_Name: AirTower
   m_TagString: Untagged
@@ -2631,6 +2632,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3843ba8efde79d542a0d8749b46ec5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114475749792814094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014481566120508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bcc5c78108c4775b23409f43a52f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitpoints: 100
+  destructiveForceMin: 2
+  destructiveForceMax: 4
+  _parts: []
 --- !u!114 &114722017824151782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2642,10 +2658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hitpoints: 100
-  destructiveForceMin: 2
-  destructiveForceMax: 4
-  _parts: []
+  _hp: 0
 --- !u!114 &114944689900589100
 MonoBehaviour:
   m_ObjectHideFlags: 1

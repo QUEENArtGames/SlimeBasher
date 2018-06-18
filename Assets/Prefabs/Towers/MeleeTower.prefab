@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 208454273957119036}
   - component: {fileID: 54580779201805378}
   - component: {fileID: 136319355395974310}
+  - component: {fileID: 114934076860578218}
   m_Layer: 0
   m_Name: MeleeTower
   m_TagString: Untagged
@@ -853,7 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hitpoints: 100
+  _hp: 0
 --- !u!114 &114785931222528548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -874,7 +875,23 @@ MonoBehaviour:
   NeedsMeeleScraps: 1
   NeedsBottleScraps: 0
   NeedsGrenadeScraps: 0
+  NeedsPustefixScraps: 0
   NeededClassicScraps: 0
+--- !u!114 &114934076860578218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050941866442964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bcc5c78108c4775b23409f43a52f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitpoints: 100
+  destructiveForceMin: 2
+  destructiveForceMax: 4
+  _parts: []
 --- !u!136 &136319355395974310
 CapsuleCollider:
   m_ObjectHideFlags: 1

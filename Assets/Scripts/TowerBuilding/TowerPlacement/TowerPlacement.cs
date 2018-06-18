@@ -9,6 +9,7 @@ namespace Assets.Scripts
         public Camera playerCam;
         public int rotationSpeed = 100;
         public List<GameObject> towers;
+		public List<GameObject> _placedTowers;
 
         private bool lmbPressed = false;
         private bool buttonRotateLeft = false, buttonRotateRight = false;
@@ -213,6 +214,7 @@ namespace Assets.Scripts
         private void BuildTower(GameObject towerInstance)
         {
             FindObjectOfType<TowerBuilding>().BuildTower(towerInstance);
+			_placedTowers.Add(towerInstance);
         }
     }
 }

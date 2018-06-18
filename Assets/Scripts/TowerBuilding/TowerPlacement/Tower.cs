@@ -7,7 +7,7 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Collider))]
     public class Tower : MonoBehaviour
     {
-        public int Hitpoints = 100;
+		public float Hitpoints = 100;
         public float destructiveForceMin = 2;
         public float destructiveForceMax = 4;
 
@@ -19,9 +19,13 @@ namespace Assets.Scripts
         public List<GameObject> _parts = new List<GameObject>();
         private bool _isDying = false, _isDead = false;
 
+		private TowerPlacement _towerPlacement;
+
         // Use this for initialization
         void Awake()
         {
+			_towerPlacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
+
             foreach (Collider c in GetComponentsInChildren<Collider>())
             {
                 _colliders.Add(c);
@@ -50,6 +54,10 @@ namespace Assets.Scripts
                 _isDead = true;
             }                
         }
+
+		public void TakeDamage(float damage){
+			Hitpoints -= damage;
+		}
 
         internal void SetPreviewMode(bool state)
         {
@@ -99,7 +107,11 @@ namespace Assets.Scripts
         {
             GetComponent<TowerRessourceManagement>().DestroyTower();
             //Destroy(gameObject, 5);
-            _parts[0].GetComponentInParent<Animator>().enabled = false;
+
+			if (_parts.Count > 0) {
+				_parts[0].GetComponentInParent<Animator>().enabled = false;
+			}
+
             foreach (GameObject part in _parts)
             {
                 Vector3 scale = part.transform.parent.lossyScale;
@@ -108,7 +120,14 @@ namespace Assets.Scripts
                 part.AddComponent<CapsuleCollider>();
                 var rb = part.AddComponent<Rigidbody>();
                 rb.AddForce(new Vector3(Random.Range(0, 0), Random.Range(destructiveForceMin, destructiveForceMax), Random.Range(0, 0)),ForceMode.VelocityChange);
-            }            
+            }
+
+			Destroy (this.gameObject);
         }
+
+		void OnDestroy()
+		{
+			_towerPlacement._placedTowers.Remove (this.gameObject);
+		}
     }
 }
