@@ -108,7 +108,9 @@ namespace Assets.Scripts
             GetComponent<TowerRessourceManagement>().DestroyTower();
             //Destroy(gameObject, 5);
 
-			_parts[0].GetComponentInParent<Animator>().enabled = false;
+			if (_parts.Count > 0) {
+				_parts[0].GetComponentInParent<Animator>().enabled = false;
+			}
 
             foreach (GameObject part in _parts)
             {
@@ -118,7 +120,9 @@ namespace Assets.Scripts
                 part.AddComponent<CapsuleCollider>();
                 var rb = part.AddComponent<Rigidbody>();
                 rb.AddForce(new Vector3(Random.Range(0, 0), Random.Range(destructiveForceMin, destructiveForceMax), Random.Range(0, 0)),ForceMode.VelocityChange);
-            }            
+            }
+
+			Destroy (this.gameObject);
         }
 
 		void OnDestroy()

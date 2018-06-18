@@ -86,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4107842658935820}
   - component: {fileID: 114937488645705072}
-  - component: {fileID: 114527403117710284}
   - component: {fileID: 195308371445467390}
   - component: {fileID: 135907407390636802}
   - component: {fileID: 135746953304008240}
@@ -535,18 +534,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513034964167942}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114527403117710284
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1739397658495034}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a15b1d447a0120479e3e327e7c7117b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hitpoints: 100
 --- !u!114 &114611646088758060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -558,11 +545,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84891d59c03b8485582d0bcea985c879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitpoints: 0
+  _hitpoints: 100
   _damage: 10
   _attackSpeed: 1
   _aggroRange: 4
-  towerManagerTestScript: {fileID: 0}
 --- !u!114 &114937488645705072
 MonoBehaviour:
   m_ObjectHideFlags: 1
