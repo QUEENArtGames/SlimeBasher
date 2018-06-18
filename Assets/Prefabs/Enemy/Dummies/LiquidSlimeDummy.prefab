@@ -549,6 +549,7 @@ MonoBehaviour:
   _damage: 10
   _attackSpeed: 1
   _aggroRange: 4
+  _hasAggro: 1
 --- !u!114 &114937488645705072
 MonoBehaviour:
   m_ObjectHideFlags: 1
