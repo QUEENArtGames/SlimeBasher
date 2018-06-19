@@ -80,17 +80,27 @@ namespace PathCreator
 
         void Awake()
         {
-            points = path.GetRandomWaypoints();
-            positionList = new List<PA_Marker>();
+            if (path)
+            {
+                points = path.GetRandomWaypoints();
+                positionList = new List<PA_Marker>();
 
-            CalculatePathLength(precision);
-            originalMaxV = maxV;
+                CalculatePathLength(precision);
+                originalMaxV = maxV;
+            }
+            else
+            {
+                Debug.LogError(gameObject.name + " hat keine Pfad zugewiesen bekommen.");
+            }
         }
 
         // Use this for initialization
         void Start()
         {
-            PlayPath();
+            if (path)
+            {
+                PlayPath();
+            }
         }
 
         // Update is called once per frame
@@ -98,85 +108,105 @@ namespace PathCreator
         {
             if (playing)
             {
-                if (currentV < maxV)
-                {
-                    float possibleNewV = currentV + acceleration * Time.deltaTime;
-                    currentV = possibleNewV < maxV ? possibleNewV : maxV;
-                }
-                else if (currentV > maxV)
-                {
-                    float possibleNewV = currentV - acceleration * Time.deltaTime;
-                    currentV = possibleNewV > maxV ? possibleNewV : maxV;
-                }
+                UpdateMovement();
 
-                double possibleNewDistance = currentDistance + currentV * Time.deltaTime;
-                currentDistance = possibleNewDistance < length ? possibleNewDistance : length;
-
-                PA_Marker markerA = null;
-                PA_Marker markerB = null;
-                for (int i = lastPositionIndex; i < positionList.Count; i++)
+                if (currentDistance.Equals(length))
                 {
-                    if (positionList[i].distance < currentDistance)
-                    {
-                        continue;
-                    }
-                    else if (positionList[i].distance.Equals(currentDistance))
-                    {
-                        markerA = positionList[i];
-                        break;
-                    }
-                    else if (positionList[i].distance > currentDistance)
-                    {
-                        markerA = positionList[i - 1];
-                        markerB = positionList[i];
-                        break;
-                    }
-                }
-
-                if (markerA == null)
-                {
-                    Debug.LogError(gameObject.name + " konnte den nächsten Marker vom Pfad nicht finden.");
+                    StopPath();
                     return;
                 }
 
-                int currentWaypointIndex = 0;
-                float currentTimeInWaypoint = 0;
-                if (markerB == null)
-                {
-                    currentWaypointIndex = markerA.waypoint;
-                    currentTimeInWaypoint = markerA.time;
-                }
-                else
-                {
-                    double markerDistance = markerB.distance - markerA.distance;
-                    double ownDistanceToA = currentDistance - markerA.distance;
-                    float percentage = (float) (ownDistanceToA / markerDistance);
-
-                    currentWaypointIndex = markerA.waypoint;
-                    currentTimeInWaypoint = markerA.time + (1.0f / precision) * percentage;
-                }
-
-                transform.position = GetBezierPosition(currentWaypointIndex, currentTimeInWaypoint);
-
-                lastPositionIndex = markerA.waypoint;
+                UpdatePosition();
             }
         }
 
+        private void UpdatePosition()
+        {
+            double possibleNewDistance = currentDistance + currentV * Time.deltaTime;
+            currentDistance = possibleNewDistance < length ? possibleNewDistance : length;
+
+            PA_Marker markerA = null;
+            PA_Marker markerB = null;
+            for (int i = lastPositionIndex; i < positionList.Count; i++)
+            {
+                if (positionList[i].distance < currentDistance)
+                {
+                    continue;
+                }
+                else if (positionList[i].distance.Equals(currentDistance))
+                {
+                    markerA = positionList[i];
+                    break;
+                }
+                else if (positionList[i].distance > currentDistance)
+                {
+                    markerA = positionList[i - 1];
+                    markerB = positionList[i];
+                    break;
+                }
+            }
+
+            if (markerA == null)
+            {
+                Debug.LogError(gameObject.name + " konnte den nächsten Marker vom Pfad nicht finden.");
+                return;
+            }
+
+
+            int currentWaypointIndex = 0;
+            float currentTimeInWaypoint = 0;
+            if (markerB == null)
+            {
+                currentWaypointIndex = markerA.waypoint;
+                currentTimeInWaypoint = markerA.time;
+            }
+            else
+            {
+                double markerDistance = markerB.distance - markerA.distance;
+                double ownDistanceToA = currentDistance - markerA.distance;
+                float percentage = (float) (ownDistanceToA / markerDistance);
+
+                currentWaypointIndex = markerA.waypoint;
+                currentTimeInWaypoint = markerA.time + (1.0f / precision) * percentage;
+            }
+
+            transform.position = GetBezierPosition(currentWaypointIndex, currentTimeInWaypoint);
+
+            lastPositionIndex = markerA.waypoint;
+        }
+
+        private void UpdateMovement()
+        {
+            if (currentV < maxV)
+            {
+                float possibleNewV = currentV + acceleration * Time.deltaTime;
+                currentV = possibleNewV < maxV ? possibleNewV : maxV;
+            }
+            else if (currentV > maxV)
+            {
+                float possibleNewV = currentV - acceleration * Time.deltaTime;
+                currentV = possibleNewV > maxV ? possibleNewV : maxV;
+            }
+        }
 
         private void CalculatePathLength(int precision)
         {
+            Vector3 currentPosition;
             Vector3 previousPosition = points[0].position;
-            positionList.Add(new PA_Marker(0, 0, 0));
 
-            for (int i = 0; i < points.Count; i++)
+            for (int i = 0; i < points.Count - 1; i++)
             {
                 for (int t = 0; t <= precision; t++)
                 {
-                    length += Vector3.Distance(previousPosition, GetBezierPosition(i, ((float) t) / 100));
+                    currentPosition = GetBezierPosition(i, ((float) t) / 100);
+                    length += Vector3.Distance(previousPosition, currentPosition);
                     positionList.Add(new PA_Marker(i, ((float) t) / 100, length));
+
+                    previousPosition = currentPosition;
                 }
             }
         }
+
 
         Vector3 GetBezierPosition(int pointIndex, float time)
         {
@@ -201,12 +231,17 @@ namespace PathCreator
             return Quaternion.LerpUnclamped(points[pointIndex].rotation, points[GetNextIndex(pointIndex)].rotation, points[pointIndex].rotationCurve.Evaluate(time));
         }
 
+
         /// <summary>
         /// Plays the path
         /// </summary>
         public void PlayPath()
         {
             playing = true;
+            currentDistance = 0;
+            lastPositionIndex = 0;
+            transform.position = points[0].position;
+            maxV = originalMaxV;
         }
 
         /// <summary>
@@ -216,14 +251,6 @@ namespace PathCreator
         public bool IsPlaying()
         {
             return playing;
-        }
-
-        /// <summary>
-        /// Pauses the objects's movement - resumable with ResumePath()
-        /// </summary>
-        public void PausePath()
-        {
-            playing = false;
         }
 
         /// <summary>
@@ -240,9 +267,6 @@ namespace PathCreator
         public void StopPath()
         {
             playing = false;
-            currentDistance = 0;
-            lastPositionIndex = 0;
-            transform.position = points[0].position;
         }
 
         /// <summary>
