@@ -65,7 +65,12 @@ namespace PathCreator
         public float acceleration;
 
 
+        public bool test = true;
+
+
         private bool playing = false;
+        private bool slowed = false;
+        private float slowDuration = 0;
 
         private double length = 0;
         private List<PA_Waypoint> points;
@@ -108,6 +113,23 @@ namespace PathCreator
         {
             if (playing)
             {
+                if (slowed)
+                {
+                    if (maxV.Equals(originalMaxV))
+                    {
+                        maxV = 0.5f * originalMaxV;
+                    }
+
+                    slowDuration -= Time.deltaTime;
+
+                    if (slowDuration <= 0)
+                    {
+                        slowDuration = 0;
+                        slowed = false;
+                        maxV = originalMaxV;
+                    }
+                }
+
                 UpdateMovement();
 
                 if (currentDistance.Equals(length))
@@ -150,6 +172,15 @@ namespace PathCreator
             {
                 Debug.LogError(gameObject.name + " konnte den nächsten Marker vom Pfad nicht finden.");
                 return;
+            }
+
+            if (test)
+            {
+                if (markerA.waypoint == 1)
+                {
+                    Slow(1);
+                    test = false;
+                }
             }
 
 
@@ -267,6 +298,12 @@ namespace PathCreator
         public void StopPath()
         {
             playing = false;
+        }
+
+        public void Slow(float duration)
+        {
+            slowed = true;
+            slowDuration = duration;
         }
 
         /// <summary>

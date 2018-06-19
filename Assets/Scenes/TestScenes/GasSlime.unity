@@ -136,10 +136,8 @@ MonoBehaviour:
     cubeColor: {r: 1, g: 1, b: 1, a: 1}
   path: {fileID: 670944758}
   maxV: 1.5
-  acceleration: 0.3
-  length: 0
-  currentDistance: 0
-  currentV: 0
+  acceleration: 0.5
+  test: 1
 --- !u!1 &314665845
 GameObject:
   m_ObjectHideFlags: 0
