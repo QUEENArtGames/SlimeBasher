@@ -24,6 +24,8 @@ namespace Assets.Scripts
         private Phase currentPhase;
         private bool phaseSwitch = true, buildingPhaseActive = true;
 
+        private PlayerDummy _player;
+
         // Raycast on layer 8
         private int layerMask = 1 << 8;
         // Range of ray
@@ -48,6 +50,8 @@ namespace Assets.Scripts
             selectedTower = towers[0];
             towerPreview = Instantiate(selectedTower);
             towerPreview.GetComponent<Tower>().SetPreviewMode(true);
+
+            _player = FindObjectOfType<PlayerDummy>();
         }
 
         void SelectTowerToPlace(int towerNumber)
@@ -94,56 +98,58 @@ namespace Assets.Scripts
                 if (Input.GetButtonDown("Tower Slot 1"))
                 {
                     slotNumber = 0;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 2"))
                 {
                     slotNumber = 1;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 3"))
                 {
                     slotNumber = 2;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 4"))
                 {
                     slotNumber = 3;
-                                    }
+                    _player.IsInDefaultMode = false;
+                }
                 else if (Input.GetButtonDown("Tower Slot 5"))
                 {
                     slotNumber = 4;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 6"))
                 {
                     slotNumber = 5;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 7"))
                 {
                     slotNumber = 6;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 8"))
                 {
                     slotNumber = 7;
-                    
+                    _player.IsInDefaultMode = false;
+
                 }
                 else if (Input.GetButtonDown("Tower Slot 9"))
                 {
                     slotNumber = 8;
-                   
-                }
-                else if (Input.GetButtonDown("Tower Slot 0"))
-                {
-                    slotNumber = 9;
-                    
-                }
-                else if (Input.GetButtonDown("Deconstruct Tower"))
-                {
-                    
+                    _player.IsInDefaultMode = false;
+
+                }else if (Input.GetButtonDown("defaultMode")){
                     slotNumber = 999;
+                    _player.IsInDefaultMode = true;
                 }
 
                 if (!buildingPhaseActive)
