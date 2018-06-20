@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class PlayerScrapInventory : MonoBehaviour
 {
+    private InventoryUI _inventoryUI;
     private List<int>[] _scrapInventory = new List<int>[Enum.GetNames(typeof(ScrapType)).Length];
     private int _classicScraps = 0;
 
-
     void Awake()
     {
+        _inventoryUI = FindObjectOfType<InventoryUI>();
         for (int i = 0; i < Enum.GetNames(typeof(ScrapType)).Length; i++)
         {
             _scrapInventory[i] = new List<int>();
@@ -24,34 +25,49 @@ public class PlayerScrapInventory : MonoBehaviour
 
     public int GetAmountOfScraps()
     {
-        return _classicScraps;
+        return ClassicScraps;
     }
 
     public void AddScrap(ScrapType scrapType, int meshIndex)
     {
         _scrapInventory[(int) scrapType].Add(meshIndex);
-        Debug.Log("Index: " + scrapType + _scrapInventory[(int) scrapType].Count);
+        _inventoryUI.InventoryWasRecentlyChanged();
     }
 
     public void RemoveScrap(int scrapType, int index)
     {
         _scrapInventory[scrapType].RemoveAt(index);
+        _inventoryUI.InventoryWasRecentlyChanged();
     }
 
-    public void RemoveAnyScraps(int scrapType, int amount)
+    public void RemoveScrapBySubTypeIndex(int scrapType, int subtypeIndex)
     {
-        for (int i = 0; i < amount; i++)
-            _scrapInventory[scrapType].RemoveAt(0);
+        foreach (int scrap in _scrapInventory[scrapType])
+        {
+            if (subtypeIndex == scrap)
+            {
+                _scrapInventory[scrapType].Remove(subtypeIndex);
+                _inventoryUI.InventoryWasRecentlyChanged();
+                return;
+            }
+        }
+
+    }
+
+    public void RemoveAnyScrap(int scrapType)
+    {
+        _scrapInventory[scrapType].RemoveAt(0);
+        _inventoryUI.InventoryWasRecentlyChanged();
     }
 
     public void AddClassicScraps(int amountOfScraps)
     {
-        _classicScraps += amountOfScraps;
+        ClassicScraps += amountOfScraps;
     }
 
     public void RemoveClassicScraps(int amountOfScrabs)
     {
-        _classicScraps -= amountOfScrabs;
+        ClassicScraps -= amountOfScrabs;
     }
 
     public List<int>[] ScrapInventory
@@ -60,5 +76,28 @@ public class PlayerScrapInventory : MonoBehaviour
         {
             return _scrapInventory;
         }
+    }
+
+    public int ClassicScraps
+    {
+        get
+        {
+            return _classicScraps;
+        }
+
+        set
+        {
+            _classicScraps = value;
+        }
+    }
+
+    internal bool SubTypeIsInInventory(int scrapTypeIndex, int subTypeIndex)
+    {
+        foreach(int i in _scrapInventory[scrapTypeIndex])
+        {
+            if (subTypeIndex == i)
+                return true;
+        }
+        return false;
     }
 }

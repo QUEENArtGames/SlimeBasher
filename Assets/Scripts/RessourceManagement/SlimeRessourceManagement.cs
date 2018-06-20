@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,57 +7,71 @@ public class SlimeRessourceManagement : MonoBehaviour
 {
     public Transform[] ScrapSlots;
 
-    //public bool[] CanCollect;
-    //public bool[] CanDrop;
-    public float RessourcePossibility = 1;
+    public bool SpawnsWithScraps = true;
     public float SuckSpeed = 1.0f;
     public int ScrapThrowFactor = 10;
     public float RotationValue = 1.5f;
     public float MinSpawnedScraps = 0.0f;
 
+
     private List<GameObject> _attachedScraps;
     private GameObject[] _possibleScrapPrefabs;
+    private RessourceManagement _ressourceManagement;
 
 
     void Awake()
     {
-        _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
+        _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _attachedScraps = new List<GameObject>();
-        //Physics.IgnoreLayerCollision(8, 9);
         InstanstiateScrapsOnSelf();
+        //Physics.IgnoreLayerCollision(8, 9);
+        
     }
 
     // TESTUPDATE
     void Update()
     {
-        if (Input.GetKey("p"))
-            DropRessources();
+        if(Input.GetKeyDown("i"))
+        {
+            InstanstiateScrapsOnSelf();
+        }
+           
+        if (Input.GetKeyDown("p"))
+			GetComponent<SlimeScript>()._hitpoints = 0;
         
         //ChildObjekt angucken für bessere Lösung?
         if (_attachedScraps.Count > 0)
             MakeScrapsFollowParent();
     }
 
+    //TESTEREI
+    /*private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
+    }
+
     public void DropRessources()
     {
-        foreach (GameObject scrap in _attachedScraps)
+        foreach (GameObject scrapObject in _attachedScraps)
         {
-            if (scrap != null)
+            if (scrapObject != null)
             {
-                scrap.GetComponent<Scrap>().ChangeCollectionState();
-                scrap.GetComponent<Rigidbody>().isKinematic = false;
-                scrap.GetComponent<Scrap>().ChangeAttachementState();
-                FindObjectOfType<RessourceManagement>().ThrowScrapAway(transform, scrap, ScrapThrowFactor);
+                Scrap scrap = scrapObject.GetComponent<Scrap>();
+                scrap.ChangeCollectionState();
+                scrapObject.GetComponent<Rigidbody>().isKinematic = false;
+                scrap.ChangeAttachementState();
+                scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
             }
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponentInParent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
-            CollectRessource(other.transform.parent.gameObject);
     }
 
     private void CollectRessource(GameObject scrap)
@@ -68,14 +83,15 @@ public class SlimeRessourceManagement : MonoBehaviour
 
     private void InstanstiateScrapsOnSelf()
     {
-        int numberOfRessourcesOnSelf = Random.Range((int) MinSpawnedScraps, ScrapSlots.Length);
-        for (int i = 0; i < numberOfRessourcesOnSelf; i++)
+        if (_attachedScraps.Count != 0 || !SpawnsWithScraps)
+            return;
+
+        for (int i = 0; i < ScrapSlots.Length; i++)
         {
-            if (Random.Range(0.0f, 1.0f) <= RessourcePossibility)
+            if (Random.Range(0.0f, 100.0f) <= FindObjectOfType<RessourceManagement>().ScrapSpawnProbabilityOnSlimesInPercent)
             {
-                int randomScrap = Random.Range((int) 0.0f, _possibleScrapPrefabs.Length);
                 Vector3 ressourcePosition = ScrapSlots[i].position;
-                _attachedScraps.Add(Instantiate(_possibleScrapPrefabs[randomScrap], ressourcePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f)));
+                _attachedScraps.Add(Instantiate(_ressourceManagement.GetRandomScrapFromPool(), ressourcePosition, new Quaternion(Random.Range(0.0f, 180f), 0.0f, Random.Range(0.0f, 180.0f), Random.Range(0.0f, 180.0f))));
             }
         }
     }
@@ -106,22 +122,6 @@ public class SlimeRessourceManagement : MonoBehaviour
             ((GameObject) _attachedScraps[slotIndex]).GetComponent<Scrap>().ChangeAttachementState();
 
         RotateScrap((GameObject) _attachedScraps[slotIndex]);
-    }
-
-    private void SuckScraps()
-    {
-        for (int i = 0; i < _attachedScraps.Count; i++)
-        {
-            Vector3 from = ((GameObject) _attachedScraps[i]).transform.position;
-            Vector3 to = ScrapSlots[i].position;
-            float step = SuckSpeed * Time.deltaTime;
-            ((GameObject) _attachedScraps[i]).transform.position = Vector3.MoveTowards(from, to, step);
-
-            if (((GameObject) _attachedScraps[i]).transform.position == ScrapSlots[i].position)
-                ((GameObject) _attachedScraps[i]).GetComponent<Scrap>().ChangeAttachementState();
-
-            RotateScrap((GameObject) _attachedScraps[i]);
-        }
     }
 
     private void RotateScrap(GameObject scrap)

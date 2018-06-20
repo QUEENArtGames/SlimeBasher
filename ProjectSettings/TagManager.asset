@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Scrap
   - Tower
+  - SpawnpointBubbleTower
   layers:
   - Default
   - TransparentFX

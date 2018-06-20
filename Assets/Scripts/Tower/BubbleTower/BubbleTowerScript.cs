@@ -35,7 +35,7 @@ public class BubbleTowerScript : MonoBehaviour {
 	public void BubbleProjectile(int bubbleIndex) {
 
         // bubbleIndex 
-        // 0 = top, 1 = left, 2 = bottom, 3 = right
+        // 0 = top, 1 = right, 2 = bottom, 3 = left
 
 		GameObject bubbleProjectile = Instantiate(projectile) as GameObject;
         //print(transform.eulerAngles.y);

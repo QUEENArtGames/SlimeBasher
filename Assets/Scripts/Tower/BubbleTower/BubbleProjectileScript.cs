@@ -64,7 +64,7 @@ public class BubbleProjectileScript : MonoBehaviour {
     {
         if(collision.transform.tag == "Enemy")
         {
-            collision.transform.GetComponent<SlimeScript>().hit(dmg);
+            //collision.transform.GetComponent<SlimeScript>().hit(dmg);
             Die();
         }
     }
