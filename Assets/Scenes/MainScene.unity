@@ -686,16 +686,6 @@ Prefab:
       propertyPath: ButtonTransforms.Array.data[2]
       value: 
       objectReference: {fileID: 640010311}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[0].events.Array.data[1]._gasSlimes
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[0].events.Array.data[0]._gasSlimes
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
   m_IsPrefabParent: 0
@@ -1445,6 +1435,12 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114286658067621020, guid: ddc0091f18fa1004d96510f337b6d311,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a1623cbc9f4d674fb4f9881dedb2f04,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddc0091f18fa1004d96510f337b6d311, type: 2}
   m_IsPrefabParent: 0
