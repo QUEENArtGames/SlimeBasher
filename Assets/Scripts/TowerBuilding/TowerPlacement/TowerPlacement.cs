@@ -147,6 +147,9 @@ namespace Assets.Scripts
                     slotNumber = 8;
                     _player.IsInDefaultMode = false;
 
+                }else if (Input.GetButtonDown("defaultMode")){
+                    slotNumber = 999;
+                    _player.IsInDefaultMode = true;
                 }
 
                 if (!buildingPhaseActive)

@@ -69,10 +69,6 @@ public class PlayerDummy : MonoBehaviour {
             _timer = 0f;
         }
 
-
-        if (Input.GetButtonDown("defaultMode"))
-            _isInDefaultMode = true;
-
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
