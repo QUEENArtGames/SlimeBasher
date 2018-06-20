@@ -7,7 +7,7 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Collider))]
     public class Tower : MonoBehaviour
     {
-		public float Hitpoints = 100;
+        public float Hitpoints = 100;
         public float destructiveForceMin = 2;
         public float destructiveForceMax = 4;
 
@@ -15,16 +15,17 @@ namespace Assets.Scripts
         private List<Renderer> _renderers = new List<Renderer>();
         private Color _colorPlaceable = new Color(0, 1, 0, 0.5f);
         private Color _colorNotPlaceable = new Color(1, 0, 0, 0.5f);
+        private Color _colorNotBuildable = new Color(1, 1, 0, 0.5f);
         private NavMeshObstacle obstacle;
         public List<GameObject> _parts = new List<GameObject>();
         private bool _isDying = false, _isDead = false;
 
-		private TowerPlacement _towerPlacement;
+        private TowerPlacement _towerPlacement;
 
         // Use this for initialization
         void Awake()
         {
-			_towerPlacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
+            _towerPlacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
 
             foreach (Collider c in GetComponentsInChildren<Collider>())
             {
@@ -34,7 +35,7 @@ namespace Assets.Scripts
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
             {
                 _renderers.Add(r);
-            }                                   
+            }
 
             obstacle = GetComponent<NavMeshObstacle>();
             obstacle.size = new Vector3(1.5f, 2, 1.5f);
@@ -52,12 +53,13 @@ namespace Assets.Scripts
                 this.Kill();
                 _isDying = false;
                 _isDead = true;
-            }                
+            }
         }
 
-		public void TakeDamage(float damage){
-			Hitpoints -= damage;
-		}
+        public void TakeDamage(float damage)
+        {
+            Hitpoints -= damage;
+        }
 
         internal void SetPreviewMode(bool state)
         {
@@ -79,27 +81,30 @@ namespace Assets.Scripts
             }
         }
 
-        internal void SetPlaceable(bool state)
+        internal void SetPlaceable(int state)
         {
-            if (state)
+            switch (state)
             {
-                foreach (Renderer r in _renderers)
-                {
-                    foreach (Material m in r.materials)
+                case 0:
+                    foreach (Renderer r in _renderers)
                     {
-                        m.SetColor("_Color", _colorPlaceable);
+                        r.material.SetColor("_Color", _colorPlaceable);
                     }
-                }
-            }
-            else
-            {
-                foreach (Renderer r in _renderers)
-                {
-                    foreach (Material m in r.materials)
+                    break;
+
+                case 1:
+                    foreach (Renderer r in _renderers)
                     {
-                        m.SetColor("_Color", _colorNotPlaceable);
+                        r.material.SetColor("_Color", _colorNotPlaceable);
                     }
-                }
+                    break;
+
+                case 2:
+                    foreach (Renderer r in _renderers)
+                    {
+                        r.material.SetColor("_Color", _colorNotBuildable);
+                    }
+                    break;
             }
         }
 
@@ -108,9 +113,10 @@ namespace Assets.Scripts
             GetComponent<TowerRessourceManagement>().DestroyTower();
             //Destroy(gameObject, 5);
 
-			if (_parts.Count > 0) {
-				_parts[0].GetComponentInParent<Animator>().enabled = false;
-			}
+            if (_parts.Count > 0)
+            {
+                _parts[0].GetComponentInParent<Animator>().enabled = false;
+            }
 
             foreach (GameObject part in _parts)
             {
@@ -119,15 +125,15 @@ namespace Assets.Scripts
                 part.transform.localScale = scale;
                 part.AddComponent<CapsuleCollider>();
                 var rb = part.AddComponent<Rigidbody>();
-                rb.AddForce(new Vector3(Random.Range(0, 0), Random.Range(destructiveForceMin, destructiveForceMax), Random.Range(0, 0)),ForceMode.VelocityChange);
+                rb.AddForce(new Vector3(Random.Range(0, 0), Random.Range(destructiveForceMin, destructiveForceMax), Random.Range(0, 0)), ForceMode.VelocityChange);
             }
 
-			Destroy (this.gameObject);
+            Destroy(this.gameObject);
         }
 
-		void OnDestroy()
-		{
-			_towerPlacement._placedTowers.Remove (this.gameObject);
-		}
+        void OnDestroy()
+        {
+            _towerPlacement._placedTowers.Remove(this.gameObject);
+        }
     }
 }
