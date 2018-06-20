@@ -1,46 +1,16 @@
 fileFormatVersion: 2
-guid: bdaca50d97489334e90bc1dcbf9b9564
-timeCreated: 1527802262
+guid: 0c53cd6c204b3444490fda0558e8c819
+timeCreated: 1529494977
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: BoxLeft
-    100002: BoxRight
-    100004: LargeBoxLeft
-    100006: LargeBoxRight
-    100008: Subwoofer
-    100010: //RootNode
-    400000: BoxLeft
-    400002: BoxRight
-    400004: LargeBoxLeft
-    400006: LargeBoxRight
-    400008: Subwoofer
-    400010: //RootNode
-    2100000: box
-    2100002: rings
-    2100004: speaker
-    2100006: screws
-    2100008: speaker white
-    2100010: feet
-    2100012: subwooferBottom
-    2300000: BoxLeft
-    2300002: BoxRight
-    2300004: LargeBoxLeft
-    2300006: LargeBoxRight
-    2300008: Subwoofer
-    2300010: //RootNode
-    3300000: BoxLeft
-    3300002: BoxRight
-    3300004: LargeBoxLeft
-    3300006: LargeBoxRight
-    3300008: Subwoofer
-    3300010: //RootNode
-    4300000: BoxRight
-    4300002: LargeBoxRight
-    4300004: BoxLeft
-    4300006: LargeBoxLeft
-    4300008: Subwoofer
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Dark Grey.001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: WateringCan.001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -71,7 +41,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.015
+    globalScale: 0.005
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

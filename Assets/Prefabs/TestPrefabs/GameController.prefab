@@ -90,11 +90,11 @@ MonoBehaviour:
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 2
         _hardSlimes: 2
-        _gasSlimes: 2
+        _gasSlimes: 0
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 3
         _hardSlimes: 2
-        _gasSlimes: 2
+        _gasSlimes: 0
       delay: 2
     - events:
       - SpawnPoint: {fileID: 0}
@@ -183,5 +183,6 @@ MonoBehaviour:
   - {fileID: 1244715612468778, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
   - {fileID: 1014481566120508, guid: 74eb5949a3a06ea4d8d3ea0ad65590f1, type: 2}
   - {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c, type: 2}
+  - {fileID: 1244715612468778, guid: 997f528598252aa48b2efff1006a105b, type: 2}
   _placedTowers: []
   maxDistance: 20
