@@ -68,10 +68,6 @@ public class PlayerDummy : MonoBehaviour {
             _playerHealth = 100;
             _timer = 0f;
         }
-            
-
-        if (Input.GetKeyDown("o"))
-            _playerScrapDropAndCollection.DropScraps();
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
