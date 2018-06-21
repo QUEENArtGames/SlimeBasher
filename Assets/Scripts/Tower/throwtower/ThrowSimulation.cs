@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace Assets.Scripts{
 public class ThrowSimulation : MonoBehaviour {
 
 	private Transform Target;
@@ -74,4 +74,5 @@ public class ThrowSimulation : MonoBehaviour {
     } 
 	
 
+}
 }

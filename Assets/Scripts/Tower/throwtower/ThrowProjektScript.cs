@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace Assets.Scripts{
 public class ThrowProjektScript : MonoBehaviour {
 
 
@@ -10,6 +10,9 @@ public class ThrowProjektScript : MonoBehaviour {
 	public Transform Target;
 	public float firingAngle = 45.0f;
     public float gravity = 9.8f;
+	public float _damage= 50;
+
+	public GameObject puddle;
 
 	//public float flightDuration;
 
@@ -64,10 +67,27 @@ public class ThrowProjektScript : MonoBehaviour {
 		
 		if(other.gameObject.tag =="Enemy"){
 			Debug.Log("hit");
+			other.gameObject.GetComponent<SlimeScript>().TakeDamage(_damage);
+			SpwanPuddle();
+
 		}
 
 			Destroy(gameObject);
 		
+		
+	}
+
+	void SpwanPuddle(){
+		GameObject obj = Instantiate(puddle) as GameObject;
+
+		Vector3 transformOffsetSpawn = transform.position;
+		transformOffsetSpawn.y-=0.5f;
+
+		RaycastHit hit;
+		if(Physics.Raycast(transformOffsetSpawn,Vector3.down,out hit)){
+			obj.transform.position= hit.point;
+		}
+
 		
 	}
 	
@@ -75,4 +95,5 @@ public class ThrowProjektScript : MonoBehaviour {
 	   
 
 
+}
 }

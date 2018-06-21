@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+namespace Assets.Scripts{
 
 public class BubbleProjectileScript : MonoBehaviour {
 
@@ -63,7 +64,7 @@ public class BubbleProjectileScript : MonoBehaviour {
     {
         if(collision.transform.tag == "Enemy")
         {
-            collision.transform.GetComponent<SlimeScript>().hit(dmg);
+            collision.transform.GetComponent<SlimeScript>().TakeDamage(dmg);
             Die();
         }
     }
@@ -74,4 +75,5 @@ public class BubbleProjectileScript : MonoBehaviour {
         Destroy(splash.gameObject, 1);
         Destroy(gameObject);
     }
+}
 }

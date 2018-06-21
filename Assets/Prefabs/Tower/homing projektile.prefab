@@ -137,6 +137,8 @@ MonoBehaviour:
   Target: {fileID: 0}
   firingAngle: 45
   gravity: 9.8
+  _damage: 50
+  puddle: {fileID: 1073376888413050, guid: a5e5ce3e2b976496baee753986853e3a, type: 2}
 --- !u!135 &135550973081892536
 SphereCollider:
   m_ObjectHideFlags: 1

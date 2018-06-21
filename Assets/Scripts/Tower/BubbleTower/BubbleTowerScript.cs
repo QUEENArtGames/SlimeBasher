@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+namespace Assets.Scripts{
 
 public class BubbleTowerScript : MonoBehaviour {
 
@@ -36,4 +37,5 @@ public class BubbleTowerScript : MonoBehaviour {
 
     }
 
+}
 }

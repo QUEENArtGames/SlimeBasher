@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+namespace Assets.Scripts{
 
 public class WaterTower : MonoBehaviour {
 
@@ -76,8 +77,8 @@ public class WaterTower : MonoBehaviour {
 	}
 
 	void Beam(){
-		Debug.Log(paths.Count-1);
-		Debug.Log(line.positionCount);
+		//Debug.Log(paths.Count-1);
+		//Debug.Log(line.positionCount);
 		for (int i = 0; i < paths.Count-1; i++){
 
 				//paths[i]=new Vector3(x,  y     ,  z  );
@@ -94,7 +95,7 @@ public class WaterTower : MonoBehaviour {
 				Enemy=null;
 				return;
 			}
-			HitEnemy();
+			HitEnemyWater();
 			// Calculate the velocity needed to throw the object to the target at specified angle.
 			float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
 
@@ -174,8 +175,8 @@ public class WaterTower : MonoBehaviour {
 	}
 
 
-	void HitEnemy(){
-		Enemy.GetComponent<SlimeScript>().hit(_damage*Time.deltaTime);
+	void HitEnemyWater(){
+		Enemy.GetComponent<SlimeScript>().TakeDamage(_damage*Time.deltaTime);
 	}
 
 	public GameObject FindClosestEnemy()
@@ -198,4 +199,5 @@ public class WaterTower : MonoBehaviour {
         return closest;
     }
 	
+}
 }
