@@ -3104,7 +3104,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4b6031693b7825f4a87f49727d6aa472, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3772,7 +3772,8 @@ Prefab:
       propertyPath: m_Target
       value: 
       objectReference: {fileID: 1519013677}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1769973881
@@ -3849,6 +3850,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769973881}
+--- !u!1 &1844456028 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1383729843586146, guid: 56dd3cf29a5e58440b045aafd717ccca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1601095236}
+--- !u!81 &1844456029
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1844456028}
+  m_Enabled: 1
 --- !u!1 &1878221780
 GameObject:
   m_ObjectHideFlags: 0
