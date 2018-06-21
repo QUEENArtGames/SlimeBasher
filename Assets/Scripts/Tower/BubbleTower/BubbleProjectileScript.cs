@@ -18,6 +18,7 @@ public class BubbleProjectileScript : MonoBehaviour {
     public float speed = 1f;
 	public float range = 5;
     public float dmg = 10;
+    public int timeToFinish = 100;
 
 	private Vector3 startPosition;
 
@@ -28,7 +29,7 @@ public class BubbleProjectileScript : MonoBehaviour {
 			transform.eulerAngles.z
 		);
 		startPosition = transform.position;
-        growSpeed = maxScale / 80;
+        growSpeed = maxScale / timeToFinish;
 	}
 	
 	void Update () {  
@@ -56,7 +57,7 @@ public class BubbleProjectileScript : MonoBehaviour {
         }
         else
         {
-            transform.localPosition += transform.forward * speed * Time.deltaTime;
+            transform.localPosition -= transform.forward * speed * Time.deltaTime;
         }
     }
 

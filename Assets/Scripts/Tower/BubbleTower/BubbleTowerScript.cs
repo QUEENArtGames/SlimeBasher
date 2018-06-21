@@ -5,35 +5,51 @@ namespace Assets.Scripts{
 
 public class BubbleTowerScript : MonoBehaviour {
 
-	//public Transform Target;
-
 	public GameObject projectile;
 
-    public float spawnDelay = 0f;
+    public List<GameObject> spawnpoints;
 
-	public float angle;
 
 	void Start () {
-        //StartCoroutine(BubbleProjectile());
+        spawnpoints = new List<GameObject>();
+        Debug.Log(transform.childCount);
+
+        for (int i = 0; i < transform.childCount; i++) 
+        {
+            if (transform.GetChild(i).tag == "SpawnpointBubbleTower")
+            {
+                Debug.Log(transform.GetChild(i).name);
+                spawnpoints.Add(transform.GetChild(i).GetChild(0).gameObject);
+            }
+        }
+        Debug.Log(spawnpoints);
+
+        Debug.Log(spawnpoints.Count);
+        
+        Debug.Log(spawnpoints[0].tag);
 	}
 	
 	void Update () {
 		
 	}
 
-	IEnumerator BubbleProjectile(){
+	public void BubbleProjectile(int bubbleIndex) {
 
-        yield return new WaitForSeconds(spawnDelay);
+        // bubbleIndex 
+        // 0 = top, 1 = right, 2 = bottom, 3 = left
 
-		//StartCoroutine(BubbleProjectile());
 		GameObject bubbleProjectile = Instantiate(projectile) as GameObject;
         //print(transform.eulerAngles.y);
 
         bubbleProjectile.GetComponent<BubbleProjectileScript>().angle = transform.eulerAngles.y;
-		Physics.IgnoreCollision(bubbleProjectile.GetComponent<Collider>(), GetComponent<Collider>());
+        //Physics.IgnoreCollision(bubbleProjectile.GetComponent<Collider>(), GetComponent<Collider>());
 
-        //bubbleProjectile.transform.position = transform.position + new Vector3(0.1f, 0.5f, 0f);
-        bubbleProjectile.GetComponent<BubbleProjectileScript>().spawnpoint = transform.GetChild(1).transform;
+        if (spawnpoints.Count > bubbleIndex)
+        {
+            bubbleProjectile.GetComponent<BubbleProjectileScript>().spawnpoint = spawnpoints[bubbleIndex].transform;
+        }
+
+
 
     }
 
