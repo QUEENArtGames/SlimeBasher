@@ -2645,7 +2645,7 @@ MonoBehaviour:
   - {fileID: 4225263121025170}
   - {fileID: 4986915617074376}
   - {fileID: 4166657747823414}
-  ScrapThrowFactor: 0
+  ScrapThrowFactor: 5
   NeedsMeeleScraps: 0
   NeedsBottleScraps: 0
   NeedsGrenadeScraps: 0
