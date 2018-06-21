@@ -13,6 +13,9 @@ public class PlayerSounds : MonoBehaviour {
     public AudioClip[] AttackClips;    
     public AudioSource StepSource;
 
+    public AudioSource InventoryCollectionSource;
+
+
     public void PlayKoSound()
     {
         PlayVoiceClip(KoClipts[(int)Random.Range(0, KoClipts.Length)]);
@@ -32,6 +35,11 @@ public class PlayerSounds : MonoBehaviour {
     {
         AttackSource.clip = AttackClips[(int)Random.Range(0, AttackClips.Length)];
         AttackSource.Play();
+    }
+
+    public void PlayCollectionSound()
+    {
+        InventoryCollectionSource.Play();
     }
 
     public void PlayFootStep()
