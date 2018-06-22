@@ -1,5 +1,6 @@
 ﻿// modified and extended version of: https://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,21 @@ namespace PathCreator
         public Color pathColor = Color.blue;
         public Color inactivePathColor = Color.gray;
         public Color cubeColor = Color.white;
+    }
+
+    public class PA_Marker
+    {
+        public readonly int waypoint;
+        public readonly float time;
+        public readonly double distance;
+
+        public PA_Marker(int waypoint, float time, double distance)
+        {
+            this.waypoint = waypoint;
+            this.time = time;
+            this.distance = distance;
+        }
+
     }
 
     public class PA_Waypoint
@@ -41,84 +57,204 @@ namespace PathCreator
 
     public class PC_PathAgent : MonoBehaviour
     {
-        public PC_Path path;
-        public List<PA_Waypoint> points;
+        public int precision = 100;
         public PA_Visual visual;
-        public float timeToDestination;
+        public PC_Path path;
 
-        private bool paused = false;
+        public float maxV;
+        public float acceleration;
+
+
+        public bool test = true;
+
+
         private bool playing = false;
-        private int currentWaypointIndex;
-        private float currentTimeInWaypoint;
-        private float timePerSegment;
+        private bool slowed = false;
+        private float slowDuration = 0;
+
+        private double length = 0;
+        private List<PA_Waypoint> points;
+        private List<PA_Marker> positionList;
+        private int lastPositionIndex = 0;
+
+        private float originalMaxV;
+        private double currentDistance = 0;
+        private float currentV = 0;
 
 
 
         void Awake()
         {
-            points = path.GetRandomWaypoints();
+            if (path)
+            {
+                points = path.GetRandomWaypoints();
+                positionList = new List<PA_Marker>();
+
+                CalculatePathLength(precision);
+                originalMaxV = maxV;
+            }
+            else
+            {
+                Debug.LogError(gameObject.name + " hat keine Pfad zugewiesen bekommen.");
+            }
         }
 
         // Use this for initialization
         void Start()
         {
-            //foreach (var index in points)
-            //{
-            //    if (index.curveTypeRotation == PC_CurveType.EaseInAndOut)
-            //        index.rotationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-            //    if (index.curveTypeRotation == PC_CurveType.Linear)
-            //        index.rotationCurve = AnimationCurve.Linear(0, 0, 1, 1);
-            //    if (index.curveTypePosition == PC_CurveType.EaseInAndOut)
-            //        index.positionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-            //    if (index.curveTypePosition == PC_CurveType.Linear)
-            //        index.positionCurve = AnimationCurve.Linear(0, 0, 1, 1);
-            //}
-
-            PlayPath(timeToDestination);
+            if (path)
+            {
+                PlayPath();
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-
-        }
-
-
-        IEnumerator FollowPath(float time)
-        {
-            UpdateTimeInSeconds(time);
-            currentWaypointIndex = 0;
-            while (currentWaypointIndex < points.Count)
+            if (playing)
             {
-                currentTimeInWaypoint = 0;
-                while (currentTimeInWaypoint < 1)
+                if (slowed)
                 {
-                    if (!paused)
+                    if (maxV.Equals(originalMaxV))
                     {
-                        currentTimeInWaypoint += Time.deltaTime / timePerSegment;
-                        RefreshTransform();
+                        maxV = 0.5f * originalMaxV;
                     }
-                    yield return 0;
+
+                    slowDuration -= Time.deltaTime;
+
+                    if (slowDuration <= 0)
+                    {
+                        slowDuration = 0;
+                        slowed = false;
+                        maxV = originalMaxV;
+                    }
                 }
-                currentWaypointIndex++;
+
+                UpdateMovement();
+
+                if (currentDistance.Equals(length))
+                {
+                    StopPath();
+                    return;
+                }
+
+                UpdatePosition();
             }
-            StopPath();
         }
 
-        /// <summary>
-        /// When index/time are set while the path is not playing, this method will teleport the camera to the position/rotation specified
-        /// </summary>
-        public void RefreshTransform()
+        private void UpdatePosition()
         {
+            double possibleNewDistance = currentDistance + currentV * Time.deltaTime;
+            currentDistance = possibleNewDistance < length ? possibleNewDistance : length;
+
+            PA_Marker markerA = null;
+            PA_Marker markerB = null;
+            for (int i = lastPositionIndex; i < positionList.Count; i++)
+            {
+                if (positionList[i].distance < currentDistance)
+                {
+                    continue;
+                }
+                else if (positionList[i].distance.Equals(currentDistance))
+                {
+                    markerA = positionList[i];
+                    break;
+                }
+                else if (positionList[i].distance > currentDistance)
+                {
+                    markerA = positionList[i - 1];
+                    markerB = positionList[i];
+                    break;
+                }
+            }
+
+            if (markerA == null)
+            {
+                Debug.LogError(gameObject.name + " konnte den nächsten Marker vom Pfad nicht finden.");
+                return;
+            }
+
+            if (test)
+            {
+                if (markerA.waypoint == 1)
+                {
+                    Slow(1);
+                    test = false;
+                }
+            }
+
+
+            int currentWaypointIndex = 0;
+            float currentTimeInWaypoint = 0;
+            if (markerB == null)
+            {
+                currentWaypointIndex = markerA.waypoint;
+                currentTimeInWaypoint = markerA.time;
+            }
+            else
+            {
+                double markerDistance = markerB.distance - markerA.distance;
+                double ownDistanceToA = currentDistance - markerA.distance;
+                float percentage = (float) (ownDistanceToA / markerDistance);
+
+                currentWaypointIndex = markerA.waypoint;
+                currentTimeInWaypoint = markerA.time + (1.0f / precision) * percentage;
+            }
+
             transform.position = GetBezierPosition(currentWaypointIndex, currentTimeInWaypoint);
-            transform.rotation = GetLerpRotation(currentWaypointIndex, currentTimeInWaypoint);
+
+            lastPositionIndex = markerA.waypoint;
         }
+
+        private void UpdateMovement()
+        {
+            if (currentV < maxV)
+            {
+                float possibleNewV = currentV + acceleration * Time.deltaTime;
+                currentV = possibleNewV < maxV ? possibleNewV : maxV;
+            }
+            else if (currentV > maxV)
+            {
+                float possibleNewV = currentV - acceleration * Time.deltaTime;
+                currentV = possibleNewV > maxV ? possibleNewV : maxV;
+            }
+        }
+
+        private void CalculatePathLength(int precision)
+        {
+            Vector3 currentPosition;
+            Vector3 previousPosition = points[0].position;
+
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                for (int t = 0; t <= precision; t++)
+                {
+                    currentPosition = GetBezierPosition(i, ((float) t) / 100);
+                    length += Vector3.Distance(previousPosition, currentPosition);
+                    positionList.Add(new PA_Marker(i, ((float) t) / 100, length));
+
+                    previousPosition = currentPosition;
+                }
+            }
+        }
+
 
         Vector3 GetBezierPosition(int pointIndex, float time)
         {
             float t = points[pointIndex].positionCurve.Evaluate(time);
             int nextIndex = GetNextIndex(pointIndex);
-            return Vector3.Lerp(Vector3.Lerp(points[pointIndex].position, points[pointIndex].position + points[pointIndex].handleNext, t), Vector3.Lerp(points[nextIndex].position + points[nextIndex].handlePrev, points[nextIndex].position, t), t);
+            return
+                Vector3.Lerp(
+                    Vector3.Lerp(
+                        Vector3.Lerp(points[pointIndex].position,
+                            points[pointIndex].position + points[pointIndex].handleNext, t),
+                        Vector3.Lerp(points[pointIndex].position + points[pointIndex].handleNext,
+                            points[nextIndex].position + points[nextIndex].handlePrev, t), t),
+                    Vector3.Lerp(
+                        Vector3.Lerp(points[pointIndex].position + points[pointIndex].handleNext,
+                            points[nextIndex].position + points[nextIndex].handlePrev, t),
+                        Vector3.Lerp(points[nextIndex].position + points[nextIndex].handlePrev,
+                            points[nextIndex].position, t), t), t);
         }
 
         private Quaternion GetLerpRotation(int pointIndex, float time)
@@ -126,18 +262,17 @@ namespace PathCreator
             return Quaternion.LerpUnclamped(points[pointIndex].rotation, points[GetNextIndex(pointIndex)].rotation, points[pointIndex].rotationCurve.Evaluate(time));
         }
 
+
         /// <summary>
         /// Plays the path
         /// </summary>
-        /// <param name="time">The time in seconds how long the camera takes for the entire path</param>
-        public void PlayPath(float time)
+        public void PlayPath()
         {
-            if (time <= 0)
-                time = 0.001f;
-            paused = false;
             playing = true;
-            StopAllCoroutines();
-            StartCoroutine(FollowPath(time));
+            currentDistance = 0;
+            lastPositionIndex = 0;
+            transform.position = points[0].position;
+            maxV = originalMaxV;
         }
 
         /// <summary>
@@ -150,31 +285,11 @@ namespace PathCreator
         }
 
         /// <summary>
-        /// Gets if the path is paused
-        /// </summary>
-        /// <returns>Returns paused state</returns>
-        public bool IsPaused()
-        {
-            return paused;
-        }
-
-        /// <summary>
-        /// Pauses the camera's movement - resumable with ResumePath()
-        /// </summary>
-        public void PausePath()
-        {
-            paused = true;
-            playing = false;
-        }
-
-        /// <summary>
         /// Can be called after PausePath() to resume
         /// </summary>
         public void ResumePath()
         {
-            if (paused)
-                playing = true;
-            paused = false;
+            playing = true;
         }
 
         /// <summary>
@@ -183,35 +298,21 @@ namespace PathCreator
         public void StopPath()
         {
             playing = false;
-            paused = false;
-            StopAllCoroutines();
+        }
+
+        public void Slow(float duration)
+        {
+            slowed = true;
+            slowDuration = duration;
         }
 
         /// <summary>
-        /// Allows to change the time variable specified in PlayPath(float time) on the fly
+        /// Gets the distance of the object to start
         /// </summary>
-        /// <param name="seconds">New time in seconds for entire path</param>
-        public void UpdateTimeInSeconds(float seconds)
+        /// <returns>Returns current distance</returns>
+        public double GetCurrentDistance()
         {
-            timePerSegment = seconds / (points.Count - 1);
-        }
-
-        /// <summary>
-        /// Gets the index of the current waypoint
-        /// </summary>
-        /// <returns>Returns waypoint index</returns>
-        public int GetCurrentWayPoint()
-        {
-            return currentWaypointIndex;
-        }
-
-        /// <summary>
-        /// Gets the time within the current waypoint (Range is 0-1)
-        /// </summary>
-        /// <returns>Returns time of current waypoint (Range is 0-1)</returns>
-        public float GetCurrentTimeInWaypoint()
-        {
-            return currentTimeInWaypoint;
+            return currentDistance;
         }
 
         public int GetNextIndex(int index)
@@ -221,23 +322,6 @@ namespace PathCreator
             return index + 1;
         }
 
-        /// <summary>
-        /// Sets the current waypoint index of the path
-        /// </summary>
-        /// <param name="value">Waypoint index</param>
-        public void SetCurrentWayPoint(int value)
-        {
-            currentWaypointIndex = value;
-        }
-
-        /// <summary>
-        /// Sets the time in the current waypoint 
-        /// </summary>
-        /// <param name="value">Waypoint time (Range is 0-1)</param>
-        public void SetCurrentTimeInWaypoint(float value)
-        {
-            currentTimeInWaypoint = value;
-        }
 
 #if UNITY_EDITOR
         public void OnDrawGizmos()
