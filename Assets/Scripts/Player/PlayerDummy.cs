@@ -47,7 +47,13 @@ public class PlayerDummy : MonoBehaviour {
         _towerBuilding = FindObjectOfType<TowerBuilding>();
         _scrapInventory = GetComponent<PlayerScrapInventory>();
         _towerBuildingUI = FindObjectOfType<TowerBuildingUI>();
+        GetStartRessources();
+ 
+    }
 
+    private void GetStartRessources()
+    {
+        _scrapInventory.AddScrap(ScrapType.BOTTLE, 0);
     }
 
     void Update() {
