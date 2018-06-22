@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641275, b: 0.57481736, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 670944759}
   - component: {fileID: 670944758}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
     cylinderColor: {r: 1, g: 0, b: 1, a: 1}
     handleColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   alwaysShow: 1
-  showComplexPath: 0
+  showComplexPath: 1
 --- !u!4 &670944759
 Transform:
   m_ObjectHideFlags: 0

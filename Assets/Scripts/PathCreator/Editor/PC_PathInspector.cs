@@ -20,7 +20,7 @@ namespace Pathcreator
         WorldCenter
     }
 
-    [CustomEditor(typeof(PC_Path))]
+    [CustomEditor(typeof(PC_NewWaypointMode))] // eigentlich PC_Path aber um Fehlermeldungen auszublenden etwas anderes bis gefixt
     public class PC_PathInspector : Editor
     {
         private PC_Path t;
