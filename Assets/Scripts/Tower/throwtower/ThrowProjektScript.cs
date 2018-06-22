@@ -58,6 +58,8 @@ public class ThrowProjektScript : MonoBehaviour {
  
             yield return null;
         }
+		SpwanPuddle();
+		Destroy(gameObject);
 	}
 
 
@@ -68,11 +70,9 @@ public class ThrowProjektScript : MonoBehaviour {
 		if(other.gameObject.tag =="Enemy"){
 			Debug.Log("hit");
 			other.gameObject.GetComponent<SlimeScript>().TakeDamage(_damage);
-			SpwanPuddle();
-
 		}
-
-			Destroy(gameObject);
+		SpwanPuddle();
+		Destroy(gameObject);
 		
 		
 	}

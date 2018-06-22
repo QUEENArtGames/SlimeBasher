@@ -11,6 +11,10 @@ public class TowerBuilding : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    private void Start() {
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
         _playerScraps = _playerInventory.ScrapInventory;
     }
