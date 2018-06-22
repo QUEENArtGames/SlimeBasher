@@ -24,6 +24,8 @@ namespace Assets.Scripts
         private Phase currentPhase;
         private bool phaseSwitch = true, buildingPhaseActive = true;
 
+		private bool _firstPlacement = true;
+
         private PlayerDummy _player;
 
         // Raycast on layer 8
@@ -222,6 +224,15 @@ namespace Assets.Scripts
 
         private void BuildTower(GameObject towerInstance)
         {
+			if (_firstPlacement == true) {
+				GameObject[] tutorialTowers = GameObject.FindGameObjectsWithTag ("TutorialTower"); 
+				foreach(GameObject tutorialTower in tutorialTowers){
+					Destroy (tutorialTower);
+				}
+				_firstPlacement = false;
+			}
+
+
             FindObjectOfType<TowerBuilding>().BuildTower(towerInstance);
 			_placedTowers.Add(towerInstance);
         }
