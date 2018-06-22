@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 136173954162872132}
   - component: {fileID: 54151073246602590}
   - component: {fileID: 114437824058764684}
+  - component: {fileID: 114635099672630144}
   m_Layer: 0
   m_Name: BassTower
   m_TagString: Untagged
@@ -644,6 +645,22 @@ MonoBehaviour:
   destructiveForceMin: 2
   destructiveForceMax: 4
   _parts: []
+--- !u!114 &114635099672630144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1244715612468778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6ccf7855fe30d4aa72710dc0b40dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContinousSource: {fileID: 0}
+  TowerAudioSource: {fileID: 0}
+  AttackClip: {fileID: 0}
+  BuildingClip: {fileID: 0}
+  DestructionClip: {fileID: 0}
 --- !u!114 &114793999843362112
 MonoBehaviour:
   m_ObjectHideFlags: 1

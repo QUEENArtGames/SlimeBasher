@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 54580779201805378}
   - component: {fileID: 136319355395974310}
   - component: {fileID: 114934076860578218}
+  - component: {fileID: 114266091505088150}
   m_Layer: 0
   m_Name: MeleeTower
   m_TagString: Untagged
@@ -843,6 +844,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3843ba8efde79d542a0d8749b46ec5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114266091505088150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050941866442964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6ccf7855fe30d4aa72710dc0b40dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContinousSource: {fileID: 0}
+  TowerAudioSource: {fileID: 0}
+  AttackClip: {fileID: 0}
+  BuildingClip: {fileID: 0}
+  DestructionClip: {fileID: 0}
 --- !u!114 &114284016527388568
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 136173954162872132}
   - component: {fileID: 54151073246602590}
   - component: {fileID: 114437824058764684}
+  - component: {fileID: 114385127078010300}
   m_Layer: 0
   m_Name: WaterTower
   m_TagString: Untagged
@@ -3103,6 +3104,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 0
+--- !u!114 &114385127078010300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1244715612468778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6ccf7855fe30d4aa72710dc0b40dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContinousSource: {fileID: 0}
+  TowerAudioSource: {fileID: 0}
+  AttackClip: {fileID: 0}
+  BuildingClip: {fileID: 0}
+  DestructionClip: {fileID: 0}
 --- !u!114 &114435576323450784
 MonoBehaviour:
   m_ObjectHideFlags: 1
