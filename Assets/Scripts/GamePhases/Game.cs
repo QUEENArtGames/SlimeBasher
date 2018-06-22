@@ -44,6 +44,7 @@ namespace Assets.Scripts
             _currentPhase = _gamePhase.Current;
             RunPhase(_currentPhase);
             Time.timeScale = 1;
+            FinalDestination = this.gameObject.transform;
         }
 
         private void RunPhase(Phase gamePhase) {
