@@ -134,6 +134,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4795549526233710}
+  - component: {fileID: 95026308078518234}
   m_Layer: 0
   m_Name: Tab_smooth
   m_TagString: Untagged
@@ -617,6 +618,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!95 &95026308078518234
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610323107682278}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a1693a7f9105da40a237105d0d5ae09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114315947602299202
 MonoBehaviour:
   m_ObjectHideFlags: 1
