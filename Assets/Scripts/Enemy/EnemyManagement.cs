@@ -22,6 +22,19 @@ namespace Assets.Scripts {
         public GameObject _hardSlime;
         public GameObject _gasSlime;
 
+        public List<GameObject> Slimes
+        {
+            get
+            {
+                return _Slimes;
+            }
+
+            set
+            {
+                _Slimes = value;
+            }
+        }
+
         public void EnableManager(Wave wave) {
             _wave = wave;
             _game = Game.Instance;
