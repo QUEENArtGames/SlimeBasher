@@ -217,7 +217,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4857628726833072, guid: 3d20675c34c7944d7a90bfe8f320d098, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d20675c34c7944d7a90bfe8f320d098, type: 2}
@@ -420,7 +420,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &843545075
 Prefab:
@@ -459,7 +459,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4957299166539548, guid: f0721a39917e146b497db25acc163ea8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114265558150209448, guid: f0721a39917e146b497db25acc163ea8,
         type: 2}
@@ -532,7 +532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1265396848
 GameObject:
@@ -616,7 +616,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1321932425
 Prefab:
@@ -655,7 +655,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4887805676780948, guid: 3bd14c4c1a1204ed2a7164af1b9f3196, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1999115822243096, guid: 3bd14c4c1a1204ed2a7164af1b9f3196, type: 2}
       propertyPath: m_IsActive
@@ -684,6 +684,52 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &1682682288
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.211722
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722458865424308, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244715612468778, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+      propertyPath: m_Name
+      value: WaterTower (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b86318e887c75874ca0b12ce5f49d960, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1864495722
 GameObject:
   m_ObjectHideFlags: 0

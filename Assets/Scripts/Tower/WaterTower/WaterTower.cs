@@ -5,11 +5,13 @@ namespace Assets.Scripts{
 
 public class WaterTower : MonoBehaviour {
 
-	private LineRenderer line;                           // Line Renderer
+	private LineRenderer [] line;                           // Line Renderer
 	public int lengthOfLineRenderer = 20;
 
 	public Transform Target;
 	public GameObject Enemy;
+
+	public Transform waterpoint;
 
 	public float firingAngle = 45.0f;
     public float gravity = 9.8f;
@@ -38,7 +40,7 @@ public class WaterTower : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Add a Line Renderer to the GameObject
-		line = GetComponent<LineRenderer>();
+		line = gameObject.GetComponentsInChildren<LineRenderer>();
 
 		//line = gameObject.GetComponent(typeof(LineRenderer)) as LineRenderer;
 		// Set the width of the Line Renderer
@@ -46,7 +48,7 @@ public class WaterTower : MonoBehaviour {
 		// Set the number of vertex fo the Line Renderer
 		//line.SetVertexCount(2);
 		//line.positionCount= lengthOfLineRenderer;
-		line.positionCount=0;
+		line[0].positionCount=0;
 		paths.Add(new Vector3(0,  0     ,  0  ));
 		//shot();
 	}
@@ -82,14 +84,14 @@ public class WaterTower : MonoBehaviour {
 		for (int i = 0; i < paths.Count-1; i++){
 
 				//paths[i]=new Vector3(x,  y     ,  z  );
-				line.SetPosition(i,paths[i]);
+				line[0].SetPosition(i,paths[i]);
 				//yield return new WaitForSeconds(delay);
 
 		}
 	}
 
 	void BuildWaterBeam(){
-			float target_Distance = Vector3.Distance(transform.position, Target.position);
+			float target_Distance = Vector3.Distance(waterpoint.position, Target.position);
 			//Debug.Log(target_Distance);
 			if(target_Distance >range){
 				Enemy=null;
@@ -110,7 +112,7 @@ public class WaterTower : MonoBehaviour {
 			//Debug.Log(flightDuration);
 	
 			// Rotate projectile to face the target.
-			Quaternion rotation = Quaternion.LookRotation(Target.position - transform.position);
+			Quaternion rotation = Quaternion.LookRotation(Target.position - waterpoint.position);
 		
 			transform.LookAt(Target);
 			Vector3 eulerAngles = transform.rotation.eulerAngles;
@@ -131,7 +133,7 @@ public class WaterTower : MonoBehaviour {
 
 			float tmp = (2*v0*Mathf.Sin(a)) /gravity;
 
-			float ydiff = Target.position.y-transform.position.y-1;		
+			float ydiff = Target.position.y-waterpoint.position.y;		
 
 			for (int i = 0; i < paths.Count-1; i++)
 			{
@@ -140,9 +142,9 @@ public class WaterTower : MonoBehaviour {
 				//   transform.position.y+(Vy - (gravity * (elapseDelta*i))) * elapseDelta*i
 				//line.SetPosition(i, new Vector3(Vx * elapse+transform.position.x,   transform.position.y+(  Vy*elapse+ (0.5f*(-gravity)*elapse*elapse))    ,    transform.position.z));
 				
-				float x= transform.position.x + elapse *  v0 *  Mathf.Cos(a) * Mathf.Cos(b);
-				float y = transform.position.y+1 + (  v0 * Mathf.Sin(a)*elapse+ (0.5f*(-gravity)*elapse*elapse))+  ydiff/(lengthOfLineRenderer-1)*i;
-				float z = transform.position.z +elapse * v0 * Mathf.Cos(a)*Mathf.Sin(b) ;
+				float x= waterpoint.position.x + elapse *  v0 *  Mathf.Cos(a) * Mathf.Cos(b);
+				float y = waterpoint.position.y + (  v0 * Mathf.Sin(a)*elapse+ (0.5f*(-gravity)*elapse*elapse))+  ydiff/(lengthOfLineRenderer-1)*i;
+				float z = waterpoint.position.z +elapse * v0 * Mathf.Cos(a)*Mathf.Sin(b) ;
 
 				paths[i]=new Vector3(x,  y     ,  z  );
 				Beam();
@@ -156,7 +158,7 @@ public class WaterTower : MonoBehaviour {
 		for(int i = 0; i < lengthOfLineRenderer; i++)
 		{
 
-			line.positionCount+=1;
+			line[0].positionCount+=1;
 			paths.Add(new Vector3(0,  0     ,  0  ));
 			BuildWaterBeam();
 			//Beam();
@@ -173,7 +175,7 @@ public class WaterTower : MonoBehaviour {
         {
 			Beam();
 			paths.RemoveAt(0);
-			line.positionCount-=1;
+			line[0].positionCount-=1;
 			
 
             yield return new WaitForSeconds(delay);
