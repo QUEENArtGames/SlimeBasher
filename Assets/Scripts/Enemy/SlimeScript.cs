@@ -12,11 +12,13 @@ public class SlimeScript : MonoBehaviour {
 	public float _hitpoints;
 	public float _damage;
 	public float _attackSpeed;
-	public float _aggroRange;
-	public bool _hasAggro;
+	public float _towerAggroRange;
+	public float _playerAggroRange;
+
 
 	private Transform _finalDestination;
 	private TowerPlacement _towerplacement;
+	private GameObject _player;
 
 	private NavMeshAgent _navMeshAgent;
 	private GameObject _tmpTarget;
@@ -27,33 +29,41 @@ public class SlimeScript : MonoBehaviour {
 
 			_towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
 			_finalDestination = FindObjectOfType<Game>().FinalDestination;
+			_player = GameObject.Find ("MainCharacter");
 
 
 			_navMeshAgent = GetComponent<NavMeshAgent> ();
-			_navMeshAgent.stoppingDistance = 2;
+			_navMeshAgent.stoppingDistance = 1;
 			SetTargetLocation ();
 		}
 		
 		// Update is called once per frame
 		void Update () {
 
-			if (_hasAggro) {
-				checkAggro ();
-				if (_tmpTarget != null) {
-					AttackTower ();
-				} else {
-					SetTargetLocation ();
-				}
+			if(checkPlayerAggro()){
+				attackPlayer ();
+			}else if(checkTowerAggro()){
+				AttackTower ();
+			}else{
+				SetTargetLocation();
 			}
+
 		}
 			
+		public bool checkPlayerAggro(){
+			if (Vector3.Distance (transform.position, _player.transform.position) <= _playerAggroRange) {
+				_navMeshAgent.SetDestination (_player.transform.position);
+				return true;
+			}
+			return false;
+		}
 
-		public void checkAggro(){
-			float shortestDistance = _aggroRange+1;
+		public bool checkTowerAggro(){
+			float shortestDistance = _towerAggroRange+1;
 			bool newTarget = false;
 			foreach (GameObject tower in _towerplacement._placedTowers) {
 				float distance = Vector3.Distance (transform.position, tower.transform.position);
-				if (distance < _aggroRange) {
+				if (distance < _towerAggroRange) {
 
 					if(newTarget == false || distance < shortestDistance){
 						newTarget = true;
@@ -65,12 +75,20 @@ public class SlimeScript : MonoBehaviour {
 
 			if (newTarget) {
 				_navMeshAgent.SetDestination (_tmpTarget.transform.position);
-
-			} else if(_tmpTarget != null){
-				_tmpTarget = null;
-				SetTargetLocation ();
+				return true;
 			}
 
+			_tmpTarget = null;
+			return false;
+		}
+
+		public void attackPlayer(){
+			if (Time.time > _nextAttack) {
+				PlayerDummy playerDummy = _player.transform.GetComponent<PlayerDummy> ();
+				playerDummy._playerHealth -= (int) _damage;
+
+				_nextAttack = Time.time + _attackSpeed;
+			}
 		}
 
 		public void AttackTower(){
