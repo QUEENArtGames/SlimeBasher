@@ -36,10 +36,13 @@ public class SlimeScript : MonoBehaviour {
 		
 		// Update is called once per frame
 		void Update () {
+
 			if (_hasAggro) {
 				checkAggro ();
 				if (_tmpTarget != null) {
 					AttackTower ();
+				} else {
+					SetTargetLocation ();
 				}
 			}
 		}
