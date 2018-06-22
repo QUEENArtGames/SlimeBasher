@@ -71,8 +71,9 @@ public class WaterTower : MonoBehaviour {
 		}else if(Enemy !=null){
 			BuildWaterBeam();
 		}else if(build && !destroy ){
-			destroy=true;
+			
 			StartCoroutine(DestroyWaterBeam());
+			destroy=true;
 			//Debug.Log("Destroy");
 		}
 		
@@ -97,7 +98,10 @@ public class WaterTower : MonoBehaviour {
 				Enemy=null;
 				return;
 			}
-			HitEnemyWater();
+			if(Enemy !=null){
+				HitEnemyWater();
+			}
+			
 			// Calculate the velocity needed to throw the object to the target at specified angle.
 			float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
 
@@ -177,9 +181,10 @@ public class WaterTower : MonoBehaviour {
 			paths.RemoveAt(0);
 			line[0].positionCount-=1;
 			
-
+			
             yield return new WaitForSeconds(delay);
         }
+		Debug.Log("Destroy");
 		build=false;
 	}
 
