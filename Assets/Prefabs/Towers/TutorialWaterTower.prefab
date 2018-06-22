@@ -70,9 +70,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4787349470191698}
+  - component: {fileID: 114538203465272316}
   m_Layer: 0
   m_Name: TutorialWaterTower
-  m_TagString: Untagged
+  m_TagString: TutorialTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1103,8 +1104,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1200991311333830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.20789655, y: -1.9234573e-17, z: 4.3312407}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4696229371351506}
   - {fileID: 4484610685855248}
@@ -2892,3 +2893,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838275579776352}
   m_Mesh: {fileID: 4300044, guid: 93f4da09317af2742af6b8506fd7e678, type: 3}
+--- !u!114 &114538203465272316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1200991311333830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ba0c54448d74cbdbfca6593f28d746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialUI: {fileID: 0}
