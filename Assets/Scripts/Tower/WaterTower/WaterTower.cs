@@ -18,7 +18,7 @@ public class WaterTower : MonoBehaviour {
      private Quaternion targetRotation;
 
  
-	public GameObject projec;
+	//public GameObject projec;
 
 	public Vector3 raycastDir;
 
@@ -111,8 +111,15 @@ public class WaterTower : MonoBehaviour {
 	
 			// Rotate projectile to face the target.
 			Quaternion rotation = Quaternion.LookRotation(Target.position - transform.position);
-
-			transform.rotation= rotation;
+		
+			transform.LookAt(Target);
+			Vector3 eulerAngles = transform.rotation.eulerAngles;
+     		eulerAngles.x = 0;
+     		eulerAngles.z = 0;
+			 eulerAngles.y+= 90;
+ 
+     // Set the altered rotation back
+     transform.rotation = Quaternion.Euler(eulerAngles);
 
 			float a = (firingAngle) * Mathf.Deg2Rad;
 
@@ -124,7 +131,7 @@ public class WaterTower : MonoBehaviour {
 
 			float tmp = (2*v0*Mathf.Sin(a)) /gravity;
 
-			float ydiff = Target.position.y-transform.position.y;		
+			float ydiff = Target.position.y-transform.position.y-1;		
 
 			for (int i = 0; i < paths.Count-1; i++)
 			{
@@ -134,7 +141,7 @@ public class WaterTower : MonoBehaviour {
 				//line.SetPosition(i, new Vector3(Vx * elapse+transform.position.x,   transform.position.y+(  Vy*elapse+ (0.5f*(-gravity)*elapse*elapse))    ,    transform.position.z));
 				
 				float x= transform.position.x + elapse *  v0 *  Mathf.Cos(a) * Mathf.Cos(b);
-				float y = transform.position.y + (  v0 * Mathf.Sin(a)*elapse+ (0.5f*(-gravity)*elapse*elapse))+  ydiff/(lengthOfLineRenderer-1)*i;
+				float y = transform.position.y+1 + (  v0 * Mathf.Sin(a)*elapse+ (0.5f*(-gravity)*elapse*elapse))+  ydiff/(lengthOfLineRenderer-1)*i;
 				float z = transform.position.z +elapse * v0 * Mathf.Cos(a)*Mathf.Sin(b) ;
 
 				paths[i]=new Vector3(x,  y     ,  z  );
