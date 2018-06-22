@@ -1,80 +1,109 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerRessourceManagement : MonoBehaviour {
 
+public class TowerRessourceManagement : MonoBehaviour
+{
     public Transform[] ScrapSlots;
-    public float Droprate = 1.0f;
+    public int ScrapThrowFactor;
+    public bool NeedsMeeleScraps;
+    public bool NeedsBottleScraps;
+    public bool NeedsGrenadeScraps;
+    public bool NeedsPustefixScraps;
+    public int NeededClassicScraps;
 
-    private ArrayList _attachedScraps;
-    private GameObject[] _possibleScrapPrefabs;
+    private List<GameObject> _attachedScraps = new List<GameObject>();
+    private float _droprate;
+    private RessourceManagement _ressourceManagement;
+    private bool[] _neededScraps = new bool[Enum.GetNames(typeof(ScrapType)).Length];
 
-    // Use this for initialization
-    void Awake () {
-        _possibleScrapPrefabs = FindObjectOfType<RessourceManagement>().PossibleScrabPrefabs;
-        _attachedScraps = new ArrayList();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //Test Destroy Tower
-        if (Input.GetKey("i"))
-            DestroyTower();
-
-        //TestBuildTower();
-        if (Input.GetKey("u"))
-        {
-            PlayerScrapInventory inventory = FindObjectOfType<PlayerScrapInventory>();
-            ArrayList[] scrapInventory = inventory.ScrapInventory;
-           
-            for (int scrapTypeIndex = 0; scrapTypeIndex < scrapInventory.Length; scrapTypeIndex++)
-            {
-                for (int index = 0; index < scrapInventory[scrapTypeIndex].Count; index++)
-                {
-                    Vector3 instanstiatePosition = ScrapSlots[_attachedScraps.Count].position;
-                    GameObject scrap = Instantiate(_possibleScrapPrefabs[scrapTypeIndex], instanstiatePosition, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-                        scrap.GetComponent<Scrap>().SetMesh((int)scrapInventory[scrapTypeIndex][index]);
-                        scrap.GetComponent<Scrap>().Type = (ScrapType)scrapTypeIndex;
-                        scrap.GetComponent<Rigidbody>().isKinematic = true;
-                        inventory.RemoveScrap(scrapTypeIndex, index);
-                        _attachedScraps.Add(scrap);
-
-
-                }
-            }
-        }
-            
-
-    }
-
-    public void AddScrap(GameObject scrap)
+    public List<GameObject> AttachedScraps
     {
-        if(_attachedScraps.Count < ScrapSlots.Length)
+        get
         {
-            Vector3 spawnposition = ScrapSlots[_attachedScraps.Count].position;
-            GameObject scrapInstant = Instantiate(scrap, spawnposition , new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-            _attachedScraps.Add(scrapInstant);
+            return _attachedScraps;
         }
-        
+
+        set
+        {
+            _attachedScraps = value;
+        }
     }
+
+    public bool[] NeededScraps
+    {
+        get
+        {
+            return _neededScraps;
+        }
+    }
+
+    void Awake()
+    {
+        _ressourceManagement = FindObjectOfType<RessourceManagement>();
+        _droprate = _ressourceManagement.TowerScrapDropProbabilityInPercent;
+        _neededScraps[(int)ScrapType.MELEE] = NeedsMeeleScraps;
+        _neededScraps[(int)ScrapType.BOTTLE] = NeedsBottleScraps;
+        _neededScraps[(int)ScrapType.GRENADE] = NeedsGrenadeScraps;
+        _neededScraps[(int)ScrapType.PUSTEFIX] = NeedsPustefixScraps;
+       
+    }
+
+    internal bool ScrapSlotsOnTowerAreFree()
+    {
+        return AttachedScraps.Count < ScrapSlots.Length;
+    }
+
+    public GameObject AddNeededScrap(List<int>[] scrapInventory)
+    {
+        for(int scrapTypeIndex = 0; scrapTypeIndex < _neededScraps.Length; scrapTypeIndex++)
+        {
+            if(_neededScraps[scrapTypeIndex])
+                return AddParticularScrap((ScrapType) scrapTypeIndex, scrapInventory[scrapTypeIndex][0]);
+        }
+        return null;
+    }
+
+    public void AddNeededScrapOfCertainSubTypeIndex(List<int>[] scrapInventory, int subTypeIndex)
+    {
+        for (int scrapTypeIndex = 0; scrapTypeIndex < _neededScraps.Length; scrapTypeIndex++)
+        {
+            if (_neededScraps[scrapTypeIndex])
+                AddParticularScrap((ScrapType)scrapTypeIndex, subTypeIndex);
+        }
+    }
+
+    private GameObject AddParticularScrap(ScrapType scraptype, int subTypeIndex)
+    {
+        Vector3 slotPosition = ScrapSlots[AttachedScraps.Count].position;
+        GameObject scrap = _ressourceManagement.GetScrapPrefabBySubTypeIndex((int) scraptype, subTypeIndex);
+        GameObject scrapInstant = Instantiate(scrap, slotPosition, ScrapSlots[AttachedScraps.Count].rotation);
+        Vector3 pivotPosition = ScrapSlots[AttachedScraps.Count].rotation * scrap.GetComponent<Scrap>().TowerAttachementPivot.position;
+        scrapInstant.transform.position -= pivotPosition;
+        AttachedScraps.Add(scrapInstant);
+        return scrapInstant;
+    }
+
 
     public void DestroyTower()
     {
-        foreach (GameObject scrap in _attachedScraps)
+        foreach (GameObject scrapObject in AttachedScraps)
         {
-            if (Random.Range(0.0f, 1.0f) <= Droprate) { 
-                scrap.GetComponent<Rigidbody>().isKinematic = false;
-                scrap.GetComponent<Scrap>().ChangeAttachementState();
-                scrap.GetComponent<Scrap>().ChangeCollectionState();
+            if (UnityEngine.Random.Range(0.0f, 100.0f) < _droprate)
+            {
+                Scrap scrap = scrapObject.GetComponent<Scrap>();
+                scrapObject.GetComponent<Rigidbody>().isKinematic = false;
+                scrap.ChangeAttachementState();
+                scrap.ChangeCollectionState();
+                scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
             }
             else
             {
-                Destroy(scrap);
+                Destroy(scrapObject);
             }
         }
 
-        _attachedScraps.RemoveRange(0, _attachedScraps.Count);
-
+        AttachedScraps.RemoveRange(0, AttachedScraps.Count);
     }
 }

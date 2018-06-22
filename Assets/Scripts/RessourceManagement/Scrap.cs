@@ -1,74 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Scrap : MonoBehaviour {
 
-    private ScrapType _scrapType;
-    private int _meshnumber;
-    private bool collected = true;
-    private bool inPosition = true;
+public class Scrap : MonoBehaviour
+{
+    public ScrapType ScrapType;
+    public int SubCategoryIndex;
+    public Transform TowerAttachementPivot;
 
-    public int ScrapTypeAsInt;
-    public Mesh[] possibleMeshes;
+    private bool _collected = true;
+    private bool _inPosition = true;
+    private Rigidbody _rigidbody;
 
-    void Awake() {
-        _meshnumber = ((int)Random.Range(0.0f, possibleMeshes.Length));
-        SetMesh(_meshnumber);
-        _scrapType = (ScrapType) ScrapTypeAsInt;
+
+    void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     public ScrapType Type
     {
         get
         {
-            return _scrapType;
+            return ScrapType;
         }
 
         set
         {
-            _scrapType = value;
+            ScrapType = value;
         }
-
     }
-    
+
     public bool IsCollected
     {
         get
         {
-            return collected;
+            return _collected;
         }
     }
 
     public void ChangeCollectionState()
     {
-        collected = !collected;
-    }
-
-    public int MeshIndex { 
-        get{
-            return _meshnumber;
-        }
+        _collected = !_collected;
     }
 
     public bool AttachedToSlot
     {
         get
         {
-            return inPosition;
+            return _inPosition;
         }
     }
 
     public void ChangeAttachementState()
     {
-        inPosition = !AttachedToSlot;
+        _inPosition = !AttachedToSlot;
     }
 
-    public void SetMesh(int meshnumber)
+    public void ThrowScrapAway(Vector3 centerOfObject, Vector3 scrapSlotPosition, int ScrapThrowFactor)
     {
-        _meshnumber = meshnumber;
-        gameObject.GetComponentInChildren<MeshFilter>().mesh = Instantiate(possibleMeshes[_meshnumber]);
+        Vector3 forceVector = (scrapSlotPosition - centerOfObject) * ScrapThrowFactor;
+        _rigidbody.AddForce(forceVector, ForceMode.Impulse);
+        _rigidbody.AddTorque(new Vector3(Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor)));
     }
-
-    
 }
