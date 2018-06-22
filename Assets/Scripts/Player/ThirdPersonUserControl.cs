@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
+using SlimeBasher.CrossPlatformInput;
 
 namespace SlimeBasher.Characters.ThirdPerson
 {

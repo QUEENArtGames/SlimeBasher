@@ -18,6 +18,18 @@ public class TowerRessourceManagement : MonoBehaviour
     private RessourceManagement _ressourceManagement;
     private bool[] _neededScraps = new bool[Enum.GetNames(typeof(ScrapType)).Length];
 
+    private void Update()
+    {
+       /* for (int i = 0; i < _attachedScraps.Count; i++)
+        {
+            Vector3 pivotPosition =  _attachedScraps[i].GetComponent<Scrap>().TowerAttachementPivot.position;
+            //scrapInstant.transform.position -= pivotPosition;
+            _attachedScraps[i].transform.position = ScrapSlots[i].position - pivotPosition;
+            _attachedScraps[i].transform.rotation = ScrapSlots[i].rotation;
+        }*/
+            
+            
+    }
     public List<GameObject> AttachedScraps
     {
         get
@@ -81,7 +93,9 @@ public class TowerRessourceManagement : MonoBehaviour
         GameObject scrapInstant = Instantiate(scrap, slotPosition, ScrapSlots[AttachedScraps.Count].rotation);
         Vector3 pivotPosition = ScrapSlots[AttachedScraps.Count].rotation * scrap.GetComponent<Scrap>().TowerAttachementPivot.position;
         scrapInstant.transform.position -= pivotPosition;
+        scrapInstant.transform.parent = ScrapSlots[AttachedScraps.Count];
         AttachedScraps.Add(scrapInstant);
+        
         return scrapInstant;
     }
 
@@ -92,6 +106,7 @@ public class TowerRessourceManagement : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0.0f, 100.0f) < _droprate)
             {
+                scrapObject.transform.parent = null;
                 Scrap scrap = scrapObject.GetComponent<Scrap>();
                 scrapObject.GetComponent<Rigidbody>().isKinematic = false;
                 scrap.ChangeAttachementState();
