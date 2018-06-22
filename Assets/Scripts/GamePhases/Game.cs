@@ -23,6 +23,7 @@ namespace Assets.Scripts
         public GameObject phaseGUI;
         public GameObject _phaseGUICountdown;
         public GameObject _waveRoundText;
+        public GameObject _readyUI;
 
         internal static Game Instance {
             get {
@@ -54,6 +55,7 @@ namespace Assets.Scripts
                     Debug.Log("BUILDING");
                     _readyButtonEnabled = true;
                     phaseGUI.SetActive(false);
+                    _readyUI.SetActive(true);
                     break;
                 case Phase.Prepare:
                     //Player bereitet sich auf die jetzt kommende Nächste Phase vor
@@ -61,6 +63,7 @@ namespace Assets.Scripts
                     StartNextRoundCounter();
                     waveProvider.setWaveNumber(_waveRoundNumber);
                     _actualWave = waveProvider.GetNextWave();
+                    _readyUI.SetActive(false);
                     break;
                 case Phase.Fight:
                     //Player bekämpft Enemys

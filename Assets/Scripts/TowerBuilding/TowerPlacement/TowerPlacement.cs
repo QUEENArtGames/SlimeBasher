@@ -49,9 +49,6 @@ namespace Assets.Scripts
                 }
                 tower.GetComponent<NavMeshObstacle>().carving = true;
             }
-            selectedTower = towers[0];
-            towerPreview = Instantiate(selectedTower);
-            towerPreview.GetComponent<Tower>().SetPreviewMode(true);
 
             _player = FindObjectOfType<PlayerDummy>();
         }
