@@ -1344,6 +1344,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1511621662740654, guid: 968d04d6a4af9e44db8bf9429726db54,
         type: 2}
+    - target: {fileID: 114525371782920988, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: ScrapSpawnProbabilityOnSlimesInPercent
+      value: 33.333
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
   m_IsPrefabParent: 0
