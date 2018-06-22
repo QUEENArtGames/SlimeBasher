@@ -134,6 +134,7 @@ namespace Pathcreator
 
         void GetVariableProperties()
         {
+            serializedObjectTarget = new SerializedObject(t);
             visualPathProperty = serializedObjectTarget.FindProperty("visual.pathColor");
             visualInactivePathProperty = serializedObjectTarget.FindProperty("visual.inactivePathColor");
             visualFrustumProperty = serializedObjectTarget.FindProperty("visual.frustrumColor");
