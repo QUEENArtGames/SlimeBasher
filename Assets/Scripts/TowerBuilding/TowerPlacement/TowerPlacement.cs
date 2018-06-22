@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -25,12 +24,7 @@ namespace Assets.Scripts
         private Phase currentPhase;
         private bool phaseSwitch = true, buildingPhaseActive = true;
 
-		private bool _firstPlacement = true;
-
         private PlayerDummy _player;
-
-        public GameObject tutorialUI;
-
 
         // Raycast on layer 8
         private int layerMask = 1 << 8;
@@ -53,6 +47,9 @@ namespace Assets.Scripts
                 }
                 tower.GetComponent<NavMeshObstacle>().carving = true;
             }
+            selectedTower = towers[0];
+            towerPreview = Instantiate(selectedTower);
+            towerPreview.GetComponent<Tower>().SetPreviewMode(true);
 
             _player = FindObjectOfType<PlayerDummy>();
         }
@@ -225,20 +222,6 @@ namespace Assets.Scripts
 
         private void BuildTower(GameObject towerInstance)
         {
-			if (_firstPlacement == true) {
-				GameObject[] tutorialTowers = GameObject.FindGameObjectsWithTag ("TutorialTower");
-                tutorialUI.GetComponent<Tutorial>().FadeOut();
-                tutorialUI.GetComponentInChildren<Text>().text = "Puh, das sollte erstmal helfen. Drücke G, um in die nächste Phase zu kommen.";
-                tutorialUI.GetComponent<Tutorial>().FadeIn();
-                FindObjectOfType<Game>()._readyButtonEnabled = true;
-
-                    foreach (GameObject tutorialTower in tutorialTowers){
-					Destroy (tutorialTower);
-				}
-				_firstPlacement = false;
-			}
-
-
             FindObjectOfType<TowerBuilding>().BuildTower(towerInstance);
 			_placedTowers.Add(towerInstance);
         }

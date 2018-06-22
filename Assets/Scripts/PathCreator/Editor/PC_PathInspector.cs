@@ -36,7 +36,7 @@ namespace Pathcreator
         private PC_ManipulationModes handlePositionMode;
         private PC_NewWaypointMode waypointMode;
         private int waypointIndex = 1;
-        private CPC_ECurveType allCurveType = CPC_ECurveType.Custom;
+        private PC_CurveType allCurveType = PC_CurveType.Custom;
         private AnimationCurve allAnimationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
         //GUIContents
@@ -134,6 +134,7 @@ namespace Pathcreator
 
         void GetVariableProperties()
         {
+            serializedObjectTarget = new SerializedObject(t);
             visualPathProperty = serializedObjectTarget.FindProperty("visual.pathColor");
             visualInactivePathProperty = serializedObjectTarget.FindProperty("visual.inactivePathColor");
             visualFrustumProperty = serializedObjectTarget.FindProperty("visual.frustrumColor");
