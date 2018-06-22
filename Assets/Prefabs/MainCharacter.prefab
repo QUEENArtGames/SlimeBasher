@@ -510,10 +510,9 @@ GameObject:
   - component: {fileID: 114423961643282666}
   - component: {fileID: 208265716266918588}
   - component: {fileID: 114121724534516858}
-  - component: {fileID: 81703699198627096}
   m_Layer: 0
   m_Name: MainCharacter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2678,14 +2677,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!81 &81703699198627096
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1383729843586146}
-  m_Enabled: 1
-  m_ExtensionPropertyValues: []
 --- !u!95 &95089696821375504
 Animator:
   serializedVersion: 3
