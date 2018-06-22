@@ -34,7 +34,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
             {
                 if (Random.Range(0.0f, 100.0f) < _ressourceManagement.PlayerScrapDropProbabilityInPercent)
                 {
-                    GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), transform.position, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+                    GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
                     Scrap scrap = scrapObject.GetComponent<Scrap>();
                     scrap.ChangeCollectionState();
                     scrap.ChangeAttachementState();

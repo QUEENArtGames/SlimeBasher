@@ -25,8 +25,8 @@ public class SlimeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-			//_towerplacement = GameObject.Find("GameController").transform.GetComponent<TowerPlacement>();
-			//_finalDestination = FindObjectOfType<Game>().FinalDestination;
+			_towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
+			_finalDestination = FindObjectOfType<Game>().FinalDestination;
 
 
 			_navMeshAgent = GetComponent<NavMeshAgent> ();
@@ -46,7 +46,6 @@ public class SlimeScript : MonoBehaviour {
 			
 
 		public void checkAggro(){
-
 			float shortestDistance = _aggroRange+1;
 			bool newTarget = false;
 			foreach (GameObject tower in _towerplacement._placedTowers) {

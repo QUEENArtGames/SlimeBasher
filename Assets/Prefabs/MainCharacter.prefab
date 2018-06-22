@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 114702210991139632}
   - component: {fileID: 114423961643282666}
   - component: {fileID: 208265716266918588}
+  - component: {fileID: 114121724534516858}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -2693,6 +2694,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114121724534516858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383729843586146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a69960e6680f6c419c6a3c274ea92af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VoiceSource: {fileID: 0}
+  CheerClips: []
+  PainClips: []
+  KoClipts: []
+  AttackSource: {fileID: 0}
+  AttackClips: []
+  StepSource: {fileID: 0}
+  InventoryCollectionSource: {fileID: 0}
 --- !u!114 &114355765468476332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2734,6 +2754,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6e341d270333740b4b1a63d77bc6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerHealth: 100
+  _healtSlider: {fileID: 0}
+  _endUI: {fileID: 0}
+  _moveCharacterTimer: 15
+  _playerSpawnPoint: {fileID: 0}
   MaxDistanceToTower: 2
 --- !u!114 &114702210991139632
 MonoBehaviour:
