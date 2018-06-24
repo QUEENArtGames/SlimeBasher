@@ -2831,6 +2831,8 @@ MonoBehaviour:
   - {fileID: 1021326453517442}
   - {fileID: 1025886827428842}
   - {fileID: 1284396535105212}
+  ShootCylinder: {fileID: 1673266230284282}
+  BubbleParticleSystem: {fileID: 198199602771090964}
 --- !u!114 &114722017824151782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2867,9 +2869,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrapSlots:
   - {fileID: 4451679531116194}
+  - {fileID: 4641539463643522}
   - {fileID: 4397996860594624}
   - {fileID: 4272817347341048}
-  - {fileID: 4641539463643522}
   ScrapThrowFactor: 5
   NeedsMeeleScraps: 0
   NeedsBottleScraps: 0
@@ -2901,7 +2903,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -2949,7 +2951,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1495418802
+  randomSeed: 66390989
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6176,7 +6178,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
