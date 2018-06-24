@@ -81,6 +81,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _nextPhaseTimer: 5
+  _readyButtonEnabled: 0
   _pausemenu: {fileID: 0}
   enemyManagement: {fileID: 114923424035624480}
   fightPhaseEnd: 0
@@ -112,6 +113,8 @@ MonoBehaviour:
   phaseGUI: {fileID: 0}
   _phaseGUICountdown: {fileID: 0}
   _waveRoundText: {fileID: 0}
+  _readyUI: {fileID: 0}
+  _tutorialUI: {fileID: 0}
 --- !u!114 &114525371782920988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,14 +133,14 @@ MonoBehaviour:
   GrenadePrefabs:
   - {fileID: 1403633355510592, guid: b6c8fd8353978544e8ad8f7873b1172c, type: 2}
   BottlePrefabs:
-  - {fileID: 1103263228983924, guid: 615a4921cce9ff9498dc77b642dfc707, type: 2}
+  - {fileID: 1511621662740654, guid: 968d04d6a4af9e44db8bf9429726db54, type: 2}
   PustefixPrefabs:
   - {fileID: 1403633355510592, guid: ba88feb660763b04c88b3bd29959348a, type: 2}
   MeeleScrapAmountInPool: 10
   BottleScrapAmountInPool: 10
   GrenadeScrapAmountInPool: 10
   PustefixScrapAmountInPool: 10
-  ScrapSpawnProbabilityOnSlimesInPercent: 100
+  ScrapSpawnProbabilityOnSlimesInPercent: 33.333
   PlayerScrapDropProbabilityInPercent: 100
   TowerScrapDropProbabilityInPercent: 100
 --- !u!114 &114797267383346880
@@ -185,4 +188,5 @@ MonoBehaviour:
   - {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c, type: 2}
   - {fileID: 1244715612468778, guid: 997f528598252aa48b2efff1006a105b, type: 2}
   _placedTowers: []
+  tutorialUI: {fileID: 0}
   maxDistance: 20
