@@ -54,10 +54,6 @@ public class PlayerDummy : MonoBehaviour {
     private void GetStartRessources()
     {
         _scrapInventory.AddScrap(ScrapType.BOTTLE, 0);
-        _scrapInventory.AddScrap(ScrapType.PUSTEFIX, 0);
-        _scrapInventory.AddScrap(ScrapType.PUSTEFIX, 0);
-        _scrapInventory.AddScrap(ScrapType.PUSTEFIX, 0);
-        _scrapInventory.AddScrap(ScrapType.PUSTEFIX, 0);
     }
 
     void Update() {
