@@ -11,7 +11,7 @@ namespace Assets.Scripts
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
         private bool _startTimer = false;
-        private bool _readyButtonEnabled = false;
+        public bool _readyButtonEnabled = false;
         private float _countdown;
         public GameObject _pausemenu;
         int _waveRoundNumber = 1;
