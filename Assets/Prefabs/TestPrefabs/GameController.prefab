@@ -81,6 +81,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _nextPhaseTimer: 5
+  _readyButtonEnabled: 0
   _pausemenu: {fileID: 0}
   enemyManagement: {fileID: 114923424035624480}
   fightPhaseEnd: 0
@@ -187,4 +188,5 @@ MonoBehaviour:
   - {fileID: 1050941866442964, guid: de8eba732b0a09548bb42df13d336d0c, type: 2}
   - {fileID: 1244715612468778, guid: 997f528598252aa48b2efff1006a105b, type: 2}
   _placedTowers: []
+  tutorialUI: {fileID: 0}
   maxDistance: 20
