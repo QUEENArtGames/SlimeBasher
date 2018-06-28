@@ -32,16 +32,23 @@ public class BubbleProjectileScript : MonoBehaviour {
         growSpeed = maxScale / timeToFinish;
 	}
 	
-	void Update () {  
+	void Update () {
 
-		float dist = Vector3.Distance(startPosition, transform.position);
+            if (spawnpoint == null)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+            
+
+            float dist = Vector3.Distance(startPosition, transform.position);
 		//print("Distance to other: " + dist);
-		if(dist >range){
+		if (dist > range){
 			//Debug.Log(dist);
             Die();
         }
-        //Debug.Log(startPosition.x-transform);
-
+            //Debug.Log(startPosition.x-transform);
+            
         GrowAndMove();  
     }
 
@@ -49,9 +56,9 @@ public class BubbleProjectileScript : MonoBehaviour {
     {
         if (transform.localScale.x <= maxScale)
         {
-            //tremble = (Random.value - 0.5f) * 0.01f;
+                //tremble = (Random.value - 0.5f) * 0.01f
 
-            transform.localPosition = new Vector3(spawnpoint.position.x + tremble, spawnpoint.position.y + tremble, spawnpoint.position.z + tremble) + 
+                transform.localPosition = new Vector3(spawnpoint.position.x + tremble, spawnpoint.position.y + tremble, spawnpoint.position.z + tremble) + 
                                                  (spawnpoint.forward * transform.localScale.x / 2);
             transform.localScale += new Vector3(growSpeed, growSpeed, growSpeed);   
         }
