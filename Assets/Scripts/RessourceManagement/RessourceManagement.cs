@@ -54,6 +54,9 @@ public class RessourceManagement : MonoBehaviour
         PossiblePrefabs[(int)ScrapType.PUSTEFIX] = PustefixPrefabs;
         PrepareScrapPools();
         FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.BOTTLE, 0);
+        FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.PUSTEFIX, 0);
+        FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.MELEE, 0);
+        FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.GRENADE, 0);
     }
 
     private void PrepareScrapPools()

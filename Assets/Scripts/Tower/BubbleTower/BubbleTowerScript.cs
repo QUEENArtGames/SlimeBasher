@@ -11,11 +11,13 @@ public class BubbleTowerScript : MonoBehaviour {
     public GameObject ShootCylinder;
         public ParticleSystem BubbleParticleSystem;
     private TowerRessourceManagement _towerRessourceManagement;
+        private TowerSounds _towersounds;
 
 
 	void Start () {
         _towerRessourceManagement = GetComponentInParent<TowerRessourceManagement>();
         spawnpoints = new List<GameObject>();
+        _towersounds = GetComponentInParent<TowerSounds>();
 
         for (int i = 0; i < transform.childCount; i++) 
         {
@@ -46,7 +48,7 @@ public class BubbleTowerScript : MonoBehaviour {
         if (spawnpoints.Count > bubbleIndex)
                    bubbleProjectile.GetComponent<BubbleProjectileScript>().spawnpoint = spawnpoints[bubbleIndex].transform;
 
-
+            _towersounds.PlayAttackClip();
 
 
     }

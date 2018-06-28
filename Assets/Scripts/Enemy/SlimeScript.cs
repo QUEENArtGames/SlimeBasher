@@ -51,7 +51,7 @@ public class SlimeScript : MonoBehaviour {
 		}
 			
 		public bool checkPlayerAggro(){
-			if (Vector3.Distance (transform.position, _player.transform.position) <= _playerAggroRange) {
+			if (Vector3.Distance (transform.position, _player.transform.position) <= _playerAggroRange && _player.GetComponent<PlayerDummy>()._playerHealth > 0) {
 				_navMeshAgent.SetDestination (_player.transform.position);
 				return true;
 			}
@@ -85,7 +85,7 @@ public class SlimeScript : MonoBehaviour {
 		public void attackPlayer(){
 			if (Time.time > _nextAttack) {
 				PlayerDummy playerDummy = _player.transform.GetComponent<PlayerDummy> ();
-				playerDummy._playerHealth -= (int) _damage;
+                playerDummy.Damage((int)_damage);
 
 				_nextAttack = Time.time + _attackSpeed;
 			}
@@ -113,7 +113,8 @@ public class SlimeScript : MonoBehaviour {
 
 		public void Kill()
 		{
-			Destroy(this.gameObject);
+            GetComponent<SlimeAudio>().PlayDeathClip();
+			Destroy(this.gameObject, 0.5f);
 			GetComponent<SlimeRessourceManagement>().DropRessources();
 		}
 

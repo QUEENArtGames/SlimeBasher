@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.UI;
 
 //TESTFUNKTIONEN
@@ -19,11 +18,14 @@ public class PlayerDummy : MonoBehaviour {
     public Transform _playerSpawnPoint;
 
     private bool _isInDefaultMode = true;
+    private PlayerSounds _playersounds;
+    private bool _allowsounds = true;
 
     public int MaxDistanceToTower = 2;
 
     private void Start() {
         _healtSlider = GameObject.Find("HealthSlider");
+        _playersounds = GetComponent<PlayerSounds>();
     }
 
     public bool IsInDefaultMode {
@@ -59,6 +61,11 @@ public class PlayerDummy : MonoBehaviour {
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             _timer += Time.deltaTime;
             _playerScrapDropAndCollection.DropScraps();
+            if (_allowsounds)
+            {
+                _playersounds.PlayKoSound();
+                _allowsounds = false;
+            }
         }
 
         if(_timer >= _moveCharacterTimer) {
@@ -67,6 +74,7 @@ public class PlayerDummy : MonoBehaviour {
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _playerHealth = 100;
             _timer = 0f;
+            _allowsounds = true;
         }
 
         RaycastHit hit;
@@ -102,6 +110,14 @@ public class PlayerDummy : MonoBehaviour {
 
         }
 
+    }
+
+    internal void Damage(int damage)
+    {
+        Debug.Log("DAMAGE");
+        _playersounds.PlayPainSound();
+        _playerHealth -= damage;
+        
     }
 
     private void OnCollisionEnter(Collision other) {

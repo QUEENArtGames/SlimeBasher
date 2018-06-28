@@ -102,6 +102,7 @@ public class TowerRessourceManagement : MonoBehaviour
 
     public void DestroyTower()
     {
+       
         foreach (GameObject scrapObject in AttachedScraps)
         {
             if (UnityEngine.Random.Range(0.0f, 100.0f) < _droprate)

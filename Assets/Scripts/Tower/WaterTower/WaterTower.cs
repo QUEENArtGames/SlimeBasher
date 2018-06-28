@@ -80,9 +80,10 @@ public class WaterTower : MonoBehaviour {
 	}
 
 	void Beam(){
-		//Debug.Log(paths.Count-1);
-		//Debug.Log(line.positionCount);
-		for (int i = 0; i < paths.Count-1; i++){
+            //Debug.Log(paths.Count-1);
+            //Debug.Log(line.positionCount);
+           
+            for (int i = 0; i < paths.Count-1; i++){
 
 				//paths[i]=new Vector3(x,  y     ,  z  );
 				line[0].SetPosition(i,paths[i]);
@@ -92,7 +93,8 @@ public class WaterTower : MonoBehaviour {
 	}
 
 	void BuildWaterBeam(){
-			float target_Distance = Vector3.Distance(waterpoint.position, Target.position);
+            GetComponent<TowerSounds>().PlayAttackClip();
+            float target_Distance = Vector3.Distance(waterpoint.position, Target.position);
 			//Debug.Log(target_Distance);
 			if(target_Distance >range){
 				Enemy=null;
@@ -175,7 +177,8 @@ public class WaterTower : MonoBehaviour {
 	}
 
 	IEnumerator DestroyWaterBeam(){
-		for(int i = lengthOfLineRenderer - 1; i >= 0; i--)
+            GetComponent<TowerSounds>().TowerAudioSource.Stop();
+            for (int i = lengthOfLineRenderer - 1; i >= 0; i--)
         {
 			Beam();
 			paths.RemoveAt(0);
