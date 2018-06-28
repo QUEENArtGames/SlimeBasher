@@ -6,11 +6,13 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
 {
     private PlayerScrapInventory _scrapInventory;
     private RessourceManagement _ressourceManagement;
+    private PlayerSounds _sounds;
 
     void Awake()
     {
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
+        _sounds = GetComponent<PlayerSounds>();
         
     }
 
@@ -22,6 +24,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
             ScrapType scraptype = scrap.Type;
             Destroy(scrapObject);
             _scrapInventory.AddScrap(scraptype, scrap.SubCategoryIndex);
+            _sounds.PlayCollectionSound();
             
         }
     }

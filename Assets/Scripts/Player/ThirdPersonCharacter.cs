@@ -29,6 +29,18 @@ namespace SlimeBasher.Characters.ThirdPerson
         CapsuleCollider capsule;
         bool isCrouching;
 
+        public bool IsGrounded
+        {
+            get
+            {
+                return isGrounded;
+            }
+
+            set
+            {
+                isGrounded = value;
+            }
+        }
 
         void Start()
         {

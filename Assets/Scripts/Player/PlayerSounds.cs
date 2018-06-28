@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SlimeBasher.Characters.ThirdPerson;
 
 public class PlayerSounds : MonoBehaviour {
 
@@ -15,7 +16,12 @@ public class PlayerSounds : MonoBehaviour {
 
     public AudioSource InventoryCollectionSource;
 
+    private ThirdPersonCharacter _thirdPersonCharacter;
 
+    private void Start()
+    {
+        _thirdPersonCharacter = FindObjectOfType<ThirdPersonCharacter>();
+    }
     public void PlayKoSound()
     {
         PlayVoiceClip(KoClipts[(int)Random.Range(0, KoClipts.Length)]);
@@ -42,9 +48,10 @@ public class PlayerSounds : MonoBehaviour {
         InventoryCollectionSource.Play();
     }
 
-    public void PlayFootStep()
+    public void PlayFootstepSound()
     {
-        StepSource.Play();
+        if(_thirdPersonCharacter.IsGrounded)
+            StepSource.Play();
     }
 
     private void PlayVoiceClip(AudioClip voiceClip)
