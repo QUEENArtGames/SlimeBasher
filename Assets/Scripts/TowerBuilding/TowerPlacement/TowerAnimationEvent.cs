@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class TowerAnimationEvent : MonoBehaviour {
+public class TowerAnimationEvent : MonoBehaviour
+{
 
     private GameObject _newScrap;
 
@@ -19,6 +20,8 @@ public class TowerAnimationEvent : MonoBehaviour {
 
     public void ActivateScrapAfterAnimation()
     {
-        NewScrap.SetActive(true);
+        _newScrap.SetActive(true);
     }
+
 }
+

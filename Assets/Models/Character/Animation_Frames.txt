@@ -1,0 +1,28 @@
+T-Pose			->   1
+Run 			->  11 to 27
+Run w. Weapon		->  36 to 52
+Walk 			->  61 to 92
+Jump 			-> 100 to 157
+Idle 2 Handed 		-> 165 to 190
+Idle 1 Handed 		-> 200 to 250
+Attack 			-> 268 to 325
+Run Right		-> 350 to 365
+Walk Left		-> 370 to 400
+Run Backwards		-> 420 to 438
+Dying			-> 460 to 560
+
+Assign Weapon to his Hand:
+https://www.youtube.com/watch?v=S_USClc_r5c
+
+Bone Hierachy Path to the Hand:
+masterCTRL
+	hipsCTRL
+		root
+			spine1
+				spine2
+					Shoulder.R
+						UpperArm.R
+							LowerArm.R
+								Hand.R
+									WeaponBone
+					
