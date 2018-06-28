@@ -1,6 +1,7 @@
 ﻿namespace Assets.Scripts
 {
-    public enum SlimeType {
+    public enum SlimeType
+    {
         Normal, Hard, Gas
     }
 }

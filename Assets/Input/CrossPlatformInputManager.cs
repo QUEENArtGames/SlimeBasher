@@ -1,6 +1,6 @@
+using SlimeBasher.CrossPlatformInput.PlatformSpecific;
 using System;
 using UnityEngine;
-using SlimeBasher.CrossPlatformInput.PlatformSpecific;
 
 namespace SlimeBasher.CrossPlatformInput
 {

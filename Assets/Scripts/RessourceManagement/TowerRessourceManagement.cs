@@ -20,15 +20,15 @@ public class TowerRessourceManagement : MonoBehaviour
 
     private void Update()
     {
-       /* for (int i = 0; i < _attachedScraps.Count; i++)
-        {
-            Vector3 pivotPosition =  _attachedScraps[i].GetComponent<Scrap>().TowerAttachementPivot.position;
-            //scrapInstant.transform.position -= pivotPosition;
-            _attachedScraps[i].transform.position = ScrapSlots[i].position - pivotPosition;
-            _attachedScraps[i].transform.rotation = ScrapSlots[i].rotation;
-        }*/
-            
-            
+        /* for (int i = 0; i < _attachedScraps.Count; i++)
+         {
+             Vector3 pivotPosition =  _attachedScraps[i].GetComponent<Scrap>().TowerAttachementPivot.position;
+             //scrapInstant.transform.position -= pivotPosition;
+             _attachedScraps[i].transform.position = ScrapSlots[i].position - pivotPosition;
+             _attachedScraps[i].transform.rotation = ScrapSlots[i].rotation;
+         }*/
+
+
     }
     public List<GameObject> AttachedScraps
     {
@@ -55,11 +55,11 @@ public class TowerRessourceManagement : MonoBehaviour
     {
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _droprate = _ressourceManagement.TowerScrapDropProbabilityInPercent;
-        _neededScraps[(int)ScrapType.MELEE] = NeedsMeeleScraps;
-        _neededScraps[(int)ScrapType.BOTTLE] = NeedsBottleScraps;
-        _neededScraps[(int)ScrapType.GRENADE] = NeedsGrenadeScraps;
-        _neededScraps[(int)ScrapType.PUSTEFIX] = NeedsPustefixScraps;
-       
+        _neededScraps[(int) ScrapType.MELEE] = NeedsMeeleScraps;
+        _neededScraps[(int) ScrapType.BOTTLE] = NeedsBottleScraps;
+        _neededScraps[(int) ScrapType.GRENADE] = NeedsGrenadeScraps;
+        _neededScraps[(int) ScrapType.PUSTEFIX] = NeedsPustefixScraps;
+
     }
 
     internal bool ScrapSlotsOnTowerAreFree()
@@ -69,9 +69,9 @@ public class TowerRessourceManagement : MonoBehaviour
 
     public GameObject AddNeededScrap(List<int>[] scrapInventory)
     {
-        for(int scrapTypeIndex = 0; scrapTypeIndex < _neededScraps.Length; scrapTypeIndex++)
+        for (int scrapTypeIndex = 0; scrapTypeIndex < _neededScraps.Length; scrapTypeIndex++)
         {
-            if(_neededScraps[scrapTypeIndex])
+            if (_neededScraps[scrapTypeIndex])
                 return AddParticularScrap((ScrapType) scrapTypeIndex, scrapInventory[scrapTypeIndex][0]);
         }
         return null;
@@ -82,7 +82,7 @@ public class TowerRessourceManagement : MonoBehaviour
         for (int scrapTypeIndex = 0; scrapTypeIndex < _neededScraps.Length; scrapTypeIndex++)
         {
             if (_neededScraps[scrapTypeIndex])
-                AddParticularScrap((ScrapType)scrapTypeIndex, subTypeIndex);
+                AddParticularScrap((ScrapType) scrapTypeIndex, subTypeIndex);
         }
     }
 
@@ -95,7 +95,7 @@ public class TowerRessourceManagement : MonoBehaviour
         scrapInstant.transform.position -= pivotPosition;
         scrapInstant.transform.parent = ScrapSlots[AttachedScraps.Count];
         AttachedScraps.Add(scrapInstant);
-        
+
         return scrapInstant;
     }
 

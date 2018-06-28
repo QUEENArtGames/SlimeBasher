@@ -36,7 +36,7 @@ namespace PathCreator
 
         public Vector3 handlePrev = Vector3.back;
         public Vector3 handleNext = Vector3.forward;
-        
+
 
         public PC_Waypoint(Vector3 pos)
         {

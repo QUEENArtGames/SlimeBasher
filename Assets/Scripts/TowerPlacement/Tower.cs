@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 
-	public float _hp;
+    public float _hp;
 
     private List<Collider> _colliders = new List<Collider>();
     private List<Renderer> _renderers = new List<Renderer>();
@@ -64,12 +64,14 @@ public class Tower : MonoBehaviour
         }
     }
 
-	public void attacked(float damage){
-		_hp -= damage;
-		if (_hp <= 0) {
-			//TODO: destory + remove from List
-		}
-	}
+    public void attacked(float damage)
+    {
+        _hp -= damage;
+        if (_hp <= 0)
+        {
+            //TODO: destory + remove from List
+        }
+    }
 
     internal void Kill()
     {

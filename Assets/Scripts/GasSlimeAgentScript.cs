@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class GasSlimeAgentScript : MonoBehaviour {
+public class GasSlimeAgentScript : MonoBehaviour
+{
 
     public Transform target;
-    
+
     private NavMeshAgent agent;
 
     // Use this for initialization
-    private void Start () {
+    private void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.position);
-	}
+    }
 
     // Update is called once per frame
-    private void Update () {
-		
-	}
+    private void Update()
+    {
+
+    }
 }

@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DestroyOverTime : MonoBehaviour {
+public class DestroyOverTime : MonoBehaviour
+{
 
     public float timeToDestroy;
 
-	void Update () {
+    void Update()
+    {
         timeToDestroy -= Time.deltaTime;
 
-        if(timeToDestroy <= 0f)
+        if (timeToDestroy <= 0f)
         {
             Destroy(gameObject);
         }
-	}
+    }
 }

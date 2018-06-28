@@ -10,7 +10,7 @@ namespace Assets.Scripts
         public Camera playerCam;
         public int rotationSpeed = 100;
         public List<GameObject> towers;
-		public List<GameObject> _placedTowers;
+        public List<GameObject> _placedTowers;
 
         private bool lmbPressed = false;
         private bool buttonRotateLeft = false, buttonRotateRight = false;
@@ -147,7 +147,9 @@ namespace Assets.Scripts
                     slotNumber = 8;
                     _player.IsInDefaultMode = false;
 
-                }else if (Input.GetButtonDown("defaultMode")){
+                }
+                else if (Input.GetButtonDown("defaultMode"))
+                {
                     slotNumber = 999;
                     _player.IsInDefaultMode = true;
                 }
@@ -155,7 +157,7 @@ namespace Assets.Scripts
                 if (!buildingPhaseActive)
                 {
                     slotNumber = 999;
-                    
+
                     phaseSwitch = false;
                 }
 
@@ -189,7 +191,8 @@ namespace Assets.Scripts
                             if (TowerBuildingAllowed())
                             {
                                 towerPreview.GetComponent<Tower>().SetPlaceable(0);
-                            } else
+                            }
+                            else
                             {
                                 towerPreview.GetComponent<Tower>().SetPlaceable(2);
                             }
@@ -222,20 +225,22 @@ namespace Assets.Scripts
 
         private void BuildTower(GameObject towerInstance)
         {
-            if (_firstPlacement == true) {
+            if (_firstPlacement == true)
+            {
                 GameObject[] tutorialTowers = GameObject.FindGameObjectsWithTag("TutorialTower");
                 tutorialUI.GetComponent<Tutorial>().FadeOut();
                 tutorialUI.GetComponentInChildren<Text>().text = "Puh, das sollte erstmal helfen. Drücke G, um in die nächste Phase zu kommen.";
                 tutorialUI.GetComponent<Tutorial>().FadeIn();
                 FindObjectOfType<Game>()._readyButtonEnabled = true;
-                foreach (GameObject tutorialTower in tutorialTowers) {
+                foreach (GameObject tutorialTower in tutorialTowers)
+                {
                     Destroy(tutorialTower);
                 }
                 _firstPlacement = false;
             }
 
             FindObjectOfType<TowerBuilding>().BuildTower(towerInstance);
-			_placedTowers.Add(towerInstance);
+            _placedTowers.Add(towerInstance);
         }
     }
 }
