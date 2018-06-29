@@ -188,7 +188,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4722458865424308}
   - component: {fileID: 114793999843362112}
-  - component: {fileID: 114315947602299202}
   - component: {fileID: 208404654028550966}
   - component: {fileID: 136173954162872132}
   - component: {fileID: 54151073246602590}
@@ -3166,18 +3165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed_X: -1
   scrollSpeed_Y: 0
---- !u!114 &114315947602299202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1244715612468778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hp: 1000
 --- !u!114 &114385127078010300
 MonoBehaviour:
   m_ObjectHideFlags: 1
