@@ -52,6 +52,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -67,6 +68,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -98,11 +100,11 @@ MonoBehaviour:
   spawnpoint: {fileID: 0}
   splashEffect: {fileID: 1795911947262034, guid: f7c6140c89e928a4d88699bc2bf6ad85,
     type: 2}
-  maxScale: 1
+  maxScale: 0.4
   speed: 1.5
   range: 100
   dmg: 10
-  timeToFinish: 60
+  timeToFinish: 40
 --- !u!135 &135887267124201142
 SphereCollider:
   m_ObjectHideFlags: 1
