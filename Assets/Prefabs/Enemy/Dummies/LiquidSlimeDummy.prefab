@@ -754,8 +754,8 @@ MonoBehaviour:
   _healthSlider: {fileID: 114862078729677380}
   _damage: 10
   _attackSpeed: 1
-  _towerAggroRange: 1
-  _playerAggroRange: 1
+  _towerAggroRange: 2
+  _playerAggroRange: 2
 --- !u!114 &114725080605535538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -870,7 +870,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.7
-  m_Speed: 0.75
+  m_Speed: 0.9
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

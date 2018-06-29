@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
     public class SlimeScript : MonoBehaviour
     {
         public float _hitpoints;
+        public Slider _healthSlider;
         public float _damage;
         public float _attackSpeed;
         public float _towerAggroRange;
@@ -125,6 +127,7 @@ namespace Assets.Scripts
         public void TakeDamage(float damage)
         {
             _hitpoints -= damage;
+            _healthSlider.value = _hitpoints;
             foreach (var rend in GetComponentsInChildren<Renderer>())
             {
                 _standardColor.Add(rend.material.color);

@@ -789,7 +789,7 @@ Animator:
   m_GameObject: {fileID: 1739397658495034}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 438e1a70c281b9347a575a18ee80a374, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9abb5816b43f144d2b6d771f1f186cc5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -812,8 +812,8 @@ MonoBehaviour:
   _healthSlider: {fileID: 114657575103625578}
   _damage: 10
   _attackSpeed: 2
-  _towerAggroRange: 1
-  _playerAggroRange: 1
+  _towerAggroRange: 2
+  _playerAggroRange: 2
 --- !u!114 &114424201530522376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -902,9 +902,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 1
-  m_Value: 100
+  m_Value: 200
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
