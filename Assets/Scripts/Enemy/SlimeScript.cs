@@ -3,119 +3,149 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Assets.Scripts{
-	
+namespace Assets.Scripts
+{
+    public class SlimeScript : MonoBehaviour
+    {
+        public float _hitpoints;
+        public float _damage;
+        public float _attackSpeed;
+        public float _towerAggroRange;
+        public float _playerAggroRange;
 
-public class SlimeScript : MonoBehaviour {
+        private Transform _finalDestination;
+        private TowerPlacement _towerplacement;
+        private GameObject _player;
+        private bool _damageFlash;
+        private List<Color> _standardColor = new List<Color>();
 
+        private NavMeshAgent _navMeshAgent;
+        private GameObject _tmpTarget;
 
-	public float _hitpoints;
-	public float _damage;
-	public float _attackSpeed;
-	public float _towerAggroRange;
-	public float _playerAggroRange;
+        private float _nextAttack = 0;
+        // Use this for initialization
+        void Start()
+        {
+            _towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
+            _finalDestination = FindObjectOfType<Game>().FinalDestination;
+            _player = GameObject.Find("MainCharacter");
 
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.stoppingDistance = 1;
+            SetTargetLocation();
+        }
 
-	private Transform _finalDestination;
-	private TowerPlacement _towerplacement;
-	private GameObject _player;
+        // Update is called once per frame
+        void Update()
+        {
+            if (CheckPlayerAggro())
+            {
+                AttackPlayer();
+            }
+            else if (CheckTowerAggro())
+            {
+                AttackTower();
+            }
+            else
+            {
+                SetTargetLocation();
+            }
 
-	private NavMeshAgent _navMeshAgent;
-	private GameObject _tmpTarget;
+            if (_damageFlash)
+            {
+                for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++)
+                {
+                    GetComponentsInChildren<Renderer>()[i].material.color = _standardColor[i];
+                }
+                _damageFlash = false;
+            }
+        }
 
-	private float _nextAttack = 0;
-	// Use this for initialization
-	void Start () {
+        public bool CheckPlayerAggro()
+        {
+            if (Vector3.Distance(transform.position, _player.transform.position) <= _playerAggroRange)
+            {
+                _navMeshAgent.SetDestination(_player.transform.position);
+                return true;
+            }
+            return false;
+        }
 
-			_towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
-			_finalDestination = FindObjectOfType<Game>().FinalDestination;
-			_player = GameObject.Find ("MainCharacter");
+        public bool CheckTowerAggro()
+        {
+            float shortestDistance = _towerAggroRange + 1;
+            bool newTarget = false;
+            foreach (GameObject tower in _towerplacement._placedTowers)
+            {
+                float distance = Vector3.Distance(transform.position, tower.transform.position);
+                if (distance < _towerAggroRange)
+                {
 
+                    if (newTarget == false || distance < shortestDistance)
+                    {
+                        newTarget = true;
+                        shortestDistance = distance;
+                        _tmpTarget = tower;
+                    }
+                }
+            }
 
-			_navMeshAgent = GetComponent<NavMeshAgent> ();
-			_navMeshAgent.stoppingDistance = 1;
-			SetTargetLocation ();
-		}
-		
-		// Update is called once per frame
-		void Update () {
+            if (newTarget)
+            {
+                _navMeshAgent.SetDestination(_tmpTarget.transform.position);
+                return true;
+            }
 
-			if(checkPlayerAggro()){
-				attackPlayer ();
-			}else if(checkTowerAggro()){
-				AttackTower ();
-			}else{
-				SetTargetLocation();
-			}
+            _tmpTarget = null;
+            return false;
+        }
 
-		}
-			
-		public bool checkPlayerAggro(){
-			if (Vector3.Distance (transform.position, _player.transform.position) <= _playerAggroRange) {
-				_navMeshAgent.SetDestination (_player.transform.position);
-				return true;
-			}
-			return false;
-		}
+        public void AttackPlayer()
+        {
+            if (Time.time > _nextAttack)
+            {
+                PlayerDummy playerDummy = _player.transform.GetComponent<PlayerDummy>();
+                playerDummy._playerHealth -= (int)_damage;
 
-		public bool checkTowerAggro(){
-			float shortestDistance = _towerAggroRange+1;
-			bool newTarget = false;
-			foreach (GameObject tower in _towerplacement._placedTowers) {
-				float distance = Vector3.Distance (transform.position, tower.transform.position);
-				if (distance < _towerAggroRange) {
+                _nextAttack = Time.time + _attackSpeed;
+            }
+        }
 
-					if(newTarget == false || distance < shortestDistance){
-						newTarget = true;
-						shortestDistance = distance;
-						_tmpTarget = tower;
-					}
-				}
-			}
+        public void AttackTower()
+        {
+            if (Time.time > _nextAttack)
+            {
+                Tower tower = _tmpTarget.transform.GetComponent<Tower>();
+                tower.TakeDamage(_damage);
 
-			if (newTarget) {
-				_navMeshAgent.SetDestination (_tmpTarget.transform.position);
-				return true;
-			}
+                _nextAttack = Time.time + _attackSpeed;
+            }
+        }
 
-			_tmpTarget = null;
-			return false;
-		}
+        public void TakeDamage(float damage)
+        {
+            _hitpoints -= damage;
+            foreach (var rend in GetComponentsInChildren<Renderer>())
+            {
+                _standardColor.Add(rend.material.color);
+            }
+            foreach (var rend in GetComponentsInChildren<Renderer>())
+            {
+                rend.material.color = Color.red;
+            }
+            _damageFlash = true;
+        }
 
-		public void attackPlayer(){
-			if (Time.time > _nextAttack) {
-				PlayerDummy playerDummy = _player.transform.GetComponent<PlayerDummy> ();
-				playerDummy._playerHealth -= (int) _damage;
+        public void SetTargetLocation()
+        {
+            Vector3 destination = _finalDestination.position;
+            _navMeshAgent.SetDestination(destination);
+        }
 
-				_nextAttack = Time.time + _attackSpeed;
-			}
-		}
-
-		public void AttackTower(){
-			if (Time.time > _nextAttack) {
-				Tower tower = _tmpTarget.transform.GetComponent<Tower>();
-				tower.TakeDamage(_damage);
-
-				_nextAttack = Time.time + _attackSpeed;
-			}
-		}
-			
-		public void TakeDamage(float damage)
-		{
-			_hitpoints -= damage;
-		}
-
-		public void SetTargetLocation(){
-			Vector3 destination = _finalDestination.position;
-			_navMeshAgent.SetDestination (destination);
-		}
-			
-
-		public void Kill()
-		{
-			Destroy(this.gameObject);
-			GetComponent<SlimeRessourceManagement>().DropRessources();
-		}
-
-	}
+        public void Kill()
+        {
+            Destroy(this.gameObject);
+            GetComponent<SlimeRessourceManagement>().DropRessources();
+        }
+    }
 }
