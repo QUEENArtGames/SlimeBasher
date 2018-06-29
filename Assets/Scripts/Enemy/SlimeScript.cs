@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Assets.Scripts{
 	
@@ -10,7 +11,8 @@ public class SlimeScript : MonoBehaviour {
 
 
 	public float _hitpoints;
-	public float _damage;
+    public Slider _healtSlider;
+    public float _damage;
 	public float _attackSpeed;
 	public float _towerAggroRange;
 	public float _playerAggroRange;
@@ -103,7 +105,8 @@ public class SlimeScript : MonoBehaviour {
 		public void TakeDamage(float damage)
 		{
 			_hitpoints -= damage;
-		}
+            _healtSlider.value = _hitpoints;
+        }
 
 		public void SetTargetLocation(){
 			Vector3 destination = _finalDestination.position;
