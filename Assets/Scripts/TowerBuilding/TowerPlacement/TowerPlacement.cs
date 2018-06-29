@@ -99,19 +99,16 @@ namespace Assets.Scripts
                 {
                     slotNumber = 0;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 2"))
                 {
                     slotNumber = 1;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 3"))
                 {
                     slotNumber = 2;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 4"))
                 {
@@ -122,25 +119,21 @@ namespace Assets.Scripts
                 {
                     slotNumber = 4;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 6"))
                 {
                     slotNumber = 5;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 7"))
                 {
                     slotNumber = 6;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 8"))
                 {
                     slotNumber = 7;
                     _player.IsInDefaultMode = false;
-
                 }
                 else if (Input.GetButtonDown("Tower Slot 9"))
                 {
@@ -154,8 +147,7 @@ namespace Assets.Scripts
 
                 if (!buildingPhaseActive)
                 {
-                    slotNumber = 999;
-                    
+                    slotNumber = 999;                    
                     phaseSwitch = false;
                 }
 
