@@ -14,16 +14,13 @@ public class ThrowSimulation : MonoBehaviour {
 
 	void Awake()
     {
-        myTransform = transform;      
-    }
-
-	void Start()
-    {          
-        StartCoroutine(SimulateProjectile());
+        myTransform = transform;
+            StartCoroutine(SimulateProjectile());
     }
 
     public Transform FindClosestEnemy()
     {
+        Debug.Log("EnemyFound");
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Enemy");
         Transform closest = null;
@@ -60,18 +57,23 @@ public class ThrowSimulation : MonoBehaviour {
             //Projectile = bullet.transform;
         
             // Move projectile to the position of throwing object + add some offset if needed.
-            bullet.transform.position = myTransform.position + new Vector3(1f, 0.0f, 0);
+            bullet.transform.position = myTransform.position + new Vector3(0f, 2f, 0);
         
-            yield return new WaitForSeconds(4.0f);
-            StartCoroutine(SimulateProjectile());
+            
 
         }
+            int attachedscraps = GetComponent<TowerRessourceManagement>().AttachedScraps.Count;
+            attachedscraps = (attachedscraps == 0) ? 1 : attachedscraps; 
+            Debug.Log(attachedscraps);
+
+            yield return new WaitForSeconds(4.0f / attachedscraps);
+            StartCoroutine(SimulateProjectile());
 
 
-        
 
 
-    } 
+
+        } 
 	
 
 }

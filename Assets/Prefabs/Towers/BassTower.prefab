@@ -37,12 +37,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4722458865424308}
   - component: {fileID: 114793999843362112}
-  - component: {fileID: 114315947602299202}
   - component: {fileID: 208404654028550966}
   - component: {fileID: 136173954162872132}
   - component: {fileID: 54151073246602590}
   - component: {fileID: 114437824058764684}
   - component: {fileID: 114635099672630144}
+  - component: {fileID: 114244221518403160}
   m_Layer: 0
   m_Name: BassTower
   m_TagString: Untagged
@@ -637,7 +637,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114315947602299202
+--- !u!114 &114244221518403160
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -645,10 +645,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1244715612468778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
+  m_Script: {fileID: 11500000, guid: ceb735dd0f20f4bbaa7d0b17386aea94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 1000
+  firingAngle: 80
+  gravity: 9.8
+  projec: {fileID: 1852673794089372, guid: f82a4ac47dc2f4ba9a2e91da10d73681, type: 2}
 --- !u!114 &114437566473105292
 MonoBehaviour:
   m_ObjectHideFlags: 1

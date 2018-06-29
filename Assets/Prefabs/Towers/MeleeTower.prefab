@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4669812222199028}
   - component: {fileID: 114785931222528548}
-  - component: {fileID: 114284016527388568}
   - component: {fileID: 208454273957119036}
   - component: {fileID: 54580779201805378}
   - component: {fileID: 136319355395974310}
@@ -860,18 +859,6 @@ MonoBehaviour:
   AttackClip: {fileID: 0}
   BuildingClip: {fileID: 0}
   DestructionClip: {fileID: 0}
---- !u!114 &114284016527388568
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1050941866442964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hp: 1000
 --- !u!114 &114785931222528548
 MonoBehaviour:
   m_ObjectHideFlags: 1
