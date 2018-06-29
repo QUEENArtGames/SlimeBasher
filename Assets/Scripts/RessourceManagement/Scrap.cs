@@ -6,7 +6,7 @@ public class Scrap : MonoBehaviour
     public ScrapType ScrapType;
     public int SubCategoryIndex;
     public Transform TowerAttachementPivot;
-    public ParticleSystem FirstGroundHitParticle;
+    private ParticleSystem _firstgroundhitparticle;
 
     private bool _collected = true;
     private bool _inPosition = true;
@@ -16,6 +16,7 @@ public class Scrap : MonoBehaviour
 
     void Awake()
     {
+        _firstgroundhitparticle = GetComponent<ParticleSystem>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -73,7 +74,7 @@ public class Scrap : MonoBehaviour
         if (collision.gameObject.layer == 8 && !_wasonground)
         {
             Debug.Log("Scrap Traf auf Boden");
-            FirstGroundHitParticle.Play();
+            _firstgroundhitparticle.Play();
             _wasonground = true;
         }
             
