@@ -33,12 +33,17 @@ public class WaterTower : MonoBehaviour {
 	private bool destroy= true;
 
 	public float range=10;
-
+    
 	 List<Vector3> paths = new List<Vector3>();
 
+    // needed to only rotate the wateringCan while shooting
+    public Transform rotationReset;
 
-	// Use this for initialization
-	void Start () {
+    // interpolate rotation for wateringCan
+    public float speed = 45.0F;
+
+    // Use this for initialization
+    void Start () {
 		// Add a Line Renderer to the GameObject
 		line = gameObject.GetComponentsInChildren<LineRenderer>();
 
@@ -51,13 +56,11 @@ public class WaterTower : MonoBehaviour {
 		line[0].positionCount=0;
 		paths.Add(new Vector3(0,  0     ,  0  ));
 		//shot();
+
 	}
 
 	void Update(){
-
-		
-
-		if(Enemy ==null && !build){
+        if (Enemy ==null && !build){
 			Enemy=FindClosestEnemy();
 		}
 		
@@ -113,24 +116,31 @@ public class WaterTower : MonoBehaviour {
 			// Calculate flight time.
 			float flightDuration = target_Distance / Vx;
 
-			//Debug.Log(flightDuration);
-	
-			// Rotate projectile to face the target.
-			Quaternion rotation = Quaternion.LookRotation(Target.position - waterpoint.position);
-		
-			transform.LookAt(Target);
-			Vector3 eulerAngles = transform.rotation.eulerAngles;
+            //Debug.Log(flightDuration);
+
+            
+
+            //Rotate wateringCan to face the target.
+            Quaternion targetRot = Quaternion.LookRotation(Target.position - rotationReset.position);
+
+            //wateringCan.transform.LookAt(Target);
+            Vector3 eulerAngles = targetRot.eulerAngles;
      		eulerAngles.x = 0;
-     		eulerAngles.z = 0;
-			 eulerAngles.y+= 90;
- 
-     // Set the altered rotation back
-     transform.rotation = Quaternion.Euler(eulerAngles);
+			//eulerAngles.y = eulerAngles.y + 90;
+            eulerAngles.z = 0;
 
-			float a = (firingAngle) * Mathf.Deg2Rad;
+            //targetRot = Quaternion.Euler(eulerAngles);
 
-			// rotation y
-			float b = Mathf.Abs(rotation.eulerAngles.y-360-90)*Mathf.Deg2Rad;
+            // Set the altered rotation back
+            Quaternion rotationSooth = Quaternion.RotateTowards(rotationReset.transform.rotation, targetRot, Time.deltaTime * speed);
+            //wateringCan.transform.rotation = rotationSooth.eulerAngles;
+            rotationReset.transform.rotation = rotationSooth;
+
+            float a = (firingAngle) * Mathf.Deg2Rad;
+            // Rotate projectile to face the target.
+            Quaternion rotation = rotationSooth;
+            // rotation y
+            float b = Mathf.Abs(rotation.eulerAngles.y-360-90)*Mathf.Deg2Rad;
 			float v0=Mathf.Sqrt(projectile_Velocity);
 
 			//Debug.Log(rotation.eulerAngles.y + " radians are equal to " + b + " degrees.");
