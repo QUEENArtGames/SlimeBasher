@@ -56,6 +56,7 @@ public class RessourceManagement : MonoBehaviour
         FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.BOTTLE, 0);
     }
 
+
     private void PrepareScrapPools()
     {
         FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);

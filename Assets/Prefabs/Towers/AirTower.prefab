@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4347165203480258}
-  - component: {fileID: 114722017824151782}
   - component: {fileID: 114944689900589100}
   - component: {fileID: 65128941507616980}
   - component: {fileID: 208946706201228244}
@@ -2833,18 +2832,6 @@ MonoBehaviour:
   - {fileID: 1284396535105212}
   ShootCylinder: {fileID: 1673266230284282}
   BubbleParticleSystem: {fileID: 198199602771090964}
---- !u!114 &114722017824151782
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1014481566120508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673bd365aa835704dbc8e44c597837ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hp: 1000
 --- !u!114 &114747132767610582
 MonoBehaviour:
   m_ObjectHideFlags: 1

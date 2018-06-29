@@ -11,6 +11,7 @@ namespace SlimeBasher.Characters.ThirdPerson
         private Vector3 cameraForward;          // The current forward direction of the camera
         private Vector3 movementVector;
         private bool doJump;                    // the world-relative desired move direction, calculated from the camForward and user input.
+        private bool doAttack;
 
 
         private void Start()
@@ -37,6 +38,8 @@ namespace SlimeBasher.Characters.ThirdPerson
             {
                 doJump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
+
+            doAttack = CrossPlatformInputManager.GetButtonDown("Fire1");
         }
 
 
@@ -68,7 +71,7 @@ namespace SlimeBasher.Characters.ThirdPerson
 #endif
 
             // pass all parameters to the character control script
-            character.Move(movementVector, crouch, doJump);
+            character.Move(movementVector, crouch, doJump, doAttack);
             doJump = false;
         }
     }
