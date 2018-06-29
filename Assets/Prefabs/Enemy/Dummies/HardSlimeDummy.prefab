@@ -693,8 +693,8 @@ MonoBehaviour:
   _hitpoints: 200
   _damage: 10
   _attackSpeed: 2
-  _towerAggroRange: 0
-  _playerAggroRange: 0
+  _towerAggroRange: 1
+  _playerAggroRange: 1
 --- !u!114 &114726557236976068
 MonoBehaviour:
   m_ObjectHideFlags: 1
