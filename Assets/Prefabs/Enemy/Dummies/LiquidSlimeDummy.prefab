@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitpoints: 100
-  _healtSlider: {fileID: 114862078729677380}
+  _healthSlider: {fileID: 114862078729677380}
   _damage: 10
   _attackSpeed: 1
   _towerAggroRange: 1
