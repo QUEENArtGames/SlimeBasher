@@ -1042,6 +1042,30 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 263250936}
+    - target: {fileID: 114775447557290004, guid: 71f86b394f1960342a156001a8b3986f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2af0fefb29c92c4aaf3cd1780b2b420,
+        type: 3}
+    - target: {fileID: 114597944202761700, guid: 71f86b394f1960342a156001a8b3986f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2af0fefb29c92c4aaf3cd1780b2b420,
+        type: 3}
+    - target: {fileID: 114443838982773530, guid: 71f86b394f1960342a156001a8b3986f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2af0fefb29c92c4aaf3cd1780b2b420,
+        type: 3}
+    - target: {fileID: 114949146082274270, guid: 71f86b394f1960342a156001a8b3986f,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2af0fefb29c92c4aaf3cd1780b2b420,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71f86b394f1960342a156001a8b3986f, type: 2}
   m_IsPrefabParent: 0
@@ -3583,10 +3607,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 780}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
