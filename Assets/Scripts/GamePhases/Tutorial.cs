@@ -18,7 +18,7 @@ public class Tutorial : MonoBehaviour {
         float currentTime = 0f;
         while (currentTime < _fadeDuration) {
             float alpha = Mathf.Lerp(0f, 1f, currentTime / _fadeDuration);
-            float backgroundAlpha = Mathf.Lerp(0f, 0.5f, currentTime / _fadeDuration);
+            float backgroundAlpha = Mathf.Lerp(0f, 1.0f, currentTime / _fadeDuration);
             _tutorialText.color = new Color(_tutorialText.color.r, _tutorialText.color.g, _tutorialText.color.b, alpha);
             _tutorialBackgroundImage.color = new Color(_tutorialBackgroundImage.color.r, _tutorialBackgroundImage.color.g, _tutorialBackgroundImage.color.b, backgroundAlpha);
             currentTime += Time.deltaTime;
