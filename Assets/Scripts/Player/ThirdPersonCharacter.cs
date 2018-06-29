@@ -15,6 +15,7 @@ namespace SlimeBasher.Characters.ThirdPerson
         [SerializeField] float moveSpeedMultiplier = 1f;
         [SerializeField] float animationSpeedMultiplier = 1f;
         [SerializeField] float groundCheckDistance = 0.1f;
+        public Collider weaponCollider;
 
         Rigidbody ownRigidbody;
         Animator animator;
@@ -28,6 +29,7 @@ namespace SlimeBasher.Characters.ThirdPerson
         Vector3 capsuleCenter;
         CapsuleCollider capsule;
         bool isCrouching;
+        bool isAttacking;
 
 
         void Start()
@@ -43,9 +45,9 @@ namespace SlimeBasher.Characters.ThirdPerson
         }
 
 
-        public void Move(Vector3 move, bool crouch, bool jump)
+        public void Move(Vector3 move, bool crouch, bool jump, bool attack)
         {
-
+            isAttacking = attack;
             // convert the world relative moveInput vector into a local-relative
             // turn amount and forward amount required to head in the desired
             // direction.
@@ -126,6 +128,11 @@ namespace SlimeBasher.Characters.ThirdPerson
             //animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
             animator.SetBool("Crouch", isCrouching);
             animator.SetBool("OnGround", isGrounded);
+            if (isAttacking)
+            {
+                animator.SetTrigger("Attack");
+                isAttacking = false;
+            }
             //if (!isGrounded)
             //{
             //    animator.SetFloat("Jump", ownRigidbody.velocity.y);
@@ -170,7 +177,7 @@ namespace SlimeBasher.Characters.ThirdPerson
         void HandleGroundedMovement(bool crouch, bool jump)
         {
             // check whether conditions are right to allow a jump:
-            if (jump && !crouch && animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+            if (jump && !crouch && !isAttacking && animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
             {
                 // jump!
                 ownRigidbody.velocity = new Vector3(ownRigidbody.velocity.x, jumpPower, ownRigidbody.velocity.z);
@@ -224,6 +231,19 @@ namespace SlimeBasher.Characters.ThirdPerson
                 groundNormal = Vector3.up;
                 animator.applyRootMotion = false;
             }
+        }
+
+        public void activateCollider()
+        {
+            weaponCollider.enabled = true;
+            Debug.Log("active");
+        }
+
+        public void deactivateCollider()
+        {
+            weaponCollider.enabled = false;
+
+            Debug.Log("deactive");
         }
     }
 }
