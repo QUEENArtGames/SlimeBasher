@@ -6,9 +6,11 @@ public class Scrap : MonoBehaviour
     public ScrapType ScrapType;
     public int SubCategoryIndex;
     public Transform TowerAttachementPivot;
+    public ParticleSystem FirstGroundHitParticle;
 
     private bool _collected = true;
     private bool _inPosition = true;
+    private bool _wasonground = false;
     private Rigidbody _rigidbody;
 
 
@@ -53,6 +55,9 @@ public class Scrap : MonoBehaviour
 
     public void ChangeAttachementState()
     {
+        if (!AttachedToSlot)
+            _wasonground = false;
+
         _inPosition = !AttachedToSlot;
     }
 
@@ -61,5 +66,16 @@ public class Scrap : MonoBehaviour
         Vector3 forceVector = (scrapSlotPosition - centerOfObject) * ScrapThrowFactor;
         _rigidbody.AddForce(forceVector, ForceMode.Impulse);
         _rigidbody.AddTorque(new Vector3(Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor), Random.Range(0.0f, ScrapThrowFactor)));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 8 && !_wasonground)
+        {
+            Debug.Log("Scrap Traf auf Boden");
+            FirstGroundHitParticle.Play();
+            _wasonground = true;
+        }
+            
     }
 }
