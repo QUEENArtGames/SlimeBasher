@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641275, b: 0.57481736, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -137,7 +137,6 @@ MonoBehaviour:
   path: {fileID: 670944758}
   maxV: 1.5
   acceleration: 0.5
-  test: 1
 --- !u!1 &314665845
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,74 +229,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d9029185a3d8d4a917877b8e851354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alwaysShow: 1
+  showComplexPath: 0
+  waypointManipulationMode: 0
+  handleManipulationMode: 0
   points:
   - position: {x: 0, y: 0, z: -3.1761456}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
     radius: 1
     handlePrev: {x: 0, y: 0, z: 0}
     handleNext: {x: -0.6150358, y: 0.85126114, z: 0.9499855}
-    chained: 0
-    curveTypePosition: 1
-    positionCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    curveTypeRotation: 0
-    rotationCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
   - position: {x: 5.4079347, y: 1.4893742, z: 0.6330392}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
     radius: 1
-    handlePrev: {x: -0.38433075, y: -0.24218988, z: -0.21589726}
-    handleNext: {x: 0.45990705, y: 0.29115784, z: 0.25813228}
-    chained: 0
-    curveTypePosition: 1
-    positionCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    curveTypeRotation: 0
-    rotationCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
+    handlePrev: {x: -1.5611436, y: -3.799982, z: -0.72917527}
+    handleNext: {x: 1.5611436, y: 3.799982, z: 0.72917527}
   - position: {x: 15, y: 0, z: 5}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
     radius: 1
     handlePrev: {x: 0.16183281, y: 0.14319213, z: -0.0684824}
     handleNext: {x: 0, y: 0, z: 0}
-    chained: 0
-    curveTypePosition: 1
-    positionCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    curveTypeRotation: 0
-    rotationCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
   visual:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     cylinderColor: {r: 1, g: 0, b: 1, a: 1}
     handleColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  alwaysShow: 1
-  showComplexPath: 1
 --- !u!4 &670944759
 Transform:
   m_ObjectHideFlags: 0

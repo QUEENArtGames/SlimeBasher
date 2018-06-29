@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -1368,12 +1368,12 @@ Prefab:
         type: 2}
       propertyPath: waveProvider.Waves.Array.data[0].events.Array.data[1].SpawnPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1154305851}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
       propertyPath: waveProvider.Waves.Array.data[1].events.Array.data[0].SpawnPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 736263943}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
       propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[0].SpawnPoint
@@ -1890,7 +1890,7 @@ Prefab:
     - target: {fileID: 114248336977773612, guid: 8af47d7412ce34a6ab7c69c1365ef1b1,
         type: 2}
       propertyPath: showComplexPath
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114248336977773612, guid: 8af47d7412ce34a6ab7c69c1365ef1b1,
         type: 2}
@@ -4458,15 +4458,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.5994043
+      value: -3.31
       objectReference: {fileID: 0}
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.4946394
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.162407
+      value: 22.28
       objectReference: {fileID: 0}
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalRotation.x

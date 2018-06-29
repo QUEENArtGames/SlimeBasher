@@ -115,6 +115,7 @@ MonoBehaviour:
   _waveRoundText: {fileID: 0}
   _readyUI: {fileID: 0}
   _tutorialUI: {fileID: 0}
+  _towerUI: {fileID: 0}
 --- !u!114 &114525371782920988
 MonoBehaviour:
   m_ObjectHideFlags: 1

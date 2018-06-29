@@ -25,6 +25,7 @@ namespace Assets.Scripts
         public GameObject _waveRoundText;
         public GameObject _readyUI;
         public GameObject _tutorialUI;
+        public GameObject _towerUI;
 
         internal static Game Instance {
             get {
@@ -53,6 +54,7 @@ namespace Assets.Scripts
                     Debug.Log("Runde: " + _waveRoundNumber);
                     _waveRoundText.GetComponent<Text>().text = "Round: " + _waveRoundNumber;
                     Debug.Log("BUILDING");
+                    _towerUI.GetComponent<TowerUIFading>().FadeIn();
                     if (_waveRoundNumber > 1) {
                         _readyButtonEnabled = true;
                         _readyUI.SetActive(true);
@@ -66,6 +68,7 @@ namespace Assets.Scripts
                     waveProvider.setWaveNumber(_waveRoundNumber);
                     _actualWave = waveProvider.GetNextWave();
                     _readyUI.SetActive(false);
+                    _towerUI.GetComponent<TowerUIFading>().FadeOut();
                     if (_waveRoundNumber <= 2)
                         _tutorialUI.GetComponent<Tutorial>().FadeOut();
                     break;

@@ -21,34 +21,31 @@ namespace PathCreator
         Custom
     }
 
+    public enum PC_ManipulationModes
+    {
+        Free,
+        SelectAndTransform
+    }
+
 
     [System.Serializable]
     public class PC_Waypoint
     {
         public Vector3 position;
-        public Quaternion rotation;
-
         public float radius = 0.5f;
 
         public Vector3 handlePrev = Vector3.back;
         public Vector3 handleNext = Vector3.forward;
-        public bool chained = true;
+        
 
-        public PC_CurveType curveTypePosition = PC_CurveType.Linear;
-        public AnimationCurve positionCurve = AnimationCurve.Linear(0, 0, 1, 1);
-
-        public PC_CurveType curveTypeRotation = PC_CurveType.EaseInAndOut;
-        public AnimationCurve rotationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-        public PC_Waypoint(Vector3 pos, Quaternion rot)
+        public PC_Waypoint(Vector3 pos)
         {
             position = pos;
-            rotation = rot;
         }
 
         internal Vector3 GetRandomPosition()
         {
-            return new Vector3(UnityEngine.Random.Range(position.x - radius, position.x + radius), position.y, UnityEngine.Random.Range(position.z - radius, position.z + radius));
+            return new Vector3(Random.Range(position.x - radius, position.x + radius), position.y, Random.Range(position.z - radius, position.z + radius));
         }
 
         internal List<Vector3> GetSample()
@@ -66,11 +63,15 @@ namespace PathCreator
 
     public class PC_Path : MonoBehaviour
     {
-        public List<PC_Waypoint> points = new List<PC_Waypoint>();
-        public PC_Visual visual;
 
         public bool alwaysShow = true;
         public bool showComplexPath = true;
+
+        public PC_ManipulationModes waypointManipulationMode;
+        public PC_ManipulationModes handleManipulationMode;
+
+        public List<PC_Waypoint> points = new List<PC_Waypoint>();
+        public PC_Visual visual;
 
 
         void Start()

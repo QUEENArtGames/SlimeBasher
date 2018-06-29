@@ -27,13 +27,11 @@ namespace PathCreator
             this.time = time;
             this.distance = distance;
         }
-
     }
 
     public class PA_Waypoint
     {
         public Vector3 position;
-        public Quaternion rotation;
 
         public Vector3 handlePrev;
         public Vector3 handleNext;
@@ -48,7 +46,6 @@ namespace PathCreator
         public PA_Waypoint(PC_Waypoint point)
         {
             position = point.GetRandomPosition();
-            rotation = point.rotation;
 
             handlePrev = point.handlePrev;
             handleNext = point.handleNext;
@@ -63,9 +60,6 @@ namespace PathCreator
 
         public float maxV;
         public float acceleration;
-
-
-        public bool test = true;
 
 
         private bool playing = false;
@@ -144,8 +138,7 @@ namespace PathCreator
 
         private void UpdatePosition()
         {
-            double possibleNewDistance = currentDistance + currentV * Time.deltaTime;
-            currentDistance = possibleNewDistance < length ? possibleNewDistance : length;
+            currentDistance = GetDistanceAfterSeconds(Time.deltaTime);
 
             PA_Marker markerA = null;
             PA_Marker markerB = null;
@@ -168,24 +161,16 @@ namespace PathCreator
                 }
             }
 
+            int currentWaypointIndex = 0;
+            float currentTimeInWaypoint = 0;
             if (markerA == null)
             {
                 Debug.LogError(gameObject.name + " konnte den nächsten Marker vom Pfad nicht finden.");
+                currentWaypointIndex = -1;
+                currentTimeInWaypoint = 0;
                 return;
             }
 
-            if (test)
-            {
-                if (markerA.waypoint == 1)
-                {
-                    Slow(1);
-                    test = false;
-                }
-            }
-
-
-            int currentWaypointIndex = 0;
-            float currentTimeInWaypoint = 0;
             if (markerB == null)
             {
                 currentWaypointIndex = markerA.waypoint;
@@ -200,8 +185,12 @@ namespace PathCreator
                 currentWaypointIndex = markerA.waypoint;
                 currentTimeInWaypoint = markerA.time + (1.0f / precision) * percentage;
             }
+            
+            
+            Vector3 lastPosition = transform.position;
 
             transform.position = GetBezierPosition(currentWaypointIndex, currentTimeInWaypoint);
+            transform.forward = Vector3.Normalize(transform.position - lastPosition);
 
             lastPositionIndex = markerA.waypoint;
         }
@@ -257,11 +246,6 @@ namespace PathCreator
                             points[nextIndex].position, t), t), t);
         }
 
-        private Quaternion GetLerpRotation(int pointIndex, float time)
-        {
-            return Quaternion.LerpUnclamped(points[pointIndex].rotation, points[GetNextIndex(pointIndex)].rotation, points[pointIndex].rotationCurve.Evaluate(time));
-        }
-
 
         /// <summary>
         /// Plays the path
@@ -313,6 +297,12 @@ namespace PathCreator
         public double GetCurrentDistance()
         {
             return currentDistance;
+        }
+
+        private double GetDistanceAfterSeconds(float time)
+        {
+            double possibleNewDistance = currentDistance + currentV * time;
+            return possibleNewDistance < length ? possibleNewDistance : length;
         }
 
         public int GetNextIndex(int index)

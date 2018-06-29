@@ -549,8 +549,8 @@ MonoBehaviour:
   _hitpoints: 100
   _damage: 10
   _attackSpeed: 1
-  _aggroRange: 4
-  _hasAggro: 1
+  _towerAggroRange: 1
+  _playerAggroRange: 1
 --- !u!114 &114725080605535538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -606,8 +606,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.9
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &195308371445467390
 NavMeshAgent:
   m_ObjectHideFlags: 1
