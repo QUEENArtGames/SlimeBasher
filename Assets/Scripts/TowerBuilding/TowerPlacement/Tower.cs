@@ -117,8 +117,11 @@ namespace Assets.Scripts
 
         internal void Kill()
         {
+            GetComponent<TowerSounds>().PlayDestructionClip();
             GetComponent<TowerRessourceManagement>().DestroyTower();
+
             //Destroy(gameObject, 5);
+            
 
             if (_parts.Count > 0)
             {
@@ -135,7 +138,7 @@ namespace Assets.Scripts
                 rb.AddForce(new Vector3(Random.Range(0, 0), Random.Range(destructiveForceMin, destructiveForceMax), Random.Range(0, 0)), ForceMode.VelocityChange);
             }
 
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1.0f);
         }
 
         void OnDestroy()

@@ -19,12 +19,19 @@ public class TowerSounds : MonoBehaviour {
 
     public void PlayDestructionClip()
     {
+        TowerAudioSource.Stop();
         PlayEventAudio(DestructionClip);
+        Debug.Log("DESTRUCTIION");
     }
 
     public void PlayBuildingClip()
     {
         PlayEventAudio(BuildingClip);
+    }
+
+    public void PlayContiniousSource()
+    {
+        ContinousSource.Play();
     }
 
     public void PlayDamageSound()
@@ -34,7 +41,13 @@ public class TowerSounds : MonoBehaviour {
 
     private void PlayEventAudio(AudioClip eventClip)
     {
+        Debug.Log("PlayEventAudio");
+        if (TowerAudioSource.isPlaying)
+            return;
+
         TowerAudioSource.clip = eventClip;
         TowerAudioSource.Play();
     }
+
+  
 }

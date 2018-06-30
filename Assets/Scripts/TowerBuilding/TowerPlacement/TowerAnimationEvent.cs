@@ -23,5 +23,15 @@ public class TowerAnimationEvent : MonoBehaviour
         _newScrap.SetActive(true);
     }
 
+    public void PlayBuildingSound()
+    {
+        GetComponentInParent<TowerSounds>().PlayBuildingClip();
+    }
+
+    public void PlayIdleSound()
+    {
+        GetComponentInParent<TowerSounds>().PlayContiniousSource();
+    }
+
 }
 
