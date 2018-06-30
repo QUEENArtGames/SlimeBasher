@@ -16,6 +16,8 @@ public class PlayerSounds : MonoBehaviour {
 
     public AudioSource InventoryCollectionSource;
 
+    public AudioSource LowHealthSource;
+
     private ThirdPersonCharacter _thirdPersonCharacter;
 
     private void Start()
@@ -61,5 +63,10 @@ public class PlayerSounds : MonoBehaviour {
 
         VoiceSource.clip = voiceClip;
         VoiceSource.Play();
+    }
+
+    internal void PlayLowHealthSound()
+    {
+        LowHealthSource.Play();
     }
 }

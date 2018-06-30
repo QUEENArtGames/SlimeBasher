@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 //TESTFUNKTIONEN
 public class PlayerDummy : MonoBehaviour {
@@ -56,7 +57,9 @@ public class PlayerDummy : MonoBehaviour {
     }
 
     void Update() {
-
+        if (_playerHealth <= 25)
+            PlayHeartBeatAudio();
+        
         
 
         if (PlayerHealth <= 0) {
@@ -69,6 +72,7 @@ public class PlayerDummy : MonoBehaviour {
                 _playersounds.PlayKoSound();
                 _allowsounds = false;
             }
+            _playersounds.LowHealthSource.Stop();
         }
 
         if(_timer >= _moveCharacterTimer) {
@@ -114,6 +118,12 @@ public class PlayerDummy : MonoBehaviour {
 
         }
 
+    }
+
+    private void PlayHeartBeatAudio()
+    {
+        if(!_playersounds.LowHealthSource.isPlaying)
+            _playersounds.PlayLowHealthSound();
     }
 
     internal void Damage(int damage)
