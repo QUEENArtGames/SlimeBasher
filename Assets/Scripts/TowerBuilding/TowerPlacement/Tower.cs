@@ -138,7 +138,7 @@ namespace Assets.Scripts
                 rb.AddForce(new Vector3(Random.Range(0, 0), Random.Range(destructiveForceMin, destructiveForceMax), Random.Range(0, 0)), ForceMode.VelocityChange);
             }
 
-            Destroy(this.gameObject, 1.0f);
+            Destroy(this.gameObject/*, 1.0f*/);
         }
 
         void OnDestroy()

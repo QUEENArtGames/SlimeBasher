@@ -20,6 +20,7 @@ public class PlayerDummy : MonoBehaviour {
     private bool _isInDefaultMode = true;
     private PlayerSounds _playersounds;
     private bool _allowsounds = true;
+    private Slider _slider;
 
     public int MaxDistanceToTower = 2;
 
@@ -49,12 +50,14 @@ public class PlayerDummy : MonoBehaviour {
         _towerBuilding = FindObjectOfType<TowerBuilding>();
         _scrapInventory = GetComponent<PlayerScrapInventory>();
         _towerBuildingUI = FindObjectOfType<TowerBuildingUI>();
- 
+        _slider = _healtSlider.GetComponent<Slider>();
+        _slider.value = PlayerHealth;
+
     }
 
     void Update() {
 
-        _healtSlider.GetComponent<Slider>().value = PlayerHealth;
+        
 
         if (PlayerHealth <= 0) {
             _endUI.SetActive(true);
@@ -73,6 +76,7 @@ public class PlayerDummy : MonoBehaviour {
             _endUI.SetActive(false);
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _playerHealth = 100;
+            _slider.value = _playerHealth;
             _timer = 0f;
             _allowsounds = true;
         }
@@ -114,7 +118,7 @@ public class PlayerDummy : MonoBehaviour {
 
     internal void Damage(int damage)
     {
-        Debug.Log("DAMAGE");
+        _healtSlider.GetComponent<Slider>().value = PlayerHealth;
         _playersounds.PlayPainSound();
         _playerHealth -= damage;
         

@@ -29,7 +29,6 @@ public class PlayerSounds : MonoBehaviour {
 
     public void PlayPainSound()
     {
-        Debug.Log("PAIN");
         PlayVoiceClip(PainClips[(int)Random.Range(0, PainClips.Length)]);
     }
 
@@ -59,7 +58,6 @@ public class PlayerSounds : MonoBehaviour {
     {
         if (VoiceSource.isPlaying)
             return;
-            //VoiceSource.Stop();
 
         VoiceSource.clip = voiceClip;
         VoiceSource.Play();

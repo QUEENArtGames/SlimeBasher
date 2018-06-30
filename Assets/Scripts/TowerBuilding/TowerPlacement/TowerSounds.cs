@@ -21,7 +21,6 @@ public class TowerSounds : MonoBehaviour {
     {
         TowerAudioSource.Stop();
         PlayEventAudio(DestructionClip);
-        Debug.Log("DESTRUCTIION");
     }
 
     public void PlayBuildingClip()
@@ -41,7 +40,6 @@ public class TowerSounds : MonoBehaviour {
 
     private void PlayEventAudio(AudioClip eventClip)
     {
-        Debug.Log("PlayEventAudio");
         if (TowerAudioSource.isPlaying)
             return;
 

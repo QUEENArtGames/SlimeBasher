@@ -32,6 +32,8 @@ public class WaterTower : MonoBehaviour {
 	private bool build= false;
 	private bool destroy= true;
 
+        private TowerSounds towersounds;
+
 	public float range=10;
     
 	 List<Vector3> paths = new List<Vector3>();
@@ -44,7 +46,8 @@ public class WaterTower : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		// Add a Line Renderer to the GameObject
+            // Add a Line Renderer to the GameObject
+            towersounds = GetComponent<TowerSounds>();
 		line = gameObject.GetComponentsInChildren<LineRenderer>();
 
 		//line = gameObject.GetComponent(typeof(LineRenderer)) as LineRenderer;
@@ -97,6 +100,7 @@ public class WaterTower : MonoBehaviour {
 	void BuildWaterBeam(){
             if (Target != null)
             {
+                
                 float target_Distance = Vector3.Distance(waterpoint.position, Target.position);
                 //Debug.Log(target_Distance);
                 if (target_Distance > range)
@@ -106,6 +110,7 @@ public class WaterTower : MonoBehaviour {
                 }
                 if (Enemy != null)
                 {
+                    
                     HitEnemyWater();
                 }
 
@@ -202,12 +207,16 @@ public class WaterTower : MonoBehaviour {
         }
 		Debug.Log("Destroy");
 		build=false;
+
+            towersounds.ContinousSource.Stop();
 	}
 
 
 	void HitEnemyWater(){
 		Enemy.GetComponent<SlimeScript>().TakeDamage(_damage*Time.deltaTime);
-	}
+            if (!towersounds.ContinousSource.isPlaying && Target != null)
+                towersounds.ContinousSource.Play();
+        }
 
 	public GameObject FindClosestEnemy()
     {
