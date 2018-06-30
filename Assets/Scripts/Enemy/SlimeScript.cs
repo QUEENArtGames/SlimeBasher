@@ -23,6 +23,7 @@ namespace Assets.Scripts
 
         private NavMeshAgent _navMeshAgent;
         private GameObject _tmpTarget;
+        private PlayerDummy _playerdummy;
 
         private float _nextAttack = 0;
         // Use this for initialization
@@ -31,7 +32,7 @@ namespace Assets.Scripts
             _towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
             _finalDestination = FindObjectOfType<Game>().FinalDestination;
             _player = GameObject.Find("MainCharacter");
-
+            _playerdummy = _player.GetComponent<PlayerDummy>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _navMeshAgent.stoppingDistance = 1;
             SetTargetLocation();
@@ -65,7 +66,7 @@ namespace Assets.Scripts
 
         public bool CheckPlayerAggro()
         {
-            if (Vector3.Distance(transform.position, _player.transform.position) <= _playerAggroRange)
+            if (Vector3.Distance(transform.position, _player.transform.position) <= _playerAggroRange && _playerdummy._playerHealth > 0)
             {
                 _navMeshAgent.SetDestination(_player.transform.position);
                 return true;
@@ -106,8 +107,8 @@ namespace Assets.Scripts
         {
             if (Time.time > _nextAttack)
             {
-                PlayerDummy playerDummy = _player.transform.GetComponent<PlayerDummy>();
-                playerDummy._playerHealth -= (int)_damage;
+                
+                _playerdummy.Damage((int)_damage);
 
                 _nextAttack = Time.time + _attackSpeed;
             }

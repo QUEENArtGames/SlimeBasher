@@ -74,6 +74,7 @@ namespace Assets.Scripts
                         _tutorialUI.GetComponent<Tutorial>().FadeOut();
                     break;
                 case Phase.Fight:
+                    FindObjectOfType<GameSounds>().PlayRoundStartClip();
                     //Player bekämpft Enemys
                     Debug.Log("FIGHT");
                     if (_waveRoundNumber == 1) {
@@ -83,6 +84,8 @@ namespace Assets.Scripts
                     StartWave();
                     break;
                 case Phase.End:
+                    FindObjectOfType<GameSounds>().PlayRoundEndClip();
+                    FindObjectOfType<PlayerSounds>().PlayCheerSound();
                     //Rundenende, bereitmachen für Bauphase
                     if (_waveRoundNumber == 1)
                         _tutorialUI.GetComponent<Tutorial>().FadeOut();

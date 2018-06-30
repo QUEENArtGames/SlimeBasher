@@ -31,6 +31,18 @@ namespace SlimeBasher.Characters.ThirdPerson
         bool isCrouching;
         bool isAttacking;
 
+        public bool IsGrounded
+        {
+            get
+            {
+                return isGrounded;
+            }
+
+            set
+            {
+                isGrounded = value;
+            }
+        }
 
         void Start()
         {

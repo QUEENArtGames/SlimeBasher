@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.UI;
 
 //TESTFUNKTIONEN
@@ -19,11 +18,15 @@ public class PlayerDummy : MonoBehaviour {
     public Transform _playerSpawnPoint;
 
     private bool _isInDefaultMode = true;
+    private PlayerSounds _playersounds;
+    private bool _allowsounds = true;
+    private Slider _slider;
 
     public int MaxDistanceToTower = 2;
 
     private void Start() {
         _healtSlider = GameObject.Find("HealthSlider");
+        _playersounds = GetComponent<PlayerSounds>();
     }
 
     public bool IsInDefaultMode {
@@ -47,18 +50,25 @@ public class PlayerDummy : MonoBehaviour {
         _towerBuilding = FindObjectOfType<TowerBuilding>();
         _scrapInventory = GetComponent<PlayerScrapInventory>();
         _towerBuildingUI = FindObjectOfType<TowerBuildingUI>();
- 
+        _slider = _healtSlider.GetComponent<Slider>();
+        _slider.value = PlayerHealth;
+
     }
 
     void Update() {
 
-        _healtSlider.GetComponent<Slider>().value = PlayerHealth;
+        
 
         if (PlayerHealth <= 0) {
             _endUI.SetActive(true);
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             _timer += Time.deltaTime;
             _playerScrapDropAndCollection.DropScraps();
+            if (_allowsounds)
+            {
+                _playersounds.PlayKoSound();
+                _allowsounds = false;
+            }
         }
 
         if(_timer >= _moveCharacterTimer) {
@@ -66,7 +76,9 @@ public class PlayerDummy : MonoBehaviour {
             _endUI.SetActive(false);
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _playerHealth = 100;
+            _slider.value = _playerHealth;
             _timer = 0f;
+            _allowsounds = true;
         }
 
         RaycastHit hit;
@@ -102,6 +114,14 @@ public class PlayerDummy : MonoBehaviour {
 
         }
 
+    }
+
+    internal void Damage(int damage)
+    {
+        _healtSlider.GetComponent<Slider>().value = PlayerHealth;
+        _playersounds.PlayPainSound();
+        _playerHealth -= damage;
+        
     }
 
     private void OnCollisionEnter(Collision other) {
