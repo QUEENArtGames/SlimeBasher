@@ -711,7 +711,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1ab4feddd6413f04da8b82ad8321dd50, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9187b7dd8e43b6d4fb414707490ddabc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -812,6 +812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firingAngle: 80
   gravity: 9.8
+  TowerSounds: {fileID: 0}
   projec: {fileID: 1852673794089372, guid: f82a4ac47dc2f4ba9a2e91da10d73681, type: 2}
 --- !u!114 &114437566473105292
 MonoBehaviour:

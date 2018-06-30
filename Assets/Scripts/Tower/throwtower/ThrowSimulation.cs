@@ -7,8 +7,9 @@ public class ThrowSimulation : MonoBehaviour {
 	private Transform Target;
     public float firingAngle = 45.0f;
     public float gravity = 9.8f;
- 
-    private Transform myTransform;
+    public TowerSounds TowerSounds;
+
+        private Transform myTransform;
 
 	public GameObject projec;
 
@@ -67,6 +68,7 @@ public class ThrowSimulation : MonoBehaviour {
             Debug.Log(attachedscraps);
 
             yield return new WaitForSeconds(4.0f / attachedscraps);
+            TowerSounds.PlayAttackClip();
             StartCoroutine(SimulateProjectile());
 
 
