@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerPauseMenu : MonoBehaviour {
@@ -21,5 +22,14 @@ public class PlayerPauseMenu : MonoBehaviour {
     public void OnValueChanged()
     {
         AudioListener.volume = VolumeSlider.value;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Game.Instance.ResumeGame();
+            gameObject.SetActive(false);
+        }
     }
 }
