@@ -5,7 +5,7 @@ namespace Assets.Scripts{
 public class PuddleScript : MonoBehaviour {
 
 	public float _damage=10;
-	public float _livetime =5;
+	public float _livetime =0.5f;
 
 	private float currundtime =0;
 	// Use this for initialization
@@ -23,8 +23,9 @@ public class PuddleScript : MonoBehaviour {
 		}
 	}
 	void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag =="Enemy"){
-			other.gameObject.GetComponent<SlimeScript>().TakeDamage(_damage);
+            if (other.gameObject.tag =="Enemy"){
+                
+                other.gameObject.GetComponent<SlimeScript>().TakeDamage(_damage);
 		}
     }
 

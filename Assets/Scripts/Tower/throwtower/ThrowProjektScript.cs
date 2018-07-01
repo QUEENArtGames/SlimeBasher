@@ -79,21 +79,24 @@ public class ThrowProjektScript : MonoBehaviour {
 
 	void SpwanPuddle(){
 		GameObject obj = Instantiate(puddle) as GameObject;
-
-		Vector3 transformOffsetSpawn = transform.position;
+            obj.transform.position = transform.position;
+            /*
+        Vector3 transformOffsetSpawn = transform.position;
+        
 		transformOffsetSpawn.y-=0.5f;
 
 		RaycastHit hit;
 		if(Physics.Raycast(transformOffsetSpawn,Vector3.down,out hit)){
 			obj.transform.position= hit.point;
 		}
-
-		
-	}
-	
-	
-	   
+        */
 
 
-}
+        }
+
+
+
+
+
+    }
 }
