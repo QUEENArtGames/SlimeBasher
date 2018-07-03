@@ -1,20 +1,25 @@
 ﻿namespace Assets.Scripts
 {
 
-    public enum Phase {
+    public enum Phase
+    {
         Building, Prepare, Fight, End,
     }
 
-    class GamePhase {
+    class GamePhase
+    {
         private Phase _gamePhase;
 
-        public GamePhase () {
+        public GamePhase()
+        {
             _gamePhase = Phase.Building;
         }
 
-        public void MoveToNextGamePhase() {
+        public void MoveToNextGamePhase()
+        {
 
-            switch (Current) {
+            switch (Current)
+            {
                 case Phase.Building:
                     _gamePhase = Phase.Prepare;
                     break;
@@ -30,8 +35,10 @@
             }
         }
 
-        public Phase Current {
-            get {
+        public Phase Current
+        {
+            get
+            {
                 return _gamePhase;
             }
         }

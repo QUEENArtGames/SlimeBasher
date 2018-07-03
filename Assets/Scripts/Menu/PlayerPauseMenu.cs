@@ -2,19 +2,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerPauseMenu : MonoBehaviour {
+public class PlayerPauseMenu : MonoBehaviour
+{
     public Slider VolumeSlider;
 
     private void Start()
     {
-        VolumeSlider.value = (MainMenu.MainMenuVolume != 0)? MainMenu.MainMenuVolume : AudioListener.volume;
+        VolumeSlider.value = (MainMenu.MainMenuVolume != 0) ? MainMenu.MainMenuVolume : AudioListener.volume;
     }
     // Use this for initialization
-    public void QuitGame() {
+    public void QuitGame()
+    {
         Application.Quit();
     }
 
-    public void EnableCursor() {
+    public void EnableCursor()
+    {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

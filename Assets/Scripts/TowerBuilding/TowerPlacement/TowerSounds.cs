@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TowerSounds : MonoBehaviour {
+public class TowerSounds : MonoBehaviour
+{
     public AudioSource ContinousSource;
 
     public AudioSource TowerAudioSource;
@@ -47,5 +46,5 @@ public class TowerSounds : MonoBehaviour {
         TowerAudioSource.Play();
     }
 
-  
+
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts {
-    class EnemyManagement : MonoBehaviour {
+namespace Assets.Scripts
+{
+    class EnemyManagement : MonoBehaviour
+    {
 
         private List<GameObject> _Slimes = new List<GameObject>(); //SLIMEKLASSE
         private Wave _wave;
@@ -35,79 +35,91 @@ namespace Assets.Scripts {
             }
         }
 
-        public void EnableManager(Wave wave) {
+        public void EnableManager(Wave wave)
+        {
             _wave = wave;
             _game = Game.Instance;
             HandleWave();
-            
+
         }
 
         //Funktion für Gegner Abstände;
 
-        private void HandleWave() {
+        private void HandleWave()
+        {
             //Für jedes Event in WaveEvents 
-                //Event hat Delay nach wann das Event abgehandelt wird (Counter im Update)
-                //Spawnen der Gegner nacheinander vom Spawnpoint
-                //Füge den jeweiligen Gegner der Liste hinzu
+            //Event hat Delay nach wann das Event abgehandelt wird (Counter im Update)
+            //Spawnen der Gegner nacheinander vom Spawnpoint
+            //Füge den jeweiligen Gegner der Liste hinzu
 
-            
-                if(_eventCounter < _wave.Events.Length) {
-                    actualEvent = _wave.Events.ElementAt(_eventCounter);
-                Debug.Log("NormalSlimes: "+ actualEvent._normalSlimes);
+
+            if (_eventCounter < _wave.Events.Length)
+            {
+                actualEvent = _wave.Events.ElementAt(_eventCounter);
+                Debug.Log("NormalSlimes: " + actualEvent._normalSlimes);
                 Debug.Log("HardSlimes: " + actualEvent._hardSlimes);
-                    StartCoroutine("HandleEvent");
-                    _eventCounter++;
-                }
-            
-            
+                StartCoroutine("HandleEvent");
+                _eventCounter++;
+            }
+
+
         }
 
-        IEnumerator HandleEvent() {
-            for(int i=0; i< actualEvent._normalSlimes; i++) {
+        IEnumerator HandleEvent()
+        {
+            for (int i = 0; i < actualEvent._normalSlimes; i++)
+            {
 
                 yield return new WaitForSeconds(2.5f);
                 _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
                 _spawnCounter++;
-                
+
             }
 
 
-            
-            for(int i=0; i< actualEvent._hardSlimes; i++) {
+
+            for (int i = 0; i < actualEvent._hardSlimes; i++)
+            {
 
                 yield return new WaitForSeconds(3.5f);
                 _Slimes.Add(Instantiate(_hardSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
                 _spawnCounter++;
             }
 
-            
 
-            for(int i=0; i< actualEvent._gasSlimes; i++) {
+
+            for (int i = 0; i < actualEvent._gasSlimes; i++)
+            {
 
                 yield return new WaitForSeconds(4.5f);
                 _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
-                
-            } 
+
+            }
 
             _timerAllowed = true;
 
         }
 
-        private void Update() {
+        private void Update()
+        {
 
-            if(_spawnCounter == _wave.getAllEnemysOfTheWave()) {
+            if (_spawnCounter == _wave.getAllEnemysOfTheWave())
+            {
                 _allEnemysSpawned = true;
                 _spawnCounter = 0;
             }
 
-            if (_eventAllowed) {
+            if (_eventAllowed)
+            {
                 _eventAllowed = false;
                 HandleWave();
             }
 
-            if (_timerAllowed) {
+            if (_timerAllowed)
+            {
                 _timer += Time.deltaTime;
-                if(_timer>_wave.delay) {
+                if (_timer > _wave.delay)
+                {
                     _eventAllowed = true;
                     _timerAllowed = false;
                     _timer = 0f;
@@ -117,11 +129,12 @@ namespace Assets.Scripts {
             //Einmal Spawnen EventCounter = 1 und Event Länge = 1 -> true
             //Einmal Spawnen EventCounter = 1 und Event Länge = 2 -> false
             //Zweimal Spawnen EventCounter = 2 und Event Länge = 2 -> true
-            if(CheckIfSlimesAlive() && _eventCounter >= _wave.events.Length && _allEnemysSpawned) {
+            if (CheckIfSlimesAlive() && _eventCounter >= _wave.events.Length && _allEnemysSpawned)
+            {
                 _eventCounter = 0;
                 _allEnemysSpawned = false;
                 _game.GamePhase.MoveToNextGamePhase();
-                
+
             }
 
             //Kontrolliere die Länge der Gegnerlisten
@@ -133,10 +146,13 @@ namespace Assets.Scripts {
 
         }
 
-        private bool CheckIfSlimesAlive() {
+        private bool CheckIfSlimesAlive()
+        {
 
-            foreach(GameObject slime in _Slimes) {
-				if(slime.GetComponent<SlimeScript>()._hitpoints <= 0) {
+            foreach (GameObject slime in _Slimes)
+            {
+                if (slime.GetComponent<SlimeScript>()._hitpoints <= 0)
+                {
                     deleteEnemy(slime);
                     break;
                 }
@@ -145,18 +161,19 @@ namespace Assets.Scripts {
             if (_Slimes.Count == 0)
                 return true;
             return false;
-                
+
         }
 
-        public void deleteEnemy(GameObject slime ) { //SlimeKlasse
+        public void deleteEnemy(GameObject slime)
+        { //SlimeKlasse
 
             _Slimes.Remove(slime);
-			slime.GetComponent<SlimeScript>().Kill();
+            slime.GetComponent<SlimeScript>().Kill();
             //Liste durchgehen und dem Slime sagen das er sterben soll
             //Slime aus der Liste entfernen
         }
 
-        
+
 
     }
 }

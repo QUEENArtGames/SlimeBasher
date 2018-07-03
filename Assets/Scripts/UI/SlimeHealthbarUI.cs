@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SlimeHealthbarUI : MonoBehaviour {
+public class SlimeHealthbarUI : MonoBehaviour
+{
 
     void Update()
     {

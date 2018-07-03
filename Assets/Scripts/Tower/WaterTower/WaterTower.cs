@@ -1,106 +1,119 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Assets.Scripts{
+namespace Assets.Scripts
+{
 
-public class WaterTower : MonoBehaviour {
+    public class WaterTower : MonoBehaviour
+    {
 
-	private LineRenderer [] line;                           // Line Renderer
-	public int lengthOfLineRenderer = 20;
+        private LineRenderer[] line;                           // Line Renderer
+        public int lengthOfLineRenderer = 20;
 
-	public Transform Target;
-	public GameObject Enemy;
+        public Transform Target;
+        public GameObject Enemy;
 
-	public Transform waterpoint;
+        public Transform waterpoint;
 
-	public float firingAngle = 45.0f;
-    public float gravity = 9.8f;
+        public float firingAngle = 45.0f;
+        public float gravity = 9.8f;
 
-	private Vector3 targetPoint;
-     private Quaternion targetRotation;
+        private Vector3 targetPoint;
+        private Quaternion targetRotation;
 
- 
-	//public GameObject projec;
 
-	public Vector3 raycastDir;
+        //public GameObject projec;
 
-	GameObject bullet;
+        public Vector3 raycastDir;
 
-	public float _damage=10;
+        GameObject bullet;
 
-	public float delay = 0.05f;
-	private bool build= false;
-	private bool destroy= true;
+        public float _damage = 10;
+
+        public float delay = 0.05f;
+        private bool build = false;
+        private bool destroy = true;
 
         private TowerSounds towersounds;
 
-	public float range=10;
-    
-	 List<Vector3> paths = new List<Vector3>();
+        public float range = 10;
 
-    // needed to only rotate the wateringCan while shooting
-    public Transform rotationReset;
+        List<Vector3> paths = new List<Vector3>();
 
-    // interpolate rotation for wateringCan
-    public float speed = 45.0F;
+        // needed to only rotate the wateringCan while shooting
+        public Transform rotationReset;
 
-    // Use this for initialization
-    void Start () {
+        // interpolate rotation for wateringCan
+        public float speed = 45.0F;
+
+        // Use this for initialization
+        void Start()
+        {
             // Add a Line Renderer to the GameObject
             towersounds = GetComponent<TowerSounds>();
-		line = gameObject.GetComponentsInChildren<LineRenderer>();
+            line = gameObject.GetComponentsInChildren<LineRenderer>();
 
-		//line = gameObject.GetComponent(typeof(LineRenderer)) as LineRenderer;
-		// Set the width of the Line Renderer
-		//line.SetWidth(0.05F, 0.05F);
-		// Set the number of vertex fo the Line Renderer
-		//line.SetVertexCount(2);
-		//line.positionCount= lengthOfLineRenderer;
-		line[0].positionCount=0;
-		paths.Add(new Vector3(0,  0     ,  0  ));
-		//shot();
+            //line = gameObject.GetComponent(typeof(LineRenderer)) as LineRenderer;
+            // Set the width of the Line Renderer
+            //line.SetWidth(0.05F, 0.05F);
+            // Set the number of vertex fo the Line Renderer
+            //line.SetVertexCount(2);
+            //line.positionCount= lengthOfLineRenderer;
+            line[0].positionCount = 0;
+            paths.Add(new Vector3(0, 0, 0));
+            //shot();
 
-	}
+        }
 
-	void Update(){
-        if (Enemy ==null && !build){
-			Enemy=FindClosestEnemy();
-		}
-		
-		if(Enemy !=null && !build){
-			Target= Enemy.transform;
-			
-			StartCoroutine(AddPoints());
-			//Debug.Log("Buld");
-			destroy=false;
-			build=true;
-		}else if(Enemy !=null){
-			BuildWaterBeam();
-		}else if(build && !destroy ){
-			
-			StartCoroutine(DestroyWaterBeam());
-			destroy=true;
-			//Debug.Log("Destroy");
-		}
-		
-	}
+        void Update()
+        {
+            if (Enemy == null && !build)
+            {
+                Enemy = FindClosestEnemy();
+            }
 
-	void Beam(){
-		//Debug.Log(paths.Count-1);
-		//Debug.Log(line.positionCount);
-		for (int i = 0; i < paths.Count-1; i++){
+            if (Enemy != null && !build)
+            {
+                Target = Enemy.transform;
 
-				//paths[i]=new Vector3(x,  y     ,  z  );
-				line[0].SetPosition(i,paths[i]);
-				//yield return new WaitForSeconds(delay);
+                StartCoroutine(AddPoints());
+                //Debug.Log("Buld");
+                destroy = false;
+                build = true;
+            }
+            else if (Enemy != null)
+            {
+                BuildWaterBeam();
+            }
+            else if (build && !destroy)
+            {
 
-		}
-	}
+                StartCoroutine(DestroyWaterBeam());
+                destroy = true;
+                //Debug.Log("Destroy");
+            }
 
-	void BuildWaterBeam(){
+        }
+
+        void Beam()
+        {
+            //Debug.Log(paths.Count-1);
+            //Debug.Log(line.positionCount);
+            for (int i = 0; i < paths.Count - 1; i++)
+            {
+
+                //paths[i]=new Vector3(x,  y     ,  z  );
+                line[0].SetPosition(i, paths[i]);
+                //yield return new WaitForSeconds(delay);
+
+            }
+        }
+
+        void BuildWaterBeam()
+        {
             if (Target != null)
             {
-                
+
                 float target_Distance = Vector3.Distance(waterpoint.position, Target.position);
                 //Debug.Log(target_Distance);
                 if (target_Distance > range)
@@ -110,7 +123,7 @@ public class WaterTower : MonoBehaviour {
                 }
                 if (Enemy != null)
                 {
-                    
+
                     HitEnemyWater();
                 }
 
@@ -176,67 +189,70 @@ public class WaterTower : MonoBehaviour {
 
                 }
             }
-			
-	}
 
-	IEnumerator AddPoints(){
-		for(int i = 0; i < lengthOfLineRenderer; i++)
-		{
-
-			line[0].positionCount+=1;
-			paths.Add(new Vector3(0,  0     ,  0  ));
-			BuildWaterBeam();
-			//Beam();
-			//line.SetVertexCount(i);
-
-
-			yield return new WaitForSeconds(delay);
-		}
-		//build=false;
-	}
-
-	IEnumerator DestroyWaterBeam(){
-		for(int i = lengthOfLineRenderer - 1; i >= 0; i--)
-        {
-			Beam();
-			paths.RemoveAt(0);
-			line[0].positionCount-=1;
-			
-			
-            yield return new WaitForSeconds(delay);
         }
-		Debug.Log("Destroy");
-		build=false;
+
+        IEnumerator AddPoints()
+        {
+            for (int i = 0; i < lengthOfLineRenderer; i++)
+            {
+
+                line[0].positionCount += 1;
+                paths.Add(new Vector3(0, 0, 0));
+                BuildWaterBeam();
+                //Beam();
+                //line.SetVertexCount(i);
+
+
+                yield return new WaitForSeconds(delay);
+            }
+            //build=false;
+        }
+
+        IEnumerator DestroyWaterBeam()
+        {
+            for (int i = lengthOfLineRenderer - 1; i >= 0; i--)
+            {
+                Beam();
+                paths.RemoveAt(0);
+                line[0].positionCount -= 1;
+
+
+                yield return new WaitForSeconds(delay);
+            }
+            Debug.Log("Destroy");
+            build = false;
 
             towersounds.ContinousSource.Stop();
-	}
+        }
 
 
-	void HitEnemyWater(){
-		Enemy.GetComponent<SlimeScript>().TakeDamage(_damage*Time.deltaTime);
+        void HitEnemyWater()
+        {
+            Enemy.GetComponent<SlimeScript>().TakeDamage(_damage * Time.deltaTime);
             if (!towersounds.ContinousSource.isPlaying && Target != null)
                 towersounds.ContinousSource.Play();
         }
 
-	public GameObject FindClosestEnemy()
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
+        public GameObject FindClosestEnemy()
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject closest = null;
+            float distance = Mathf.Infinity;
+            Vector3 position = transform.position;
+            foreach (GameObject go in gos)
             {
-                closest = go;
-                distance = curDistance;
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    closest = go;
+                    distance = curDistance;
+                }
             }
+            return closest;
         }
-        return closest;
+
     }
-	
-}
 }

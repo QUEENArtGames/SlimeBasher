@@ -1,6 +1,6 @@
-using UnityEngine;
-using SlimeBasher.CrossPlatformInput;
 using Assets.Scripts;
+using SlimeBasher.CrossPlatformInput;
+using UnityEngine;
 
 namespace SlimeBasher.Characters.ThirdPerson
 {

@@ -1,9 +1,8 @@
 ﻿using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HomeBase : MonoBehaviour {
+public class HomeBase : MonoBehaviour
+{
 
     public int NumberOfSlimesUntilDeath = 10;
     public float NeededSlimeDistanceToBase = 3.0f;
@@ -18,7 +17,7 @@ public class HomeBase : MonoBehaviour {
 
     private void Update()
     {
-            CheckForDamage();
+        CheckForDamage();
 
         if (_currentNumberOfSlimesUntilDeath <= 0)
             SetGameOver();
@@ -26,15 +25,15 @@ public class HomeBase : MonoBehaviour {
 
     private void CheckForDamage()
     {
-        foreach(GameObject slimeObject in _enemymanagement.Slimes)
+        foreach (GameObject slimeObject in _enemymanagement.Slimes)
         {
-            if(Vector3.Distance(slimeObject.transform.position, transform.position) <= NeededSlimeDistanceToBase)
+            if (Vector3.Distance(slimeObject.transform.position, transform.position) <= NeededSlimeDistanceToBase)
             {
                 slimeObject.GetComponent<SlimeScript>()._hitpoints = 0;
                 _currentNumberOfSlimesUntilDeath--;
             }
         }
-        
+
     }
 
     private void SetGameOver()

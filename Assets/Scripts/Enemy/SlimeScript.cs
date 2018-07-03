@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -108,8 +107,8 @@ namespace Assets.Scripts
         {
             if (Time.time > _nextAttack)
             {
-                
-                _playerdummy.Damage((int)_damage);
+
+                _playerdummy.Damage((int) _damage);
 
                 _nextAttack = Time.time + _attackSpeed;
             }

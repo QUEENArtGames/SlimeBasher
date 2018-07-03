@@ -3,7 +3,8 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts
 {
-    public class EnemyDummy : MonoBehaviour {
+    public class EnemyDummy : MonoBehaviour
+    {
 
         public int Hitpoints = 100;
 
@@ -13,16 +14,18 @@ namespace Assets.Scripts
         private GameObject _target;
 
         // Use this for initialization
-        void Start() {
-			
+        void Start()
+        {
+
             _finalDestination = FindObjectOfType<Game>().FinalDestination;
             _agent = GetComponent<NavMeshAgent>();
             _agent.SetDestination(_finalDestination.position);
-            
+
         }
 
         // Update is called once per frame
-        void Update() {
+        void Update()
+        {
             /*if (Hitpoints <= 0)
                 Kill(); */
 
@@ -59,9 +62,9 @@ namespace Assets.Scripts
                     _target = other.transform.gameObject;
                 }
             }
-               
+
         }
-      
+
     }
 
 

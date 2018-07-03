@@ -31,10 +31,10 @@ public class RessourceManagement : MonoBehaviour
             PrepareScrapPools();
 
 
-        int randomScrapObjectIndex = (int)UnityEngine.Random.Range(0.0f, _possiblePrefabPool.Count);
+        int randomScrapObjectIndex = (int) UnityEngine.Random.Range(0.0f, _possiblePrefabPool.Count);
         PoolScrap poolscrap = _possiblePrefabPool[randomScrapObjectIndex];
         _possiblePrefabPool.Remove(poolscrap);
-        return PossiblePrefabs[(int)poolscrap.ScrapType][poolscrap.SubType];
+        return PossiblePrefabs[(int) poolscrap.ScrapType][poolscrap.SubType];
     }
 
     public GameObject[][] PossiblePrefabs
@@ -48,12 +48,12 @@ public class RessourceManagement : MonoBehaviour
     private void Awake()
     {
         _possiblePrefabPool = new List<PoolScrap>();
-        PossiblePrefabs[(int)ScrapType.MELEE] = MeelePrefabs;
-        PossiblePrefabs[(int)ScrapType.BOTTLE] = BottlePrefabs;
-        PossiblePrefabs[(int)ScrapType.GRENADE] = GrenadePrefabs;
-        PossiblePrefabs[(int)ScrapType.PUSTEFIX] = PustefixPrefabs;
+        PossiblePrefabs[(int) ScrapType.MELEE] = MeelePrefabs;
+        PossiblePrefabs[(int) ScrapType.BOTTLE] = BottlePrefabs;
+        PossiblePrefabs[(int) ScrapType.GRENADE] = GrenadePrefabs;
+        PossiblePrefabs[(int) ScrapType.PUSTEFIX] = PustefixPrefabs;
         PrepareScrapPools();
-        
+
     }
 
 
@@ -67,10 +67,10 @@ public class RessourceManagement : MonoBehaviour
 
     private void FillPossiblePrefabs(ScrapType scrapType, int amountOfScrapsInPool, GameObject[] possiblePrefabs)
     {
-        for(int i = 0; i < amountOfScrapsInPool; i++)
+        for (int i = 0; i < amountOfScrapsInPool; i++)
         {
-            int randomScrapIndex = (int)UnityEngine.Random.Range(0.0f, possiblePrefabs.Length);
-            _possiblePrefabPool.Add(new PoolScrap(scrapType, possiblePrefabs[randomScrapIndex].GetComponent<Scrap>().SubCategoryIndex) );
+            int randomScrapIndex = (int) UnityEngine.Random.Range(0.0f, possiblePrefabs.Length);
+            _possiblePrefabPool.Add(new PoolScrap(scrapType, possiblePrefabs[randomScrapIndex].GetComponent<Scrap>().SubCategoryIndex));
         }
     }
 }

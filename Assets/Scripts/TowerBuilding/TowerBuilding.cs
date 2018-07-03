@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -11,10 +10,11 @@ public class TowerBuilding : MonoBehaviour
 
     private void Awake()
     {
-        
+
     }
 
-    private void Start() {
+    private void Start()
+    {
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
         _playerScraps = _playerInventory.ScrapInventory;
     }
@@ -27,7 +27,7 @@ public class TowerBuilding : MonoBehaviour
         scrapObject.SetActive(false);
         selectedTower.GetComponentInChildren<TowerAnimationEvent>().NewScrap = scrapObject;
         RemoveAnyNeededScrapFromInventory(towermanagement);
-       
+
     }
 
     public void UpgradeWithAnyScrap(TowerRessourceManagement towermanagement)
@@ -63,7 +63,7 @@ public class TowerBuilding : MonoBehaviour
         {
             if (towermanagement.NeededScraps[scrapTypeIndex])
                 _playerInventory.RemoveAnyScrap(scrapTypeIndex);
-            }
+        }
     }
 
     internal bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
@@ -74,10 +74,10 @@ public class TowerBuilding : MonoBehaviour
 
     private bool HasEnoughSpecialScraps(List<int>[] inventory, TowerRessourceManagement towermanagement)
     {
-        return (inventory[(int)ScrapType.MELEE].Count >= 1 && towermanagement.NeedsMeeleScraps) ||
-               (inventory[(int)ScrapType.BOTTLE].Count >= 1 && towermanagement.NeedsBottleScraps) ||
-               (inventory[(int)ScrapType.GRENADE].Count >= 1 && towermanagement.NeedsGrenadeScraps) ||
-               (inventory[(int)ScrapType.PUSTEFIX].Count >= 1 && towermanagement.NeedsPustefixScraps);
-     
+        return (inventory[(int) ScrapType.MELEE].Count >= 1 && towermanagement.NeedsMeeleScraps) ||
+               (inventory[(int) ScrapType.BOTTLE].Count >= 1 && towermanagement.NeedsBottleScraps) ||
+               (inventory[(int) ScrapType.GRENADE].Count >= 1 && towermanagement.NeedsGrenadeScraps) ||
+               (inventory[(int) ScrapType.PUSTEFIX].Count >= 1 && towermanagement.NeedsPustefixScraps);
+
     }
 }
