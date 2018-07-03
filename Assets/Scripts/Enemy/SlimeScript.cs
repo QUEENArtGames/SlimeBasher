@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -14,6 +13,7 @@ namespace Assets.Scripts
         public float _attackSpeed;
         public float _towerAggroRange;
         public float _playerAggroRange;
+        public float damageByPlayer;
 
         private Transform _finalDestination;
         private TowerPlacement _towerplacement;
@@ -31,7 +31,7 @@ namespace Assets.Scripts
         {
             _towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
             _finalDestination = FindObjectOfType<Game>().FinalDestination;
-            _player = GameObject.Find("MainCharacter");
+            _player = GameObject.Find("Main_Character");
             _playerdummy = _player.GetComponent<PlayerDummy>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _navMeshAgent.stoppingDistance = 1;
@@ -107,8 +107,8 @@ namespace Assets.Scripts
         {
             if (Time.time > _nextAttack)
             {
-                
-                _playerdummy.Damage((int)_damage);
+
+                _playerdummy.Damage((int) _damage);
 
                 _nextAttack = Time.time + _attackSpeed;
             }
@@ -129,6 +129,7 @@ namespace Assets.Scripts
         {
             _hitpoints -= damage;
             _healthSlider.value = _hitpoints;
+
             foreach (var rend in GetComponentsInChildren<Renderer>())
             {
                 _standardColor.Add(rend.material.color);
@@ -150,6 +151,12 @@ namespace Assets.Scripts
         {
             Destroy(this.gameObject);
             GetComponent<SlimeRessourceManagement>().DropRessources();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag.Equals("PlayerWeapon"))
+                this.TakeDamage(damageByPlayer);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using PathCreator;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace PathCreator
@@ -141,7 +140,7 @@ namespace PathCreator
                     Undo.RecordObject(target, "Changed Handle Position");
 
                     path.points[index].handlePrev = posPrev - path.points[index].position;
-                    
+
                     path.points[index].handleNext = path.points[index].handlePrev * -1; // always chained behaviour
                 }
             }

@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class PlayerScrapDropAndCollection : MonoBehaviour
@@ -13,19 +12,19 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         _scrapInventory = gameObject.GetComponent<PlayerScrapInventory>();
         _ressourceManagement = FindObjectOfType<RessourceManagement>();
         _sounds = GetComponent<PlayerSounds>();
-        
+
     }
 
     public void CollectScrap(GameObject scrapObject)
     {
-        Scrap scrap = scrapObject.GetComponent<Scrap>(); 
+        Scrap scrap = scrapObject.GetComponent<Scrap>();
         if (!scrap.IsCollected)
         {
             ScrapType scraptype = scrap.Type;
             Destroy(scrapObject);
             _scrapInventory.AddScrap(scraptype, scrap.SubCategoryIndex);
             _sounds.PlayCollectionSound();
-            
+
         }
     }
 

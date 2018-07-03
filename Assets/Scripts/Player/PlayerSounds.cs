@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using SlimeBasher.Characters.ThirdPerson;
 using UnityEngine;
-using SlimeBasher.Characters.ThirdPerson;
 
-public class PlayerSounds : MonoBehaviour {
+public class PlayerSounds : MonoBehaviour
+{
 
     public AudioSource VoiceSource;
     public AudioClip[] CheerClips;
@@ -11,7 +10,7 @@ public class PlayerSounds : MonoBehaviour {
     public AudioClip[] KoClipts;
 
     public AudioSource AttackSource;
-    public AudioClip[] AttackClips;    
+    public AudioClip[] AttackClips;
     public AudioSource StepSource;
 
     public AudioSource InventoryCollectionSource;
@@ -24,22 +23,22 @@ public class PlayerSounds : MonoBehaviour {
     }
     public void PlayKoSound()
     {
-        PlayVoiceClip(KoClipts[(int)Random.Range(0, KoClipts.Length)]);
+        PlayVoiceClip(KoClipts[(int) Random.Range(0, KoClipts.Length)]);
     }
 
     public void PlayPainSound()
     {
-        PlayVoiceClip(PainClips[(int)Random.Range(0, PainClips.Length)]);
+        PlayVoiceClip(PainClips[(int) Random.Range(0, PainClips.Length)]);
     }
 
     public void PlayCheerSound()
     {
-        PlayVoiceClip(CheerClips[(int)Random.Range(0, CheerClips.Length)]);
+        PlayVoiceClip(CheerClips[(int) Random.Range(0, CheerClips.Length)]);
     }
-          
+
     public void PlayAttackSound()
     {
-        AttackSource.clip = AttackClips[(int)Random.Range(0, AttackClips.Length)];
+        AttackSource.clip = AttackClips[(int) Random.Range(0, AttackClips.Length)];
         AttackSource.Play();
     }
 
@@ -50,7 +49,7 @@ public class PlayerSounds : MonoBehaviour {
 
     public void PlayFootstepSound()
     {
-        if(_thirdPersonCharacter.IsGrounded)
+        if (_thirdPersonCharacter.IsGrounded)
             StepSource.Play();
     }
 

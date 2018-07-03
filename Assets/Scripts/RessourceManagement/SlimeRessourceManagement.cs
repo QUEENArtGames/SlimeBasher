@@ -25,20 +25,20 @@ public class SlimeRessourceManagement : MonoBehaviour
         _attachedScraps = new List<GameObject>();
         InstanstiateScrapsOnSelf();
         //Physics.IgnoreLayerCollision(8, 9);
-        
+
     }
 
     // TESTUPDATE
     void Update()
     {
-        if(Input.GetKeyDown("i"))
+        if (Input.GetKeyDown("i"))
         {
             InstanstiateScrapsOnSelf();
         }
-           
+
         if (Input.GetKeyDown("p"))
-			GetComponent<SlimeScript>()._hitpoints = 0;
-        
+            GetComponent<SlimeScript>()._hitpoints = 0;
+
         //ChildObjekt angucken für bessere Lösung?
         if (_attachedScraps.Count > 0)
             MakeScrapsFollowParent();

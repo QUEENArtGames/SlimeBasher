@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour {
+public class InventoryUI : MonoBehaviour
+{
 
     public Text MeeleScrapText;
     public Text WaterScrapText;
@@ -25,20 +23,21 @@ public class InventoryUI : MonoBehaviour {
         _playerScrapInventory = FindObjectOfType<PlayerScrapInventory>();
     }
 
-    void Update () {
+    void Update()
+    {
         if (_inventoryWasRecentlyChanged)
         {
             UpdateUIText();
             _inventoryWasRecentlyChanged = false;
         }
-	}
+    }
 
     private void UpdateUIText()
     {
-        MeeleScrapText.text = _playerScrapInventory.ScrapInventory[(int)ScrapType.MELEE].Count + "";
-        GrenadeScrapText.text = _playerScrapInventory.ScrapInventory[(int)ScrapType.GRENADE].Count + "";
-        AirScrapText.text = _playerScrapInventory.ScrapInventory[(int)ScrapType.PUSTEFIX].Count + "";
-        WaterScrapText.text = _playerScrapInventory.ScrapInventory[(int)ScrapType.BOTTLE].Count + "";
+        MeeleScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.MELEE].Count + "";
+        GrenadeScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.GRENADE].Count + "";
+        AirScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.PUSTEFIX].Count + "";
+        WaterScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.BOTTLE].Count + "";
         ClassicScrapText.text = _playerScrapInventory.ClassicScraps + "";
     }
 }

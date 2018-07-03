@@ -22,6 +22,6 @@
         get
         {
             return subType;
-        }      
+        }
     }
 }

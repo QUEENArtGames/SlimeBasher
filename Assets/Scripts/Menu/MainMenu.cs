@@ -2,17 +2,20 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
 
     public Slider VolumeSlider;
 
     public static float MainMenuVolume;
 
-    public void PlayGame() {
+    public void PlayGame()
+    {
         SceneManager.LoadScene(1);
     }
 
-    public void QuitGame() {
+    public void QuitGame()
+    {
         Application.Quit();
     }
 

@@ -121,7 +121,7 @@ namespace Assets.Scripts
             GetComponent<TowerRessourceManagement>().DestroyTower();
 
             //Destroy(gameObject, 5);
-            
+
 
             if (_parts.Count > 0)
             {

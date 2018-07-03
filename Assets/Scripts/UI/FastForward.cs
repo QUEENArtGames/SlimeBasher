@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class FastForward : MonoBehaviour {
+public class FastForward : MonoBehaviour
+{
 
     public Image imageNormalSpeed;
     public Image imageFastForward;
@@ -11,8 +10,9 @@ public class FastForward : MonoBehaviour {
 
     private bool _fastForward = false;
 
-	void Awake () {
-        if(imageNormalSpeed != null && imageFastForward != null)
+    void Awake()
+    {
+        if (imageNormalSpeed != null && imageFastForward != null)
         {
             imageNormalSpeed.enabled = true;
             imageFastForward.enabled = false;
@@ -22,8 +22,8 @@ public class FastForward : MonoBehaviour {
             Debug.Log("FastFoward images missing!");
         }
     }
-	
-	void Update ()
+
+    void Update()
     {
         KeyPressedCheck();
     }

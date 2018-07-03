@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
-    class Game : MonoBehaviour {
+    class Game : MonoBehaviour
+    {
 
         private static Game instance;
         private GamePhase _gamePhase;
@@ -27,16 +28,22 @@ namespace Assets.Scripts
         public GameObject _tutorialUI;
         public GameObject _towerUI;
 
-        internal static Game Instance {
-            get {
+        internal static Game Instance
+        {
+            get
+            {
                 return instance;
             }
         }
 
-        void Start() {
-            if(instance==null) {
+        void Start()
+        {
+            if (instance == null)
+            {
                 instance = this;
-            } else {
+            }
+            else
+            {
                 Destroy(this.gameObject);
                 return;
             }
@@ -48,15 +55,18 @@ namespace Assets.Scripts
             FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.BOTTLE, 0);
         }
 
-        private void RunPhase(Phase gamePhase) {
-            switch (gamePhase) {
+        private void RunPhase(Phase gamePhase)
+        {
+            switch (gamePhase)
+            {
                 case Phase.Building:
                     //Player kann sachen bauen
                     Debug.Log("Runde: " + _waveRoundNumber);
                     _waveRoundText.GetComponent<Text>().text = "Round: " + _waveRoundNumber;
                     Debug.Log("BUILDING");
                     _towerUI.GetComponent<TowerUIFading>().FadeIn();
-                    if (_waveRoundNumber > 1) {
+                    if (_waveRoundNumber > 1)
+                    {
                         _readyButtonEnabled = true;
                         _readyUI.SetActive(true);
                     }
@@ -77,7 +87,8 @@ namespace Assets.Scripts
                     FindObjectOfType<GameSounds>().PlayRoundStartClip();
                     //Player bekämpft Enemys
                     Debug.Log("FIGHT");
-                    if (_waveRoundNumber == 1) {
+                    if (_waveRoundNumber == 1)
+                    {
                         _tutorialUI.GetComponentInChildren<Text>().text = "Da kommen sie! Ich muss diese rote Kugel da verteidigen, warum auch immer!";
                         _tutorialUI.GetComponent<Tutorial>().FadeIn();
                     }
@@ -97,26 +108,31 @@ namespace Assets.Scripts
             }
         }
 
-        private void StartWave() {
+        private void StartWave()
+        {
             Debug.Log("Spawning Enemys");
             enemyManagement.enabled = true;
             enemyManagement.EnableManager(_actualWave);
-            
+
         }
 
-        private void ShowWaveEndGUI() {
+        private void ShowWaveEndGUI()
+        {
             phaseGUI.SetActive(true);
             enemyManagement.enabled = false;
         }
-        
 
-        void StartNextRoundCounter() {
+
+        void StartNextRoundCounter()
+        {
             _startTimer = true;
         }
 
-        private void CheckGamePhase() {
+        private void CheckGamePhase()
+        {
 
-            if (_currentPhase != _gamePhase.Current) {
+            if (_currentPhase != _gamePhase.Current)
+            {
                 _currentPhase = _gamePhase.Current;
                 RunPhase(_currentPhase);
             }
@@ -124,7 +140,8 @@ namespace Assets.Scripts
         }
 
 
-        private void PauseGame() {
+        private void PauseGame()
+        {
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
@@ -132,25 +149,30 @@ namespace Assets.Scripts
 
         }
 
-        public void ResumeGame() {
+        public void ResumeGame()
+        {
             Time.timeScale = 1;
             Cursor.visible = false;
         }
 
 
         // Update is called once per frame
-        void Update() {
+        void Update()
+        {
 
             CheckGamePhase();
 
 
-            if (_startTimer) {
+            if (_startTimer)
+            {
                 _countdown += Time.deltaTime;
-                _phaseGUICountdown.GetComponent<Text>().text = _nextPhaseTimer - (int)_countdown + "";
+                _phaseGUICountdown.GetComponent<Text>().text = _nextPhaseTimer - (int) _countdown + "";
             }
 
-            if (_countdown > _nextPhaseTimer) {
-                if (_gamePhase.Current == Phase.End && _waveRoundNumber == 2) {
+            if (_countdown > _nextPhaseTimer)
+            {
+                if (_gamePhase.Current == Phase.End && _waveRoundNumber == 2)
+                {
                     _tutorialUI.GetComponentInChildren<Text>().text = "Sehr gut, ich hab es geschafft! Aber ich glaube, da kommen nochmehr. Ich sollte mich vorbereiten. Dafür brauche Türme. Die Baumaterialien kann ich durch Schrott ersetzen, der jetzt hier überall rumliegt. Also los gehts!";
                     _tutorialUI.GetComponent<Tutorial>().FadeIn();
                 }
@@ -159,25 +181,29 @@ namespace Assets.Scripts
                 _startTimer = false;
             }
 
-            if (_readyButtonEnabled && Input.GetButtonDown("ready") && !Mathf.Approximately(Time.timeScale, 0)) {
+            if (_readyButtonEnabled && Input.GetButtonDown("ready") && !Mathf.Approximately(Time.timeScale, 0))
+            {
                 Debug.Log("Starting Countdown");
                 _gamePhase.MoveToNextGamePhase();
                 _readyButtonEnabled = false;
 
             }
 
-            if (Input.GetButtonDown("Cancel") && !Mathf.Approximately(Time.timeScale,0))
+            if (Input.GetButtonDown("Cancel") && !Mathf.Approximately(Time.timeScale, 0))
                 PauseGame();
 
-            if(fightPhaseEnd) {
+            if (fightPhaseEnd)
+            {
                 fightPhaseEnd = false;
                 _gamePhase.MoveToNextGamePhase();
             }
 
         }
 
-        public GamePhase GamePhase {
-            get {
+        public GamePhase GamePhase
+        {
+            get
+            {
                 return _gamePhase;
             }
         }

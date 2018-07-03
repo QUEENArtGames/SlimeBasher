@@ -1,5 +1,5 @@
-using UnityEngine;
 using SlimeBasher.CrossPlatformInput;
+using UnityEngine;
 
 namespace SlimeBasher.Cameras
 {
@@ -43,14 +43,16 @@ namespace SlimeBasher.Cameras
         protected void Update()
         {
 
-            if(Time.timeScale != 0) {
+            if (Time.timeScale != 0)
+            {
                 HandleRotationMovement();
-                if (m_LockCursor && Input.GetMouseButtonUp(0)) {
+                if (m_LockCursor && Input.GetMouseButtonUp(0))
+                {
                     Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
                     Cursor.visible = !m_LockCursor;
                 }
             }
-            
+
         }
 
 

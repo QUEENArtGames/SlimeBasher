@@ -1,17 +1,16 @@
 ﻿using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 //TESTFUNKTIONEN
-public class PlayerDummy : MonoBehaviour {
+public class PlayerDummy : MonoBehaviour
+{
     private PlayerScrapDropAndCollection _playerScrapDropAndCollection;
     private TowerBuilding _towerBuilding;
     private PlayerScrapInventory _scrapInventory;
     private TowerBuildingUI _towerBuildingUI;
     public int _playerHealth = 100;
-    public GameObject _healtSlider;
+    public Slider _healthSlider;
     public GameObject _endUI;
     public float _moveCharacterTimer = 15f;
     private float _timer;
@@ -20,46 +19,49 @@ public class PlayerDummy : MonoBehaviour {
     private bool _isInDefaultMode = true;
     private PlayerSounds _playersounds;
     private bool _allowsounds = true;
-    private Slider _slider;
 
     public int MaxDistanceToTower = 2;
 
-    private void Start() {
-        _healtSlider = GameObject.Find("HealthSlider");
+    private void Start()
+    {
         _playersounds = GetComponent<PlayerSounds>();
     }
 
-    public bool IsInDefaultMode {
-        get {
+    public bool IsInDefaultMode
+    {
+        get
+        {
             return _isInDefaultMode;
         }
 
-        set {
+        set
+        {
             _isInDefaultMode = value;
         }
     }
 
-    public int PlayerHealth {
-        get {
+    public int PlayerHealth
+    {
+        get
+        {
             return _playerHealth;
         }
     }
 
-    void Awake() {
+    void Awake()
+    {
         _playerScrapDropAndCollection = GetComponent<PlayerScrapDropAndCollection>();
         _towerBuilding = FindObjectOfType<TowerBuilding>();
         _scrapInventory = GetComponent<PlayerScrapInventory>();
         _towerBuildingUI = FindObjectOfType<TowerBuildingUI>();
-        _slider = _healtSlider.GetComponent<Slider>();
-        _slider.value = PlayerHealth;
-
+        _healthSlider.value = PlayerHealth;
     }
 
-    void Update() {
+    void Update()
+    {
 
-        
-
-        if (PlayerHealth <= 0) {
+        if (PlayerHealth <= 0)
+        {
             _endUI.SetActive(true);
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             _timer += Time.deltaTime;
@@ -71,12 +73,13 @@ public class PlayerDummy : MonoBehaviour {
             }
         }
 
-        if(_timer >= _moveCharacterTimer) {
+        if (_timer >= _moveCharacterTimer)
+        {
             gameObject.transform.position = _playerSpawnPoint.position;
             _endUI.SetActive(false);
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _playerHealth = 100;
-            _slider.value = _playerHealth;
+            _healthSlider.value = _playerHealth;
             _timer = 0f;
             _allowsounds = true;
         }
@@ -84,30 +87,37 @@ public class PlayerDummy : MonoBehaviour {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit))
+        {
 
-            if (hit.transform.gameObject.CompareTag("Tower") && Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode) {
+            if (hit.transform.gameObject.CompareTag("Tower") && Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
+            {
                 _towerBuildingUI.ShowTowerKillNotification();
                 TowerRessourceManagement towermanagement = hit.transform.gameObject.GetComponent<TowerRessourceManagement>();
                 if (_towerBuilding.CheckForRessources(_scrapInventory.ScrapInventory, towermanagement) && towermanagement.ScrapSlotsOnTowerAreFree())
                     _towerBuildingUI.ShowTowerUpgraeNotification();
 
-                if (Input.GetButtonDown("Upgrade Tower") && IsInDefaultMode) {
+                if (Input.GetButtonDown("Upgrade Tower") && IsInDefaultMode)
+                {
                     _towerBuildingUI.OpenTowerBuildingMenu(hit.transform.gameObject);
                 }
 
-                if (Input.GetButtonDown("Deconstruct Tower") && IsInDefaultMode) {
+                if (Input.GetButtonDown("Deconstruct Tower") && IsInDefaultMode)
+                {
                     _towerBuildingUI.CloseTowerUpgradeNotification();
                     _towerBuildingUI.CloseTowerBuildingMenu();
                     hit.transform.gameObject.GetComponent<Tower>().Kill();
                 }
 
-                if (Input.GetButtonDown("QuickUpgrade Tower") && IsInDefaultMode) {
+                if (Input.GetButtonDown("QuickUpgrade Tower") && IsInDefaultMode)
+                {
                     _towerBuildingUI.CloseTowerUpgradeNotification();
                     _towerBuildingUI.CloseTowerBuildingMenu();
                     _towerBuilding.UpgradeWithAnyScrap(hit.transform.gameObject.GetComponent<TowerRessourceManagement>());
                 }
-            } else {
+            }
+            else
+            {
                 _towerBuildingUI.CloseTowerKillNotification();
                 _towerBuildingUI.CloseTowerUpgradeNotification();
             }
@@ -118,15 +128,15 @@ public class PlayerDummy : MonoBehaviour {
 
     internal void Damage(int damage)
     {
-        _healtSlider.GetComponent<Slider>().value = PlayerHealth;
-        _playersounds.PlayPainSound();
         _playerHealth -= damage;
-        
+        _healthSlider.value = _playerHealth;
+        _playersounds.PlayPainSound();
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionEnter(Collision other)
+    {
         if (other.transform.gameObject.CompareTag("Scrap") && _playerHealth > 0)
             _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
     }
-    
+
 }

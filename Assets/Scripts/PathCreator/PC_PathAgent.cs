@@ -1,7 +1,5 @@
 ﻿// modified and extended version of: https://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -185,8 +183,8 @@ namespace PathCreator
                 currentWaypointIndex = markerA.waypoint;
                 currentTimeInWaypoint = markerA.time + (1.0f / precision) * percentage;
             }
-            
-            
+
+
             Vector3 lastPosition = transform.position;
 
             transform.position = GetBezierPosition(currentWaypointIndex, currentTimeInWaypoint);

@@ -56,10 +56,10 @@ public class TowerBuildingUI : MonoBehaviour
         EnableCursor();
         _selectedTower = selectedTower;
         TowerRessourceManagement towermanagement = selectedTower.GetComponent<TowerRessourceManagement>();
-        for(int scrapTypeIndex = 0; scrapTypeIndex < towermanagement.NeededScraps.Length; scrapTypeIndex++)
+        for (int scrapTypeIndex = 0; scrapTypeIndex < towermanagement.NeededScraps.Length; scrapTypeIndex++)
         {
             if (towermanagement.NeededScraps[scrapTypeIndex])
-                InstantiateButtonForEachSubPrefab((ScrapType)scrapTypeIndex);
+                InstantiateButtonForEachSubPrefab((ScrapType) scrapTypeIndex);
         }
 
         Time.timeScale = 0.0f;
@@ -83,7 +83,7 @@ public class TowerBuildingUI : MonoBehaviour
     {
         ButtonPanel.SetActive(true);
 
-        for (int subTypeIndex = 0; subTypeIndex < _ressourceManagement.PossiblePrefabs[(int)scraptype].Length; subTypeIndex++)
+        for (int subTypeIndex = 0; subTypeIndex < _ressourceManagement.PossiblePrefabs[(int) scraptype].Length; subTypeIndex++)
         {
             GameObject button = Instantiate(UpgradeButtonPrefab, ButtonTransforms[subTypeIndex]);
             ScrapButton scrapButton = button.GetComponent<ScrapButton>();
@@ -94,7 +94,7 @@ public class TowerBuildingUI : MonoBehaviour
 
             if (!_playerInventory.SubTypeIsInInventory((int) scraptype, subTypeIndex))
                 button.GetComponent<Button>().interactable = false;
-        } 
+        }
     }
 
     private void Awake()

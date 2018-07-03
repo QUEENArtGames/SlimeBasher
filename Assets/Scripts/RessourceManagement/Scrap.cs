@@ -77,6 +77,6 @@ public class Scrap : MonoBehaviour
             _firstgroundhitparticle.Play();
             _wasonground = true;
         }
-            
+
     }
 }

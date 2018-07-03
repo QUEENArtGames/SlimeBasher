@@ -1,67 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-namespace Assets.Scripts{
+namespace Assets.Scripts
+{
 
-public class BubbleTowerScript : MonoBehaviour {
+    public class BubbleTowerScript : MonoBehaviour
+    {
 
-	public GameObject projectile;
+        public GameObject projectile;
 
-    public List<GameObject> spawnpoints;
-    public GameObject ShootCylinder;
+        public List<GameObject> spawnpoints;
+        public GameObject ShootCylinder;
         public ParticleSystem BubbleParticleSystem;
-    private TowerRessourceManagement _towerRessourceManagement;
+        private TowerRessourceManagement _towerRessourceManagement;
         private TowerSounds _towersounds;
 
 
-	void Start () {
-        _towerRessourceManagement = GetComponentInParent<TowerRessourceManagement>();
-        spawnpoints = new List<GameObject>();
-        _towersounds = GetComponentInParent<TowerSounds>();
-
-        for (int i = 0; i < transform.childCount; i++) 
+        void Start()
         {
-            if (transform.GetChild(i).tag == "SpawnpointBubbleTower")
+            _towerRessourceManagement = GetComponentInParent<TowerRessourceManagement>();
+            spawnpoints = new List<GameObject>();
+            _towersounds = GetComponentInParent<TowerSounds>();
+
+            for (int i = 0; i < transform.childCount; i++)
             {
-                spawnpoints.Add(transform.GetChild(i).GetChild(0).gameObject);
+                if (transform.GetChild(i).tag == "SpawnpointBubbleTower")
+                {
+                    spawnpoints.Add(transform.GetChild(i).GetChild(0).gameObject);
+                }
             }
         }
-	}
-	
-	void Update () {
-		
-	}
 
-	public void BubbleProjectile(int bubbleIndex) {
+        void Update()
+        {
+
+        }
+
+        public void BubbleProjectile(int bubbleIndex)
+        {
 
             // bubbleIndex 
             // 0 = top, 1 = right, 2 = bottom, 3 = left
             if (_towerRessourceManagement.AttachedScraps.Count - 1 < bubbleIndex)
                 return;
 
-        GameObject bubbleProjectile = Instantiate(projectile) as GameObject;
-        //print(transform.eulerAngles.y);
+            GameObject bubbleProjectile = Instantiate(projectile) as GameObject;
+            //print(transform.eulerAngles.y);
 
-        bubbleProjectile.GetComponent<BubbleProjectileScript>().angle = transform.eulerAngles.y;
-        //Physics.IgnoreCollision(bubbleProjectile.GetComponent<Collider>(), GetComponent<Collider>());
+            bubbleProjectile.GetComponent<BubbleProjectileScript>().angle = transform.eulerAngles.y;
+            //Physics.IgnoreCollision(bubbleProjectile.GetComponent<Collider>(), GetComponent<Collider>());
 
-        if (spawnpoints.Count > bubbleIndex)
-                   bubbleProjectile.GetComponent<BubbleProjectileScript>().spawnpoint = spawnpoints[bubbleIndex].transform;
+            if (spawnpoints.Count > bubbleIndex)
+                bubbleProjectile.GetComponent<BubbleProjectileScript>().spawnpoint = spawnpoints[bubbleIndex].transform;
 
             _towersounds.PlayAttackClip();
 
 
-    }
+        }
 
         public void RemoveShootCylinder()
         {
             Destroy(ShootCylinder);
         }
 
-        public void StartBubbleParticleEffect(){
+        public void StartBubbleParticleEffect()
+        {
             BubbleParticleSystem.Play();
         }
 
 
-}
+    }
 }

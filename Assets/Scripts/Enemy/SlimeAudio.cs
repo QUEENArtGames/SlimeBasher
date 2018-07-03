@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SlimeAudio : MonoBehaviour {
+public class SlimeAudio : MonoBehaviour
+{
 
     private AudioSource _movementSource;
     public AudioClip DeathClip;
     public AudioClip SlimeStepClip;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake()
+    {
         _movementSource = GetComponent<AudioSource>();
-	}
+    }
 
     public void PlayMovementClip()
     {

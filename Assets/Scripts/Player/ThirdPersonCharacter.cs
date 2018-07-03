@@ -248,14 +248,11 @@ namespace SlimeBasher.Characters.ThirdPerson
         public void activateCollider()
         {
             weaponCollider.enabled = true;
-            Debug.Log("active");
         }
 
         public void deactivateCollider()
         {
             weaponCollider.enabled = false;
-
-            Debug.Log("deactive");
         }
     }
 }
