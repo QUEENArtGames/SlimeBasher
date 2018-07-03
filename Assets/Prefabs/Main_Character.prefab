@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 65539454031029646}
   m_Layer: 0
   m_Name: Weapon_Bone
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: -3701561207968579530, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3411,7 +3411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: 100
-  _healtSlider: {fileID: 0}
+  _healthSlider: {fileID: 0}
   _endUI: {fileID: 0}
   _moveCharacterTimer: 15
   _playerSpawnPoint: {fileID: 0}
@@ -3445,7 +3445,7 @@ MonoBehaviour:
   runCycleLegOffset: 0.2
   moveSpeedMultiplier: 1
   animationSpeedMultiplier: 1
-  groundCheckDistance: 0.3
+  groundCheckDistance: 0.4
   weaponCollider: {fileID: 65539454031029646}
 --- !u!114 &114996011935621348
 MonoBehaviour:

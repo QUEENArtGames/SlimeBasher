@@ -1,5 +1,6 @@
 using UnityEngine;
 using SlimeBasher.CrossPlatformInput;
+using Assets.Scripts;
 
 namespace SlimeBasher.Characters.ThirdPerson
 {
@@ -39,7 +40,8 @@ namespace SlimeBasher.Characters.ThirdPerson
                 doJump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
 
-            doAttack = CrossPlatformInputManager.GetButtonDown("Fire1");
+            if (Game.Instance.GamePhase.Current == Phase.Fight || Game.Instance.GamePhase.Current == Phase.Prepare)
+                doAttack = CrossPlatformInputManager.GetButtonDown("Fire1");
         }
 
 

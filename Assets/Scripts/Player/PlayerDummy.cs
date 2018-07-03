@@ -11,7 +11,7 @@ public class PlayerDummy : MonoBehaviour {
     private PlayerScrapInventory _scrapInventory;
     private TowerBuildingUI _towerBuildingUI;
     public int _playerHealth = 100;
-    public GameObject _healtSlider;
+    public Slider _healthSlider;
     public GameObject _endUI;
     public float _moveCharacterTimer = 15f;
     private float _timer;
@@ -20,12 +20,10 @@ public class PlayerDummy : MonoBehaviour {
     private bool _isInDefaultMode = true;
     private PlayerSounds _playersounds;
     private bool _allowsounds = true;
-    private Slider _slider;
 
     public int MaxDistanceToTower = 2;
 
     private void Start() {
-        _healtSlider = GameObject.Find("HealthSlider");
         _playersounds = GetComponent<PlayerSounds>();
     }
 
@@ -50,15 +48,11 @@ public class PlayerDummy : MonoBehaviour {
         _towerBuilding = FindObjectOfType<TowerBuilding>();
         _scrapInventory = GetComponent<PlayerScrapInventory>();
         _towerBuildingUI = FindObjectOfType<TowerBuildingUI>();
-        _slider = _healtSlider.GetComponent<Slider>();
-        _slider.value = PlayerHealth;
-
+        _healthSlider.value = PlayerHealth;
     }
 
     void Update() {
-
         
-
         if (PlayerHealth <= 0) {
             _endUI.SetActive(true);
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -76,7 +70,7 @@ public class PlayerDummy : MonoBehaviour {
             _endUI.SetActive(false);
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _playerHealth = 100;
-            _slider.value = _playerHealth;
+            _healthSlider.value = _playerHealth;
             _timer = 0f;
             _allowsounds = true;
         }
@@ -118,10 +112,9 @@ public class PlayerDummy : MonoBehaviour {
 
     internal void Damage(int damage)
     {
-        _healtSlider.GetComponent<Slider>().value = PlayerHealth;
-        _playersounds.PlayPainSound();
         _playerHealth -= damage;
-        
+        _healthSlider.value = _playerHealth;
+        _playersounds.PlayPainSound();
     }
 
     private void OnCollisionEnter(Collision other) {

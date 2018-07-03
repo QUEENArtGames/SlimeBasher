@@ -250,8 +250,8 @@ ModelImporter:
       animation that will be discarded.\n\t'index1.R.002' has translation animation
       that will be discarded.\n"
     animationRetargetingWarnings: "\nRetargeting quality report for clip 'Armature|ArmatureAction':\n\tLeftLowerLeg
-      average position error 0.4 mm and maximum position error 12.7 mm at time 4:16
-      (20.0%) Frame 112\n\tRightLowerLeg average position error 0.3 mm and maximum
+      average position error 0.4 mm and maximum position error 12.7 mm at time 2:13
+      (10.9%) Frame 61\n\tRightLowerLeg average position error 0.3 mm and maximum
       position error 12.7 mm at time 3: 3 (13.4%) Frame 75\n\tLeftUpperArm average
       position error 32.8 mm and maximum position error 126.0 mm at time 20: 0 (85.7%)
       Frame 480\n\tLeftLowerArm average position error 27.0 mm and maximum position
@@ -495,6 +495,13 @@ ModelImporter:
       events:
       - time: 0.15686275
         functionName: activateCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.40075082
+        functionName: deactivateCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
