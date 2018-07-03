@@ -754,8 +754,9 @@ MonoBehaviour:
   _healthSlider: {fileID: 114862078729677380}
   _damage: 10
   _attackSpeed: 1
-  _towerAggroRange: 2
-  _playerAggroRange: 2
+  _towerAggroRange: 3.5
+  _playerAggroRange: 3.5
+  damageByPlayer: 25
 --- !u!114 &114725080605535538
 MonoBehaviour:
   m_ObjectHideFlags: 1
