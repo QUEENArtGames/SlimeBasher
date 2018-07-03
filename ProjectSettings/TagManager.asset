@@ -9,6 +9,8 @@ TagManager:
   - Tower
   - SpawnpointBubbleTower
   - TutorialTower
+  - Projectile
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX
