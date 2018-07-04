@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-
     [Serializable]
     public class WaveEvent
     {
-        public Transform SpawnPoint;
+        public GameObject SpawnPoint;
         public int _normalSlimes;
         public int _hardSlimes;
         public int _gasSlimes;
         private int _waveNumber;
+
 
         public WaveEvent(int waveNumber)
         {
@@ -21,12 +21,9 @@ namespace Assets.Scripts
 
         private void CreateWave()
         {
-
             _normalSlimes = 5 * _waveNumber;
             _hardSlimes = 2 * (_waveNumber / 2);
             _gasSlimes = 2 * (_waveNumber / 3);
-
-
         }
 
         public int GetSlimeCounter()
@@ -38,8 +35,6 @@ namespace Assets.Scripts
     [Serializable]
     public class Wave
     {
-
-
         public WaveEvent[] events = new WaveEvent[] { };
         public float delay;
         private int _waveNumber;
@@ -47,10 +42,7 @@ namespace Assets.Scripts
 
         public Wave(int waveNumber)
         {
-
             _waveNumber = waveNumber;
-
-
         }
 
         public int getAllEnemysOfTheWave()
@@ -75,7 +67,5 @@ namespace Assets.Scripts
                 events = value;
             }
         }
-
-
     }
 }
