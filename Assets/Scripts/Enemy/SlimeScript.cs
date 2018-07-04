@@ -22,6 +22,7 @@ namespace Assets.Scripts
         private GameObject _player;
         private bool _damageFlash;
         private List<Color> _standardColor = new List<Color>();
+        private SlimeAudio _slimeAudio;
 
         private NavMeshAgent _navMeshAgent;
         private GameObject _tmpTarget;
@@ -34,6 +35,7 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
+            _slimeAudio = GetComponent<SlimeAudio>();
             _maxHitpoints = _hitpoints;
             if (_type == SlimeType.Gas)
                 _transformEffects = this.GetComponents<GasSlimeTransformScript>();
@@ -190,7 +192,11 @@ namespace Assets.Scripts
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag.Equals("PlayerWeapon"))
+            {
                 this.TakeDamage(damageByPlayer);
+                _slimeAudio.PlayDamageClip();
+            }
+               
         }
     }
 }
