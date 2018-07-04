@@ -23,6 +23,7 @@ public class PlayerSounds : MonoBehaviour
     }
     public void PlayKoSound()
     {
+        VoiceSource.Stop();
         PlayVoiceClip(KoClipts[(int) Random.Range(0, KoClipts.Length)]);
     }
 
