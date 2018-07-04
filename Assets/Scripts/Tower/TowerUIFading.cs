@@ -6,10 +6,12 @@ public class TowerUIFading : MonoBehaviour
 
     private GameObject _towerUI;
     public float _fadeDuration = 3f;
+    private float _uiStandardPosition; 
 
 
     private void Start()
     {
+        _uiStandardPosition = gameObject.transform.position.y;
         _towerUI = gameObject;
     }
 
@@ -30,7 +32,7 @@ public class TowerUIFading : MonoBehaviour
         while (currentTime < _fadeDuration)
         {
             Vector3 uiPosition = gameObject.transform.position;
-            float position = Mathf.Lerp(uiPosition.y, -25, currentTime / _fadeDuration);
+            float position = Mathf.Lerp(uiPosition.y, -50, currentTime / _fadeDuration);
             gameObject.transform.position = new Vector3(uiPosition.x, position, uiPosition.z);
             currentTime += Time.deltaTime;
             yield return null;
@@ -45,7 +47,7 @@ public class TowerUIFading : MonoBehaviour
         while (currentTime < _fadeDuration)
         {
             Vector3 uiPosition = gameObject.transform.position;
-            float position = Mathf.Lerp(uiPosition.y, 25, currentTime / _fadeDuration);
+            float position = Mathf.Lerp(uiPosition.y, _uiStandardPosition, currentTime / _fadeDuration);
             gameObject.transform.position = new Vector3(uiPosition.x, position, uiPosition.z);
             currentTime += Time.deltaTime;
             yield return null;
