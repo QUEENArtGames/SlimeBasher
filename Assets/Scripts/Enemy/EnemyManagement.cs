@@ -88,6 +88,7 @@ namespace Assets.Scripts
 
                 _gasSlime.GetComponent<PC_PathAgent>().path = actualEvent.SpawnPoint.GetComponent<PC_Path>();
                 _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
+                _spawnCounter++;
             }
 
             _timerAllowed = true;
