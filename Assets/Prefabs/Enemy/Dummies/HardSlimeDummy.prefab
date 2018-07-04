@@ -808,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84891d59c03b8485582d0bcea985c879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
   _hitpoints: 200
   _healthSlider: {fileID: 114657575103625578}
   _damage: 10

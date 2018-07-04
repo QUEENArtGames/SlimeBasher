@@ -750,6 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84891d59c03b8485582d0bcea985c879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
   _hitpoints: 100
   _healthSlider: {fileID: 114862078729677380}
   _damage: 10

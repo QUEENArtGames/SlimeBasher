@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114878696840874556}
   - component: {fileID: 114110742590025524}
   - component: {fileID: 114287984210509804}
-  - component: {fileID: 114642849397098888}
+  - component: {fileID: 114698992060127040}
   - component: {fileID: 135718393003908310}
   - component: {fileID: 114682157908779788}
   m_Layer: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518707566792496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.79}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,18 +77,6 @@ MonoBehaviour:
   cloudEffect_min_prefab: {fileID: 1920395406739892, guid: b2ecd52c620c44a0a89e7d65e3560c43,
     type: 2}
   hp_percent: 100
---- !u!114 &114642849397098888
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1518707566792496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ece31cff1d4214206994b55563b82c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitpoints: 100
 --- !u!114 &114682157908779788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,6 +94,25 @@ MonoBehaviour:
   ScrapThrowFactor: 10
   RotationValue: 1.5
   MinSpawnedScraps: 0
+--- !u!114 &114698992060127040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518707566792496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84891d59c03b8485582d0bcea985c879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 2
+  _hitpoints: 100
+  _healthSlider: {fileID: 0}
+  _damage: 10
+  _attackSpeed: 1.5
+  _towerAggroRange: 7
+  _playerAggroRange: 4
+  damageByPlayer: 0
 --- !u!114 &114878696840874556
 MonoBehaviour:
   m_ObjectHideFlags: 1
