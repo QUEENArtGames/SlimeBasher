@@ -145,18 +145,18 @@ namespace Assets.Scripts
             _hitpoints -= damage;
             _healthSlider.value = _hitpoints;
 
-            if(_type == SlimeType.Gas)
+            if (_type == SlimeType.Gas) {
                 transformSlime();
-
-            foreach (var rend in GetComponentsInChildren<Renderer>())
-            {
-                _standardColor.Add(rend.material.color);
+            } else {
+                foreach (var rend in GetComponentsInChildren<Renderer>()) {
+                    _standardColor.Add(rend.material.color);
+                }
+                foreach (var rend in GetComponentsInChildren<Renderer>()) {
+                    rend.material.color = Color.red;
+                }
+                _damageFlash = true;
             }
-            foreach (var rend in GetComponentsInChildren<Renderer>())
-            {
-                rend.material.color = Color.red;
-            }
-            _damageFlash = true;
+            
         }
 
         public void SetTargetLocation()

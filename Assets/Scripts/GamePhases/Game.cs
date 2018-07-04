@@ -89,7 +89,7 @@ namespace Assets.Scripts
                     Debug.Log("FIGHT");
                     if (_waveRoundNumber == 1)
                     {
-                        _tutorialUI.GetComponentInChildren<Text>().text = "Da kommen sie! Ich muss diese rote Kugel da verteidigen, warum auch immer!";
+                        _tutorialUI.GetComponentInChildren<Text>().text = "Da kommen sie! Ich muss meine Basis verteidigen bevor die Slimes sie verunreinigen!";
                         _tutorialUI.GetComponent<Tutorial>().FadeIn();
                     }
                     StartWave();
