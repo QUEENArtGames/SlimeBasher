@@ -50,7 +50,7 @@ public class RessourceManagement : MonoBehaviour
         _possiblePrefabPool = new List<PoolScrap>();
         PossiblePrefabs[(int) ScrapType.MELEE] = MeelePrefabs;
         PossiblePrefabs[(int) ScrapType.BOTTLE] = BottlePrefabs;
-        PossiblePrefabs[(int) ScrapType.GRENADE] = GrenadePrefabs;
+        PossiblePrefabs[(int) ScrapType.TIDEPOD] = GrenadePrefabs;
         PossiblePrefabs[(int) ScrapType.PUSTEFIX] = PustefixPrefabs;
         PrepareScrapPools();
 
@@ -61,7 +61,7 @@ public class RessourceManagement : MonoBehaviour
     {
         FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);
         FillPossiblePrefabs(ScrapType.BOTTLE, BottleScrapAmountInPool, BottlePrefabs);
-        FillPossiblePrefabs(ScrapType.GRENADE, GrenadeScrapAmountInPool, GrenadePrefabs);
+        FillPossiblePrefabs(ScrapType.TIDEPOD, GrenadeScrapAmountInPool, GrenadePrefabs);
         FillPossiblePrefabs(ScrapType.PUSTEFIX, PustefixScrapAmountInPool, PustefixPrefabs);
     }
 
