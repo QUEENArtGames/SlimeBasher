@@ -739,6 +739,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114640900659144998, guid: 71f86b394f1960342a156001a8b3986f,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71f86b394f1960342a156001a8b3986f, type: 2}
   m_IsPrefabParent: 0
@@ -2592,6 +2597,22 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1107404192}
+    - target: {fileID: 114851027056452024, guid: 677c70cc2d5f7554d82b4eaf27fc8b84,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114515198384843146, guid: 677c70cc2d5f7554d82b4eaf27fc8b84,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e84483120d0a7d24ca5ecdd22f08c72e,
+        type: 3}
+    - target: {fileID: 114515198384843146, guid: 677c70cc2d5f7554d82b4eaf27fc8b84,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 677c70cc2d5f7554d82b4eaf27fc8b84, type: 2}
   m_IsPrefabParent: 0
