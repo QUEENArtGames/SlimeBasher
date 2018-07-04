@@ -190,7 +190,7 @@ namespace PathCreator
             transform.position = GetBezierPosition(currentWaypointIndex, currentTimeInWaypoint);
             Vector3 forward = Vector3.Normalize(transform.position - lastPosition);
             if (forward.magnitude > 0)
-                transform.forward = forward; 
+                transform.forward = forward;
 
             lastPositionIndex = markerA.waypoint;
         }
