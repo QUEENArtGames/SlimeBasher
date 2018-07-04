@@ -514,6 +514,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.194093
+        functionName: PlayAttackSound
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.40075082
         functionName: deactivateCollider
         data: 
@@ -521,7 +528,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.194093
+      - time: 0.48090395
         functionName: PlayAttackSound
         data: 
         objectReferenceParameter: {instanceID: 0}
