@@ -1,9 +1,10 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HomeBase : MonoBehaviour
 {
-
+    public Slider BaseWaterSlider;
     public int NumberOfSlimesUntilDeath = 10;
     public float NeededSlimeDistanceToBase = 3.0f;
     private int _currentNumberOfSlimesUntilDeath;
@@ -11,6 +12,8 @@ public class HomeBase : MonoBehaviour
 
     private void Start()
     {
+        BaseWaterSlider.value = NumberOfSlimesUntilDeath;
+        BaseWaterSlider.maxValue = NumberOfSlimesUntilDeath;
         _currentNumberOfSlimesUntilDeath = NumberOfSlimesUntilDeath;
         _enemymanagement = FindObjectOfType<EnemyManagement>();
     }
@@ -31,6 +34,7 @@ public class HomeBase : MonoBehaviour
             {
                 slimeObject.GetComponent<SlimeScript>()._hitpoints = 0;
                 _currentNumberOfSlimesUntilDeath--;
+                BaseWaterSlider.value = _currentNumberOfSlimesUntilDeath;
             }
         }
 
