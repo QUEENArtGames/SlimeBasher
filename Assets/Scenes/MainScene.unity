@@ -4011,7 +4011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c986eefeb9ad84fb7442fa403dc6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseWaterSlider: {fileID: 0}
+  BaseWaterSlider: {fileID: 774536697}
   NumberOfSlimesUntilDeath: 10
   NeededSlimeDistanceToBase: 3
 --- !u!1 &1086304760
