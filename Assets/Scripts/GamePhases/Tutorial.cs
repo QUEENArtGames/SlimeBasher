@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SlimeBasher.Cameras;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,9 @@ public class Tutorial : MonoBehaviour
     public Text _tutorialText;
     public Image _tutorialBackgroundImage;
     public float _fadeDuration = 0.5f; //0.5 secs
+
+    private bool firstTut = true;
+    private float _showTime = 3;
 
     private void Start()
     {
@@ -35,6 +39,12 @@ public class Tutorial : MonoBehaviour
         StartCoroutine("FadeOutCR");
     }
 
+    public void FadeOutV(float time)
+    {
+        _showTime = time;
+        StartCoroutine("FadeOutCRV");
+    }
+
     public void FadeIn()
     {
         StartCoroutine("FadeInCR");
@@ -54,5 +64,27 @@ public class Tutorial : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    private IEnumerator FadeOutCRV()
+    {
+        float showTime = _showTime;
+        while (showTime > 0)
+        {
+            showTime -= Time.deltaTime;
+            yield return null;
+        }
+        FadeOut();
+        yield break;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0) && firstTut)
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponentInParent<FreeLookCam>().enabled = true;
+            FadeOut();
+            firstTut = false;
+        }
     }
 }
