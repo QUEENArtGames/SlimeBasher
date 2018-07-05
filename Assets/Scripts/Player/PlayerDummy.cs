@@ -19,12 +19,14 @@ public class PlayerDummy : MonoBehaviour
     private bool _isInDefaultMode = true;
     private PlayerSounds _playersounds;
     private bool _allowsounds = true;
+    private Animator _anim;
 
     public int MaxDistanceToTower = 2;
 
     private void Start()
     {
         _playersounds = GetComponent<PlayerSounds>();
+        _anim = GetComponent<Animator>();
     }
 
     public bool IsInDefaultMode
@@ -62,6 +64,7 @@ public class PlayerDummy : MonoBehaviour
 
         if (PlayerHealth <= 0)
         {
+            _anim.SetBool("Dead", true);
             _endUI.SetActive(true);
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             _timer += Time.deltaTime;
@@ -75,6 +78,7 @@ public class PlayerDummy : MonoBehaviour
 
         if (_timer >= _moveCharacterTimer)
         {
+            _anim.SetBool("Dead", false);
             gameObject.transform.position = _playerSpawnPoint.position;
             _endUI.SetActive(false);
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
