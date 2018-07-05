@@ -62,7 +62,7 @@ namespace Assets.Scripts
                 case Phase.Building:
                     //Player kann sachen bauen
                     Debug.Log("Runde: " + _waveRoundNumber);
-                    _waveRoundText.GetComponent<Text>().text = "Round: " + _waveRoundNumber;
+                    _waveRoundText.GetComponent<Text>().text = "Wave: " + _waveRoundNumber;
                     Debug.Log("BUILDING");
                     _towerUI.GetComponent<TowerUIFading>().FadeIn();
                     if (_waveRoundNumber > 1)
