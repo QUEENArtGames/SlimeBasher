@@ -91,11 +91,11 @@ MonoBehaviour:
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 2
         _hardSlimes: 2
-        _gasSlimes: 0
+        _gasSlimes: 1
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 3
         _hardSlimes: 2
-        _gasSlimes: 0
+        _gasSlimes: 1
       delay: 2
     - events:
       - SpawnPoint: {fileID: 0}

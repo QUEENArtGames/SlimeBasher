@@ -91,6 +91,7 @@ namespace Assets.Scripts
                     {
                         _tutorialUI.GetComponentInChildren<Text>().text = "Da kommen sie! Ich muss meine Basis verteidigen bevor die Slimes sie verunreinigen!";
                         _tutorialUI.GetComponent<Tutorial>().FadeIn();
+                        _tutorialUI.GetComponent<Tutorial>().FadeOutV(3f);
                     }
                     StartWave();
                     break;
