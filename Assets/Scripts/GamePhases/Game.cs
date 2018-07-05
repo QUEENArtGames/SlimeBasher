@@ -89,9 +89,9 @@ namespace Assets.Scripts
                     Debug.Log("FIGHT");
                     if (_waveRoundNumber == 1)
                     {
-                        _tutorialUI.GetComponentInChildren<Text>().text = "Da kommen sie! Ich muss meine Basis verteidigen bevor die Slimes sie verunreinigen!";
+                        _tutorialUI.GetComponentInChildren<Text>().text = "Es geht los! Verteidige deine Basis vor diesen Slimes. Sie sehen nett aus, wollen aber deine Wasserversorgung verschmutzen, verhindere das!";
                         _tutorialUI.GetComponent<Tutorial>().FadeIn();
-                        _tutorialUI.GetComponent<Tutorial>().FadeOutV(3f);
+                        _tutorialUI.GetComponent<Tutorial>().FadeOutV(5f);
                     }
                     StartWave();
                     break;
