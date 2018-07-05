@@ -14,6 +14,7 @@ namespace SlimeBasher.Characters.ThirdPerson
         private bool doJump;                    // the world-relative desired move direction, calculated from the camForward and user input.
         private bool doAttack;
 
+        private int _playerHealth;
 
         private void Start()
         {
@@ -35,23 +36,33 @@ namespace SlimeBasher.Characters.ThirdPerson
 
         private void Update()
         {
-            if (!doJump)
+            if (_playerHealth <= 0)
             {
-                doJump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
+                if (!doJump)
+                {
+                    doJump = CrossPlatformInputManager.GetButtonDown("Jump");
+                }
 
-            if (Game.Instance.GamePhase.Current == Phase.Fight || Game.Instance.GamePhase.Current == Phase.Prepare)
-                doAttack = CrossPlatformInputManager.GetButtonDown("Fire1");
+                if (Game.Instance.GamePhase.Current == Phase.Fight || Game.Instance.GamePhase.Current == Phase.Prepare)
+                    doAttack = CrossPlatformInputManager.GetButtonDown("Fire1");
+            }
         }
 
 
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
+            float h = 0;
+            float v = 0;
+            bool crouch = false;
+
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = false; //Input.GetButtonDown("Crouch");
+            if (_playerHealth <= 0)
+            {
+                h = CrossPlatformInputManager.GetAxis("Horizontal");
+                v = CrossPlatformInputManager.GetAxis("Vertical");
+                crouch = false; //Input.GetButtonDown("Crouch");
+            }
 
             // calculate move direction to pass to character
             if (cameraTransform != null)
