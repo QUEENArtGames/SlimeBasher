@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,7 @@ public class HomeBase : MonoBehaviour
         CheckForDamage();
 
         if (_currentNumberOfSlimesUntilDeath <= 0)
-            SetGameOver();
+            StartCoroutine(SetGameOver());
     }
 
     private void CheckForDamage()
@@ -40,14 +41,15 @@ public class HomeBase : MonoBehaviour
 
     }
 
-    private void SetGameOver()
+    private IEnumerator SetGameOver()
     {
+        FindObjectOfType<GameOverUI>().ShowGameOverPanel();
+        yield return new WaitForSeconds(3);
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     private void TakeDamage(EnemyDummy slime)
     {
-        Debug.Log("ARGH");
         slime.Kill();
         _currentNumberOfSlimesUntilDeath--;
     }
