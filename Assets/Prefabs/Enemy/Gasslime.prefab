@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114698992060127040}
   - component: {fileID: 135718393003908310}
   - component: {fileID: 114682157908779788}
+  - component: {fileID: 114777902464643902}
   m_Layer: 0
   m_Name: Gasslime
   m_TagString: Enemy
@@ -272,6 +273,25 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114777902464643902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518707566792496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae45f6779f9482f488ae5c1cdf91d0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precision: 100
+  visual:
+    pathColor: {r: 0, g: 0, b: 1, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    cubeColor: {r: 1, g: 1, b: 1, a: 1}
+  path: {fileID: 0}
+  maxV: 2
+  acceleration: 3
 --- !u!114 &114878696840874556
 MonoBehaviour:
   m_ObjectHideFlags: 1

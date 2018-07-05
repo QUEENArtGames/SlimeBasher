@@ -8,7 +8,7 @@ namespace Assets.Scripts
 
         private static Game instance;
         private GamePhase _gamePhase;
-        public Transform[] spawnPoints;
+        public GameObject[] spawnPoints;
         public float _nextPhaseTimer = 5.0f;
         internal Phase _currentPhase;
         private bool _startTimer = false;

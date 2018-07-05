@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -87,7 +88,7 @@ public class TowerBuildingUI : MonoBehaviour
         {
             GameObject button = Instantiate(UpgradeButtonPrefab, ButtonTransforms[subTypeIndex]);
             ScrapButton scrapButton = button.GetComponent<ScrapButton>();
-            button.GetComponentInChildren<Text>().text = scraptype + " " + subTypeIndex;
+            button.GetComponentInChildren<Text>().text = GetSubScrapName(scraptype, subTypeIndex);
             scrapButton.ScrapType = scraptype;
             scrapButton.SubTypeIndex = subTypeIndex;
             _uibuttons.Add(button);
@@ -95,6 +96,28 @@ public class TowerBuildingUI : MonoBehaviour
             if (!_playerInventory.SubTypeIsInInventory((int) scraptype, subTypeIndex))
                 button.GetComponent<Button>().interactable = false;
         }
+    }
+
+    private string GetSubScrapName(ScrapType scraptype, int subTypeIndex)
+    {
+        string buttonname = scraptype + "";
+        if (scraptype == ScrapType.MELEE)
+        {
+            switch (subTypeIndex)
+            {
+                case 0:
+                    buttonname = "PLANK";
+                    break;
+                case 1:
+                    buttonname = "TENNIS RACKET";
+                    break;
+                case 2:
+                    buttonname = "TOILETBRUSH";
+                    break;
+            }
+        }
+
+        return buttonname;
     }
 
     private void Awake()

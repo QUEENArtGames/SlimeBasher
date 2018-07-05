@@ -3,29 +3,36 @@
 public class SlimeAudio : MonoBehaviour
 {
 
-    private AudioSource _movementSource;
+    public AudioSource MovementSource;
+    public AudioSource DamageSource;
     public AudioClip DeathClip;
     public AudioClip SlimeStepClip;
 
     // Use this for initialization
     void Awake()
     {
-        _movementSource = GetComponent<AudioSource>();
+        MovementSource = GetComponent<AudioSource>();
     }
 
     public void PlayMovementClip()
     {
-        _movementSource.clip = SlimeStepClip;
-        _movementSource.Play();
+        MovementSource.clip = SlimeStepClip;
+        MovementSource.Play();
     }
 
     public void PlayDeathClip()
     {
-        if (_movementSource.isPlaying)
+        if (MovementSource.isPlaying)
             return;
 
-        _movementSource.clip = DeathClip;
-        _movementSource.Play();
+        MovementSource.clip = DeathClip;
+        MovementSource.Play();
+    }
+
+    public void PlayDamageClip()
+    {
+        if(!DamageSource.isPlaying)
+            DamageSource.Play();
     }
 
 }

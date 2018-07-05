@@ -22,6 +22,7 @@ namespace Assets.Scripts
         private GameObject _player;
         private bool _damageFlash;
         private List<Color> _standardColor = new List<Color>();
+        private SlimeAudio _slimeAudio;
 
         private NavMeshAgent _navMeshAgent;
         private GameObject _tmpTarget;
@@ -34,47 +35,59 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
+            _slimeAudio = GetComponent<SlimeAudio>();
             _maxHitpoints = _hitpoints;
-            if(_type == SlimeType.Gas)
+            if (_type == SlimeType.Gas)
                 _transformEffects = this.GetComponents<GasSlimeTransformScript>();
             _towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
             _finalDestination = FindObjectOfType<Game>().FinalDestination;
             _player = GameObject.Find("Main_Character");
             _playerdummy = _player.GetComponent<PlayerDummy>();
-            if (_type != SlimeType.Gas) {
+            if (_type != SlimeType.Gas)
+            {
                 _navMeshAgent = GetComponent<NavMeshAgent>();
                 _navMeshAgent.stoppingDistance = 1;
                 SetTargetLocation();
             }
-                
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (SlimeType.Gas != _type) {
-                if (CheckPlayerAggro()) {
+            if (SlimeType.Gas != _type)
+            {
+                if (CheckPlayerAggro())
+                {
                     AttackPlayer();
-                } else if (CheckTowerAggro()) {
+                }
+                else if (CheckTowerAggro())
+                {
                     AttackTower();
-                } else {
+                }
+                else
+                {
 
                     SetTargetLocation();
                 }
 
-                if (_damageFlash) {
-                    for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++) {
+                if (_damageFlash)
+                {
+                    for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++)
+                    {
                         GetComponentsInChildren<Renderer>()[i].material.color = _standardColor[i];
                     }
                     _damageFlash = false;
                 }
             }
-            
+
         }
 
-        void transformSlime() {
+        void transformSlime()
+        {
 
-            foreach (GasSlimeTransformScript transformEffect in _transformEffects) {
+            foreach (GasSlimeTransformScript transformEffect in _transformEffects)
+            {
                 transformEffect.setHpPercent((100 / _maxHitpoints) * _hitpoints);
             }
         }
@@ -145,18 +158,23 @@ namespace Assets.Scripts
             _hitpoints -= damage;
             _healthSlider.value = _hitpoints;
 
-            if (_type == SlimeType.Gas) {
+            if (_type == SlimeType.Gas)
+            {
                 transformSlime();
-            } else {
-                foreach (var rend in GetComponentsInChildren<Renderer>()) {
+            }
+            else
+            {
+                foreach (var rend in GetComponentsInChildren<Renderer>())
+                {
                     _standardColor.Add(rend.material.color);
                 }
-                foreach (var rend in GetComponentsInChildren<Renderer>()) {
+                foreach (var rend in GetComponentsInChildren<Renderer>())
+                {
                     rend.material.color = Color.red;
                 }
                 _damageFlash = true;
             }
-            
+
         }
 
         public void SetTargetLocation()
@@ -174,7 +192,11 @@ namespace Assets.Scripts
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag.Equals("PlayerWeapon"))
+            {
                 this.TakeDamage(damageByPlayer);
+                _slimeAudio.PlayDamageClip();
+            }
+               
         }
     }
 }

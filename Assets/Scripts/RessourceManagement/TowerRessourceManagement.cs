@@ -57,7 +57,7 @@ public class TowerRessourceManagement : MonoBehaviour
         _droprate = _ressourceManagement.TowerScrapDropProbabilityInPercent;
         _neededScraps[(int) ScrapType.MELEE] = NeedsMeeleScraps;
         _neededScraps[(int) ScrapType.BOTTLE] = NeedsBottleScraps;
-        _neededScraps[(int) ScrapType.GRENADE] = NeedsGrenadeScraps;
+        _neededScraps[(int) ScrapType.TIDEPOD] = NeedsGrenadeScraps;
         _neededScraps[(int) ScrapType.PUSTEFIX] = NeedsPustefixScraps;
 
     }
