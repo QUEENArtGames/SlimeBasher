@@ -66,7 +66,6 @@ public class PlayerDummy : MonoBehaviour
         {
             _anim.SetBool("Dead", true);
             _endUI.SetActive(true);
-            gameObject.GetComponent<Rigidbody>().isKinematic = true;
             _timer += Time.deltaTime;
             _playerScrapDropAndCollection.DropScraps();
             if (_allowsounds)
@@ -81,7 +80,6 @@ public class PlayerDummy : MonoBehaviour
             _anim.SetBool("Dead", false);
             gameObject.transform.position = _playerSpawnPoint.position;
             _endUI.SetActive(false);
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
             _playerHealth = 100;
             _healthSlider.value = _playerHealth;
             _timer = 0f;

@@ -14,7 +14,7 @@ namespace SlimeBasher.Characters.ThirdPerson
         private bool doJump;                    // the world-relative desired move direction, calculated from the camForward and user input.
         private bool doAttack;
 
-        private Rigidbody _playerRB;
+        private int _playerHealth;
 
         private void Start()
         {
@@ -31,14 +31,12 @@ namespace SlimeBasher.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             character = GetComponent<ThirdPersonCharacter>();
-
-            _playerRB = GetComponent<Rigidbody>();
         }
 
 
         private void Update()
         {
-            if (!_playerRB.isKinematic)
+            if (_playerHealth <= 0)
             {
                 if (!doJump)
                 {
@@ -59,7 +57,7 @@ namespace SlimeBasher.Characters.ThirdPerson
             bool crouch = false;
 
             // read inputs
-            if (!_playerRB.isKinematic)
+            if (_playerHealth <= 0)
             {
                 h = CrossPlatformInputManager.GetAxis("Horizontal");
                 v = CrossPlatformInputManager.GetAxis("Vertical");
