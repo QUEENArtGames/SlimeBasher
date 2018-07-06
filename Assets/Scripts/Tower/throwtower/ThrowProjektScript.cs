@@ -9,6 +9,7 @@ namespace Assets.Scripts
         private Transform Projectile;
 
         public Transform Target;
+        private Transform copyTarget;
         public float firingAngle = 45.0f;
         public float gravity = 9.8f;
         public float _damage = 50;
@@ -23,7 +24,17 @@ namespace Assets.Scripts
         void Start()
         {
             //rb = GetComponent<Rigidbody>();
-            StartCoroutine(SimulateProjectile());
+            
+            copyTarget = Target;
+            if(copyTarget != null)
+            {
+                StartCoroutine(SimulateProjectile());
+            }
+            else
+            {
+                Destroy(gameObject);
+                Debug.Log("Target not found: DESTROYED");
+            }
         }
 
 
@@ -35,7 +46,7 @@ namespace Assets.Scripts
             Projectile = transform;
             //Debug.Log("test");
             // Calculate distance to target
-            float target_Distance = Vector3.Distance(transform.position, Target.position);
+            float target_Distance = Vector3.Distance(transform.position, copyTarget.position);
 
             // Calculate the velocity needed to throw the object to the target at specified angle.
             float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
@@ -48,7 +59,7 @@ namespace Assets.Scripts
             float flightDuration = target_Distance / Vx;
 
             // Rotate projectile to face the target.
-            transform.rotation = Quaternion.LookRotation(Target.position - transform.position);
+            transform.rotation = Quaternion.LookRotation(copyTarget.position - transform.position);
 
 
             float elapse_time = 0;

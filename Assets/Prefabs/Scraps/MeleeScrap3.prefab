@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136122561406984754}
   - component: {fileID: 199642451379384422}
   - component: {fileID: 198019855615174590}
+  - component: {fileID: 114958594710009888}
   m_Layer: 9
   m_Name: MeleeScrap3
   m_TagString: Scrap
@@ -175,6 +176,18 @@ MonoBehaviour:
   ScrapType: 0
   SubCategoryIndex: 2
   TowerAttachementPivot: {fileID: 4469129385002862}
+--- !u!114 &114958594710009888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238256961391992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28709b18c403ca54b9a1ea82d0a9d9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealDamage: 0
 --- !u!136 &136122561406984754
 CapsuleCollider:
   m_ObjectHideFlags: 1
