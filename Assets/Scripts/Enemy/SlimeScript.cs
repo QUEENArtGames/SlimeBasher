@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
-
     public class SlimeScript : MonoBehaviour
     {
         public SlimeType _type;
@@ -32,6 +31,7 @@ namespace Assets.Scripts
         private GasSlimeTransformScript[] _transformEffects;
 
         private float _nextAttack = 0;
+        private bool _blinkReady = true;
         // Use this for initialization
         void Start()
         {
@@ -158,7 +158,8 @@ namespace Assets.Scripts
             }
             else
             {
-                StartCoroutine(DamageFlash());
+                if (_blinkReady)
+                    StartCoroutine(DamageFlash());
             }
         }
 
@@ -185,17 +186,23 @@ namespace Assets.Scripts
 
         IEnumerator DamageFlash()
         {
+            _blinkReady = false;
+
             foreach (var rend in GetComponentsInChildren<Renderer>())
             {
                 rend.material.color = Color.red;
             }
 
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.2f);
 
             for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++)
             {
                 GetComponentsInChildren<Renderer>()[i].material.color = _standardColor[i];
             }
+
+            yield return new WaitForSeconds(.5f);
+
+            _blinkReady = true;
         }
     }
 }
