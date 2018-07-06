@@ -41,7 +41,6 @@ namespace Assets.Scripts
             _wave = wave;
             _game = Game.Instance;
             HandleWave();
-
         }
 
         //Funktion für Gegner Abstände;

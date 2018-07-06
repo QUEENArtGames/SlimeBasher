@@ -2021,9 +2021,24 @@ Prefab:
       objectReference: {fileID: 4167172}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
+      propertyPath: waveProvider.Waves.Array.data[1].events.Array.data[1].SpawnPoint
+      value: 
+      objectReference: {fileID: 4167172}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
       propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[0].SpawnPoint
       value: 
       objectReference: {fileID: 736263943}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[1].SpawnPoint
+      value: 
+      objectReference: {fileID: 990646261}
+    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[2].SpawnPoint
+      value: 
+      objectReference: {fileID: 4167172}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
       propertyPath: FinalDestination
@@ -6347,15 +6362,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.31
+      value: 22.488
       objectReference: {fileID: 0}
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.4
+      value: 3.311
       objectReference: {fileID: 0}
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 22.28
+      value: 20.061
       objectReference: {fileID: 0}
     - target: {fileID: 4787349470191698, guid: 579f561c8b3b04ccc860639220df62fe, type: 2}
       propertyPath: m_LocalRotation.x
