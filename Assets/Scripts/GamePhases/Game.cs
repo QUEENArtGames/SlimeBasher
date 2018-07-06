@@ -176,6 +176,7 @@ namespace Assets.Scripts
                 {
                     _tutorialUI.GetComponentInChildren<Text>().text = "Sehr gut, ich hab es geschafft! Aber ich glaube, da kommen nochmehr. Ich sollte mich vorbereiten. Dafür brauche Türme. Die Baumaterialien kann ich durch Schrott ersetzen, der jetzt hier überall rumliegt. Also los gehts!";
                     _tutorialUI.GetComponent<Tutorial>().FadeIn();
+                    _tutorialUI.GetComponent<Tutorial>().FadeOutV(5f);
                 }
                 _gamePhase.MoveToNextGamePhase();
                 _countdown = 0.0f;
