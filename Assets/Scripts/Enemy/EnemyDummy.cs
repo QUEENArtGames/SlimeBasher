@@ -5,7 +5,6 @@ namespace Assets.Scripts
 {
     public class EnemyDummy : MonoBehaviour
     {
-
         public int Hitpoints = 100;
 
         private Transform _finalDestination;
@@ -16,11 +15,9 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
-
             _finalDestination = FindObjectOfType<Game>().FinalDestination;
             _agent = GetComponent<NavMeshAgent>();
             _agent.SetDestination(_finalDestination.position);
-
         }
 
         // Update is called once per frame
@@ -38,7 +35,6 @@ namespace Assets.Scripts
                     _agent.SetDestination(_finalDestination.position);
                 }
             }
-
         }
 
         public void TakeDamage(int damage)
@@ -62,10 +58,6 @@ namespace Assets.Scripts
                     _target = other.transform.gameObject;
                 }
             }
-
         }
-
     }
-
-
 }

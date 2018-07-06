@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca25701c8fea4af1999e92d49e1c73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 3
   _livetime: 5
   IgnoreMe:
     serializedVersion: 2

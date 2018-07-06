@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -96,6 +97,9 @@ public class TowerRessourceManagement : MonoBehaviour
         scrapInstant.transform.parent = ScrapSlots[AttachedScraps.Count];
         AttachedScraps.Add(scrapInstant);
 
+        if (scrapInstant.GetComponent<Attack>() != null)
+            scrapInstant.GetComponent<Attack>().EnableAttack();
+
         return scrapInstant;
     }
 
@@ -113,6 +117,9 @@ public class TowerRessourceManagement : MonoBehaviour
                 scrap.ChangeAttachementState();
                 scrap.ChangeCollectionState();
                 scrap.ThrowScrapAway(transform.position, scrap.transform.position, ScrapThrowFactor);
+
+                if (scrapObject.GetComponent<Attack>() != null)
+                    scrapObject.GetComponent<Attack>().DisableAttack();
             }
             else
             {

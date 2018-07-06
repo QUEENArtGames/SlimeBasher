@@ -89,25 +89,37 @@ MonoBehaviour:
     Waves:
     - events:
       - SpawnPoint: {fileID: 0}
-        _normalSlimes: 2
-        _hardSlimes: 2
-        _gasSlimes: 1
+        _normalSlimes: 1
+        _hardSlimes: 0
+        _gasSlimes: 0
       - SpawnPoint: {fileID: 0}
-        _normalSlimes: 3
-        _hardSlimes: 2
-        _gasSlimes: 1
+        _normalSlimes: 1
+        _hardSlimes: 0
+        _gasSlimes: 0
       delay: 2
     - events:
       - SpawnPoint: {fileID: 0}
-        _normalSlimes: 2
-        _hardSlimes: 0
+        _normalSlimes: 1
+        _hardSlimes: 1
+        _gasSlimes: 0
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 1
+        _hardSlimes: 1
         _gasSlimes: 0
       delay: 3
     - events:
       - SpawnPoint: {fileID: 0}
         _normalSlimes: 2
-        _hardSlimes: 0
-        _gasSlimes: 0
+        _hardSlimes: 2
+        _gasSlimes: 2
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 2
+        _gasSlimes: 2
+      - SpawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 2
+        _gasSlimes: 2
       delay: 4
   FinalDestination: {fileID: 0}
   phaseGUI: {fileID: 0}
@@ -166,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d5ad762e496274abe4ceeeae187222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalSlime: {fileID: 1739397658495034, guid: 21c708c1b0934a74ab10d6bd49cecfec,
+  _normalSlime: {fileID: 1739397658495034, guid: 1544a2994cfb14cf7805d08acc0a8273,
     type: 2}
   _hardSlime: {fileID: 1739397658495034, guid: 1c3c6e675a608f9469406e4698733b30, type: 2}
   _gasSlime: {fileID: 1518707566792496, guid: 9769e652784614ab0b89627557f85c29, type: 2}

@@ -51,7 +51,6 @@ namespace Assets.Scripts
                 parSystem.Play();
 
                 yield return new WaitForSeconds(3);
-                Debug.Log("DURATION: " + parSystem.main.duration);
                 parSystem.Stop();
                 Destroy(particle, parSystem.main.duration + 3.0f);
 
