@@ -976,7 +976,7 @@ MonoBehaviour:
   _damage: 10
   _attackSpeed: 2
   _towerAggroRange: 3.5
-  _playerAggroRange: 3.5
+  _playerAggroRange: 2
   damageByPlayer: 30
 --- !u!114 &114424201530522376
 MonoBehaviour:
