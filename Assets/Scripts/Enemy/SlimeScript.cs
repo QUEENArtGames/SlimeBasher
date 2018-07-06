@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -20,7 +21,6 @@ namespace Assets.Scripts
         private Transform _finalDestination;
         private TowerPlacement _towerplacement;
         private GameObject _player;
-        private bool _damageFlash;
         private List<Color> _standardColor = new List<Color>();
         private SlimeAudio _slimeAudio;
 
@@ -50,6 +50,10 @@ namespace Assets.Scripts
                 SetTargetLocation();
             }
 
+            foreach (var rend in GetComponentsInChildren<Renderer>())
+            {
+                _standardColor.Add(rend.material.color);
+            }
         }
 
         // Update is called once per frame
@@ -69,15 +73,6 @@ namespace Assets.Scripts
                 {
 
                     SetTargetLocation();
-                }
-
-                if (_damageFlash)
-                {
-                    for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++)
-                    {
-                        GetComponentsInChildren<Renderer>()[i].material.color = _standardColor[i];
-                    }
-                    _damageFlash = false;
                 }
             }
 
@@ -135,8 +130,7 @@ namespace Assets.Scripts
         {
             if (Time.time > _nextAttack)
             {
-
-                _playerdummy.Damage((int) _damage);
+                _playerdummy.Damage((int)_damage);
 
                 _nextAttack = Time.time + _attackSpeed;
             }
@@ -164,17 +158,8 @@ namespace Assets.Scripts
             }
             else
             {
-                foreach (var rend in GetComponentsInChildren<Renderer>())
-                {
-                    _standardColor.Add(rend.material.color);
-                }
-                foreach (var rend in GetComponentsInChildren<Renderer>())
-                {
-                    rend.material.color = Color.red;
-                }
-                _damageFlash = true;
+                StartCoroutine(DamageFlash());
             }
-
         }
 
         public void SetTargetLocation()
@@ -196,7 +181,21 @@ namespace Assets.Scripts
                 this.TakeDamage(damageByPlayer);
                 _slimeAudio.PlayDamageClip();
             }
-               
+        }
+
+        IEnumerator DamageFlash()
+        {
+            foreach (var rend in GetComponentsInChildren<Renderer>())
+            {
+                rend.material.color = Color.red;
+            }
+
+            yield return new WaitForSeconds(.3f);
+
+            for (int i = 0; i < GetComponentsInChildren<Renderer>().Length; i++)
+            {
+                GetComponentsInChildren<Renderer>()[i].material.color = _standardColor[i];
+            }
         }
     }
 }

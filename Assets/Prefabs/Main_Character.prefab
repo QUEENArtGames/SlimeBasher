@@ -3440,10 +3440,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
-  jumpPower: 4
-  gravityMultiplier: 1
+  jumpPower: 8
+  gravityMultiplier: 1.5
   runCycleLegOffset: 0.2
-  moveSpeedMultiplier: 1
+  moveSpeedMultiplier: 2
   animationSpeedMultiplier: 1
   groundCheckDistance: 0.4
   weaponCollider: {fileID: 65539454031029646}
