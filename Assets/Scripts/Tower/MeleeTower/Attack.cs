@@ -11,7 +11,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (transform.parent != null && transform.parent.parent != null)
+            /*if (transform.parent != null && transform.parent.parent != null)
             {
                 if (transform.parent.parent.name == "Holder3")
                 {
@@ -23,7 +23,7 @@ namespace Assets.Scripts
             {
                 dealDamage = false;
                 GetComponent<Collider>().isTrigger = false;
-            }
+            }*/
         }
 
         private void OnTriggerEnter(Collider other)
@@ -33,6 +33,21 @@ namespace Assets.Scripts
             {
                 other.gameObject.GetComponent<SlimeScript>().TakeDamage(damage);
             }
+        }
+
+        public void EnableAttack()
+        {
+            if (transform.parent.parent.name == "Holder3")
+            {
+                dealDamage = true;
+                GetComponent<Collider>().isTrigger = true;
+            }
+        }
+
+        public void DisableAttack()
+        {
+            dealDamage = false;
+            GetComponent<Collider>().isTrigger = false;
         }
     }
 }
