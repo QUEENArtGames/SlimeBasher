@@ -715,7 +715,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -810,9 +810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb735dd0f20f4bbaa7d0b17386aea94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingAngle: 80
+  firingAngle: 60
   gravity: 9.8
-  TowerSounds: {fileID: 0}
   projec: {fileID: 1852673794089372, guid: f82a4ac47dc2f4ba9a2e91da10d73681, type: 2}
 --- !u!114 &114437566473105292
 MonoBehaviour:

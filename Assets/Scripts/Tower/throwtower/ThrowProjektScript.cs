@@ -62,46 +62,29 @@ namespace Assets.Scripts
                 yield return null;
             }
             SpwanPuddle();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
-
-
 
         void OnCollisionEnter(Collision other)
         {
-
             if (other.gameObject.tag == "Enemy")
             {
                 Debug.Log("hit");
                 other.gameObject.GetComponent<SlimeScript>().TakeDamage(_damage);
             }
             SpwanPuddle();
-            Destroy(gameObject);
-
-
+            
+            //Destroy(gameObject);
         }
+
+        
 
         void SpwanPuddle()
         {
+            
+            Destroy(gameObject);
             GameObject obj = Instantiate(puddle) as GameObject;
             obj.transform.position = transform.position;
-            /*
-        Vector3 transformOffsetSpawn = transform.position;
-        
-		transformOffsetSpawn.y-=0.5f;
-
-		RaycastHit hit;
-		if(Physics.Raycast(transformOffsetSpawn,Vector3.down,out hit)){
-			obj.transform.position= hit.point;
-		}
-        */
-
-
         }
-
-
-
-
-
     }
 }
