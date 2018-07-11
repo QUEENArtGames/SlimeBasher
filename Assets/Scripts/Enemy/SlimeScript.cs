@@ -40,7 +40,7 @@ namespace Assets.Scripts
             if (_type == SlimeType.Gas)
                 _transformEffects = this.GetComponents<GasSlimeTransformScript>();
             _towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
-            _finalDestination = FindObjectOfType<Game>().FinalDestination;
+            _finalDestination = FindObjectOfType<Game>()._finalDestination;
             _player = GameObject.Find("Main_Character");
             _playerdummy = _player.GetComponent<PlayerDummy>();
             if (_type != SlimeType.Gas)

@@ -10,7 +10,7 @@ public class PlayerPauseMenu : MonoBehaviour
     {
         VolumeSlider.value = (MainMenu.MainMenuVolume != 0) ? MainMenu.MainMenuVolume : AudioListener.volume;
     }
-    // Use this for initialization
+
     public void QuitGame()
     {
         Application.Quit();

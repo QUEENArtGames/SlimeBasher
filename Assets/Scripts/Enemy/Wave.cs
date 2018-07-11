@@ -6,10 +6,11 @@ namespace Assets.Scripts
     [Serializable]
     public class WaveEvent
     {
-        public GameObject SpawnPoint;
+        public GameObject _spawnPoint;
         public int _normalSlimes;
         public int _hardSlimes;
         public int _gasSlimes;
+
         private int _waveNumber;
 
 
@@ -35,21 +36,21 @@ namespace Assets.Scripts
     [Serializable]
     public class Wave
     {
-        public WaveEvent[] events = new WaveEvent[] { };
-        public float delay;
-        private int _waveNumber;
+        public WaveEvent[] _events = new WaveEvent[] { };
+        public float _delay;
 
+        private int _waveNumber;
 
         public Wave(int waveNumber)
         {
             _waveNumber = waveNumber;
         }
 
-        public int getAllEnemysOfTheWave()
+        public int GetAllEnemysOfTheWave()
         {
             int enemys = 0;
 
-            foreach (WaveEvent ev in events)
+            foreach (WaveEvent ev in _events)
                 enemys += ev.GetSlimeCounter();
 
             return enemys;
@@ -59,12 +60,12 @@ namespace Assets.Scripts
         {
             get
             {
-                return events;
+                return _events;
             }
 
             set
             {
-                events = value;
+                _events = value;
             }
         }
     }

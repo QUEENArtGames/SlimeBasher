@@ -7,7 +7,7 @@ namespace Assets.Scripts
     [Serializable]
     class WaveProvider
     {
-        public Wave[] Waves;
+        public Wave[] _waves;
         private int _waveRoundNumber;
 
         public WaveProvider(int waveRoundNumber)
@@ -17,11 +17,11 @@ namespace Assets.Scripts
 
         public Wave GetNextWave()
         {
-            if (_waveRoundNumber > Waves.Length)
+            if (_waveRoundNumber > _waves.Length)
             {
                 return CreateProceduralWave();
             }
-            return Waves[_waveRoundNumber - 1];
+            return _waves[_waveRoundNumber - 1];
         }
 
         private Wave CreateProceduralWave()
@@ -32,8 +32,7 @@ namespace Assets.Scripts
             {
                 newWave.Events[i] = CreateRandomWaveEvent();
             }
-            newWave.delay = UnityEngine.Random.Range(0, 5);
-            Debug.Log("Delay: " + newWave.delay);
+            newWave._delay = UnityEngine.Random.Range(0, 5);
             return newWave;
         }
 
@@ -41,12 +40,11 @@ namespace Assets.Scripts
         {
             WaveEvent newWaveEvent = new WaveEvent(_waveRoundNumber);
             int counter = UnityEngine.Random.Range(0, Game.Instance.spawnPoints.Length);
-            Debug.Log("SpawnPoint an der Stelle: " + counter);
-            newWaveEvent.SpawnPoint = Game.Instance.spawnPoints[counter];
+            newWaveEvent._spawnPoint = Game.Instance.spawnPoints[counter];
             return newWaveEvent;
         }
 
-        public void setWaveNumber(int waveRoundNumber)
+        public void SetWaveNumber(int waveRoundNumber)
         {
             _waveRoundNumber = waveRoundNumber;
         }

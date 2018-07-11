@@ -80,11 +80,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _pausemenu: {fileID: 0}
+  FinalDestination: {fileID: 0}
+  phaseGUI: {fileID: 0}
+  _phaseGUICountdown: {fileID: 0}
+  _waveRoundText: {fileID: 0}
+  _readyUI: {fileID: 0}
+  _tutorialUI: {fileID: 0}
+  _towerUI: {fileID: 0}
   _nextPhaseTimer: 5
   _readyButtonEnabled: 0
-  _pausemenu: {fileID: 0}
-  enemyManagement: {fileID: 114923424035624480}
   fightPhaseEnd: 0
+  enemyManagement: {fileID: 114923424035624480}
   waveProvider:
     Waves:
     - events:
@@ -121,13 +128,6 @@ MonoBehaviour:
         _hardSlimes: 2
         _gasSlimes: 2
       delay: 4
-  FinalDestination: {fileID: 0}
-  phaseGUI: {fileID: 0}
-  _phaseGUICountdown: {fileID: 0}
-  _waveRoundText: {fileID: 0}
-  _readyUI: {fileID: 0}
-  _tutorialUI: {fileID: 0}
-  _towerUI: {fileID: 0}
 --- !u!114 &114525371782920988
 MonoBehaviour:
   m_ObjectHideFlags: 1

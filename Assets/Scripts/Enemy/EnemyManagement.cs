@@ -9,30 +9,32 @@ namespace Assets.Scripts
     class EnemyManagement : MonoBehaviour
     {
 
-        private List<GameObject> _Slimes = new List<GameObject>(); //SLIMEKLASSE
+        public GameObject _normalSlime;
+        public GameObject _hardSlime;
+        public GameObject _gasSlime;
+
+        private List<GameObject> _slimes = new List<GameObject>(); 
         private Wave _wave;
         private Game _game;
-        private float _timer = 0;
+        private WaveEvent _actualEvent;
         private bool _timerAllowed = false;
         private bool _eventAllowed = false;
         private bool _allEnemysSpawned = false;
+        private float _timer = 0;
         private int _eventCounter = 0;
         private int _spawnCounter = 0;
-        public GameObject _normalSlime;
-        private WaveEvent actualEvent;
-        public GameObject _hardSlime;
-        public GameObject _gasSlime;
+       
 
         public List<GameObject> Slimes
         {
             get
             {
-                return _Slimes;
+                return _slimes;
             }
 
             set
             {
-                _Slimes = value;
+                _slimes = value;
             }
         }
 
@@ -42,22 +44,13 @@ namespace Assets.Scripts
             _game = Game.Instance;
             HandleWave();
         }
-
-        //Funktion für Gegner Abstände;
-
+        
         private void HandleWave()
         {
-            //Für jedes Event in WaveEvents 
-            //Event hat Delay nach wann das Event abgehandelt wird (Counter im Update)
-            //Spawnen der Gegner nacheinander vom Spawnpoint
-            //Füge den jeweiligen Gegner der Liste hinzu
-
 
             if (_eventCounter < _wave.Events.Length)
             {
-                actualEvent = _wave.Events.ElementAt(_eventCounter);
-                Debug.Log("NormalSlimes: " + actualEvent._normalSlimes);
-                Debug.Log("HardSlimes: " + actualEvent._hardSlimes);
+                _actualEvent = _wave.Events.ElementAt(_eventCounter);
                 StartCoroutine("HandleEvent");
                 _eventCounter++;
             }
@@ -67,26 +60,26 @@ namespace Assets.Scripts
 
         IEnumerator HandleEvent()
         {
-            for (int i = 0; i < actualEvent._normalSlimes; i++)
+            for (int i = 0; i < _actualEvent._normalSlimes; i++)
             {
                 yield return new WaitForSeconds(2.5f);
-                _Slimes.Add(Instantiate(_normalSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
+                _slimes.Add(Instantiate(_normalSlime, _actualEvent._spawnPoint.transform.position, Quaternion.identity));
                 _spawnCounter++;
             }
 
-            for (int i = 0; i < actualEvent._hardSlimes; i++)
+            for (int i = 0; i < _actualEvent._hardSlimes; i++)
             {
                 yield return new WaitForSeconds(3.5f);
-                _Slimes.Add(Instantiate(_hardSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
+                _slimes.Add(Instantiate(_hardSlime, _actualEvent._spawnPoint.transform.position, Quaternion.identity));
                 _spawnCounter++;
             }
 
-            for (int i = 0; i < actualEvent._gasSlimes; i++)
+            for (int i = 0; i < _actualEvent._gasSlimes; i++)
             {
                 yield return new WaitForSeconds(4.5f);
 
-                _gasSlime.GetComponent<PC_PathAgent>().path = actualEvent.SpawnPoint.GetComponent<PC_Path>();
-                _Slimes.Add(Instantiate(_gasSlime, actualEvent.SpawnPoint.transform.position, Quaternion.identity));
+                _gasSlime.GetComponent<PC_PathAgent>().path = _actualEvent._spawnPoint.GetComponent<PC_Path>();
+                _slimes.Add(Instantiate(_gasSlime, _actualEvent._spawnPoint.transform.position, Quaternion.identity));
                 _spawnCounter++;
             }
 
@@ -96,7 +89,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (_spawnCounter == _wave.getAllEnemysOfTheWave())
+            if (_spawnCounter == _wave.GetAllEnemysOfTheWave())
             {
                 _allEnemysSpawned = true;
                 _spawnCounter = 0;
@@ -111,7 +104,7 @@ namespace Assets.Scripts
             if (_timerAllowed)
             {
                 _timer += Time.deltaTime;
-                if (_timer > _wave.delay)
+                if (_timer > _wave._delay)
                 {
                     _eventAllowed = true;
                     _timerAllowed = false;
@@ -119,10 +112,7 @@ namespace Assets.Scripts
                 }
             }
 
-            //Einmal Spawnen EventCounter = 1 und Event Länge = 1 -> true
-            //Einmal Spawnen EventCounter = 1 und Event Länge = 2 -> false
-            //Zweimal Spawnen EventCounter = 2 und Event Länge = 2 -> true
-            if (CheckIfSlimesAlive() && _eventCounter >= _wave.events.Length && _allEnemysSpawned)
+            if (CheckIfSlimesAlive() && _eventCounter >= _wave._events.Length && _allEnemysSpawned)
             {
                 _eventCounter = 0;
                 _allEnemysSpawned = false;
@@ -130,38 +120,29 @@ namespace Assets.Scripts
 
             }
 
-            //Kontrolliere die Länge der Gegnerlisten
-            //wenn alle leer, dann Welle vorbei -> Game.fightPhaseEnd boolean auf true setzen
-            //wenn nicht, dann nichts machen
-
-            //Liste der Slimes durchgehen und Lebenspunkte kontrollieren
-            //wenn 0 dann deleteEnemy
-
         }
 
         private bool CheckIfSlimesAlive()
         {
-            foreach (GameObject slime in _Slimes)
+            foreach (GameObject slime in _slimes)
             {
                 if (slime.GetComponent<SlimeScript>()._hitpoints <= 0)
                 {
-                    deleteEnemy(slime);
+                    DeleteEnemy(slime);
                     break;
                 }
             }
 
-            if (_Slimes.Count == 0)
+            if (_slimes.Count == 0)
                 return true;
 
             return false;
         }
 
-        public void deleteEnemy(GameObject slime)
-        { //SlimeKlasse
-            _Slimes.Remove(slime);
+        public void DeleteEnemy(GameObject slime)
+        {
+            _slimes.Remove(slime);
             slime.GetComponent<SlimeScript>().Kill();
-            //Liste durchgehen und dem Slime sagen das er sterben soll
-            //Slime aus der Liste entfernen
         }
     }
 }
