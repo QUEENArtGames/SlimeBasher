@@ -8,25 +8,29 @@ namespace Assets.Scripts
 
         private static Game instance;
         private GamePhase _gamePhase;
+
         public GameObject[] spawnPoints;
-        public float _nextPhaseTimer = 5.0f;
-        internal Phase _currentPhase;
-        private bool _startTimer = false;
-        public bool _readyButtonEnabled = false;
-        private float _countdown;
         public GameObject _pausemenu;
-        int _waveRoundNumber = 1;
-        private Wave _actualWave;
-        public EnemyManagement enemyManagement;
-        public bool fightPhaseEnd = false;
-        public WaveProvider waveProvider;
-        public Transform FinalDestination;
+        public Transform _finalDestination;
         public GameObject phaseGUI;
         public GameObject _phaseGUICountdown;
         public GameObject _waveRoundText;
         public GameObject _readyUI;
         public GameObject _tutorialUI;
         public GameObject _towerUI;
+
+        public float _nextPhaseTimer = 5.0f;
+        public bool _readyButtonEnabled = false;
+        public bool _fightPhaseEnd = false;
+        public EnemyManagement _enemyManagement;
+        public WaveProvider _waveProvider;
+
+        private float _countdown;        
+        private bool _startTimer = false;
+        private int _waveRoundNumber = 1;
+        private Wave _actualWave;
+
+        internal Phase _currentPhase;
 
         internal static Game Instance
         {
@@ -47,7 +51,7 @@ namespace Assets.Scripts
                 Destroy(this.gameObject);
                 return;
             }
-            enemyManagement.enabled = false;
+            _enemyManagement.enabled = false;
             _gamePhase = new GamePhase();
             _currentPhase = _gamePhase.Current;
             RunPhase(_currentPhase);
@@ -60,10 +64,7 @@ namespace Assets.Scripts
             switch (gamePhase)
             {
                 case Phase.Building:
-                    //Player kann sachen bauen
-                    Debug.Log("Runde: " + _waveRoundNumber);
                     _waveRoundText.GetComponent<Text>().text = "Wave: " + _waveRoundNumber;
-                    Debug.Log("BUILDING");
                     _towerUI.GetComponent<TowerUIFading>().FadeIn();
                     if (_waveRoundNumber > 1)
                     {
@@ -73,11 +74,9 @@ namespace Assets.Scripts
                     phaseGUI.SetActive(false);
                     break;
                 case Phase.Prepare:
-                    //Player bereitet sich auf die jetzt kommende Nächste Phase vor
-                    Debug.Log("Prepare");
                     StartNextRoundCounter();
-                    waveProvider.setWaveNumber(_waveRoundNumber);
-                    _actualWave = waveProvider.GetNextWave();
+                    _waveProvider.SetWaveNumber(_waveRoundNumber);
+                    _actualWave = _waveProvider.GetNextWave();
                     _readyUI.SetActive(false);
                     _towerUI.GetComponent<TowerUIFading>().FadeOut();
                     if (_waveRoundNumber <= 2)
@@ -85,8 +84,6 @@ namespace Assets.Scripts
                     break;
                 case Phase.Fight:
                     FindObjectOfType<GameSounds>().PlayRoundStartClip();
-                    //Player bekämpft Enemys
-                    Debug.Log("FIGHT");
                     if (_waveRoundNumber == 1)
                     {
                         _tutorialUI.GetComponentInChildren<Text>().text = "Es geht los! Verteidige deine Basis vor diesen Slimes. Sie sehen nett aus, wollen aber deine Wasserversorgung verschmutzen, verhindere das!";
@@ -98,10 +95,8 @@ namespace Assets.Scripts
                 case Phase.End:
                     FindObjectOfType<GameSounds>().PlayRoundEndClip();
                     FindObjectOfType<PlayerSounds>().PlayCheerSound();
-                    //Rundenende, bereitmachen für Bauphase
                     if (_waveRoundNumber == 1)
                         _tutorialUI.GetComponent<Tutorial>().FadeOut();
-                    Debug.Log("End");
                     ShowWaveEndGUI();
                     StartNextRoundCounter();
                     _waveRoundNumber++;
@@ -111,16 +106,14 @@ namespace Assets.Scripts
 
         private void StartWave()
         {
-            Debug.Log("Spawning Enemys");
-            enemyManagement.enabled = true;
-            enemyManagement.EnableManager(_actualWave);
-
+            _enemyManagement.enabled = true;
+            _enemyManagement.EnableManager(_actualWave);
         }
 
         private void ShowWaveEndGUI()
         {
             phaseGUI.SetActive(true);
-            enemyManagement.enabled = false;
+            _enemyManagement.enabled = false;
         }
 
 
@@ -157,7 +150,6 @@ namespace Assets.Scripts
         }
 
 
-        // Update is called once per frame
         void Update()
         {
 
@@ -185,7 +177,6 @@ namespace Assets.Scripts
 
             if (_readyButtonEnabled && Input.GetButtonDown("ready") && !Mathf.Approximately(Time.timeScale, 0))
             {
-                Debug.Log("Starting Countdown");
                 _gamePhase.MoveToNextGamePhase();
                 _readyButtonEnabled = false;
 
@@ -194,9 +185,9 @@ namespace Assets.Scripts
             if (Input.GetButtonDown("Cancel") && !Mathf.Approximately(Time.timeScale, 0))
                 PauseGame();
 
-            if (fightPhaseEnd)
+            if (_fightPhaseEnd)
             {
-                fightPhaseEnd = false;
+                _fightPhaseEnd = false;
                 _gamePhase.MoveToNextGamePhase();
             }
 

@@ -10,11 +10,24 @@ public class Tutorial : MonoBehaviour
     public Image _tutorialBackgroundImage;
     public float _fadeDuration = 0.5f; //0.5 secs
 
-    private bool firstTut = true;
+    private bool _firstTut = true;
     private float _showTime = 3;
 
     private void Start()
     {
+        StartCoroutine("FadeInCR");
+    }
+
+    public void FadeOut() {
+        StartCoroutine("FadeOutCR");
+    }
+
+    public void FadeOutV(float time) {
+        _showTime = time;
+        StartCoroutine("FadeOutCRV");
+    }
+
+    public void FadeIn() {
         StartCoroutine("FadeInCR");
     }
 
@@ -32,22 +45,6 @@ public class Tutorial : MonoBehaviour
             yield return null;
         }
         yield break;
-    }
-
-    public void FadeOut()
-    {
-        StartCoroutine("FadeOutCR");
-    }
-
-    public void FadeOutV(float time)
-    {
-        _showTime = time;
-        StartCoroutine("FadeOutCRV");
-    }
-
-    public void FadeIn()
-    {
-        StartCoroutine("FadeInCR");
     }
 
     private IEnumerator FadeOutCR()
@@ -80,11 +77,11 @@ public class Tutorial : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0) && firstTut)
+        if (Input.GetMouseButtonUp(0) && _firstTut)
         {
             GameObject.FindGameObjectWithTag("MainCamera").GetComponentInParent<FreeLookCam>().enabled = true;
             FadeOut();
-            firstTut = false;
+            _firstTut = false;
         }
     }
 }
