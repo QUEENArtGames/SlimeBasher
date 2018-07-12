@@ -24,9 +24,9 @@ namespace Assets.Scripts
         void Start()
         {
             //rb = GetComponent<Rigidbody>();
-            
+
             copyTarget = Target;
-            if(copyTarget != null)
+            if (copyTarget != null)
             {
                 StartCoroutine(SimulateProjectile());
             }
@@ -84,15 +84,15 @@ namespace Assets.Scripts
                 other.gameObject.GetComponent<SlimeScript>().TakeDamage(_damage);
             }
             SpwanPuddle();
-            
+
             //Destroy(gameObject);
         }
 
-        
+
 
         void SpwanPuddle()
         {
-            
+
             Destroy(gameObject);
             GameObject obj = Instantiate(puddle) as GameObject;
             obj.transform.position = transform.position;

@@ -31,7 +31,7 @@ public class SlimeAudio : MonoBehaviour
 
     public void PlayDamageClip()
     {
-        if(!DamageSource.isPlaying)
+        if (!DamageSource.isPlaying)
             DamageSource.Play();
     }
 

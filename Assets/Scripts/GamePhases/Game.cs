@@ -25,7 +25,7 @@ namespace Assets.Scripts
         public EnemyManagement _enemyManagement;
         public WaveProvider _waveProvider;
 
-        private float _countdown;        
+        private float _countdown;
         private bool _startTimer = false;
         private int _waveRoundNumber = 1;
         private Wave _actualWave;

@@ -13,7 +13,7 @@ namespace Assets.Scripts
         public GameObject _hardSlime;
         public GameObject _gasSlime;
 
-        private List<GameObject> _slimes = new List<GameObject>(); 
+        private List<GameObject> _slimes = new List<GameObject>();
         private Wave _wave;
         private Game _game;
         private WaveEvent _actualEvent;
@@ -23,7 +23,7 @@ namespace Assets.Scripts
         private float _timer = 0;
         private int _eventCounter = 0;
         private int _spawnCounter = 0;
-       
+
 
         public List<GameObject> Slimes
         {
@@ -44,7 +44,7 @@ namespace Assets.Scripts
             _game = Game.Instance;
             HandleWave();
         }
-        
+
         private void HandleWave()
         {
 

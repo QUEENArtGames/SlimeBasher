@@ -6,8 +6,8 @@ public class TowerUIFading : MonoBehaviour
     public float _fadeDuration = 3f;
 
     private GameObject _towerUI;
-    private float _uiStandardPosition; 
-    
+    private float _uiStandardPosition;
+
     private void Start()
     {
         _uiStandardPosition = gameObject.transform.position.y;

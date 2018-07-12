@@ -18,16 +18,19 @@ public class Tutorial : MonoBehaviour
         StartCoroutine("FadeInCR");
     }
 
-    public void FadeOut() {
+    public void FadeOut()
+    {
         StartCoroutine("FadeOutCR");
     }
 
-    public void FadeOutV(float time) {
+    public void FadeOutV(float time)
+    {
         _showTime = time;
         StartCoroutine("FadeOutCRV");
     }
 
-    public void FadeIn() {
+    public void FadeIn()
+    {
         StartCoroutine("FadeInCR");
     }
 
