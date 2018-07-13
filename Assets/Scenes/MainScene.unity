@@ -1958,16 +1958,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: _waveProvider._waves.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: _waveProvider._waves.Array.data[0]._events.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4655535515548208, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2000,6 +1990,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114517063331659874, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: UpgradeText
+      value: 
+      objectReference: {fileID: 1347059401}
+    - target: {fileID: 114517063331659874, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: KillText
+      value: 
+      objectReference: {fileID: 774726414}
+    - target: {fileID: 114517063331659874, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: ButtonPanel
+      value: 
+      objectReference: {fileID: 650307688}
+    - target: {fileID: 114517063331659874, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: ButtonTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1929136589}
+    - target: {fileID: 114517063331659874, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: ButtonTransforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 1381341572}
+    - target: {fileID: 114517063331659874, guid: 7d519c4530e190147b2bd0949beb8bd9,
+        type: 2}
+      propertyPath: ButtonTransforms.Array.data[2]
+      value: 
+      objectReference: {fileID: 640010311}
     - target: {fileID: 114924867017390638, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
       propertyPath: playerCam
@@ -2032,42 +2052,7 @@ Prefab:
       objectReference: {fileID: 328205698}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
-      propertyPath: waveProvider.Waves.Array.data[0].events.Array.data[0].SpawnPoint
-      value: 
-      objectReference: {fileID: 736263943}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[0].events.Array.data[1].SpawnPoint
-      value: 
-      objectReference: {fileID: 990646261}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[1].events.Array.data[0].SpawnPoint
-      value: 
-      objectReference: {fileID: 4167172}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[1].events.Array.data[1].SpawnPoint
-      value: 
-      objectReference: {fileID: 4167172}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[0].SpawnPoint
-      value: 
-      objectReference: {fileID: 736263943}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[1].SpawnPoint
-      value: 
-      objectReference: {fileID: 990646261}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: waveProvider.Waves.Array.data[2].events.Array.data[2].SpawnPoint
-      value: 
-      objectReference: {fileID: 4167172}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: FinalDestination
+      propertyPath: _finalDestination
       value: 
       objectReference: {fileID: 1545568399}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
@@ -2100,63 +2085,12 @@ Prefab:
       propertyPath: _towerUI
       value: 
       objectReference: {fileID: 985985237}
-    - target: {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: UpgradeText
-      value: 
-      objectReference: {fileID: 1347059401}
-    - target: {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: KillText
-      value: 
-      objectReference: {fileID: 774726414}
-    - target: {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: ButtonPanel
-      value: 
-      objectReference: {fileID: 650307688}
-    - target: {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: ButtonTransforms.Array.data[0]
-      value: 
-      objectReference: {fileID: 1929136589}
-    - target: {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: ButtonTransforms.Array.data[1]
-      value: 
-      objectReference: {fileID: 1381341572}
-    - target: {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: ButtonTransforms.Array.data[2]
-      value: 
-      objectReference: {fileID: 640010311}
     - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
         type: 2}
       propertyPath: _waveProvider._waves.Array.data[0]._events.Array.data[0]._spawnPoint
       value: 
       objectReference: {fileID: 736263943}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: _waveProvider._waves.Array.data[0]._events.Array.data[0]._normalSlimes
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: _waveProvider._waves.Array.data[0]._events.Array.data[0]._hardSlimes
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: _enemyManagement
-      value: 
-      objectReference: {fileID: 1824617768}
-    - target: {fileID: 114328511540532336, guid: 7d519c4530e190147b2bd0949beb8bd9,
-        type: 2}
-      propertyPath: _finalDestination
-      value: 
-      objectReference: {fileID: 1545568399}
-    m_RemovedComponents:
-    - {fileID: 114288206192884810, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d519c4530e190147b2bd0949beb8bd9, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &640010311
@@ -2216,8 +2150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 696, y: 219}
+  m_AnchoredPosition: {x: 0, y: -360.25}
+  m_SizeDelta: {x: 696, y: 220.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &650307690
 MonoBehaviour:
@@ -4842,7 +4776,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1309063089}
-  - component: {fileID: 1309063090}
   m_Layer: 5
   m_Name: UpgradeMenu
   m_TagString: Untagged
@@ -4872,26 +4805,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1309063090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1309063088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0c2626e439ef24a9ccf1accca7b5fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradeText: {fileID: 1347059401}
-  KillText: {fileID: 774726414}
-  UpgradeButtonPrefab: {fileID: 1252618393546424, guid: 62e2e0311eb94ca468b958871e04b527,
-    type: 2}
-  ButtonPanel: {fileID: 650307688}
-  ButtonTransforms:
-  - {fileID: 1929136589}
-  - {fileID: 1381341572}
-  - {fileID: 640010311}
 --- !u!1001 &1315590759
 Prefab:
   m_ObjectHideFlags: 0
@@ -6808,12 +6721,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1811624918}
---- !u!114 &1824617768 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114923424035624480, guid: 7d519c4530e190147b2bd0949beb8bd9,
-    type: 2}
-  m_PrefabInternal: {fileID: 557392548}
-  m_Script: {fileID: 11500000, guid: 94d5ad762e496274abe4ceeeae187222, type: 3}
 --- !u!1 &1842468221
 GameObject:
   m_ObjectHideFlags: 0
