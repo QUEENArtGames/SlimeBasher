@@ -109,10 +109,10 @@ public class Player : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, FromUpgradeRaycastAcknowledgedLayer))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, FromUpgradeRaycastAcknowledgedLayer))
         {
 
-            if ( hit.transform.gameObject.CompareTag("Tower")&& Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
+            if (hit.transform.gameObject.CompareTag("Tower") && Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
             {
                 _towerBuildingUI.ShowTowerKillNotification();
                 TowerRessourceManagement towermanagement = hit.transform.gameObject.GetComponent<TowerRessourceManagement>();
@@ -138,12 +138,13 @@ public class Player : MonoBehaviour
                     _towerBuilding.UpgradeWithAnyScrap(hit.transform.gameObject.GetComponent<TowerRessourceManagement>());
                 }
             }
-            else
-            {
-                _towerBuildingUI.CloseTowerKillNotification();
-                _towerBuildingUI.CloseTowerUpgradeNotification();
-            }
 
+
+        }
+        else
+        {
+            _towerBuildingUI.CloseTowerKillNotification();
+            _towerBuildingUI.CloseTowerUpgradeNotification();
         }
     }
 
