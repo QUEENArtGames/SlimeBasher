@@ -27,7 +27,7 @@ namespace Assets.Scripts
         private bool _firstPlacement = true;
         public GameObject tutorialUI;
 
-        private PlayerDummy _player;
+        private Player _player;
 
         // Raycast on layer 8
         private int layerMask = 1 << 8;
@@ -51,7 +51,7 @@ namespace Assets.Scripts
                 tower.GetComponent<NavMeshObstacle>().carving = true;
             }
 
-            _player = FindObjectOfType<PlayerDummy>();
+            _player = FindObjectOfType<Player>();
         }
 
         void SelectTowerToPlace(int towerNumber)

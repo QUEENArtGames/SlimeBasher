@@ -73,7 +73,6 @@ public class Scrap : MonoBehaviour
     {
         if (collision.gameObject.layer == 8 && !_wasonground)
         {
-            Debug.Log("Scrap Traf auf Boden");
             _firstgroundhitparticle.Play();
             _wasonground = true;
         }

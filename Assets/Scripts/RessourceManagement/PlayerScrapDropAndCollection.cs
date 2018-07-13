@@ -34,15 +34,15 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         {
             for (int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
             {
-                if (Random.Range(0.0f, 100.0f) < _ressourceManagement.PlayerScrapDropProbabilityInPercent)
-                {
-                    GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
-                    Scrap scrap = scrapObject.GetComponent<Scrap>();
-                    scrap.ChangeCollectionState();
-                    scrap.ChangeAttachementState();
-                    scrapObject.GetComponent<Rigidbody>().isKinematic = false;
-                    _scrapInventory.RemoveScrap(scrapTypeIndex, index);
-                }
+                GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
+                Scrap scrap = scrapObject.GetComponent<Scrap>();
+                scrap.ChangeCollectionState();
+                scrap.ChangeAttachementState();
+                scrapObject.GetComponent<Rigidbody>().isKinematic = false;
+                _scrapInventory.RemoveScrap(scrapTypeIndex, index);
+
+                if (Random.Range(0.0f, 100.0f) > _ressourceManagement.PlayerScrapDropProbabilityInPercent)
+                    Destroy(scrapObject);
             }
         }
     }

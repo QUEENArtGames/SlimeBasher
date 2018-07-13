@@ -31,30 +31,12 @@ public class SlimeRessourceManagement : MonoBehaviour
     // TESTUPDATE
     void Update()
     {
-        if (Input.GetKeyDown("i"))
-        {
-            InstanstiateScrapsOnSelf();
-        }
-
         if (Input.GetKeyDown("p"))
             GetComponent<SlimeScript>()._hitpoints = 0;
 
         //ChildObjekt angucken für bessere Lösung?
         if (_attachedScraps.Count > 0)
             MakeScrapsFollowParent();
-    }
-
-    //TESTEREI
-    /*private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
-            CollectRessource(other.transform.gameObject);
-    }*/
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
-            CollectRessource(other.transform.gameObject);
     }
 
     public void DropRessources()
@@ -72,6 +54,12 @@ public class SlimeRessourceManagement : MonoBehaviour
         }
 
         _attachedScraps.RemoveRange(0, _attachedScraps.Count);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Scrap") && !other.gameObject.GetComponent<Scrap>().IsCollected && ScrapSlots.Length > _attachedScraps.Count)
+            CollectRessource(other.transform.gameObject);
     }
 
     private void CollectRessource(GameObject scrap)

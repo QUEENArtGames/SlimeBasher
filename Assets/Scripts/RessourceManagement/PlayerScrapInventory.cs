@@ -13,9 +13,8 @@ public class PlayerScrapInventory : MonoBehaviour
     {
         _inventoryUI = FindObjectOfType<InventoryUI>();
         for (int i = 0; i < Enum.GetNames(typeof(ScrapType)).Length; i++)
-        {
             _scrapInventory[i] = new List<int>();
-        }
+        
     }
 
     public int GetAmountOfScraps(ScrapType scrapType)

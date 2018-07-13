@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //TESTFUNKTIONEN
-public class PlayerDummy : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private PlayerScrapDropAndCollection _playerScrapDropAndCollection;
     private TowerBuilding _towerBuilding;
@@ -14,6 +14,7 @@ public class PlayerDummy : MonoBehaviour
     public GameObject _endUI;
     public float _moveCharacterTimer = 15f;
     private float _timer;
+
     public Transform _playerSpawnPoint;
 
     private bool _isInDefaultMode = true;
@@ -22,6 +23,7 @@ public class PlayerDummy : MonoBehaviour
     private Animator _anim;
 
     public int MaxDistanceToTower = 2;
+    public LayerMask FromUpgradeRaycastAcknowledgedLayer;
 
     private void Start()
     {
@@ -86,13 +88,31 @@ public class PlayerDummy : MonoBehaviour
             _allowsounds = true;
         }
 
+        TowerUpgradeRayCast();
+
+    }
+
+    internal void Damage(int damage)
+    {
+        _playerHealth -= damage;
+        _healthSlider.value = _playerHealth;
+        _playersounds.PlayPainSound();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.gameObject.CompareTag("Scrap") && _playerHealth > 0)
+            _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
+    }
+
+    private void TowerUpgradeRayCast()
+    {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, FromUpgradeRaycastAcknowledgedLayer))
         {
 
-            if (hit.transform.gameObject.CompareTag("Tower") && Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
+            if ( hit.transform.gameObject.CompareTag("Tower")&& Vector3.Distance(transform.position, hit.transform.position) <= MaxDistanceToTower && IsInDefaultMode)
             {
                 _towerBuildingUI.ShowTowerKillNotification();
                 TowerRessourceManagement towermanagement = hit.transform.gameObject.GetComponent<TowerRessourceManagement>();
@@ -125,20 +145,6 @@ public class PlayerDummy : MonoBehaviour
             }
 
         }
-
-    }
-
-    internal void Damage(int damage)
-    {
-        _playerHealth -= damage;
-        _healthSlider.value = _playerHealth;
-        _playersounds.PlayPainSound();
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.gameObject.CompareTag("Scrap") && _playerHealth > 0)
-            _playerScrapDropAndCollection.CollectScrap(other.transform.gameObject);
     }
 
 }

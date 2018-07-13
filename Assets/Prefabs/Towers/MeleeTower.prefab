@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4648031899106094}
   - component: {fileID: 33340834365259696}
   - component: {fileID: 23352779892856158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Holder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114177434640152324}
   - component: {fileID: 114266091505088150}
   - component: {fileID: 82060535155652146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeleeTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4671739520646968}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RessourceSlot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4724574892613124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RessourceSlot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4447295407000226}
   - component: {fileID: 33730572779580332}
   - component: {fileID: 23011475898442734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rotor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4782882399145038}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RessourceSlot (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4742337719245952}
   - component: {fileID: 33430705328838304}
   - component: {fileID: 23627915287652080}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Screw2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4506315443597106}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Screws
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4405952408822966}
   - component: {fileID: 33066514318026888}
   - component: {fileID: 23727977638768700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Screw3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 4312210233298536}
   - component: {fileID: 33629398353328210}
   - component: {fileID: 23398230260374898}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BarrelAndEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 4375245678031698}
   - component: {fileID: 33813070408299856}
   - component: {fileID: 23903124904720226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Motorbloc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 4039799754199936}
   - component: {fileID: 33116731765450662}
   - component: {fileID: 23529096945898352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Screw4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4877357096510142}
   - component: {fileID: 95490510000313880}
   - component: {fileID: 114058410937383808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wood_smooth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4698535502426404}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RessourceSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 4140520883354566}
   - component: {fileID: 33865585801046768}
   - component: {fileID: 23661097058988640}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Screw1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,6 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28709b18c403ca54b9a1ea82d0a9d9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dealDamage: 0
 --- !u!114 &114266091505088150
 MonoBehaviour:
   m_ObjectHideFlags: 1
