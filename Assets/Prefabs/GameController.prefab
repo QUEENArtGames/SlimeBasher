@@ -85,17 +85,17 @@ MonoBehaviour:
       _delay: 1
     - _events:
       - _spawnPoint: {fileID: 0}
-        _normalSlimes: 0
+        _normalSlimes: 2
         _hardSlimes: 2
         _gasSlimes: 0
       - _spawnPoint: {fileID: 0}
         _normalSlimes: 2
         _hardSlimes: 0
-        _gasSlimes: 0
+        _gasSlimes: 1
       _delay: 2
     - _events:
       - _spawnPoint: {fileID: 0}
-        _normalSlimes: 2
+        _normalSlimes: 4
         _hardSlimes: 0
         _gasSlimes: 0
       - _spawnPoint: {fileID: 0}
