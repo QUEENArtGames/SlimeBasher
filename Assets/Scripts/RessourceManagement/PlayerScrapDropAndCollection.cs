@@ -34,7 +34,7 @@ public class PlayerScrapDropAndCollection : MonoBehaviour
         {
             for (int index = 0; index < _scrapInventory.ScrapInventory[scrapTypeIndex].Count; index++)
             {
-                GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
+                GameObject scrapObject = Instantiate(_ressourceManagement.GetScrapPrefabBySubTypeIndex(scrapTypeIndex, _scrapInventory.ScrapInventory[scrapTypeIndex][index]), new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.identity);
                 Scrap scrap = scrapObject.GetComponent<Scrap>();
                 scrap.ChangeCollectionState();
                 scrap.ChangeAttachementState();
