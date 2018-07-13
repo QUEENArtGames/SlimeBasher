@@ -152,7 +152,7 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224525339549941752}
+  - component: {fileID: 4168438844327296}
   - component: {fileID: 114937488645705072}
   - component: {fileID: 195308371445467390}
   - component: {fileID: 135907407390636802}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 82700179387337064}
   - component: {fileID: 82729022763920358}
   m_Layer: 9
-  m_Name: LiquidSlimeDummy
+  m_Name: LiquidSlime 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +279,7 @@ Transform:
   - {fileID: 4810612534267720}
   - {fileID: 4152644286976572}
   - {fileID: 4709313120410208}
-  m_Father: {fileID: 224525339549941752}
+  m_Father: {fileID: 4168438844327296}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4106628837147444
@@ -308,6 +308,22 @@ Transform:
   m_Father: {fileID: 4097742643685540}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4168438844327296
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1739397658495034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4097742643685540}
+  - {fileID: 4257564188847620}
+  - {fileID: 224169073852712990}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4170366561675170
 Transform:
   m_ObjectHideFlags: 1
@@ -334,7 +350,7 @@ Transform:
   - {fileID: 4170366561675170}
   - {fileID: 4106628837147444}
   - {fileID: 4406959476445282}
-  m_Father: {fileID: 224525339549941752}
+  m_Father: {fileID: 4168438844327296}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4406959476445282
@@ -918,7 +934,7 @@ MonoBehaviour:
   _damage: 10
   _attackSpeed: 1
   _towerAggroRange: 3.5
-  _playerAggroRange: 3.5
+  _playerAggroRange: 2
   damageByPlayer: 25
 --- !u!114 &114725080605535538
 MonoBehaviour:
@@ -1091,7 +1107,7 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 224565179117027256}
-  m_Father: {fileID: 224525339549941752}
+  m_Father: {fileID: 4168438844327296}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1135,27 +1151,6 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224525339549941752
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1739397658495034}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4097742643685540}
-  - {fileID: 4257564188847620}
-  - {fileID: 224169073852712990}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224558269029859282
 RectTransform:

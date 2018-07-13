@@ -20,6 +20,14 @@ public class RessourceManagement : MonoBehaviour
     private GameObject[][] _possiblePrefabs = new GameObject[Enum.GetNames(typeof(ScrapType)).Length][];
     private List<PoolScrap> _possiblePrefabPool;
 
+    public GameObject[][] PossiblePrefabs
+    {
+        get
+        {
+            return _possiblePrefabs;
+        }
+    }
+
     internal GameObject GetScrapPrefabBySubTypeIndex(int scrapTypeIndex, int subTypeIndex)
     {
         return PossiblePrefabs[scrapTypeIndex][subTypeIndex];
@@ -31,36 +39,27 @@ public class RessourceManagement : MonoBehaviour
             PrepareScrapPools();
 
 
-        int randomScrapObjectIndex = (int) UnityEngine.Random.Range(0.0f, _possiblePrefabPool.Count);
+        int randomScrapObjectIndex = (int)UnityEngine.Random.Range(0.0f, _possiblePrefabPool.Count);
         PoolScrap poolscrap = _possiblePrefabPool[randomScrapObjectIndex];
         _possiblePrefabPool.Remove(poolscrap);
-        return PossiblePrefabs[(int) poolscrap.ScrapType][poolscrap.SubType];
-    }
-
-    public GameObject[][] PossiblePrefabs
-    {
-        get
-        {
-            return _possiblePrefabs;
-        }
+        return PossiblePrefabs[(int)poolscrap.ScrapType][poolscrap.SubType];
     }
 
     private void Awake()
     {
         _possiblePrefabPool = new List<PoolScrap>();
         PossiblePrefabs[(int) ScrapType.MELEE] = MeelePrefabs;
-        PossiblePrefabs[(int) ScrapType.BOTTLE] = BottlePrefabs;
+        PossiblePrefabs[(int) ScrapType.WATERTOWERSCRAP] = BottlePrefabs;
         PossiblePrefabs[(int) ScrapType.TIDEPOD] = GrenadePrefabs;
         PossiblePrefabs[(int) ScrapType.PUSTEFIX] = PustefixPrefabs;
         PrepareScrapPools();
 
     }
 
-
     private void PrepareScrapPools()
     {
         FillPossiblePrefabs(ScrapType.MELEE, MeeleScrapAmountInPool, MeelePrefabs);
-        FillPossiblePrefabs(ScrapType.BOTTLE, BottleScrapAmountInPool, BottlePrefabs);
+        FillPossiblePrefabs(ScrapType.WATERTOWERSCRAP, BottleScrapAmountInPool, BottlePrefabs);
         FillPossiblePrefabs(ScrapType.TIDEPOD, GrenadeScrapAmountInPool, GrenadePrefabs);
         FillPossiblePrefabs(ScrapType.PUSTEFIX, PustefixScrapAmountInPool, PustefixPrefabs);
     }

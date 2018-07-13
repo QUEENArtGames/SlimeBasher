@@ -56,7 +56,7 @@ namespace Assets.Scripts
             _currentPhase = _gamePhase.Current;
             RunPhase(_currentPhase);
             Time.timeScale = 1;
-            FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.BOTTLE, 0);
+            FindObjectOfType<PlayerScrapInventory>().AddScrap(ScrapType.WATERTOWERSCRAP, 0);
         }
 
         private void RunPhase(Phase gamePhase)

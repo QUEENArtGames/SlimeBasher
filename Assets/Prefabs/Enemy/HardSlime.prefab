@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 82575244585277594}
   - component: {fileID: 82532107385232492}
   m_Layer: 9
-  m_Name: HardSlimeDummy
+  m_Name: HardSlime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

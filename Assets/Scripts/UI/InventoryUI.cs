@@ -37,7 +37,7 @@ public class InventoryUI : MonoBehaviour
         MeeleScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.MELEE].Count + "";
         GrenadeScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.TIDEPOD].Count + "";
         AirScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.PUSTEFIX].Count + "";
-        WaterScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.BOTTLE].Count + "";
+        WaterScrapText.text = _playerScrapInventory.ScrapInventory[(int) ScrapType.WATERTOWERSCRAP].Count + "";
         ClassicScrapText.text = _playerScrapInventory.ClassicScraps + "";
     }
 }

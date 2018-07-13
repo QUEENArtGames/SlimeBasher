@@ -25,7 +25,7 @@ namespace Assets.Scripts
 
         private NavMeshAgent _navMeshAgent;
         private GameObject _tmpTarget;
-        private PlayerDummy _playerdummy;
+        private Player _playerdummy;
         private float _maxHitpoints;
 
         private GasSlimeTransformScript[] _transformEffects;
@@ -42,7 +42,7 @@ namespace Assets.Scripts
             _towerplacement = GameObject.FindObjectOfType<TowerPlacement>();//("GameController").transform.GetComponent<TowerPlacement>();
             _finalDestination = FindObjectOfType<Game>()._finalDestination;
             _player = GameObject.Find("Main_Character");
-            _playerdummy = _player.GetComponent<PlayerDummy>();
+            _playerdummy = _player.GetComponent<Player>();
             if (_type != SlimeType.Gas)
             {
                 _navMeshAgent = GetComponent<NavMeshAgent>();

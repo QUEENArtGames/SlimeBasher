@@ -8,11 +8,6 @@ public class TowerBuilding : MonoBehaviour
     private List<int>[] _playerScraps;
     private TowerRessourceManagement _towermanagement;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         _playerInventory = FindObjectOfType<PlayerScrapInventory>();
@@ -57,6 +52,12 @@ public class TowerBuilding : MonoBehaviour
         return CheckForRessources(_playerScraps, towermanagement);
     }
 
+    internal bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
+    {
+        return HasEnoughSpecialScraps(inventory, towermanagement) &&
+               _playerInventory.ClassicScraps >= towermanagement.NeededClassicScraps;
+    }
+
     private void RemoveAnyNeededScrapFromInventory(TowerRessourceManagement towermanagement)
     {
         for (int scrapTypeIndex = 0; scrapTypeIndex < towermanagement.NeededScraps.Length; scrapTypeIndex++)
@@ -66,16 +67,10 @@ public class TowerBuilding : MonoBehaviour
         }
     }
 
-    internal bool CheckForRessources(List<int>[] inventory, TowerRessourceManagement towermanagement)
-    {
-        return HasEnoughSpecialScraps(inventory, towermanagement) &&
-               _playerInventory.ClassicScraps >= towermanagement.NeededClassicScraps;
-    }
-
     private bool HasEnoughSpecialScraps(List<int>[] inventory, TowerRessourceManagement towermanagement)
     {
         return (inventory[(int) ScrapType.MELEE].Count >= 1 && towermanagement.NeedsMeeleScraps) ||
-               (inventory[(int) ScrapType.BOTTLE].Count >= 1 && towermanagement.NeedsBottleScraps) ||
+               (inventory[(int) ScrapType.WATERTOWERSCRAP].Count >= 1 && towermanagement.NeedsBottleScraps) ||
                (inventory[(int) ScrapType.TIDEPOD].Count >= 1 && towermanagement.NeedsGrenadeScraps) ||
                (inventory[(int) ScrapType.PUSTEFIX].Count >= 1 && towermanagement.NeedsPustefixScraps);
 
