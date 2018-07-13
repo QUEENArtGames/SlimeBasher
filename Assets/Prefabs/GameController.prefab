@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 114924867017390638}
   - component: {fileID: 114525371782920988}
   - component: {fileID: 114797267383346880}
-  - component: {fileID: 114288206192884810}
   - component: {fileID: 114328511540532336}
   - component: {fileID: 114923424035624480}
   m_Layer: 0
@@ -45,26 +44,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114288206192884810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1987074410379128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0c2626e439ef24a9ccf1accca7b5fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradeText: {fileID: 0}
-  KillText: {fileID: 0}
-  UpgradeButtonPrefab: {fileID: 1252618393546424, guid: 62e2e0311eb94ca468b958871e04b527,
-    type: 2}
-  ButtonPanel: {fileID: 0}
-  ButtonTransforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114328511540532336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,7 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _pausemenu: {fileID: 0}
-  FinalDestination: {fileID: 0}
+  _finalDestination: {fileID: 0}
   phaseGUI: {fileID: 0}
   _phaseGUICountdown: {fileID: 0}
   _waveRoundText: {fileID: 0}
@@ -90,44 +69,44 @@ MonoBehaviour:
   _towerUI: {fileID: 0}
   _nextPhaseTimer: 5
   _readyButtonEnabled: 0
-  fightPhaseEnd: 0
-  enemyManagement: {fileID: 114923424035624480}
-  waveProvider:
-    Waves:
-    - events:
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 1
+  _fightPhaseEnd: 0
+  _enemyManagement: {fileID: 114923424035624480}
+  _waveProvider:
+    _waves:
+    - _events:
+      - _spawnPoint: {fileID: 0}
+        _normalSlimes: 2
         _hardSlimes: 0
         _gasSlimes: 0
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 1
+      - _spawnPoint: {fileID: 0}
+        _normalSlimes: 2
         _hardSlimes: 0
         _gasSlimes: 0
-      delay: 2
-    - events:
-      - SpawnPoint: {fileID: 0}
+      _delay: 1
+    - _events:
+      - _spawnPoint: {fileID: 0}
+        _normalSlimes: 0
+        _hardSlimes: 2
+        _gasSlimes: 0
+      - _spawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 0
+        _gasSlimes: 0
+      _delay: 2
+    - _events:
+      - _spawnPoint: {fileID: 0}
+        _normalSlimes: 2
+        _hardSlimes: 0
+        _gasSlimes: 0
+      - _spawnPoint: {fileID: 0}
         _normalSlimes: 1
         _hardSlimes: 1
-        _gasSlimes: 0
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 1
+        _gasSlimes: 2
+      - _spawnPoint: {fileID: 0}
+        _normalSlimes: 3
         _hardSlimes: 1
-        _gasSlimes: 0
-      delay: 3
-    - events:
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 2
-        _hardSlimes: 2
-        _gasSlimes: 2
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 2
-        _hardSlimes: 2
-        _gasSlimes: 2
-      - SpawnPoint: {fileID: 0}
-        _normalSlimes: 2
-        _hardSlimes: 2
-        _gasSlimes: 2
-      delay: 4
+        _gasSlimes: 1
+      _delay: 1
 --- !u!114 &114525371782920988
 MonoBehaviour:
   m_ObjectHideFlags: 1
